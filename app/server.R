@@ -225,7 +225,7 @@ function(input, output, session) {
   # Render report
   observeEvent(input$generate, {
     
-    req(input$file, datainput(), input$selection1$right)
+    req(input$file, datainput(), input$selection_outcome$right)
   
     src0 <- normalizePath('report_kernel.Rmd') 
     src1 <- normalizePath('report.Rmd')

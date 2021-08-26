@@ -40,26 +40,15 @@ tryCatch({
 
 }, error=function(e) {
   
-  stop(safeError("Please try other column names for the following columns: "))
+  stop(safeError("Could not get the data. "))
 })
 
-# Generate error message for a special column names issue
-if (length(setdiff(params$vars1,colnames(df))) >0) {
-  cat("Try other name(s) for the following column(s) and repeat the upload: ")
-  equal <- intersect(colnames(df),params$vars1)
-  kable(setdiff(params$vars1,equal),col.names = "Column")
-}
 ```
 
 
 ```{r prep, eval=eval0}
 # Basic data preparation 
 tryCatch({
-  
-# Drop columns if all observations are missing 
-col_names_missing <- sapply(df, function(col) all(is.na(col)))
-df[ ,col_names_missing] <- list(NULL)
-df_list <- df 
 
 # Drop empty rows
 rowsums <- data.frame(sapply(df,is.na))
@@ -76,7 +65,7 @@ eval <- TRUE
 
 }, error=function(e) {
   
-  stop(safeError("Dataset cannot be prepared. Please check the data for consistency."))
+  stop(safeError("Dataset cannot be prepared. "))
   
 }
 )
@@ -114,44 +103,8 @@ if (exists("length_non_complete")){
   cat("\\newline",fill=TRUE) 
 }
 
-cat("Variables (columns with at least one non-missing value): ", fill=TRUE)
-cat(dim(df_list)[2])
-cat("\\newline",fill=TRUE) 
-
-# Missing columns
-if (exists("col_names_missing")){
-  if (sum(col_names_missing) != 0L){
-    cat("Number of columns that are dropped because they contain no values (all values are missing):", sum(col_names_missing), fill=TRUE)
-    cat("\\newline",fill=TRUE) 
-  } 
-}
-
-if (exists("df_cont")){
-  cat("Name of the Exposure Variable: ", fill=TRUE)
-  if (ncol(df_cont)>0){
-    cat(ncol(df_cont),fill=TRUE)
-    knitr::kable(cols_continuous, col.names = "Variables considered continuous", linesep = '', longtable=T) %>%
-      kable_styling(font_size = 8, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))
-  } else {
-    cat("0", fill=TRUE)
-    cat("\\newline",fill=TRUE)
-    cat("Error: There are no continuous variables of interest in the dataset. ")
-    eval <- FALSE
-  }
-}
-
-if (exists("df_cat")){
-  cat("Name of the Outcome Variable: ", fill=TRUE)
-  if (ncol(df_cat)>0){
-    cat(ncol(df_cat),fill=TRUE)
-    knitr::kable(colnames(df_cat), col.names = "Variables considered categorical", linesep = '', longtable=T) %>%
-      kable_styling(font_size = 8, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))
-  } else {
-    cat("0", fill=TRUE)
-    cat("\\newline",fill=TRUE) 
-    cat("Error: There are no factors in the dataset. ")
-    eval <- FALSE
-  }
+if (exists("vars")){
+  cat("Name of the Outcome Variable: ", params$outcome, fill=TRUE)
 }
 ```
 

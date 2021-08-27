@@ -1,10 +1,14 @@
-# Beta prior, priors independent 
+# Beta priors, priors independent 
 
-# Data 
+# Data as cell frequencies 
 s1 <- 8
 n1 <- 18198
 s2 <- 162 
 n2 <- 18325 
+
+
+# Likelihood
+
 
 # Prior 
 alpha1 <- 2 # Flat prior
@@ -18,6 +22,9 @@ product_beta <- function(x){
   density <- dbeta(x,s1+alpha1,(n1-s1)+beta1)*dbeta(x,s1+alpha1,(n1-s1)+beta1)
   return(density)
 }
+
+
+product_beta(2)
 
 
 # Draw page 167

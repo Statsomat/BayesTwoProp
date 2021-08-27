@@ -35,8 +35,14 @@ by Dr. Denise Welsch
 
 
 # Further Comments
-*	Please use the `data.table` package for EDA (extract, transform, load) data. Use the package `dplyr` only if really needed.
-*	Debugging: Discuss the errors in our group. Google the errors. Check solutions on StackOverflow or on the official GitHub pages of the R packages. 
-*	Prerequisites: Course of Prof. Neuhäuser, minimal R programming 
+-	Please use the `data.table` package for EDA (extract, transform, load) data. Use the package `dplyr` only if really needed.
+-	Debugging: Discuss the errors in our group. Google the errors. Check solutions on StackOverflow or on the official GitHub pages of the R packages. 
+-	Programming best practices:
+  - Use human-readable object names (e.g. do not name objects with `x` or `y`) 
+  - Write short lines (break the lines if they are too long)
+  - Comment properly the lines for newcomers 
+  - Use blank lines between blocks of code representing distinct ideas
+  - Do not use libraries which do not have a large community  
+-	Prerequisites: Course of Prof. Neuhäuser, minimal R programming 
 
 

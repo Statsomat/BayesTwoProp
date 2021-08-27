@@ -176,7 +176,7 @@ function(input, output, session) {
   
   
   
-  # Select Variables
+  # Select Outcome Variable
   output$selection_outcome <- renderUI({
     
     req(datainput())
@@ -190,7 +190,6 @@ function(input, output, session) {
   
   
   #  Dynamic component for the reference level of the factor of interest
-  
   observeEvent(input$selection_outcome, {
     factorinterest <- input$selection_outcome$right
     choices <-  unique(datainput()[,factorinterest])  

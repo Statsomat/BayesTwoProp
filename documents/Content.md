@@ -26,7 +26,7 @@ by Dr. Denise Welsch
 # Literature and Links 
 (additional to Literature from the course of Prof. Neuhäuser) 
 
-1. GitHub Fundamentals 
+1. GitHub Fundamentals (https://github.com/reyar/BayesTwoProp/blob/master/documents/Git_Fundamentals.md)
 2. Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021,  (https://www.nature.com/articles/s41562-021-01177-7#rightslink)
 3. Kruschke, John K., BARG-Supplement.html: https://osf.io/w7cph/ (check the html file)
 4. Kruschke, John K., Doing Bayesian Data Analysis, Elsevier 2015, ISBN: 978-0-12-405888-0

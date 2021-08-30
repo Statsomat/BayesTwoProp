@@ -1,4 +1,4 @@
-# Beta priors, priors independent 
+library(plotly)
 
 # Data as cell frequencies 
 s1 <- 8
@@ -7,37 +7,50 @@ s2 <- 162
 n2 <- 18325 
 
 
-# Likelihood
-
-
 # Prior 
-alpha1 <- 2 # Flat prior
-beta1 <- 2 # Flat prior
-alpha2 <- 2 # Flat prior
-beta2 <- 2 # Flat prior
+a1 <- 1/2 
+b1 <- 1/2 
+a2 <- 1/2 
+b2 <- 1/2 
 
 
-# Product independent beta distributions  
-product_beta <- function(x){
-  density <- dbeta(x,s1+alpha1,(n1-s1)+beta1)*dbeta(x,s1+alpha1,(n1-s1)+beta1)
-  return(density)
-}
+# Points for plotting
+Theta1 = seq(0.001, 0.999, by=0.001) 
+Theta2 = seq(0.001, 0.999, by=0.001) 
 
 
-product_beta(2)
+# Prior for plotting
+pTheta1 = dbeta(Theta1,a1,b1)
+pTheta2 = dbeta(Theta2,a2,b2) 
+
+
+# Posterior for plotting
+pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
+for (i in 1:length(Theta1)){
+  for (j in 1:length(Theta2)){
+    pTheta1Theta2GivenData[i,j]<- dbeta(Theta1[i], a1+s1, b1+n1-s1)*dbeta(Theta2[j], a2+s2, b2+n2-s2)   
+  }
+} 
+
+# Define likelihood for plotting
 
 
 # Draw page 167
+fig <- plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData) 
+add_surface(fig)
 
 
 # Simulate from posterior
-posterior_theta1 <- rbeta(10000,s1+alpha1,(n1-s1)+beta1)
-posterior_theta2 <- rbeta(10000,s2+alpha2,(n2-s2)+beta2)
+posterior_Theta1 <- rbeta(10000,s1+a1,(n1-s1)+b1)
+posterior_Theta2 <- rbeta(10000,s2+a2,(n2-s2)+b2)
 
 
 # Describe posterior estimate of the function of parameters of interest
-VE <- 1-posterior_theta1/posterior_theta2
+VE <- 1-posterior_Theta1/posterior_Theta2
 bayestestR::describe_posterior(VE, ci = 0.95)
 plot(bayestestR::hdi(VE, ci = c(.89, .95, .99)))
 plot(bayestestR::eti(VE))
 plot(bayestestR::point_estimate(VE))
+
+
+

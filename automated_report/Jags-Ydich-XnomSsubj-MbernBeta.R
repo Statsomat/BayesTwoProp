@@ -108,7 +108,7 @@ smryMCMC = function(  codaSamples , compVal=0.5 , rope=NULL ,
       parName2 = paste0("theta[",t2Idx,"]")
       summaryInfo = rbind( summaryInfo , 
         summarizePost( mcmcMat[,parName1]-mcmcMat[,parName2] ,
-                       compVal=compValDiff , ROPE=ropeDiff ) )
+                       compVal=compValDiff , ROPE=ropeDiff))
       rowIdx = rowIdx+1
       rownames(summaryInfo)[rowIdx] = paste0(parName1,"-",parName2)
     }

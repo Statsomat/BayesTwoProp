@@ -14,29 +14,22 @@ myData$s = factor( myData$s )
 # Load the relevant model into R's working memory:
 source("DBDA/Jags-Ydich-XnomSsubj-MbernBeta.R")
 #------------------------------------------------------------------------------- 
-# Optional: Specify filename root and graphical format for saving output.
-# Otherwise specify as NULL or leave saveName and saveType arguments 
-# out of function calls.
-fileNameRoot = "Jags-Ydich-XnomSsubj-MbernBeta-" 
-graphFileType = "eps" 
-#------------------------------------------------------------------------------- 
 # Generate the MCMC chain:
-mcmcCoda = genMCMC( data=myData , numSavedSteps=50000 , saveName=fileNameRoot)
+mcmcCoda = genMCMC( data=myData , numSavedSteps=50000 , saveName=NULL)
 #------------------------------------------------------------------------------- 
 # Display diagnostics of chain, for specified parameters:
 parameterNames = varnames(mcmcCoda) # get all parameter names
 for ( parName in parameterNames ) {
-  diagMCMC( codaObject=mcmcCoda , parName=parName , 
-                saveName=fileNameRoot , saveType=graphFileType )
+  diagMCMC( codaObject=mcmcCoda , parName=parName, saveName=NULL)
 }
 #------------------------------------------------------------------------------- 
 # Get summary statistics of chain:
 summaryInfo = smryMCMC( mcmcCoda , compVal=NULL , #rope=c(0.45,0.55) ,
                         compValDiff=0.0 , #ropeDiff = c(-0.05,0.05) ,
-                        saveName=fileNameRoot )
+                        saveName=NULL )
 
 # Display posterior information:
 plotMCMC( mcmcCoda , data=myData , compVal=NULL , #rope=c(0.45,0.55) ,
           compValDiff=0.0 , #ropeDiff = c(-0.05,0.05) ,
-          saveName=fileNameRoot , saveType=graphFileType )
+          saveName=NULL )
 #------------------------------------------------------------------------------- 

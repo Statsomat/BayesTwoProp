@@ -90,8 +90,3 @@ pfizer_results %>%
 # MCMC Diagnostics 
 
 
-
-# Plot posterior estimate of the function of parameters of interest 
-thetaDiff = results$diff
-plotPost(thetaDiff, xlab=expression(theta[1]-theta[2]) , compVal=0.0 )
-plot(bayestestR::hdi(results$diff))

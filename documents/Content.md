@@ -1,25 +1,25 @@
-# Bayes-Statistik, SS 2021
+# Bayes-Statistik, WS2021/2022
 by Dr. Denise Welsch
 
 # Content 
 -	Welcome
 -	Statsomat https://statsomat.com 
-  -	Minimal but sufficient GUI user-interaction 
-  -	Automatic reporting (automated tables and graphics) 
-  -	Human-readable interpretation 
-  -	Downloadable and reproducible code 
+    -	Minimal but sufficient GUI user-interaction 
+    -	Automatic reporting (automated tables and graphics) 
+    -	Human-readable interpretation 
+    -	Downloadable and reproducible code 
 
--	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-related solutions and satisfying the Statsomat philosophy 
+-	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-related solutions and satisfying the Statsomat philosophy.  
 
 -	GitHub und GitHuB Desktop
 
--	Evaluation by statistics of contributions (commits, additions, deletions, comments, pull requests)  
+-	Evaluation by statistics of contributions (commits, additions, deletions, comments, pull requests). Each issue needs a developer and a tester.  
 
 -	Installation: Download and Install GitHub Desktop, clone GitHub repository. 
 
-- Start with Issue 1.
+- Start with Issue 1,2,3. 
 
-- Pick up issues, work on them and resolve them. 
+- Pick up further issues, work on them and resolve them. 
 
 
 

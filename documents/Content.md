@@ -19,7 +19,7 @@ by Dr. Denise Welsch
 
 - Start with Issue 1,2,3. 
 
-- Pick up issues, work on them and resolve them. 
+- Pick up further issues, work on them and resolve them. 
 
 
 

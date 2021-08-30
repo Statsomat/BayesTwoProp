@@ -4,10 +4,10 @@ by Dr. Denise Welsch
 # Content 
 -	Welcome
 -	Statsomat https://statsomat.com 
-  -	Minimal but sufficient GUI user-interaction 
-  -	Automatic reporting (automated tables and graphics) 
-  -	Human-readable interpretation 
-  -	Downloadable and reproducible code 
+    -	Minimal but sufficient GUI user-interaction 
+    -	Automatic reporting (automated tables and graphics) 
+    -	Human-readable interpretation 
+    -	Downloadable and reproducible code 
 
 -	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-related solutions and satisfying the Statsomat philosophy 
 

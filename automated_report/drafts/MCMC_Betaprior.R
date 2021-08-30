@@ -20,7 +20,7 @@ modelString <- "
   model {
     
     # likelihood 
-    for (iin 1:Ntotal) {
+    for (i in 1:Ntotal) {
       y[i] ~ dbern(theta[s[i]])
     }
     

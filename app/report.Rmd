@@ -28,7 +28,124 @@ header-includes:
 ---
 
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment='', message = FALSE, error = TRUE, warning=FALSE, fig.width=8)
 
-```{r child = 'report_kernel.Rmd', eval = TRUE}
+# Import libraries used further below
+library(knitr) # for tables
+library(kableExtra) # for tables 
 ```
+
+
+```{r getdata}
+# Initialize evaluation of subsequent chunks
+eval0 <- FALSE
+eval <- FALSE
+eval_rows <- FALSE
+
+
+# Get data  
+tryCatch({
+  
+  # Get data
+  df <- params$data
+  
+  # Save a copy for the file containing the code 
+  df_code <- df
+  
+  # Restrict to exposure and outcome
+  vars <- c(params$outcome)
+  df <- df[,params$outcome, drop=FALSE]
+  
+  # Save a copy for other purposes 
+  df2 <- df
+  
+  # Initialize next computations
+  eval0 <- TRUE
+
+}, error=function(e) {
+  
+  stop(safeError("Could not get the data. "))
+})
+
+```
+
+
+```{r prep, eval=eval0}
+# Basic data preparation 
+tryCatch({
+
+# Drop empty rows
+rowsums <- data.frame(sapply(df,is.na))
+if (length(which(rowSums(rowsums) == dim(df)[2])) != 0L){
+  eval_rows <- TRUE
+  rows_drop <- (which(rowSums(rowsums) == dim(df)[2]))
+  length_non_complete <- length(which(rowSums(rowsums) == dim(df)[2]))
+  df <- df[-rows_drop, ,drop=FALSE]
+}
+
+
+# Initialize next computations
+eval <- TRUE
+
+}, error=function(e) {
+  
+  stop(safeError("Dataset cannot be prepared. "))
+  
+}
+)
+```
+
+
+```{r basic, results="asis", eval=eval}
+# Chunk with first page of basic information
+cat("# Basic Information", fill=TRUE)
+
+cat("Automatic statistics for the file:", fill=TRUE)
+dataname <- params$filename[1]
+kable(dataname, col.names = "File", linesep = '', longtable=T) 
+
+cat("Your selection for the encoding:", fill=TRUE)
+if (params$fencoding=="unknown"){
+  cat("Auto")
+} else {cat("UTF-8")}
+cat("\\newline",fill=TRUE) 
+
+cat("Your selection for the decimal character:", fill=TRUE)
+if (params$decimal=="auto"){
+  cat("Auto")
+} else {cat(params$decimal)}
+cat("\\newline",fill=TRUE) 
+  
+cat("Observations (rows with at least one non-missing value): ", fill=TRUE)
+cat(dim(df)[1])
+cat("\\newline",fill=TRUE) 
+
+# Missing rows
+if (exists("length_non_complete")){
+  cat("Number of rows that are dropped because they contain no values (all values are missing):", length_non_complete)
+  cat("\\newline",fill=TRUE) 
+}
+
+if (exists("vars")){
+  cat("Name of the Outcome Variable: ", params$outcome, fill=TRUE)
+}
+```
+
+
+\pagebreak
+
+
+```{r descplots_title, eval=eval, results='asis'}
+cat("# Descriptive Plots", fill=TRUE)
+```
+
+```{r descplots, eval=eval, dev="cairo_pdf"}
+```
+
+
+
+
+
+
 

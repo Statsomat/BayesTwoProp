@@ -98,4 +98,24 @@ plot(eti(estimate))
 
 
 
+# Plot both in percent
+Theta1pct <- posterior_Theta1*100
+Theta2pct <- posterior_Theta2*100
+results <- data.frame(Theta1pct,Theta2pct)
+results %>%
+  tidyr::pivot_longer(everything(), names_to = "group") %>%
+  ggplot(aes(x = value, fill = group)) +
+  ggdist::stat_halfeye(.width = c(0.89, 0.95),
+                       alpha = .8,
+                       slab_colour = "black",
+                       slab_size = .5) +
+  ggtitle("xxx") +
+  xlab("xlael") +
+  scale_x_continuous(labels = scales::label_percent(scale = 1),
+                     breaks = seq.int(0, 1, .1)) +
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank())
 

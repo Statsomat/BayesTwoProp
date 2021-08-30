@@ -1,7 +1,6 @@
 automated_report/.Rproj.user
 app/.Rproj.user
 /**/*.Rhistory
-/**/*.Rhistory
 /**/*.RData
 /**/*.pdf
 /**/*.eps
@@ -10,3 +9,4 @@ automated_report/*.utf8.md
 automated_report/*.knit.md
 automated_report/_cache/
 automated_report/cache/
+automated_report/.Rproj.user/2D9751F5/sources/prop/INDEX

@@ -35,6 +35,8 @@ by Dr. Denise Welsch
 7. Testing story and datasets: Adverse Events of Vaccine and Sars-Cov-2 (https://www.nejm.org/doi/full/10.1056/NEJMoa2110475, https://www.nejm.org/doi/suppl/10.1056/NEJMoa2110475/suppl_file/nejmoa2110475_appendix.pdf)
 8. Testing story and datasets: Pfizer Vaccine (https://arxiv.org/abs/2102.11022v1)
 
+Google Drive Denise Welsch: (https://drive.google.com/drive/folders/1baXEFnHuUCJLmgvrdR93Q0tlIr5B3uze?usp=sharing) 
+
 
 # Further Comments
 -	Please use the `data.table` package for EDA (extract, transform, load) data. Use the package `dplyr` only if really needed.

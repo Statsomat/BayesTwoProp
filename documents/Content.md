@@ -1,4 +1,4 @@
-# Bayes-Statistik, SS 2021
+# Bayes-Statistik, WS2021/2022
 by Dr. Denise Welsch
 
 # Content 

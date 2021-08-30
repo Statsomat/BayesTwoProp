@@ -1,0 +1,37 @@
+---
+title: "Two Proportions by Bayes"
+author: 
+  - Denise Welsch
+  - Contributors^[Students Names]
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    toc: true
+    toc_depth: 2
+#bibliography: ["references.bib"]
+classoption: landscape
+params:
+  data: NA
+  filename: NA
+  fencoding: NA
+  decimal: NA
+  enc_guessed: NA
+  level: NA
+  outcome: NA
+header-includes:
+   - \usepackage{xcolor}
+#   - \setmainfont[BoldFont=FiraSans-Bold, Extension=.otf]{FiraSans-Regular}
+   - \usepackage{booktabs}
+   - \usepackage{longtable}
+   - \usepackage{float}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment='', message = FALSE, error = TRUE, warning=FALSE, fig.width=8)
+
+# Import libraries used further below
+library(knitr) # for tables
+library(kableExtra) # for tables 
+```
+

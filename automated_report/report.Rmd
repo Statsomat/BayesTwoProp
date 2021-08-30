@@ -32,7 +32,6 @@ header-includes:
 knitr::opts_chunk$set(echo = FALSE, comment='', message = FALSE, error = TRUE, warning=FALSE, fig.width=8)
 
 # Import libraries used further below
-library(shiny) # shiny, this line will be dropped in the app
 library(knitr) # for tables
 library(kableExtra) # for tables 
 ```
@@ -146,7 +145,7 @@ cat("# Descriptive Statistics and Plots", fill=TRUE)
 
 
 ```{r datahead, eval=eval, results='asis'}
-knitr::kable(head(df), col.names = c("Outcome","Exposure"), linesep = '', longtable=T) %>%
+knitr::kable(head(df), col.names = colnames(df), linesep = '', longtable=T) %>%
   kable_styling(font_size = 8, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))
 ```
 

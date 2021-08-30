@@ -13,7 +13,7 @@ by Dr. Denise Welsch
 
 -	GitHub und GitHuB Desktop
 
--	Evaluation by statistics of contributions (commits, additions, deletions, comments, pull requests)  
+-	Evaluation by statistics of contributions (commits, additions, deletions, comments, pull requests). Each issue needs a developer and a tester.  
 
 -	Installation: Download and Install GitHub Desktop, clone GitHub repository. 
 

@@ -7,13 +7,14 @@ by Dr. Denise Welsch
     -	Minimal but sufficient GUI user-interaction 
     -	Automatic reporting (automated tables and graphics) 
     -	Human-readable interpretation 
-    -	Downloadable and reproducible code 
+    -	Downloadable and reproducible code
+    -	Help for learners all over the world 
 
 -	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. 
 
 -	GitHub und GitHuB Desktop
 
--	Evaluation by statistics of contributions (commits, additions, deletions, comments, pull requests). Each issue needs a developer and a tester.  
+-	Evaluation of your contributions (commits, additions, deletions, comments, pull requests). Each issue needs a developer and a tester.  
 
 -	Installation: Download and Install GitHub Desktop, clone GitHub repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and the required packages. 
 

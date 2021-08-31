@@ -52,9 +52,12 @@ library(LearnBayes)
 
 
 ```{r chunksinit}
-# Initialize evaluation of subsequent chunks
+# Initialize evaluation resp. execution of subsequent chunks
+## Evaluation only for file upload
 evalfile <- is.data.frame(params$data)
+## Evaluation for cell frequency upload 
 eval <- !is.na(params$s1)
+## Other 
 evalbasic_file <- FALSE
 eval_rows <- FALSE
 ```
@@ -86,6 +89,8 @@ tryCatch({
   
   # Initialize next computations
   eval <- TRUE
+  
+  # Move on if file upload and successful current chunk 
   evalbasic_file <- as.logical(evalfile*eval)
 
 }, error=function(e) {
@@ -147,12 +152,27 @@ if (exists("vars")){
 ```
 
 
+```{r cellupload, eval=!evalfile, results='asis'}
+# Upload as cell frequencies, display them nicely
+cat(s1)
+cat(n1)
+cat(s2)
+cat(n2)
+```
+
+
 ```{r guirest, eval=eval, results='asis'}
 # display in the report the rest of the information arising from the GUI (e.g. priors, function of parameters etc.)
 ```
 
 \pagebreak
 
+```{r title_preamble, eval=eval, results='asis'}
+cat("# Preamble", fill=TRUE)
+# Why Bayesian. Explain what benefits will be gleaned by a Bayesian analysis (as opposed to a frequentist analysis).
+# Goals of analysis. Explain the goals of the analysis. This prepares the audience for the type of models to expect and how the results will be described. 
+# Check references: Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021
+```
 
 ```{r title_descstats, eval=eval, results='asis'}
 cat("# Descriptive Statistics and Plots", fill=TRUE)
@@ -165,18 +185,13 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 ```
 
 ```{r desctable, eval=eval, dev="cairo_pdf"}
-# Insert a frequency table for the dataset 
+cat("## Frequency Table", fill=TRUE)
+# Insert a frequency table for the data
 ```
 
 ```{r descplots, eval=eval, dev="cairo_pdf"}
+cat("## Barplots", fill=TRUE)
 # Insert beautiful descriptive plots suitable for our dataset, e.g. barplots 
-```
-
-```{r title_preamble, eval=eval, results='asis'}
-cat("# Preamble", fill=TRUE)
-# Why Bayesian. Explain what benefits will be gleaned by a Bayesian analysis (as opposed to a frequentist analysis).
-# Goals of analysis. Explain the goals of the analysis. This prepares the audience for the type of models to expect and how the results will be described. 
-# Check references: Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021
 ```
 
 ```{r the_model, eval=eval, results='asis'}
@@ -217,8 +232,13 @@ pTheta2 = dbeta(Theta2,a2,b2)
 # References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
 ```
 
-```{r posterior, eval=eval, dev="cairo_pdf"}
-# Posterior for plotting
+```{r posterior_text, eval=eval, results='asis'}
+cat("# The Posterior", fill=TRUE)
+# Describe the posterior distribution
+```
+
+```{r posterior_plot, eval=eval, dev="cairo_pdf"}
+# Posterior for plotting (follow last row from page 167 DDBA)
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
 for (i in 1:length(Theta1)){
   for (j in 1:length(Theta2)){
@@ -226,6 +246,80 @@ for (i in 1:length(Theta1)){
   }
 } 
 
-# Generate and include plots as a png 
+# Generate and include plots, export as a png and include or find another solution 
 plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData, type = "surface") 
+```
+
+```{r posterior_check, eval=eval, dev="cairo_pdf"}
+# Posterior predictive check. Provide a posterior predictive check to show that the model usefully mimics the data.
+```
+
+```{r simulate, eval=eval}
+## Simulate from posterior
+posterior_Theta1 <- rbeta(10000,s1+a1,(n1-s1)+b1)
+posterior_Theta2 <- rbeta(10000,s2+a2,(n2-s2)+b2)
+```
+
+```{r functionparameter, eval=eval}
+## Function of parameters of interest
+if (user_selection_function_param == 3) {
+  estimate <- 1-posterior_Theta1/posterior_Theta2
+} else if (user_selection_function_param == 2){
+  estimate <- posterior_Theta1/posterior_Theta2  
+} else {
+  estimate <- posterior_Theta1-posterior_Theta2  
+}
+```
+
+```{r describe_posterior, eval=eval}
+# Describe posterior in a table 
+# Summarize posterior of variables. For continuous parameters, derived variables and predicted values, report the central tendency and limits of the credible interval. Explicitly state whether you are using density-based values (mode and HDI) or quantile-based values (median and ETI), and state the mass of the credible interval (for example, 95%)
+if (is.null(rope_user)==TRUE){
+  describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL)
+} else {
+  describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range = rope_user)
+}
+```
+
+```{r plot_hdi, eval=eval}
+## Display graphical posterior information
+### Use bayestestR package 
+plot(hdi(estimate, ci = c(.89, .95, .99)))
+```
+
+```{r plot_eti, eval=eval}
+## Display graphical posterior information
+### Use bayestestR package 
+plot(eti(estimate))
+```
+
+```{r plotpost, eval=eval}
+# Use the plotPost function (page 205 Kruschke)
+```
+
+```{r plotboth, eval=eval}
+# Plot both in percent
+Theta1pct <- posterior_Theta1*100
+Theta2pct <- posterior_Theta2*100
+results <- data.frame(Theta1pct,Theta2pct)
+results %>%
+  tidyr::pivot_longer(everything(), names_to = "group") %>%
+  ggplot(aes(x = value, fill = group)) +
+  ggdist::stat_halfeye(.width = c(0.89, 0.95),
+                       alpha = .8,
+                       slab_colour = "black",
+                       slab_size = .5) +
+  ggtitle("xxx") +
+  xlab("xlael") +
+  scale_x_continuous(labels = scales::label_percent(scale = 1),
+                     breaks = seq.int(0, 1, .1)) +
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank())
+```
+
+```{r decision, eval=eval}
+# ROPE limits. If using a continuous-parameter posterior distribution as the basis for decision, state and justify the limits of the ROPE and the required probability mass.
 ```

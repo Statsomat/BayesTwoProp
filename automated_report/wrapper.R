@@ -16,7 +16,7 @@ library(shiny)
 # Data as a file 
 filename <- "datasets/testfile.csv"
 decimal <- "."
-data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "")
+#data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "")
 outcome <- "y"
 exposure <- "s"
 level <- 1

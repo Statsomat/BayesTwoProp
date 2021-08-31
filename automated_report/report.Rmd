@@ -23,7 +23,13 @@ params:
   s1: NA 
   n1: NA 
   s2: NA 
-  n2: NA 
+  n2: NA
+  a1: NA
+  b1: NA
+  a2: NA
+  b2: NA
+  user_selection_function_param: NA
+  rope_user: NA
 header-includes:
    - \usepackage{xcolor}
 #   - \setmainfont[BoldFont=FiraSans-Bold, Extension=.otf]{FiraSans-Regular}
@@ -39,13 +45,16 @@ knitr::opts_chunk$set(echo = FALSE, comment='', message = FALSE, error = TRUE, w
 # Import libraries used further below
 library(knitr) # for tables
 library(kableExtra) # for tables 
+library(plotly) # for 3d plots
+library(bayestestR)
+library(LearnBayes)
 ```
 
 
 ```{r chunksinit}
 # Initialize evaluation of subsequent chunks
 evalfile <- is.data.frame(params$data)
-eval <- FALSE
+eval <- !is.na(params$s1)
 evalbasic_file <- FALSE
 eval_rows <- FALSE
 ```
@@ -144,12 +153,6 @@ if (exists("vars")){
 
 \pagebreak
 
-```{r title_preamble, eval=eval, results='asis'}
-cat("# Preamble", fill=TRUE)
-# Why Bayesian. Explain what benefits will be gleaned by a Bayesian analysis (as opposed to a frequentist analysis).
-# Goals of analysis. Explain the goals of the analysis. This prepares the audience for the type of models to expect and how the results will be described. 
-# Check references: Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021
-```
 
 ```{r title_descstats, eval=eval, results='asis'}
 cat("# Descriptive Statistics and Plots", fill=TRUE)
@@ -169,3 +172,60 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 # Insert beautiful descriptive plots suitable for our dataset, e.g. barplots 
 ```
 
+```{r title_preamble, eval=eval, results='asis'}
+cat("# Preamble", fill=TRUE)
+# Why Bayesian. Explain what benefits will be gleaned by a Bayesian analysis (as opposed to a frequentist analysis).
+# Goals of analysis. Explain the goals of the analysis. This prepares the audience for the type of models to expect and how the results will be described. 
+# Check references: Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021
+```
+
+```{r the_model, eval=eval, results='asis'}
+cat("# The Model", fill=TRUE)
+# insert latex equations for the model 
+```
+
+```{r likelihoodtext, eval=eval, results='asis'}
+cat("## The Likelihood", fill=TRUE)
+# Explain the likelihood function and all the parameters
+```
+
+```{r likelihoodplot, eval=eval, results='asis'}
+# Plot the likelihood (follow second row from page 167 DDBA)
+# Consider the range for Theta1 and Theta2 defined above 
+```
+
+```{r priortext, eval=eval, results='asis'}
+cat("## The Prior", fill=TRUE)
+# if the default is used, explain and justify the prior distribution of the parameters in the model.
+# otherwise, specify that it is user defined
+```
+
+```{r priorplot, eval=eval, results='asis'}
+# Plot the prior (follow first row from page 167 DDBA)
+
+## Range for plotting
+Theta1 = seq(0.001, 0.999, by=0.001) 
+Theta2 = seq(0.001, 0.999, by=0.001) 
+
+## Priors for plotting 
+pTheta1 = dbeta(Theta1,a1,b1)
+pTheta2 = dbeta(Theta2,a2,b2) 
+```
+
+```{r priorcheck, eval=eval, results='asis'}
+# Prior predictive check. Especially when using informed priors but even with broad priors, it is valuable to report a prior predictive check to demonstrate that the prior really generates simulated data consistent with the assumed prior knowledge.
+# References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
+```
+
+```{r posterior, eval=eval, dev="cairo_pdf"}
+# Posterior for plotting
+pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
+for (i in 1:length(Theta1)){
+  for (j in 1:length(Theta2)){
+    pTheta1Theta2GivenData[i,j]<- dbeta(Theta1[i], a1+s1, b1+n1-s1)*dbeta(Theta2[j], a2+s2, b2+n2-s2)   
+  }
+} 
+
+# Generate and include plots as a png 
+plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData, type = "surface") 
+```

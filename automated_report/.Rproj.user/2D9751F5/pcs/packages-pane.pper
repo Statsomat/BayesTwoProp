@@ -1,7 +1,0 @@
-{
-    "installOptions": {
-        "installFromRepository": true,
-        "libraryPath": "G:/REYAR/Statsomat/RLibs",
-        "installDependencies": true
-    }
-}

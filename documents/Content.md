@@ -12,7 +12,7 @@ by Dr. Denise Welsch
 
 -	Goal: The goal of this course is to develop an app for a statistical application (comparison of two proportions) treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. 
 
--	GitHub und GitHuB Desktop
+-	GitHub und GitHuB Desktop, our repository and the subdirectories 
 
 -	Evaluation of your contributions (commits, additions, deletions, comments, pull requests). Each issue needs a developer and a tester. A significant contribution relating to the Bayes-theory is a must. 
 

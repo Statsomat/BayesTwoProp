@@ -7,15 +7,16 @@ by Dr. Denise Welsch
     -	Minimal but sufficient GUI user-interaction 
     -	Automatic reporting (automated tables and graphics) 
     -	Human-readable interpretation 
-    -	Downloadable and reproducible code 
+    -	Downloadable and reproducible code
+    -	Help for learners all over the world 
 
--	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-related solutions and satisfying the Statsomat philosophy. We will not start from zero but we will start with a "starter code" which needs to be further developed. 
+-	Goal: The goal of this course is to develop an app for a statistical application (comparison of two proportions) treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. 
 
--	GitHub und GitHuB Desktop
+-	GitHub und GitHuB Desktop, our repository and the subdirectories 
 
--	Evaluation by statistics of contributions (commits, additions, deletions, comments, pull requests). Each issue needs a developer and a tester.  
+-	Evaluation of your contributions (commits, additions, deletions, comments, pull requests). Each issue needs a developer and a tester. A significant contribution relating to the Bayes-theory is a must. 
 
--	Installation: Download and Install GitHub Desktop, clone GitHub repository. 
+-	Installation: Download and Install GitHub Desktop, clone GitHub repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and the required packages. 
 
 - Start with Issue 1,2,3. 
 
@@ -23,14 +24,14 @@ by Dr. Denise Welsch
 
 
 
-# Literature and Links 
+# Literature and Useful Links 
 (additional to Literature from the course of Prof. Neuhäuser) 
 
 1. GitHub Fundamentals (https://github.com/reyar/BayesTwoProp/blob/master/documents/Git_Fundamentals.md)
 2. Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021,  (https://www.nature.com/articles/s41562-021-01177-7#rightslink)
 3. Kruschke, John K., BARG-Supplement.html: https://osf.io/w7cph/ (check the html file)
-4. Kruschke, John K., Doing Bayesian Data Analysis, Elsevier 2015, ISBN: 978-0-12-405888-0
-5. Rmarkdown (https://bookdown.org/yihui/rmarkdown/)
+4. Kruschke, John K., Doing Bayesian Data Analysis, Elsevier 2015, ISBN: 978-0-12-405888-0, especially chapters 6,7 and 8.4
+5. Rmarkdown (https://bookdown.org/yihui/rmarkdown/), (https://bookdown.org/yihui/rmarkdown-cookbook/)
 6. Shiny Gallery (https://shiny.rstudio.com/gallery/#demos)
 7. Datasets: Adverse Events of Vaccine and Sars-Cov-2 (https://www.nejm.org/doi/full/10.1056/NEJMoa2110475, https://www.nejm.org/doi/suppl/10.1056/NEJMoa2110475/suppl_file/nejmoa2110475_appendix.pdf)
 8. Datasets: Pfizer Vaccine (https://arxiv.org/abs/2102.11022v1)

@@ -9,7 +9,7 @@ by Dr. Denise Welsch
     -	Human-readable interpretation 
     -	Downloadable and reproducible code 
 
--	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-related solutions and satisfying the Statsomat philosophy.  
+-	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-related solutions and satisfying the Statsomat philosophy. We will not start from zero but we will start with a "starter code" which needs to be further developed. 
 
 -	GitHub und GitHuB Desktop
 
@@ -47,6 +47,7 @@ Google Drive Denise Welsch: (https://drive.google.com/drive/folders/1baXEFnHuUCJ
     - Comment properly the lines for newcomers 
     - Use blank lines between blocks of code representing distinct ideas
     - Do not use libraries which do not have a large community  
+-   Should you have new ideas, you are welcomed to open an issue (also for very small changes) 
 -	Prerequisites: Course of Prof. Neuhäuser, minimal R programming 
 
 

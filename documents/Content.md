@@ -9,7 +9,7 @@ by Dr. Denise Welsch
     -	Human-readable interpretation 
     -	Downloadable and reproducible code 
 
--	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-related solutions and satisfying the Statsomat philosophy. We will not start from zero but we will start with a "starter code" which needs to be further developed. 
+-	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. 
 
 -	GitHub und GitHuB Desktop
 

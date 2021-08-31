@@ -14,11 +14,16 @@ classoption: landscape
 params:
   data: NA
   filename: NA
-  fencoding: NA
+  fencoding: NA # used in Shiny app 
   decimal: NA
-  enc_guessed: NA
+  enc_guessed: NA # used in Shiny app 
   level: NA
   outcome: NA
+  exposure: NA 
+  s1: NA 
+  n1: NA 
+  s2: NA 
+  n2: NA 
 header-includes:
    - \usepackage{xcolor}
 #   - \setmainfont[BoldFont=FiraSans-Bold, Extension=.otf]{FiraSans-Regular}
@@ -37,70 +42,65 @@ library(kableExtra) # for tables
 ```
 
 
-```{r getdata}
+```{r chunksinit}
 # Initialize evaluation of subsequent chunks
-eval0 <- FALSE
+evalfile <- is.data.frame(params$data)
 eval <- FALSE
+evalbasic_file <- FALSE
 eval_rows <- FALSE
+```
 
 
-# Get data  
+```{r getdatafile, eval = evalfile}
+
+# Get data as a file 
 tryCatch({
   
   # Get data
   df <- params$data
   
-  # Save a copy for the file containing the code 
+  # Save a copy for other purposes (downloadable code) 
   df_code <- df
   
   # Restrict to exposure and outcome
-  vars <- c(params$outcome)
-  df <- df[,params$outcome, drop=FALSE]
+  vars <- c(params$outcome, params$exposure)
+  df <- df[,vars,drop=FALSE]
   
-  # Save a copy for other purposes 
-  df2 <- df
+  # Drop empty rows
+  rowsums <- data.frame(sapply(df,is.na))
+  if (length(which(rowSums(rowsums) == dim(df)[2])) != 0L){
+    eval_rows <- TRUE
+    rows_drop <- (which(rowSums(rowsums) == dim(df)[2]))
+    length_non_complete <- length(which(rowSums(rowsums) == dim(df)[2]))
+    df <- df[-rows_drop, ,drop=FALSE]
+  }
   
   # Initialize next computations
-  eval0 <- TRUE
+  eval <- TRUE
+  evalbasic_file <- as.logical(evalfile*eval)
 
 }, error=function(e) {
   
-  stop(safeError("Could not get the data. "))
+  stop(safeError("Could not get the file data. "))
 })
 
+
+
 ```
 
-
-```{r prep, eval=eval0}
-# Basic data preparation 
-tryCatch({
-
-# Drop empty rows
-rowsums <- data.frame(sapply(df,is.na))
-if (length(which(rowSums(rowsums) == dim(df)[2])) != 0L){
-  eval_rows <- TRUE
-  rows_drop <- (which(rowSums(rowsums) == dim(df)[2]))
-  length_non_complete <- length(which(rowSums(rowsums) == dim(df)[2]))
-  df <- df[-rows_drop, ,drop=FALSE]
-}
-
-
-# Initialize next computations
-eval <- TRUE
-
-}, error=function(e) {
-  
-  stop(safeError("Dataset cannot be prepared. "))
-  
-}
-)
+```{r freqfromfile, results="asis", eval=evalbasic_file}
+# Compute cell frequencies from dataframe 
+# Use s1,n1,s2,n2 for the names 
 ```
 
+\pagebreak
 
-```{r basic, results="asis", eval=eval}
-# Chunk with first page of basic information
-cat("# Basic Information", fill=TRUE)
+```{r guititle, results="asis", eval=eval}
+cat("# User Selection", fill=TRUE)
+```
 
+```{r guifile, results="asis", eval=evalbasic_file}
+# Basic information for the case file upload
 cat("Automatic statistics for the file:", fill=TRUE)
 dataname <- params$filename[1]
 kable(dataname, col.names = "File", linesep = '', longtable=T) 
@@ -129,23 +129,43 @@ if (exists("length_non_complete")){
 
 if (exists("vars")){
   cat("Name of the Outcome Variable: ", params$outcome, fill=TRUE)
+  cat("\\newline",fill=TRUE) 
+}
+
+if (exists("vars")){
+  cat("Name of the Exposure Variable: ", params$exposure, fill=TRUE)
 }
 ```
 
 
+```{r guirest, eval=eval, results='asis'}
+# display in the report the rest of the information arising from the GUI (e.g. priors, function of parameters etc.)
+```
+
 \pagebreak
 
+```{r title_preamble, eval=eval, results='asis'}
+cat("# Preamble", fill=TRUE)
+# Why Bayesian. Explain what benefits will be gleaned by a Bayesian analysis (as opposed to a frequentist analysis).
+# Goals of analysis. Explain the goals of the analysis. This prepares the audience for the type of models to expect and how the results will be described. 
+# Check references: Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021
+```
 
 ```{r title_descstats, eval=eval, results='asis'}
 cat("# Descriptive Statistics and Plots", fill=TRUE)
 ```
 
-```{r descplots, eval=eval, dev="cairo_pdf"}
+```{r datahead, eval=evalbasic_file, results='asis'}
+cat("## Data Head (first five observations)", fill=TRUE)
+knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longtable=T) %>%
+  kable_styling(font_size = 8, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))
 ```
 
+```{r desctable, eval=eval, dev="cairo_pdf"}
+# Insert a frequency table for the dataset 
+```
 
-```{r datahead, eval=eval, results='asis'}
-knitr::kable(head(df), col.names = colnames(df), linesep = '', longtable=T) %>%
-  kable_styling(font_size = 8, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))
+```{r descplots, eval=eval, dev="cairo_pdf"}
+# Insert beautiful descriptive plots suitable for our dataset, e.g. barplots 
 ```
 

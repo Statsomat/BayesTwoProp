@@ -58,7 +58,7 @@ for (i in 1:length(Theta1)){
 ## Define likelihood for plotting
 
 
-## Generate and include the plot as a png 
+## Generate and include plots as a png 
 fig <- plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData, type = "surface") 
 
 

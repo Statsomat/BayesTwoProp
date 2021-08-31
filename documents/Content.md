@@ -14,7 +14,7 @@ by Dr. Denise Welsch
 
 -	GitHub und GitHuB Desktop, our repository and the subdirectories 
 
--	Evaluation of your contributions (commits, additions, deletions, comments, pull requests). Each issue needs a developer and a tester. A significant contribution relating to the Bayes-theory is a must. 
+-	Evaluation of your contributions (commits, additions, deletions, comments, pull requests). Each issue needs a developer and a tester. A significant pull-request relating to the Bayes-theory is mandatory.  
 
 -	Installation: Download and Install GitHub Desktop, clone GitHub repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and the required packages. 
 

@@ -7,3 +7,6 @@ app/.Rproj.user/
 /**/*.txt
 automated_report/*.utf8.md
 automated_report/*.knit.md
+.Rproj.user
+automated_report/wrapper.R
+automated_report/wrapper.R

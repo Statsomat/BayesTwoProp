@@ -39,7 +39,7 @@ b2 <- 1/2
 # User selection for the function of parameters 
 ## Possible values: "Theta1-Theta2", "Theta1/Theta2", "1-Theta1/Theta2" 
 ## Use integers to represent values from above 
-user_selection_function_param <- 1  
+user_selection_function_param <- 2  
 
 
 # Region of practical equivalence (we will learn later about it)

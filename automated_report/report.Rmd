@@ -154,10 +154,10 @@ if (exists("vars")){
 
 ```{r cellupload, eval=!evalfile, results='asis'}
 # Upload as cell frequencies, display them nicely
-cat(s1)
-cat(n1)
-cat(s2)
-cat(n2)
+cat(s1,fill=TRUE)
+cat(n1,fill=TRUE)
+cat(s2,fill=TRUE)
+cat(n2,fill=TRUE)
 ```
 
 

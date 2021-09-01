@@ -175,7 +175,7 @@ cat("# Preamble", fill=TRUE)
 ```
 
 ```{r title_descstats, eval=eval, results='asis'}
-cat("# Descriptive Statistics and Plots", fill=TRUE)
+cat("# The Data", fill=TRUE)
 ```
 
 ```{r datahead, eval=evalbasic_file, results='asis'}
@@ -184,23 +184,28 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
   kable_styling(font_size = 8, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))
 ```
 
-```{r desctable, eval=eval, dev="cairo_pdf"}
+```{r desctable, eval=eval, dev="cairo_pdf", results='asis'}
 cat("## Frequency Table", fill=TRUE)
 # Insert a frequency table for the data
 ```
 
-```{r descplots, eval=eval, dev="cairo_pdf"}
+```{r descplots, eval=eval, dev="cairo_pdf", results='asis'}
 cat("## Barplots", fill=TRUE)
-# Insert beautiful descriptive plots suitable for our dataset, e.g. barplots 
+# Insert beautiful descriptive plots suitable for our data, e.g. barplots and if you want to also other kind 
 ```
 
 ```{r the_model, eval=eval, results='asis'}
 cat("# The Model", fill=TRUE)
-# insert latex equations for the model 
+cat("\n## Notation", fill=TRUE)
+# Insert latex equations for the model 
 ```
 
 ```{r likelihoodtext, eval=eval, results='asis'}
 cat("## The Likelihood", fill=TRUE)
+# Range for plotting
+Theta1 = seq(0.001, 0.999, by=0.001) 
+Theta2 = seq(0.001, 0.999, by=0.001) 
+
 # Explain the likelihood function and all the parameters
 ```
 
@@ -210,34 +215,33 @@ cat("## The Likelihood", fill=TRUE)
 ```
 
 ```{r priortext, eval=eval, results='asis'}
-cat("## The Prior", fill=TRUE)
+cat("## The Prior Distribution", fill=TRUE)
 # if the default is used, explain and justify the prior distribution of the parameters in the model.
 # otherwise, specify that it is user defined
 ```
 
 ```{r priorplot, eval=eval, results='asis'}
 # Plot the prior (follow first row from page 167 DDBA)
-
-## Range for plotting
-Theta1 = seq(0.001, 0.999, by=0.001) 
-Theta2 = seq(0.001, 0.999, by=0.001) 
-
-## Priors for plotting 
 pTheta1 = dbeta(Theta1,a1,b1)
 pTheta2 = dbeta(Theta2,a2,b2) 
+
+# Insert plot
 ```
 
 ```{r priorcheck, eval=eval, results='asis'}
+cat("### Prior predictive check", fill=TRUE)
 # Prior predictive check. Especially when using informed priors but even with broad priors, it is valuable to report a prior predictive check to demonstrate that the prior really generates simulated data consistent with the assumed prior knowledge.
 # References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
 ```
 
 ```{r posterior_text, eval=eval, results='asis'}
-cat("# The Posterior", fill=TRUE)
-# Describe the posterior distribution
+cat("## The Posterior Distribution", fill=TRUE)
+cat("\n### Equation", fill=TRUE)
+# Insert latex equation for the posterior distribution 
 ```
 
-```{r posterior_plot, eval=eval, dev="cairo_pdf"}
+```{r posterior_plot, eval=eval, dev="cairo_pdf", results='asis'}
+cat("### Posterior Distribution Plot", fill=TRUE)
 # Posterior for plotting (follow last row from page 167 DDBA)
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
 for (i in 1:length(Theta1)){
@@ -246,12 +250,14 @@ for (i in 1:length(Theta1)){
   }
 } 
 
-# Generate and include plots, export as a png and include or find another solution 
+# Generate plot, export as a png and include or find another solution 
 plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData, type = "surface") 
 ```
 
-```{r posterior_check, eval=eval, dev="cairo_pdf"}
+```{r posterior_check, eval=eval, dev="cairo_pdf", results='asis'}
+cat("### Posterior Predictive Check", fill=TRUE)
 # Posterior predictive check. Provide a posterior predictive check to show that the model usefully mimics the data.
+# References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
 ```
 
 ```{r simulate, eval=eval}
@@ -271,55 +277,40 @@ if (user_selection_function_param == 3) {
 }
 ```
 
-```{r describe_posterior, eval=eval}
-# Describe posterior in a table 
-# Summarize posterior of variables. For continuous parameters, derived variables and predicted values, report the central tendency and limits of the credible interval. Explicitly state whether you are using density-based values (mode and HDI) or quantile-based values (median and ETI), and state the mass of the credible interval (for example, 95%)
+```{r function_posterior, eval=eval, results="asis"}
+cat("# Estimated Parameter of Interest", fill=TRUE)
+cat("\n## Summary", fill=TRUE)
+```
+
+
+```{r function_posterior2, eval=eval}
+# Describe posterior (e.g. estimated) function of parameters in a table 
+# Summarize posterior. For continuous parameters, derived functions of parameters and predicted values, report the central tendency and limits of the credible interval. Explicitly state whether you are using density-based values (mode and HDI) or quantile-based values (median and ETI), and state the mass of the credible interval (for example, 95%)
 if (is.null(rope_user)==TRUE){
   describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL)
 } else {
   describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range = rope_user)
+  # ROPE limits and decisions. If using a continuous-parameter posterior distribution as the basis for decision, state and justify the limits of the ROPE and the required probability mass. 
 }
 ```
 
-```{r plot_hdi, eval=eval}
+
+```{r plot_hdi, eval=eval, dev="cairo_pdf", results="asis"}
+cat("## HDI Plot", fill=TRUE)
 ## Display graphical posterior information
 ### Use bayestestR package 
 plot(hdi(estimate, ci = c(.89, .95, .99)))
 ```
 
-```{r plot_eti, eval=eval}
+```{r plot_eti, eval=eval, dev="cairo_pdf", results="asis"}
+cat("## ETI Plot", fill=TRUE)
 ## Display graphical posterior information
 ### Use bayestestR package 
 plot(eti(estimate))
 ```
 
-```{r plotpost, eval=eval}
+```{r plotpost, eval=rope_user, dev="cairo_pdf", results="asis"}
+cat("## More Plots", fill=TRUE)
 # Use the plotPost function (page 205 Kruschke)
 ```
 
-```{r plotboth, eval=eval}
-# Plot both in percent
-Theta1pct <- posterior_Theta1*100
-Theta2pct <- posterior_Theta2*100
-results <- data.frame(Theta1pct,Theta2pct)
-results %>%
-  tidyr::pivot_longer(everything(), names_to = "group") %>%
-  ggplot(aes(x = value, fill = group)) +
-  ggdist::stat_halfeye(.width = c(0.89, 0.95),
-                       alpha = .8,
-                       slab_colour = "black",
-                       slab_size = .5) +
-  ggtitle("xxx") +
-  xlab("xlael") +
-  scale_x_continuous(labels = scales::label_percent(scale = 1),
-                     breaks = seq.int(0, 1, .1)) +
-  theme(axis.title.y = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        panel.grid.major.y = element_blank(),
-        panel.grid.minor.y = element_blank())
-```
-
-```{r decision, eval=eval}
-# ROPE limits. If using a continuous-parameter posterior distribution as the basis for decision, state and justify the limits of the ROPE and the required probability mass.
-```

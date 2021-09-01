@@ -14,16 +14,16 @@ library(shiny)
 ##############################################################
 
 # Data as a file 
-filename <- "datasets/testfile.csv"
+filename <- "datasets/testfile.csv" 
 decimal <- "."
-data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "")
+#data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "") 
 outcome <- "y"
 exposure <- "s"
 level <- 1
 
 
 # Data as cell frequencies 
-s1 <- NA # outcome positive
+s1 <- 21 # outcome positive, set to NA if you want to consider the file from above 
 n1 <- 938812 # exposed 
 s2 <- 6 # outcome positive  
 n2 <- 938812 # not-exposed  

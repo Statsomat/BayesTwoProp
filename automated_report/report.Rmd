@@ -64,7 +64,6 @@ eval_rows <- FALSE
 
 
 ```{r getdatafile, eval = evalfile}
-
 # Get data as a file 
 tryCatch({
   
@@ -212,7 +211,6 @@ cat("## The Likelihood", fill=TRUE)
 Theta1 = seq(0.001, 0.999, by=0.001) 
 Theta2 = seq(0.001, 0.999, by=0.001) 
 
-## It should look like the second row from page 167 DDBA
 ## Check the next line as a solution, export as a png and include or find another solution 
 ## plot_ly(x = Theta1, y = Theta2, z = ..., type = "surface") 
 ```
@@ -220,7 +218,7 @@ Theta2 = seq(0.001, 0.999, by=0.001)
 ```{r priortext, eval=eval, results='asis'}
 cat("## The Prior Distribution", fill=TRUE)
 # if the default is used, explain and justify the prior distribution of the parameters in the model.
-# otherwise, specify that it is user defined
+# otherwise, display again the user defined priors 
 ```
 
 ```{r priorplot, eval=eval, results='asis'}
@@ -228,23 +226,21 @@ cat("## The Prior Distribution", fill=TRUE)
 pTheta1 = dbeta(Theta1,a1,b1)
 pTheta2 = dbeta(Theta2,a2,b2) 
 
-# Insert plot
+## Check the next line as a solution, export as a png and include or find another solution 
+## plot_ly(x = Theta1, y = Theta2, z = ..., type = "surface") 
 ```
 
 ```{r priorcheck, eval=eval, results='asis'}
-cat("### Prior predictive check", fill=TRUE)
+cat("### Prior Predictive Check", fill=TRUE)
 # Prior predictive check. Especially when using informed priors but even with broad priors, it is valuable to report a prior predictive check to demonstrate that the prior really generates simulated data consistent with the assumed prior knowledge.
 # References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
 ```
 
-```{r posterior_text, eval=eval, results='asis'}
-cat("## The Posterior Distribution", fill=TRUE)
-cat("\n### Equation", fill=TRUE)
-# Insert latex equation for the posterior distribution 
-```
 
-```{r posterior_plot, eval=eval, dev="cairo_pdf", results='asis'}
-cat("### Posterior Distribution Plot", fill=TRUE)
+```{r posterior, eval=eval, dev="cairo_pdf", results='asis'}
+cat("## The Posterior Distribution", fill=TRUE)
+# Insert latex or code equation for the posterior distribution 
+
 # Posterior for plotting (follow last row from page 167 DDBA)
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
 for (i in 1:length(Theta1)){
@@ -253,8 +249,8 @@ for (i in 1:length(Theta1)){
   }
 } 
 
-# Generate plot, export as a png and include or find another solution 
-plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData, type = "surface") 
+## Generate plot, export as a png and include or find another solution 
+## plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData, type = "surface") 
 ```
 
 ```{r posterior_check, eval=eval, dev="cairo_pdf", results='asis'}
@@ -287,21 +283,20 @@ cat("\n## Summary", fill=TRUE)
 
 
 ```{r function_posterior2, eval=eval}
-# Describe posterior (e.g. estimated) function of parameters in a table 
-# Summarize posterior. For continuous parameters, derived functions of parameters and predicted values, report the central tendency and limits of the credible interval. Explicitly state whether you are using density-based values (mode and HDI) or quantile-based values (median and ETI), and state the mass of the credible interval (for example, 95%)
+# Summarize posterior in a table. For continuous parameters, derived functions of parameters and predicted values, report the central tendency and limits of the credible interval. Explicitly state whether you are using density-based values (mode and HDI) or quantile-based values (median and ETI), and state the mass of the credible interval (for example, 95%)
 if (is.null(rope_user)==TRUE){
   describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL)
 } else {
   describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range = rope_user)
-  # ROPE limits and decisions. If using a continuous-parameter posterior distribution as the basis for decision, state and justify the limits of the ROPE and the required probability mass. 
+  # ROPE limits and decisions. 
 }
 ```
 
 
 ```{r plot_hdi, eval=eval, dev="cairo_pdf", results="asis"}
 cat("## HDI Plot", fill=TRUE)
-## Display graphical posterior information
-### Use bayestestR package 
+# Display graphical posterior information
+# Use bayestestR package 
 plot(hdi(estimate, ci = c(.89, .95, .99)))
 ```
 

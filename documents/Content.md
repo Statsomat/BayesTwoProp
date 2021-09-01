@@ -10,7 +10,7 @@ by Dr. Denise Welsch
     -	Downloadable and reproducible code
     -	Help for learners all over the world 
 
--	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. We will treat the relationship of two proportions (difference, ratio, efficacy) by using two models: 
+-	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. We will treat the relationship of two proportions (difference, ratio, efficacy) by using 1-2 models: 
     -  Analytically (priors given by Beta distributions)
     -  MCMC simulation (priors given by Beta distributions), if you are quick and the time will allow it :) 
 

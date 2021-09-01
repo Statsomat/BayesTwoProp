@@ -32,7 +32,7 @@ params:
   rope_user: NA
 header-includes:
    - \usepackage{xcolor}
-#   - \setmainfont[BoldFont=FiraSans-Bold, Extension=.otf]{FiraSans-Regular}
+#   - \setmainfont[BoldFont=FiraSans-Bold, Extension=.otf]{FiraSans-Regular}  # used in Shiny app 
    - \usepackage{booktabs}
    - \usepackage{longtable}
    - \usepackage{float}
@@ -53,7 +53,7 @@ library(LearnBayes)
 
 ```{r chunksinit}
 # Initialize evaluation resp. execution of subsequent chunks
-## Evaluation only for file upload
+## Evaluation only for file upload, 
 evalfile <- is.data.frame(params$data)
 ## Evaluation for cell frequency upload 
 eval <- !is.na(params$s1)
@@ -104,7 +104,7 @@ tryCatch({
 
 ```{r freqfromfile, results="asis", eval=evalbasic_file}
 # Compute cell frequencies from dataframe 
-# Use s1,n1,s2,n2 for the names 
+# Use s1,n1,s2,n2 for the names of the cell freq 
 ```
 
 \pagebreak
@@ -167,8 +167,8 @@ cat(n2,fill=TRUE)
 
 \pagebreak
 
-```{r title_preamble, eval=eval, results='asis'}
-cat("# Preamble", fill=TRUE)
+```{r preamble, eval=eval, results='asis'}
+cat("# Goals of the Analysis", fill=TRUE)
 # Why Bayesian. Explain what benefits will be gleaned by a Bayesian analysis (as opposed to a frequentist analysis).
 # Goals of analysis. Explain the goals of the analysis. This prepares the audience for the type of models to expect and how the results will be described. 
 # Check references: Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021
@@ -186,7 +186,7 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 
 ```{r desctable, eval=eval, dev="cairo_pdf", results='asis'}
 cat("## Frequency Table", fill=TRUE)
-# Insert a frequency table for the data
+# Insert a nice frequency and percentage table for the data
 ```
 
 ```{r descplots, eval=eval, dev="cairo_pdf", results='asis'}
@@ -198,20 +198,23 @@ cat("## Barplots", fill=TRUE)
 cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)
 # Insert latex equations for the model 
+# Highlight and explain the parameters in natural language
+# Display and explain the user selected funtion of parameters 
 ```
 
-```{r likelihoodtext, eval=eval, results='asis'}
+```{r likelihood, eval=eval, results='asis'}
 cat("## The Likelihood", fill=TRUE)
-# Range for plotting
+
+# Insert equation as latex or as code
+
+# Plot the likelihood (follow second row from page 167 DDBA)
+## Region to plot 
 Theta1 = seq(0.001, 0.999, by=0.001) 
 Theta2 = seq(0.001, 0.999, by=0.001) 
 
-# Explain the likelihood function and all the parameters
-```
-
-```{r likelihoodplot, eval=eval, results='asis'}
-# Plot the likelihood (follow second row from page 167 DDBA)
-# Consider the range for Theta1 and Theta2 defined above 
+## It should look like the second row from page 167 DDBA
+## Check the next line as a solution, export as a png and include or find another solution 
+## plot_ly(x = Theta1, y = Theta2, z = ..., type = "surface") 
 ```
 
 ```{r priortext, eval=eval, results='asis'}
@@ -278,7 +281,7 @@ if (user_selection_function_param == 3) {
 ```
 
 ```{r function_posterior, eval=eval, results="asis"}
-cat("# Estimated Parameter of Interest", fill=TRUE)
+cat("# Primary Interest", fill=TRUE)
 cat("\n## Summary", fill=TRUE)
 ```
 
@@ -314,3 +317,7 @@ cat("## More Plots", fill=TRUE)
 # Use the plotPost function (page 205 Kruschke)
 ```
 
+```{r}
+# Clean environment 
+rm(list=ls())
+```

@@ -16,17 +16,17 @@ library(shiny)
 # Data as a file 
 filename <- "datasets/testfile.csv"
 decimal <- "."
-#data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "")
+data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "")
 outcome <- "y"
 exposure <- "s"
 level <- 1
 
 
 # Data as cell frequencies 
-s1 <- 21
-n1 <- 938812
-s2 <- 6 
-n2 <- 938812 
+s1 <- NA # outcome positive
+n1 <- 938812 # exposed 
+s2 <- 6 # outcome positive  
+n2 <- 938812 # not-exposed  
 
 
 # Priors (are beta distributions with parameters a and b, for each Theta)
@@ -61,3 +61,5 @@ rmarkdown::render("report.Rmd", params = list(
   level = level
 
 ))
+
+

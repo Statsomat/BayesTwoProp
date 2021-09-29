@@ -7,18 +7,18 @@ by Dr. Denise Welsch
     -	Minimal but sufficient GUI user-interaction 
     -	Automatic reporting (automated tables and graphics) 
     -	Human-readable interpretation 
-    -	Downloadable and reproducible code
+    -	Downloadable learner-code to reproduce the results 
     -	Help for learners all over the world 
 
--	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. We will treat the relationship of two proportions (difference, ratio, efficacy) by using 1-2 models: 
+-	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. The statistical application is the relationship of two proportions (difference, ratio, efficacy) by using two models: 
     -  Analytically (priors given by Beta distributions)
-    -  MCMC simulation (priors given by Beta distributions), if you are quick and the time will allow it :) 
+    -  MCMC simulation (priors given by Beta distributions)
 
 -	GitHub und GitHuB Desktop, our repository and the subdirectories 
 
--	Evaluation of your contributions (commits, additions, deletions, comments, pull requests). Each issue needs a developer lead and a lot of tester. 
+-	Evaluation of your contributions (commits, additions, deletions, comments, pull requests, reviews). Each issue needs a developer lead, (several) tester and reviewers. 
 
--	Installation: Download and Install GitHub Desktop, clone GitHub repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and the required packages. 
+-	Installation: Download and Install GitHub Desktop, clone GitHub repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and the required packages. Alternatively: Work on RCloud. 
 
 - Start with Issue 1,2,3. 
 

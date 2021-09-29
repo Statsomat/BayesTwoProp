@@ -16,7 +16,7 @@ by Dr. Denise Welsch
 
 -	GitHub und GitHuB Desktop, our repository and the subdirectories 
 
--	Evaluation of your contributions (commits, additions, deletions, comments, pull requests). Each issue needs a developer and a tester. Contribution to open-source is fun! 
+-	Evaluation of your contributions (commits, additions, deletions, comments, pull requests). Each issue needs a developer lead and a lot of tester. 
 
 -	Installation: Download and Install GitHub Desktop, clone GitHub repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and the required packages. 
 
@@ -24,7 +24,7 @@ by Dr. Denise Welsch
 
 - Pick up further issues, work on them and resolve them. 
 
-
+Contribution to open-source is fun! 
 
 # Literature and Useful Links 
 (additional to Literature from the course of Prof. Neuhäuser) 
@@ -52,5 +52,6 @@ Google Drive Denise Welsch: (https://drive.google.com/drive/folders/1baXEFnHuUCJ
     - Do not use libraries which do not have a large community  
 -   Should you have new ideas, you are welcomed to open an issue (also for very small changes) 
 -	Prerequisites: Course of Prof. Neuhäuser, minimal R programming 
+-	Filter to search issues by commenter in GitHub is:issue is:open commenter:reyar 
 
 

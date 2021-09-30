@@ -5,7 +5,7 @@ graphics.off() # This closes all of R's graphics windows.
 rm(list=ls())  # Careful! This clears all of R's memory!
 #------------------------------------------------------------------------------- 
 # Load The data 
-myData = read.csv("datasets/myocarditis_vaccinated.csv")
+myData = read.csv("datasets/biontech.csv")
 # N.B.: The functions below expect the data to be a data frame, 
 # with one component named y being a vector of integer 0,1 values,
 # and one component named s being a factor of subject identifiers.

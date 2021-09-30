@@ -5,15 +5,15 @@ library(shiny)
 library(coda)
 
 
+########### CLOSE THE repot.pdf FILE BEFORE RUNNING THE WRAPPER !!!!!  ##################
 
 
-
-##############################################################
+#########################################################################################
 # Simulate the Shiny GUI 
 # The user uploads a file or inserts the cell frequencies directly 
 # If both file and cell frequencies are nonempty, then the algorithms considers the file 
 # Otherwise, the cell frequencies must be nonempty 
-##############################################################
+#########################################################################################
 
 # Data as a file 
 filename <- "datasets/testfile.csv" 
@@ -25,10 +25,10 @@ level <- 1 # level for the existence of the outcome
 
 
 # Data as cell frequencies 
-s1 <- 21 # outcome positive, set to NA if you want to consider the file from above 
-n1 <- 938812 # exposed 
-s2 <- 6 # outcome positive  
-n2 <- 938812 # not-exposed  
+s1 <- 8 # outcome positive, set to NA if you want to consider the file from above 
+n1 <- 18198 # exposed 
+s2 <- 162 # outcome positive  
+n2 <- 18325 # not-exposed  
 
 
 # User delivers the priors (are beta distributions with parameters a and b, for each Theta)
@@ -40,8 +40,8 @@ b2 <- 2
 
 # User selection for the function of parameters 
 ## Possible values: "Theta1-Theta2", "Theta1/Theta2", "1-Theta1/Theta2" 
-## Use integers to represent values from above 
-user_selection_function_param <- 1
+## Use integers 1,2,3 to represent values from above 
+user_selection_function_param <- 3
 
 
 # Region of practical equivalence (we will learn later about it)

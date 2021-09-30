@@ -198,7 +198,7 @@ cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)
 # Insert latex equations for the model 
 # Highlight and explain the parameters in natural language
-# Display and explain the user selected funtion of parameters 
+# Display and explain the user selected function of parameters 
 ```
 
 ```{r likelihood, eval=eval, results='asis'}

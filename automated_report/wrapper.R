@@ -9,17 +9,18 @@ library(shiny)
 
 ##############################################################
 # Simulate the Shiny GUI 
-# At least the cell frequencies must be nonempty 
-# If both file and cell ferquencies are nonempty, then one considers the file 
+# The user uploads a file or inserts the cell frequencies directly 
+# If both file and cell frequencies are nonempty, then the algorithms considers the file 
+# Otherwise, the cell frequencies must be nonempty 
 ##############################################################
 
 # Data as a file 
 filename <- "datasets/testfile.csv" 
 decimal <- "."
 #data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "") 
-outcome <- "y"
-exposure <- "s"
-level <- 1
+outcome <- "y" # outcome variable 
+exposure <- "s" # exposure variable 
+level <- 1 # level for the existence of the outcome 
 
 
 # Data as cell frequencies 
@@ -29,7 +30,7 @@ s2 <- 6 # outcome positive
 n2 <- 938812 # not-exposed  
 
 
-# Priors (are beta distributions with parameters a and b, for each Theta)
+# User delivers the priors (are beta distributions with parameters a and b, for each Theta)
 a1 <- 1/2 
 b1 <- 1/2 
 a2 <- 1/2 
@@ -58,8 +59,15 @@ rmarkdown::render("report.Rmd", params = list(
   data = data,
   outcome = outcome,
   exposure = exposure, 
-  level = level
-
+  level = level,
+  s1=s1,
+  n1=n1,
+  s2=s2,
+  n2=n2,
+  a1=a1,
+  b1=b1,
+  a2=a2,
+  b2=b2
 ))
 
 

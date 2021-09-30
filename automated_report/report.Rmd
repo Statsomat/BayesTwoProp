@@ -18,8 +18,8 @@ params:
   decimal: NA
   enc_guessed: NA # used in Shiny app 
   level: NA
+  exposure: NA
   outcome: NA
-  exposure: NA 
   s1: NA 
   n1: NA 
   s2: NA 

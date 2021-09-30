@@ -226,7 +226,6 @@ function(input, output, session) {
     
     req(input$file, datainput(), input$selection_outcome$right)
   
-    src0 <- normalizePath('report_kernel.Rmd') 
     src1 <- normalizePath('report.Rmd')
     src2 <- normalizePath('references.bib')
   #  src3 <- normalizePath('report_code_container.Rmd') 
@@ -237,7 +236,6 @@ function(input, output, session) {
     # Temporarily switch to the temp dir
     owd <- setwd(tempdir())
     on.exit(setwd(owd))
-    file.copy(src0, 'report_kernel.Rmd', overwrite = TRUE)
     file.copy(src1, 'report.Rmd', overwrite = TRUE)
     file.copy(src2, 'references.bib', overwrite = TRUE)
    # file.copy(src3, 'report_code_container.Rmd', overwrite = TRUE)

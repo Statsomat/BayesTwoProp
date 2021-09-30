@@ -18,7 +18,7 @@ by Dr. Denise Welsch
 
 -	Evaluation of your contributions (commits, additions, deletions, comments, pull requests, reviews). Each issue needs a developer lead, (several) tester and reviewers. 
 
--	Installation: Download and Install GitHub Desktop, clone GitHub repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and the required packages. Alternatively: Work on RCloud. 
+-	Installation: Download and Install GitHub Desktop, clone GitHub repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and all the required packages demanded by the R scripts. Alternatively: Work on RCloud. 
 
 - Start with Issue 1,2,3. 
 
@@ -51,7 +51,7 @@ Google Drive Denise Welsch: (https://drive.google.com/drive/folders/1baXEFnHuUCJ
     - Use blank lines between blocks of code representing distinct ideas
     - Do not use libraries which do not have a large community  
 -   Should you have new ideas, you are welcomed to open an issue (also for very small changes) 
--	Prerequisites: Course of Prof. Neuhäuser, minimal R programming 
+-	Prerequisites: Course of Prof. Neuhäuser, R programming 
 -	Filter to search issues by commenter in GitHub is:issue is:open commenter:reyar 
 
 

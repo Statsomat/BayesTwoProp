@@ -18,7 +18,7 @@ library(coda)
 # Data as a file 
 filename <- "datasets/testfile.csv" 
 decimal <- "."
-#data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "") 
+data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "") 
 outcome <- "y" # outcome variable 
 exposure <- "s" # exposure variable 
 level <- 1 # level for the existence of the outcome 
@@ -32,16 +32,16 @@ n2 <- 938812 # not-exposed
 
 
 # User delivers the priors (are beta distributions with parameters a and b, for each Theta)
-a1 <- 1/2 
-b1 <- 1/2 
-a2 <- 1/2 
-b2 <- 1/2 
+a1 <- 2 
+b1 <- 2
+a2 <- 2
+b2 <- 2
 
 
 # User selection for the function of parameters 
 ## Possible values: "Theta1-Theta2", "Theta1/Theta2", "1-Theta1/Theta2" 
 ## Use integers to represent values from above 
-user_selection_function_param <- 2  
+user_selection_function_param <- 1
 
 
 # Region of practical equivalence (we will learn later about it)

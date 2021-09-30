@@ -57,7 +57,7 @@ library(LearnBayes)
 evalfile <- is.data.frame(params$data)
 ## Evaluation for cell frequency upload 
 eval <- !is.na(params$s1)
-## Other 
+## Other Initialize 
 evalbasic_file <- FALSE
 eval_rows <- FALSE
 ```

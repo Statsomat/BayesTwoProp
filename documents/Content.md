@@ -16,7 +16,7 @@ by Dr. Denise Welsch
 
 -	GitHub und GitHuB Desktop, our repository and the subdirectories 
 
--	Evaluation of your contributions (commits, additions, deletions, comments, reviews). Each issue needs a developer lead, (several) tester and reviewers. 
+-	Evaluation of your contributions (commits, additions, deletions, comments, reviews). Each issue needs a developer lead, (several) tester/reviewer and reviewers. 
 
 -	Installation: Download and Install GitHub Desktop, clone GitHub repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and all the required packages demanded by the R scripts. Alternatively: Work on RCloud. 
 

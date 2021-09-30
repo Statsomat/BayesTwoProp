@@ -1,5 +1,7 @@
 # Bayes-Statistik, WS2021/2022
-by Dr. Denise Welsch
+## Contribution to open-source is fun! 
+
+by Denise Welsch
 
 # Content 
 -	Welcome
@@ -10,21 +12,20 @@ by Dr. Denise Welsch
     -	Downloadable learner-code to reproduce the results 
     -	Help for learners all over the world 
 
--	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. The statistical application is the relationship of two proportions (difference, ratio, efficacy) by using two models: 
+-	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. The statistical application is the relationship of two proportions (difference, ratio, efficacy) by using one-two models: 
     -  Analytically (priors given by Beta distributions)
     -  MCMC simulation (priors given by Beta distributions)
 
 -	GitHub und GitHuB Desktop, our repository and the subdirectories 
 
--	Evaluation of your contributions (commits, additions, deletions, comments, reviews). Each issue needs a developer lead, (several) tester/reviewer and reviewers. 
+-	Evaluation of your contributions (commits, additions, deletions, comments, reviews/tests). 
 
--	Installation: Download and Install GitHub Desktop, clone GitHub repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and all the required packages demanded by the R scripts. Alternatively: Work on RCloud. 
+-	Installation: Download and Install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and all the required packages demanded by the R scripts. Alternatively: Work on RCloud. 
 
-- Start with Issue 1,2,3. 
+- Start with Issues 1,2,3. These are introductory issues. 
 
-- Pick up further issues, work on them and resolve them. 
+- Pick up a next issue and create a new branch to make your changes and to add your lines. Please mention in the issue that you are working on that issue. Commit significant changes to the branch and push them to the cloud. Open a pull request to add significant commits to the master. 
 
-Contribution to open-source is fun! 
 
 # Literature and Useful Links 
 (additional to Literature from the course of Prof. Neuhäuser) 

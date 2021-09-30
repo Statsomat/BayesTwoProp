@@ -18,7 +18,7 @@ by Dr. Denise Welsch
 
 -	Evaluation of your contributions (commits, additions, deletions, comments, pull requests, reviews). Each issue needs a developer lead, (several) tester and reviewers. 
 
--	Installation: Download and Install GitHub Desktop, clone GitHub repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and the required packages. Alternatively: Work on RCloud. 
+-	Installation: Download and Install GitHub Desktop, clone GitHub repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and all the required packages demanded by the R scripts. Alternatively: Work on RCloud. 
 
 - Start with Issue 1,2,3. 
 

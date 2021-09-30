@@ -51,7 +51,7 @@ Google Drive Denise Welsch: (https://drive.google.com/drive/folders/1baXEFnHuUCJ
     - Use blank lines between blocks of code representing distinct ideas
     - Do not use libraries which do not have a large community  
 -   Should you have new ideas, you are welcomed to open an issue (also for very small changes) 
--	Prerequisites: Course of Prof. Neuhäuser, minimal R programming 
+-	Prerequisites: Course of Prof. Neuhäuser, R programming 
 -	Filter to search issues by commenter in GitHub is:issue is:open commenter:reyar 
 
 

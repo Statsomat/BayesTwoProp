@@ -26,7 +26,7 @@ by Denise Welsch
 - Start with Issues 1,2,3. These are introductory issues. 
 
 - Rules for next issues
-    - Each student should work on at least one issue 
+    - Each student should work on at least one issue (each issue has a leader)
     - Pick up a next open issue and create a new branch to make your changes and to add your lines. Give the branch a short name representing the issue and your name 
     - Commit significant changes to the branch and push them to the cloud
     - Open a pull request to add significant commits to the master

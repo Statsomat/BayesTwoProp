@@ -19,7 +19,7 @@ by Denise Welsch
 -	GitHub und GitHuB Desktop, our repository and the subdirectories 
 
 -	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests):
-    - To get "satisfactory" you need to show: >= 25 meaningful comments, >= 25 code additions, >= 1 commit, >=1 review help, >=0 deletions.  
+    - To get "satisfactory" you need to show: >= 25 meaningful comments, >= 25 code line additions, >= 1 commit, >=1 review help, >=0 deletions.  
 
 -	Installation: Download and Install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and all the required packages demanded by the R scripts. Alternatively: Work on RCloud. 
 

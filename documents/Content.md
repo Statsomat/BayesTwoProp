@@ -18,17 +18,22 @@ by Denise Welsch
 
 -	GitHub und GitHuB Desktop, our repository and the subdirectories 
 
--	Evaluation of your contributions (commits, additions, deletions, comments, reviews/tests). 
+-	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests):
+    - To get "satisfactory" you need to show: >= 25 meaningful comments, >= 25 code additions, >= 1 commit, >=1 review help, >=0 deletions.  
 
 -	Installation: Download and Install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and all the required packages demanded by the R scripts. Alternatively: Work on RCloud. 
 
 - Start with Issues 1,2,3. These are introductory issues. 
 
-- Pick up a next issue and create a new branch to make your changes and to add your lines. Please mention in the issue that you are working on that issue. Commit significant changes to the branch and push them to the cloud. Open a pull request to add significant commits to the master. 
-
+- Rules for next issues
+    - Each student should work on at least one issue   
+    - Pick up a next open issue and create a new branch to make your changes and to add your lines. Give the branch a short name representing the issue and your name 
+    - Commit significant changes to the branch and push them to the cloud
+    - Open a pull request to add significant commits to the master
+    - You can create branches to work also on the issues of your collegues and to give them hints (comments) 
 
 # Literature and Useful Links 
-(additional to Literature from the course of Prof. Neuhäuser) 
+(additional to references of Prof. Neuhäuser) 
 
 1. GitHub Fundamentals (https://github.com/reyar/BayesTwoProp/blob/master/documents/Git_Fundamentals.md)
 2. Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021,  (https://www.nature.com/articles/s41562-021-01177-7#rightslink)
@@ -52,7 +57,6 @@ Google Drive Denise Welsch: (https://drive.google.com/drive/folders/1baXEFnHuUCJ
     - Use blank lines between blocks of code representing distinct ideas
     - Do not use libraries which do not have a large community  
 -   Should you have new ideas, you are welcomed to open an issue (also for very small changes) 
--	Prerequisites: Course of Prof. Neuhäuser, R programming 
 -	Filter to search issues by commenter in GitHub is:issue is:open commenter:reyar 
 
 

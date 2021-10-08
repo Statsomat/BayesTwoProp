@@ -174,7 +174,24 @@ function(input, output, session) {
     
   })
   
+  # Select Exposure Variable
   
+  #To dynamically scale selection window
+  selection_exposure_length_min = 7
+  selection_exposure_length_max = 15
+  
+  output$selection_exposure <- renderUI({
+    
+    req(datainput())
+    
+    removeModal()
+    
+    chooserInput("selection_exposure", "Available", "Selected",
+                 colnames(datainput()), c(), 
+                 size = min(c(max(c(length(colnames(datainput())), selection_exposure_length_min)), selection_exposure_length_max)), 
+                 multiple = FALSE)
+    
+  })
   
   # Select Outcome Variable
   output$selection_outcome <- renderUI({
@@ -215,6 +232,12 @@ function(input, output, session) {
       session$close()
     }
     
+    if (length(input$selection_exposure$right) > 1 ){
+      showNotification("Please select only one exposure variable.", duration=30)
+      Sys.sleep(5)
+      session$close()
+    }
+    
   })
   
 
@@ -248,7 +271,7 @@ function(input, output, session) {
     enc_guessed_first <- enc_guessed[[1]][1]
     
     params <- list(data = datainput(), filename=input$file, fencoding=input$fencoding, decimal=input$decimal, enc_guessed = enc_guessed_first, 
-                  outcome = input$selection_outcome$right, level = referencename())
+                  outcome = input$selection_outcome$right, exposure = input$selection_exposure$right, level = referencename())
    
     
     

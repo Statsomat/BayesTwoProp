@@ -2,7 +2,7 @@
 title: "Two Proportions by Bayes"
 author: 
   - Denise Welsch
-  - Contributors^[Viktoria Daum, Konrad Junkes, Felix Nisius, Simone Schüttler]
+  - Contributors^[Viktoria Daum, Konrad Junkes, Simone Schüttler]
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   pdf_document:
@@ -102,19 +102,15 @@ tryCatch({
 
 ```
 
+
 ```{r freqfromfile, results="asis", eval=evalbasic_file}
-# Compute cell frequencies from dataframe 
-# Use s1,n1,s2,n2 for the names of the cell freq 
-
 # frequencies are called n_
-# for example n_no_exposed_outcome is the frequency of datapoints without exposure but with present outcome
+# for example n_exposure0_outcome1 is the frequency of datapoints without exposure but with present outcome
 
-n_exposed_outcome = sum(df[outcome]==presence_outcome & df[exposure]==presence_exposure)
-n_exposed = sum(df[exposure]==presence_exposure)
-n_no_exposed_outcome = sum(df[outcome]== presence & df[exposure]!=presence_exposure)
-n_no_exposed = sum(df[exposure]!=presence_exposure)
-
-
+n_exposure1_outcome1 = sum(df[params$outcome]==params$presence_outcome & df[params$exposure]==params$presence_exposure)
+n_exposure1 = sum(df[params$exposure]==params$presence_exposure)
+n_exposure0_outcome1 = sum(df[params$outcome]== params$presence_outcome & df[params$exposure]!=params$presence_exposure)
+n_exposure0 = sum(df[params$exposure]!=params$presence_exposure)
 
 ```
 

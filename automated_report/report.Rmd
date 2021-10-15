@@ -2,7 +2,7 @@
 title: "Two Proportions by Bayes"
 author: 
   - Denise Welsch
-  - Contributors^[Students Names]
+  - Contributors^[Viktoria Daum, Konrad Junkes, Simone Schüttler]
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   pdf_document:
@@ -17,7 +17,8 @@ params:
   fencoding: NA # used in Shiny app 
   decimal: NA
   enc_guessed: NA # used in Shiny app 
-  level: NA
+  presence_exposure: NA
+  presence_outcome: NA
   exposure: NA
   outcome: NA
   s1: NA 
@@ -101,9 +102,16 @@ tryCatch({
 
 ```
 
+
 ```{r freqfromfile, results="asis", eval=evalbasic_file}
-# Compute cell frequencies from dataframe 
-# Use s1,n1,s2,n2 for the names of the cell freq 
+# frequencies are called n_
+# for example n_exposure0_outcome1 is the frequency of datapoints without exposure but with present outcome
+
+n_exposure1_outcome1 = sum(df[params$outcome]==params$presence_outcome & df[params$exposure]==params$presence_exposure)
+n_exposure1 = sum(df[params$exposure]==params$presence_exposure)
+n_exposure0_outcome1 = sum(df[params$outcome]== params$presence_outcome & df[params$exposure]!=params$presence_exposure)
+n_exposure0 = sum(df[params$exposure]!=params$presence_exposure)
+
 ```
 
 \pagebreak

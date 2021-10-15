@@ -106,10 +106,13 @@ tryCatch({
 # Compute cell frequencies from dataframe 
 # Use s1,n1,s2,n2 for the names of the cell freq 
 
-s1 = sum(df[outcome]==presence_outcome & df[exposure]==presence_exposure)
-n1 = sum(df[exposure]==presence_exposure)
-s2 = sum(df[outcome]== presence & df[exposure]!=presence_exposure)
-n2 = sum(df[exposure]!=presence_exposure)
+# frequencies are called n_
+# for example n_no_exposed_outcome is the frequency of datapoints without exposure but with present outcome
+
+n_exposed_outcome = sum(df[outcome]==presence_outcome & df[exposure]==presence_exposure)
+n_exposed = sum(df[exposure]==presence_exposure)
+n_no_exposed_outcome = sum(df[outcome]== presence & df[exposure]!=presence_exposure)
+n_no_exposed = sum(df[exposure]!=presence_exposure)
 
 
 

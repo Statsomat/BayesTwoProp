@@ -108,10 +108,12 @@ tryCatch({
 # for example n_exposure0_outcome1 is the frequency of datapoints without exposure but with present outcome
 
 n_exposure1_outcome1 = sum(df[params$outcome]==params$presence_outcome & df[params$exposure]==params$presence_exposure)
-n_exposure1 = sum(df[params$exposure]==params$presence_exposure)
 n_exposure0_outcome1 = sum(df[params$outcome]== params$presence_outcome & df[params$exposure]!=params$presence_exposure)
-n_exposure0 = sum(df[params$exposure]!=params$presence_exposure)
+n_exposure1_outcome0 = sum(df[params$outcome]!=params$presence_outcome & df[params$exposure]==params$presence_exposure)
+n_exposure0_outcome0 = sum(df[params$outcome]!=params$presence_outcome & df[params$exposure]!=params$presence_exposure)
 
+n_exposure1 = sum(df[params$exposure]==params$presence_exposure)
+n_exposure0 = sum(df[params$exposure]!=params$presence_exposure)
 ```
 
 \pagebreak

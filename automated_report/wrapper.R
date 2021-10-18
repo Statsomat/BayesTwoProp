@@ -25,10 +25,10 @@ presence_outcome <- 1 # presence for the existence of the outcome
 presence_exposure <- "Vaccine" #presence for the existence of the exposure
 
 # Data as cell frequencies 
-s1 <- NA # outcome positive, set to NA if you want to consider the file from above 
-n1 <- NA # exposed 
-s2 <- NA # outcome positive  
-n2 <- NA # not-exposed  
+s1 <- 8 # outcome positive
+n1 <- 100 # exposed 
+s2 <- 25 # outcome positive  
+n2 <- 100 # not-exposed  
 
 
 # User delivers the priors (are beta distributions with parameters a and b, for each Theta)

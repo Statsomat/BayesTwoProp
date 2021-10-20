@@ -174,7 +174,34 @@ function(input, output, session) {
     
   })
   
+  # Select Exposure Variable
+  #To dynamically scale selection window
+  selection_length_min = 7
+  selection_length_max = 15
   
+  output$selection_exposure <- renderUI({
+    
+    req(datainput())
+    
+    removeModal()
+    
+    chooserInput("selection_exposure", "Available", "Selected",
+                 colnames(datainput()), c(), 
+                 size = min(c(max(c(length(colnames(datainput())), selection_length_min)), selection_length_max)), 
+                 multiple = FALSE)
+    
+  })
+  
+  observeEvent(input$selection_exposure, {
+    factorinterest <- input$selection_exposure$right
+    choices <-  unique(datainput()[,factorinterest])  
+    updateSelectInput(session = getDefaultReactiveDomain(), inputId = "reference_exposure", choices = choices) 
+  })
+  
+  referencename_exposure <- reactive({
+    req(input$reference_exposure)
+    input$reference_exposure
+  })
   
   # Select Outcome Variable
   output$selection_outcome <- renderUI({
@@ -184,7 +211,7 @@ function(input, output, session) {
     removeModal()
     
     chooserInput("selection_outcome", "Available", "Selected",
-                 colnames(datainput()), c(), size = 15, multiple = FALSE)
+                 colnames(datainput()), c(), size = min(c(max(c(length(colnames(datainput())), selection_length_min)), selection_length_max)), multiple = FALSE)
     
   })
   
@@ -193,12 +220,12 @@ function(input, output, session) {
   observeEvent(input$selection_outcome, {
     factorinterest <- input$selection_outcome$right
     choices <-  unique(datainput()[,factorinterest])  
-    updateSelectInput(session = getDefaultReactiveDomain(), inputId = "reference", choices = choices) 
+    updateSelectInput(session = getDefaultReactiveDomain(), inputId = "reference_outcome", choices = choices) 
   })
   
-  referencename <- reactive({
-    req(input$reference)
-    input$reference
+  referencename_outcome <- reactive({
+    req(input$reference_outcome)
+    input$reference_outcome
   })
   
   
@@ -211,6 +238,12 @@ function(input, output, session) {
     
     if (length(input$selection_outcome$right) > 1 ){
       showNotification("Please select only one outcome variable.", duration=30)
+      Sys.sleep(5)
+      session$close()
+    }
+    
+    if (length(input$selection_exposure$right) > 1 ){
+      showNotification("Please select only one exposure variable.", duration=30)
       Sys.sleep(5)
       session$close()
     }
@@ -248,7 +281,8 @@ function(input, output, session) {
     enc_guessed_first <- enc_guessed[[1]][1]
     
     params <- list(data = datainput(), filename=input$file, fencoding=input$fencoding, decimal=input$decimal, enc_guessed = enc_guessed_first, 
-                  outcome = input$selection_outcome$right, level = referencename())
+                  outcome = input$selection_outcome$right, exposure = input$selection_exposure$right, presence_outcome = referencename_outcome(),
+                  presence_exposure = referencename_exposure())
    
     
     

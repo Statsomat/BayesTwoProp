@@ -17,8 +17,10 @@ params:
   fencoding: NA
   decimal: NA
   enc_guessed: NA
-  level: NA
-  outcome: NA
+  presence_outcome: Outcome variable of interest
+  presence_exposure: Exposure variable of interest
+  outcome: Outcome column from selection
+  exposure: Exposure column from selection
 header-includes:
    - \usepackage{xcolor}
    - \setmainfont[BoldFont=FiraSans-Bold, Extension=.otf]{FiraSans-Regular}
@@ -54,8 +56,8 @@ tryCatch({
   df_code <- df
   
   # Restrict to exposure and outcome
-  vars <- c(params$outcome)
-  df <- df[,params$outcome, drop=FALSE]
+  vars <- c(params$outcome, params$exposure)
+  df <- df[, c(params$outcome, params$exposure), drop=FALSE]
   
   # Save a copy for other purposes 
   df2 <- df
@@ -129,7 +131,15 @@ if (exists("length_non_complete")){
 
 if (exists("vars")){
   cat("Name of the Outcome Variable: ", params$outcome, fill=TRUE)
+  cat("\\newline",fill=TRUE) 
+  cat("Name of the Exposure Variable: ", params$exposure, fill=TRUE)
 }
+
+cat("\\newline",fill=TRUE) 
+cat("Presence of Outcome: ", params$presence_outcome, fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat("Presence of Exposure: ", params$presence_exposure, fill=TRUE)
+
 ```
 
 

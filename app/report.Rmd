@@ -17,9 +17,10 @@ params:
   fencoding: NA
   decimal: NA
   enc_guessed: NA
-  level: NA
-  outcome: NA
-  exposure: NA
+  presence_outcome: Outcome variable of interest
+  presence_exposure: Exposure variable of interest
+  outcome: Outcome column from selection
+  exposure: Exposure column from selection
 header-includes:
    - \usepackage{xcolor}
    - \setmainfont[BoldFont=FiraSans-Bold, Extension=.otf]{FiraSans-Regular}
@@ -133,6 +134,12 @@ if (exists("vars")){
   cat("\\newline",fill=TRUE) 
   cat("Name of the Exposure Variable: ", params$exposure, fill=TRUE)
 }
+
+cat("\\newline",fill=TRUE) 
+cat("Presence of Outcome: ", params$presence_outcome, fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat("Presence of Exposure: ", params$presence_exposure, fill=TRUE)
+
 ```
 
 

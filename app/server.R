@@ -247,12 +247,10 @@ function(input, output, session) {
     enc_guessed_first <- enc_guessed[[1]][1]
     
     params <- list(data = datainput(), filename=input$file, fencoding=input$fencoding, decimal=input$decimal, enc_guessed = enc_guessed_first, 
-                  outcome = input$selection_outcome$right, level = referencename())
-   
-    
-    ######Table Input #####
-    paramsTable <- list(data=input$sample, exposurename= input$name_Exposure, outcomename= input$name_Outcome,
-                        level= input$referenceTable)
+                  outcome = input$selection_outcome$right, level = referencename(),
+                  dataTableInput= input$sample, exposurename= input$name_Exposure, outcomename= input$name_Outcome,
+                  levelTableInput= input$referenceTable )
+  
     
     
     

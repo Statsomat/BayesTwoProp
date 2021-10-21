@@ -7,6 +7,7 @@ library(rmarkdown)
 library(data.table)
 library(readr)
 library(shinydisconnect)
+library(shinyMatrix)
 
 source("helpers/chooser.R")
 source("helpers/Functions.R")

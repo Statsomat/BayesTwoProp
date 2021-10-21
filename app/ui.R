@@ -86,16 +86,6 @@ shinyUI(fluidPage(
                  
       column(5, offset = 1, 
              
-             #### maybe insert later
-             # wellPanel(style = "background: #adc7de;", 
-             #           
-             #           h3("Chose Datainput "),
-             #           
-             #           radioButtons("selectiondatainput", "Selection",
-             #                        choices = c(CVSFile = "unknown", 
-             #                                    "Table" = "UTF-8"),
-             #                        selected = "unknown", inline=TRUE)
-             #           ),
              
              wellPanel(style = "background: #adc7de;", 
                           

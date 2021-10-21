@@ -152,16 +152,6 @@ shinyUI(fluidPage(
                       
                       h3("Data by Entering the Frequencies"),
                       
-                      # File input
-                      # fileInput("file", "Choose CSV file",
-                      #           accept = c(
-                      #             "text/csv",
-                      #             "text/comma-separated-values",
-                      #             ".csv"), 
-                      #           buttonLabel = "Browse...",
-                      #           placeholder = "No file selected"),
-                      # 
-                      
                       textInput("name_Exposure","Name the Exposure Variable","Exposure"),
                       textInput("name_Outcome","Name the Outcome Variable","Outcome"),
                       

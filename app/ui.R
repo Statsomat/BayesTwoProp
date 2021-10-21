@@ -84,8 +84,18 @@ shinyUI(fluidPage(
   fluidRow( 
               
                  
-      column(5, offset = 1,  
+      column(5, offset = 1, 
              
+             #### maybe insert later
+             # wellPanel(style = "background: #adc7de;", 
+             #           
+             #           h3("Chose Datainput "),
+             #           
+             #           radioButtons("selectiondatainput", "Selection",
+             #                        choices = c(CVSFile = "unknown", 
+             #                                    "Table" = "UTF-8"),
+             #                        selected = "unknown", inline=TRUE)
+             #           ),
              
              wellPanel(style = "background: #adc7de;", 
                           
@@ -136,7 +146,50 @@ shinyUI(fluidPage(
                        tags$a(href="https://statsomat.com/terms", target="_blank", "Terms of Use.", style="font-weight: bold; font-size: 9pt;")
             ),
           
+          
             
+            wellPanel(style = "background: #adc7de;", 
+                      
+                      h3("Data by Entering the Frequencies"),
+                      
+                      # File input
+                      # fileInput("file", "Choose CSV file",
+                      #           accept = c(
+                      #             "text/csv",
+                      #             "text/comma-separated-values",
+                      #             ".csv"), 
+                      #           buttonLabel = "Browse...",
+                      #           placeholder = "No file selected"),
+                      # 
+                      
+                      textInput("name_Exposure","Name the Exposure Variable","Exposure"),
+                      textInput("name_Outcome","Name the Outcome Variable","Outcome"),
+                      
+                      matrixInput("sample","Enter Frequencies of Cases",
+                        value = matrix(0, 2, 2, dimnames = list(c("Non-Outcome","Outcome"), c("Non-Exposure", "Exposure"))),
+                        rows = list(
+                          extend = FALSE,names = TRUE, multiheader=FALSE,editableNames=FALSE),
+                        cols = list(
+                          names = TRUE, multiheader=FALSE,editableNames=FALSE)
+
+                      ),
+                      
+                  
+                      
+                      
+                      
+                      selectInput("referenceTable", "Select the Level for the Existence of the Outcome of Interest", choices = c("Non-Outcome","Outcome")), 
+                      
+                      
+                      tags$small("By clicking the Browse button and uploading a file, you agree to the",
+                                 style="color: #808080;"),
+                      
+                      tags$a(href="https://statsomat.com/terms", target="_blank", "Terms of Use.", style="font-weight: bold; font-size: 9pt;")
+            ),
+            
+            
+            
+              
 
            
            wellPanel(style = "background: #ff9900", align="center", 

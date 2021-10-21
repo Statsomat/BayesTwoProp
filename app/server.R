@@ -19,7 +19,7 @@ function(input, output, session) {
       title = "Reading Data", "Please Wait", 
       footer = NULL,
       fade = FALSE,
-      easyClose = TRUE,
+      easyClose = TRUE
     ))
     Sys.sleep(2)
   }, priority=100)
@@ -150,7 +150,7 @@ function(input, output, session) {
     
   })
   
-  
+ 
   # Row limits 
   observe({
     
@@ -173,7 +173,6 @@ function(input, output, session) {
     
     
   })
-  
   
   
   # Select Outcome Variable
@@ -250,6 +249,12 @@ function(input, output, session) {
     params <- list(data = datainput(), filename=input$file, fencoding=input$fencoding, decimal=input$decimal, enc_guessed = enc_guessed_first, 
                   outcome = input$selection_outcome$right, level = referencename())
    
+    
+    ######Table Input #####
+    paramsTable <- list(data=input$sample, exposurename= input$name_Exposure, outcomename= input$name_Outcome,
+                        level= input$referenceTable)
+    
+    
     
     
     tryCatch({

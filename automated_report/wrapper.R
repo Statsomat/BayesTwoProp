@@ -21,14 +21,14 @@ decimal <- "."
 data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "") 
 outcome <- "y" # outcome variable 
 exposure <- "s" # exposure variable 
-level <- 1 # level for the existence of the outcome 
-
+presence_outcome <- 1 # presence for the existence of the outcome 
+presence_exposure <- "Vaccine" #presence for the existence of the exposure
 
 # Data as cell frequencies 
-s1 <- 8 # outcome positive, set to NA if you want to consider the file from above 
-n1 <- 18198 # exposed 
-s2 <- 162 # outcome positive  
-n2 <- 18325 # not-exposed  
+s1 <- 8 # outcome positive
+n1 <- 100 # exposed 
+s2 <- 25 # outcome positive  
+n2 <- 100 # not-exposed  
 
 
 # User delivers the priors (are beta distributions with parameters a and b, for each Theta)
@@ -50,7 +50,6 @@ rope_user <- NULL
 
 
 
-
 ##############################################################
 # Run parametric, automatic .Rmd file 
 ##############################################################
@@ -60,7 +59,8 @@ rmarkdown::render("report.Rmd", params = list(
   data = data,
   outcome = outcome,
   exposure = exposure, 
-  level = level,
+  presence_outcome = presence_outcome,
+  presence_exposure = presence_exposure,
   s1=s1,
   n1=n1,
   s2=s2,
@@ -70,5 +70,7 @@ rmarkdown::render("report.Rmd", params = list(
   a2=a2,
   b2=b2
 ))
+
+
 
 

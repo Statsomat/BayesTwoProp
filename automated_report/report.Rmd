@@ -2,7 +2,7 @@
 title: "Two Proportions by Bayes"
 author: 
   - Denise Welsch
-  - Contributors^[Students Names]
+  - Contributors^[Viktoria Daum, Konrad Junkes, Simone Schüttler]
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   pdf_document:
@@ -17,7 +17,8 @@ params:
   fencoding: NA # used in Shiny app 
   decimal: NA
   enc_guessed: NA # used in Shiny app 
-  level: NA
+  presence_exposure: NA
+  presence_outcome: NA
   exposure: NA
   outcome: NA
   s1: NA 
@@ -53,13 +54,14 @@ library(LearnBayes)
 
 ```{r chunksinit}
 # Initialize evaluation resp. execution of subsequent chunks
-## Evaluation only for file upload, 
+## Evaluation only for file upload
 evalfile <- is.data.frame(params$data)
 ## Evaluation for cell frequency upload 
-eval <- !is.na(params$s1)
-## Other Initialize 
-evalbasic_file <- FALSE
+evalcellfreq  <- !is.na(params$s1)
+## Other initializations
+evalfile2 <- FALSE
 eval_rows <- FALSE
+eval_final <- evalcellfreq # if file is missing, cells are mandatory 
 ```
 
 
@@ -86,33 +88,40 @@ tryCatch({
     df <- df[-rows_drop, ,drop=FALSE]
   }
   
+  # frequencies are called n_
+# for example n_exposure0_outcome1 is the frequency of datapoints without exposure but with present outcome
+  n_exposure1_outcome1 = sum(df[params$outcome]==params$presence_outcome & df[params$exposure]==params$presence_exposure)
+  n_exposure0_outcome1 = sum(df[params$outcome]== params$presence_outcome & df[params$exposure]!=params$presence_exposure)
+  n_exposure1_outcome0 = sum(df[params$outcome]!=params$presence_outcome & df[params$exposure]==params$presence_exposure)
+  n_exposure0_outcome0 = sum(df[params$outcome]!=params$presence_outcome & df[params$exposure]!=params$presence_exposure)
+  
+  n_exposure1 = sum(df[params$exposure]==params$presence_exposure)
+  n_exposure0 = sum(df[params$exposure]!=params$presence_exposure)
+  
   # Initialize next computations
-  eval <- TRUE
+  evalfile2 <- TRUE
   
   # Move on if file upload and successful current chunk 
-  evalbasic_file <- as.logical(evalfile*eval)
+  eval_final <- as.logical(evalfile*evalfile2)
+  
+  # Set cell freq upload to false 
+  evalcellfreq <- FALSE 
 
 }, error=function(e) {
   
   stop(safeError("Could not get the file data. "))
 })
 
-
-
 ```
 
-```{r freqfromfile, results="asis", eval=evalbasic_file}
-# Compute cell frequencies from dataframe 
-# Use s1,n1,s2,n2 for the names of the cell freq 
-```
 
 \pagebreak
 
-```{r guititle, results="asis", eval=eval}
+```{r guititle, results="asis", eval=eval_final}
 cat("# User Selection", fill=TRUE)
 ```
 
-```{r guifile, results="asis", eval=evalbasic_file}
+```{r guifile, results="asis", eval=eval_final}
 # Basic information for the case file upload
 cat("Automatic statistics for the file:", fill=TRUE)
 dataname <- params$filename[1]
@@ -151,7 +160,7 @@ if (exists("vars")){
 ```
 
 
-```{r cellupload, eval=!evalfile, results='asis'}
+```{r cellupload, eval=evalcellfreq , results='asis'}
 # Upload as cell frequencies, display them nicely
 cat(s1,fill=TRUE)
 cat(n1,fill=TRUE)
@@ -160,35 +169,35 @@ cat(n2,fill=TRUE)
 ```
 
 
-```{r guirest, eval=eval, results='asis'}
+```{r guirest, eval=eval_final, results='asis'}
 # display in the report the rest of the information arising from the GUI (e.g. priors, function of parameters etc.)
 ```
 
 \pagebreak
 
-```{r preamble, eval=eval, results='asis'}
+```{r preamble, eval=eval_final, results='asis'}
 cat("# Goals of the Analysis", fill=TRUE)
 # Why Bayesian. Explain what benefits will be gleaned by a Bayesian analysis (as opposed to a frequentist analysis).
 # Goals of analysis. Explain the goals of the analysis. This prepares the audience for the type of models to expect and how the results will be described. 
 # Check references: Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021
 ```
 
-```{r title_descstats, eval=eval, results='asis'}
+```{r title_descstats, eval=eval_final, results='asis'}
 cat("# The Data", fill=TRUE)
 ```
 
-```{r datahead, eval=evalbasic_file, results='asis'}
+```{r datahead, eval=evalfile2, results='asis'}
 cat("## Data Head (first five observations)", fill=TRUE)
 knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longtable=T) %>%
   kable_styling(font_size = 8, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))
 ```
 
-```{r desctable, eval=eval, dev="cairo_pdf", results='asis'}
+```{r desctable, eval=eval_final, dev="cairo_pdf", results='asis'}
 cat("## Frequency Table", fill=TRUE)
 # Insert a nice frequency and percentage table for the data
 ```
 
-```{r descplots, eval=eval, dev="cairo_pdf", results='asis'}
+```{r descplots, eval=eval_final, dev="cairo_pdf", results='asis'}
 cat("## Barplots", fill=TRUE)
 # Insert beautiful descriptive plots suitable for our data, e.g. barplots and if you want to also other kind 
 ```
@@ -201,7 +210,7 @@ cat("\n## Notation", fill=TRUE)
 # Display and explain the user selected function of parameters 
 ```
 
-```{r likelihood, eval=eval, results='asis'}
+```{r likelihood, eval=eval_final, results='asis'}
 cat("## The Likelihood", fill=TRUE)
 
 # Insert equation as latex or as code
@@ -215,13 +224,13 @@ Theta2 = seq(0.001, 0.999, by=0.001)
 ## plot_ly(x = Theta1, y = Theta2, z = ..., type = "surface") 
 ```
 
-```{r priortext, eval=eval, results='asis'}
+```{r priortext, eval=eval_final, results='asis'}
 cat("## The Prior Distribution", fill=TRUE)
 # if the default is used, explain and justify the prior distribution of the parameters in the model.
 # otherwise, display again the user defined priors 
 ```
 
-```{r priorplot, eval=eval, results='asis'}
+```{r priorplot, eval=eval_final, results='asis'}
 # Plot the prior (follow first row from page 167 DDBA)
 pTheta1 = dbeta(Theta1,a1,b1)
 pTheta2 = dbeta(Theta2,a2,b2) 
@@ -230,14 +239,14 @@ pTheta2 = dbeta(Theta2,a2,b2)
 ## plot_ly(x = Theta1, y = Theta2, z = ..., type = "surface") 
 ```
 
-```{r priorcheck, eval=eval, results='asis'}
+```{r priorcheck, eval=eval_final, results='asis'}
 cat("### Prior Predictive Check", fill=TRUE)
 # Prior predictive check. Especially when using informed priors but even with broad priors, it is valuable to report a prior predictive check to demonstrate that the prior really generates simulated data consistent with the assumed prior knowledge.
 # References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
 ```
 
 
-```{r posterior, eval=eval, dev="cairo_pdf", results='asis'}
+```{r posterior, eval=eval_final, dev="cairo_pdf", results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
 
@@ -253,7 +262,7 @@ for (i in 1:length(Theta1)){
 ## plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData, type = "surface") 
 ```
 
-```{r posterior_check, eval=eval, dev="cairo_pdf", results='asis'}
+```{r posterior_check, eval=eval_final, dev="cairo_pdf", results='asis'}
 cat("### Posterior Predictive Check", fill=TRUE)
 # Posterior predictive check. Provide a posterior predictive check to show that the model usefully mimics the data.
 # References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
@@ -265,7 +274,7 @@ posterior_Theta1 <- rbeta(10000,s1+a1,(n1-s1)+b1)
 posterior_Theta2 <- rbeta(10000,s2+a2,(n2-s2)+b2)
 ```
 
-```{r functionparameter, eval=eval}
+```{r functionparameter, eval=eval_final}
 ## Function of parameters of interest
 if (user_selection_function_param == 3) {
   estimate <- 1-posterior_Theta1/posterior_Theta2
@@ -276,13 +285,13 @@ if (user_selection_function_param == 3) {
 }
 ```
 
-```{r function_posterior, eval=eval, results="asis"}
+```{r function_posterior, eval=eval_final, results="asis"}
 cat("# Primary Interest", fill=TRUE)
 cat("\n## Summary", fill=TRUE)
 ```
 
 
-```{r function_posterior2, eval=eval}
+```{r function_posterior2, eval=eval_final}
 # Summarize posterior in a table. For continuous parameters, derived functions of parameters and predicted values, report the central tendency and limits of the credible interval. Explicitly state whether you are using density-based values (mode and HDI) or quantile-based values (median and ETI), and state the mass of the credible interval (for example, 95%)
 if (is.null(rope_user)==TRUE){
   describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL)
@@ -293,14 +302,14 @@ if (is.null(rope_user)==TRUE){
 ```
 
 
-```{r plot_hdi, eval=eval, dev="cairo_pdf", results="asis"}
+```{r plot_hdi, eval=eval_final, dev="cairo_pdf", results="asis"}
 cat("## HDI Plot", fill=TRUE)
 # Display graphical posterior information
 # Use bayestestR package 
 plot(hdi(estimate, ci = c(.89, .95, .99)))
 ```
 
-```{r plot_eti, eval=eval, dev="cairo_pdf", results="asis"}
+```{r plot_eti, eval=eval_final, dev="cairo_pdf", results="asis"}
 cat("## ETI Plot", fill=TRUE)
 ## Display graphical posterior information
 ### Use bayestestR package 
@@ -312,7 +321,13 @@ cat("## More Plots", fill=TRUE)
 # Use the plotPost function (page 205 Kruschke)
 ```
 
-```{r}
+```{r runtests}
+# Run tests  
+library('testthat')
+testthat::test_dir('tests/testthat/')
+```
+
+```{r cleanenv}
 # Clean environment 
 rm(list=ls())
 ```

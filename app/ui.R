@@ -131,13 +131,17 @@ shinyUI(fluidPage(
                        
                        br(),
                        
+                       selectInput("reference_exposure", "Select the Label for the Existence of the Exposure of Interest", choices = NULL), 
+                       
+                       br(),
+                       
                        h5("Select the Outcome Variable", style="font-weight: bold; font-size: 10pt;"),
                        
                        uiOutput("selection_outcome"),
                        
                        br(),
                        
-                       selectInput("reference", "Select the Level for the Existence of the Outcome of Interest", choices = NULL), 
+                       selectInput("reference_outcome", "Select the Label for the Existence of the Outcome of Interest", choices = NULL), 
                        
                        
                        tags$small("By clicking the Browse button and uploading a file, you agree to the",

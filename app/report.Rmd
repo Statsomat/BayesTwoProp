@@ -21,6 +21,9 @@ params:
   presence_exposure: Exposure variable of interest
   outcome: Outcome column from selection
   exposure: Exposure column from selection
+  dataTableInput: NA 
+  exposurename: Name of Exposure Variable
+  outcomename:  Name of Outcome Variable
 header-includes:
    - \usepackage{xcolor}
    - \setmainfont[BoldFont=FiraSans-Bold, Extension=.otf]{FiraSans-Regular}
@@ -148,6 +151,8 @@ cat("Presence of Exposure: ", params$presence_exposure, fill=TRUE)
 
 ```{r descplots_title, eval=eval, results='asis'}
 cat("# Descriptive Plots", fill=TRUE)
+
+print(params$dataTableInput)
 ```
 
 ```{r descplots, eval=eval, dev="cairo_pdf"}

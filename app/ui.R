@@ -169,11 +169,7 @@ shinyUI(fluidPage(
                       ),
                       
                   
-                      
-                      
-                      
-                      selectInput("referenceTable", "Select the Level for the Existence of the Outcome of Interest", choices = c("Non-Outcome","Outcome")), 
-                      
+ 
                       
                       tags$small("By clicking the Browse button and uploading a file, you agree to the",
                                  style="color: #808080;"),

@@ -22,8 +22,8 @@ params:
   outcome: Outcome column from selection
   exposure: Exposure column from selection
   dataTableInput: NA 
-  exposurename: Name of Exposure Variable
-  outcomename:  Name of Outcome Variable
+  exposurename: NA
+  outcomename:  NA
 header-includes:
    - \usepackage{xcolor}
    - \setmainfont[BoldFont=FiraSans-Bold, Extension=.otf]{FiraSans-Regular}

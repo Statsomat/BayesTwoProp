@@ -17,10 +17,10 @@ params:
   fencoding: NA
   decimal: NA
   enc_guessed: NA
-  presence_outcome: Outcome variable of interest
-  presence_exposure: Exposure variable of interest
-  outcome: Outcome column from selection
-  exposure: Exposure column from selection
+  presence_outcome: NA
+  presence_exposure: NA
+  outcome: NA
+  exposure: NA
   dataTableInput: NA 
   exposurename: NA
   outcomename:  NA

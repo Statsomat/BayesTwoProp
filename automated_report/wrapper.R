@@ -56,7 +56,7 @@ rope_user <- NULL
 rmarkdown::render("report.Rmd", params = list(
   filename = filename,
   decimal = decimal,
-  data = data,
+  data = NA, #data,
   outcome = outcome,
   exposure = exposure, 
   presence_outcome = presence_outcome,

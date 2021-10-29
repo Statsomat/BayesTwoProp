@@ -121,6 +121,7 @@ tryCatch({
 cat("# User Selection", fill=TRUE)
 ```
 
+
 ```{r guifile, results="asis", eval=eval_final}
 # Basic information for the case file upload
 cat("Automatic statistics for the file:", fill=TRUE)
@@ -162,10 +163,14 @@ if (exists("vars")){
 
 ```{r cellupload, eval=evalcellfreq , results='asis'}
 # Upload as cell frequencies, display them nicely
-cat(s1,fill=TRUE)
-cat(n1,fill=TRUE)
-cat(s2,fill=TRUE)
-cat(n2,fill=TRUE)
+cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and present Exposure (",params$exposure ," is equal to ",params$presence_exposure , "): ", params$s1),fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat(paste("Number of Observations with present Exposure (",params$exposure ," is equal to ",params$presence_exposure ,") : ",params$n1),fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and without Exposure (",params$exposure ," is not equal to ",params$presence_exposure ,") : ",params$s2),fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat(paste("Numbers of Observations without Exposure(",params$exposure ," is not equal to ",params$presence_exposure ,"): ",params$n2),fill=TRUE)
+cat("\\newline",fill=TRUE) 
 ```
 
 

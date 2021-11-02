@@ -61,6 +61,7 @@ rmarkdown::render("report.Rmd", params = list(
   exposure = exposure, 
   presence_outcome = presence_outcome,
   presence_exposure = presence_exposure,
+  user_selection_function_param = user_selection_function_param,
   s1=s1,
   n1=n1,
   s2=s2,
@@ -70,6 +71,8 @@ rmarkdown::render("report.Rmd", params = list(
   a2=a2,
   b2=b2
 ))
+
+
 
 
 

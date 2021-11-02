@@ -210,9 +210,26 @@ cat("## Barplots", fill=TRUE)
 ```{r the_model, eval=eval, results='asis'}
 cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)
-# Insert latex equations for the model 
-# Highlight and explain the parameters in natural language
-# Display and explain the user selected function of parameters 
+cat("The statistical model of this analysis derives from the data: ", fill=TRUE)
+cat("$$X_{11},...,X_{1n_1} \\hspace{1cm} iid \\text{ \\~{ } } Be(\\theta_1)$$", fill=TRUE)
+cat("$$X_{21},...,X_{2n_2} \\hspace{1cm} iid \\text{ \\~{ } } Be(\\theta_2)$$", fill=TRUE)
+cat(paste0("with sample sizes $n_1=$ ",n1," and $n_2=$ ",n2,", and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_i \\, , i\\in\\{1,2\\}$.\\
+The Exposure variable indicates in which of the two groups (",colnames(table(params$data))[1]," and ",colnames(table(params$data))[2], ") an individual is. The Outcome variable indicates whether the event (",colnames(params$data)[1],") occurred for an individual or not and corresponds to either a value of 1 or 0. \\"), fill=TRUE)
+cat("Summing up the values of 0 and 1 in the respective groups results in the following random variables:", fill=TRUE)
+cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} iid \\text{ \\~{ } } Bi(n_1,\\theta_1)$$", fill=TRUE)
+cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} iid \\text{ \\~{ } } Bi(n_2,\\theta_2)$$", fill=TRUE)
+cat("These random variables are binomially distributed with the distribution parameters $n_i$ and $\\theta_i \\, , i\\in\\{1,2\\}$. \\", fill=TRUE)
+cat("The selected function ", fill=TRUE)
+if (user_selection_function_param==1) {
+  cat("$\\theta_1 - \\theta_2$, describes the Difference between two success probabilities.", fill=TRUE)
+} else {
+  if (user_selection_function_param==2) {
+  cat("$\\theta_1 / \\theta_2$, describes the Relative Risk, e.g. ratio of two success probabilities.", fill=TRUE)
+} else {
+  cat("$1-\\theta_1 / \\theta_2$, describes 1-Relative Risk, where Relative Risk is e.g. the ratio of two probabilities of success.", fill=TRUE)  
+}
+}
+
 ```
 
 ```{r likelihood, eval=eval_final, results='asis'}

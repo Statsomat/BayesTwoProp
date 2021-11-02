@@ -215,19 +215,16 @@ cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} iid \\text{ \\~{ } } Bi(n_1,\
 cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} iid \\text{ \\~{ } } Bi(n_2,\\theta_2)$$", fill=TRUE)
 cat("These random variables are binomially distributed with the distribution parameters $n_i$ and $\\theta_i \\, , i\\in\\{1,2\\}$. \\", fill=TRUE)
 cat("The selected function ", fill=TRUE)
-if(user_selection_function_param==1){
+if (user_selection_function_param==1) {
   cat("$\\theta_1 - \\theta_2$, describes the Difference between two success probabilities.", fill=TRUE)
-}else{
-  if(user_selection_function_param==2){
+} else {
+  if (user_selection_function_param==2) {
   cat("$\\theta_1 / \\theta_2$, describes the Relative Risk, e.g. ratio of two success probabilities.", fill=TRUE)
-}else{
+} else {
   cat("$1-\\theta_1 / \\theta_2$, describes 1-Relative Risk, where Relative Risk is e.g. the ratio of two probabilities of success.", fill=TRUE)  
 }
 }
 
-# Insert latex equations for the model 
-# Highlight and explain the parameters in natural language
-# Display and explain the user selected function of parameters 
 ```
 
 ```{r likelihood, eval=eval_final, results='asis'}

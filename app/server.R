@@ -19,10 +19,13 @@ function(input, output, session) {
       title = "Reading Data", "Please Wait", 
       footer = NULL,
       fade = FALSE,
-      easyClose = TRUE,
+      easyClose = TRUE
     ))
     Sys.sleep(2)
   }, priority=100)
+  
+  
+  if(exists("input$file")==TRUE){
   
   
   # Upload data
@@ -149,7 +152,7 @@ function(input, output, session) {
     
     
   })
-  
+ ########################################################################################## 
   
   # Row limits 
   observe({
@@ -174,6 +177,7 @@ function(input, output, session) {
     
   })
   
+  ######################################################################################
   # Select Exposure Variable
   #To dynamically scale selection window
   selection_length_min = 7
@@ -258,6 +262,115 @@ function(input, output, session) {
   observeEvent(input$generate, {
     
     req(input$file, datainput(), input$selection_outcome$right)
+    
+    src1 <- normalizePath('report.Rmd')
+    src2 <- normalizePath('references.bib')
+    #  src3 <- normalizePath('report_code_container.Rmd') 
+    #  src4 <- normalizePath('report_code.Rmd') 
+    src5 <- normalizePath('FiraSans-Bold.otf')
+    src6 <- normalizePath('FiraSans-Regular.otf')
+    
+    # Temporarily switch to the temp dir
+    owd <- setwd(tempdir())
+    on.exit(setwd(owd))
+    file.copy(src1, 'report.Rmd', overwrite = TRUE)
+    file.copy(src2, 'references.bib', overwrite = TRUE)
+    # file.copy(src3, 'report_code_container.Rmd', overwrite = TRUE)
+    # file.copy(src4, 'report_code.Rmd', overwrite = TRUE)
+    file.copy(src5, 'FiraSans-Bold.otf', overwrite = TRUE)
+    file.copy(src6, 'FiraSans-Regular.otf', overwrite = TRUE)
+    
+    # Set up parameters to pass to Rmd document
+    enc_guessed <- guess_encoding(input$file$datapath)
+    enc_guessed_first <- enc_guessed[[1]][1]
+    
+    params <- list(data = datainput(), filename=input$file, fencoding=input$fencoding, decimal=input$decimal, enc_guessed = enc_guessed_first, 
+                   outcome = input$selection_outcome$right, exposure = input$selection_exposure$right, presence_outcome = referencename_outcome(),
+                   presence_exposure = referencename_exposure(),
+                   dataTableInput= input$sample, exposurename= input$name_Exposure, outcomename= input$name_Outcome)
+    
+    
+    
+    tryCatch({
+      
+      withProgress(message = 'Please wait, the Statsomat app is computing. This may take a while.', value=0, {
+        
+        for (i in 1:15) {
+          incProgress(1/15)
+          Sys.sleep(0.25)
+          
+        }
+        
+        if (input$rcode == "Data Analysis Report (PDF)"){
+          
+          tmp_file <- render('report.Rmd', pdf_document(latex_engine = "xelatex"),
+                             params = params,
+                             envir = new.env(parent = globalenv())
+          )
+          
+        } else {
+          
+          tmp_file <- render('report_code_container.Rmd', html_document(),
+                             params = params,
+                             envir = new.env(parent = globalenv())
+          )
+          
+        }
+        
+        report$filepath <- tmp_file 
+        
+      })
+      
+      showNotification("Now you can download the file.", duration=20)
+      
+    },
+    
+    error=function(e) {
+      # Report not available 
+      showNotification("Something went wrong. Please contact the support@statsomat.com. ",duration=20)
+    }
+    )
+    
+  })
+  
+  
+  # Enable downloadbutton 
+  observe({
+    req(!is.null(report$filepath))
+    session$sendCustomMessage("check_generation", list(check_generation  = 1))
+  })
+  
+  
+  
+  
+  
+  # Download report  
+  output$download <- downloadHandler(
+    
+    filename = function() {
+      
+      if (input$rcode == "Data Analysis Report (PDF)"){
+        paste('MyReport',sep = '.','pdf')
+      } else {
+        paste('MyCode',sep = '.','html')
+      }
+    },
+    
+    content = function(file) {
+      
+      file.copy(report$filepath, file)
+      
+    }
+  )
+  
+  }else{
+
+  #######################################################################################################
+    report <- reactiveValues(filepath = NULL) 
+  # Render report
+  observeEvent(input$generate, {
+    
+    #req(input$file, datainput(), input$selection_outcome$right)
   
     src1 <- normalizePath('report.Rmd')
     src2 <- normalizePath('references.bib')
@@ -277,13 +390,10 @@ function(input, output, session) {
     file.copy(src6, 'FiraSans-Regular.otf', overwrite = TRUE)
     
     # Set up parameters to pass to Rmd document
-    enc_guessed <- guess_encoding(input$file$datapath)
-    enc_guessed_first <- enc_guessed[[1]][1]
+    #enc_guessed <- guess_encoding(input$file$datapath)
+    #enc_guessed_first <- enc_guessed[[1]][1]
     
-    params <- list(data = datainput(), filename=input$file, fencoding=input$fencoding, decimal=input$decimal, enc_guessed = enc_guessed_first, 
-                  outcome = input$selection_outcome$right, exposure = input$selection_exposure$right, presence_outcome = referencename_outcome(),
-                  presence_exposure = referencename_exposure(),
-                  dataTableInput= input$sample, exposurename= input$name_Exposure, outcomename= input$name_Outcome)
+    params <- list(dataTableInput= input$sample, exposurename= input$name_Exposure, outcomename= input$name_Outcome)
    
     
     
@@ -358,6 +468,6 @@ function(input, output, session) {
          
     }
   )
-  
+  }
   
 }

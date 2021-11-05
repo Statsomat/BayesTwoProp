@@ -148,20 +148,6 @@ cat("Presence of Exposure: ", params$presence_exposure, fill=TRUE)
 
 \pagebreak
 
-```{r preamble, eval=eval, results='asis'}
-cat("# Preamble", fill=TRUE)
-cat("The data is analyzed in this app by means of Baysian data analysis. Baysian data analysis is a branch of statistical data analysis based on two fundamental ideas: The first idea is that Baysian inference is a reallocation of credibility across possibilities, by means of the well known Bayes' theorem. The second idea is that the possibilities, over which we allocate credibility are parameter values in a meaningful mathematical model.", fill=TRUE)
-cat("\\newline",fill=TRUE) 
-cat("\\newline",fill=TRUE) 
-cat("In Bayes' theorem, an existing knowledge about the parameter(s) under investigation (the a priori distribution, or prior for short) is combined with the new knowledge from the data ('likelihood'), resulting in a new, improved knowledge (a posteriori probability distribution).", fill=TRUE)
-cat("\\newline",fill=TRUE) 
-cat("\\newline",fill=TRUE) 
-cat("'An important benefit of Bayesian analysis is the ability to generate estimates and credible intervals for any derived parameter. Differences, ratios, effect sizes and novel parameter combinations are directly computed from the posterior distribution. Another benefit of Bayesian analysis is computationally robust estimates of parameter values and their credible intervals. The credible intervals do not depend on large-N approximations (as confidence intervals often do in frequentist approaches), nor do credible intervals depend on which tests are intended (as confidence intervals do in frequentist approaches).' (Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021)", fill=TRUE)
-cat("\\newline",fill=TRUE) 
-cat("\\newline",fill=TRUE) 
-cat("The goal of this app is to generate Bayes estimates and credible intervals for the user selected functions of parameters.", fill=TRUE)
-```
-
 ```{r descplots_title, eval=eval, results='asis'}
 cat("# Descriptive Plots", fill=TRUE)
 

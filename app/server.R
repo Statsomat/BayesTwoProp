@@ -13,21 +13,63 @@ function(input, output, session) {
   # On session end
   session$onSessionEnded(stopApp)
   
+  dataupload= FALSE
+  
   # Upload message
   observeEvent(input$file, {
+    dataupload=TRUE
     showModal(modalDialog(
       title = "Reading Data", "Please Wait", 
       footer = NULL,
       fade = FALSE,
       easyClose = TRUE
     ))
+    
     Sys.sleep(2)
+    
   }, priority=100)
   
   
-  if(exists("input$file")==TRUE){
+  
+  # output$ui <- renderUI({
+  #   if (is.null(input$input_type))
+  #     return()
+  #   
+  #   # Depending on input$input_type, we'll generate a different
+  #   # UI component and send it to the client.
+  #   switch(input$input_type,
+  #          "Upload a CVS File" = sliderInput("dynamic", "Dynamic",
+  #                                 min = 1, max = 20, value = 10),
+  #          "Table Frequencies" = h3("Data by Entering the Frequencies"),
+  #          
+  #          textInput("name_Exposure","Name the Exposure Variable","Exposure"),
+  #          textInput("name_Outcome","Name the Outcome Variable","Outcome"),
+  #          
+  #          matrixInput("sample","Enter Frequencies of Cases",
+  #                      value = matrix(0, 2, 2, dimnames = list(c("Non-Outcome","Outcome"), c("Non-Exposure", "Exposure"))),
+  #                      rows = list(
+  #                        extend = FALSE,names = TRUE, multiheader=FALSE,editableNames=FALSE),
+  #                      cols = list(
+  #                        names = TRUE, multiheader=FALSE,editableNames=FALSE)
+  #          )
+  #   )
+  # })
+  # 
   
   
+  observeEvent(input$input_type, {
+    #return(
+  
+  
+  #if(exists("input$file")==FALSE){
+  if(input$input_type==1){
+    #if(input$file$datapath == ""){
+    #if(input$file=="No file selected"){
+    #if(is.null(input$file)){
+    #if(length(input$file)!=0){
+  
+    #observeEvent(input$file, {  
+    
   # Upload data
   datainput <- reactive({ 
     
@@ -469,5 +511,9 @@ function(input, output, session) {
     }
   )
   }
+    
+  }#)
+  )
+  
   
 }

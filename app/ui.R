@@ -88,12 +88,12 @@ shinyUI(fluidPage(
            
            wellPanel(style = "background: #adc7de;", 
                      
-                     h3("Choose an option"),
+                     h3("Choose an Option to Upload the Data"),
       radioButtons("input_type", "Input type",
                   choices = list("Upload a CVS File"=1,
-                                 "Table Frequencies"=2)
+                                 "Insert Frequencies of Occurence"=2)
       )
-    ),#),
+    ),
     
     
     
@@ -179,100 +179,7 @@ shinyUI(fluidPage(
                      )
     ),
     
-    #wellPanel(
-      # This outputs the dynamic UI component
-    #  uiOutput("ui")
-   # ),
-    
-              
-                 
-      #column(5, offset = 1, 
-             
-             
-            #  wellPanel(style = "background: #adc7de;", 
-            #               
-            #               h3("Data by Uploading a CSV File"),
-            #               
-            #               # File input
-            #               fileInput("file", "Choose CSV file",
-            #                         accept = c(
-            #                           "text/csv",
-            #                           "text/comma-separated-values",
-            #                           ".csv"), 
-            #                         buttonLabel = "Browse...",
-            #                         placeholder = "No file selected"),
-            #               
-            #               
-            #            # Input: Select encoding ----
-            #            radioButtons("fencoding", "Encoding",
-            #                         choices = c(Auto = "unknown", 
-            #                                     "UTF-8" = "UTF-8"),
-            #                         selected = "unknown", inline=TRUE),
-            #            
-            #            
-            #            # Input: Select decimal ----
-            #            radioButtons("decimal", "Decimal",
-            #                         choices = c(Auto = "auto",
-            #                                     Comma = ",",
-            #                                     Dot = "."),
-            #                         selected = "auto", inline=TRUE),
-            #            
-            #            h5("Select the Exposure Variable", style="font-weight: bold; font-size: 10pt;"),
-            #            
-            #            uiOutput("selection_exposure"),
-            #            
-            #            br(),
-            #            
-            #            selectInput("reference_exposure", "Select the Label for the Existence of the Exposure of Interest", choices = NULL), 
-            #            
-            #            br(),
-            #            
-            #            h5("Select the Outcome Variable", style="font-weight: bold; font-size: 10pt;"),
-            #            
-            #            uiOutput("selection_outcome"),
-            #            
-            #            br(),
-            #            
-            #            selectInput("reference_outcome", "Select the Label for the Existence of the Outcome of Interest", choices = NULL), 
-            #            
-            #            
-            #            tags$small("By clicking the Browse button and uploading a file, you agree to the",
-            #                   style="color: #808080;"),
-            #            
-            #            tags$a(href="https://statsomat.com/terms", target="_blank", "Terms of Use.", style="font-weight: bold; font-size: 9pt;")
-            # ),
-            # 
-            # 
-            # 
-            # wellPanel(style = "background: #adc7de;", 
-            #           
-            #           h3("Data by Entering the Frequencies"),
-            #           
-            #           textInput("name_Exposure","Name the Exposure Variable","Exposure"),
-            #           textInput("name_Outcome","Name the Outcome Variable","Outcome"),
-            #           
-            #           matrixInput("sample","Enter Frequencies of Cases",
-            #             value = matrix(0, 2, 2, dimnames = list(c("Non-Outcome","Outcome"), c("Non-Exposure", "Exposure"))),
-            #             rows = list(
-            #               extend = FALSE,names = TRUE, multiheader=FALSE,editableNames=FALSE),
-            #             cols = list(
-            #               names = TRUE, multiheader=FALSE,editableNames=FALSE)
-            # 
-            #           ),
-            #           
-            #       
  
-                      
-            #          tags$small("By clicking the Browse button and uploading a file, you agree to the",
-            #                     style="color: #808080;"),
-                      
-            #          tags$a(href="https://statsomat.com/terms", target="_blank", "Terms of Use.", style="font-weight: bold; font-size: 9pt;")
-            #),
-            
-            
-            
-              
-
            
            wellPanel(style = "background: #ff9900", align="center", 
                      

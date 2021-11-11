@@ -13,11 +13,8 @@ function(input, output, session) {
   # On session end
   session$onSessionEnded(stopApp)
   
-  dataupload= FALSE
-  
   # Upload message
   observeEvent(input$file, {
-    dataupload=TRUE
     showModal(modalDialog(
       title = "Reading Data", "Please Wait", 
       footer = NULL,

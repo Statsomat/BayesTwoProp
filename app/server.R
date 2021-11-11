@@ -288,8 +288,7 @@ function(input, output, session) {
     
     params <- list(data = datainput(), filename=input$file, fencoding=input$fencoding, decimal=input$decimal, enc_guessed = enc_guessed_first, 
                    outcome = input$selection_outcome$right, exposure = input$selection_exposure$right, presence_outcome = referencename_outcome(),
-                   presence_exposure = referencename_exposure(),
-                   dataTableInput= input$sample, exposurename= input$name_Exposure, outcomename= input$name_Outcome)
+                   presence_exposure = referencename_exposure())
     
     
     

@@ -12,7 +12,8 @@ server_file <- function(input, output, session) {
   session$onSessionEnded(stopApp)
   
   # Upload message
-  observeEvent(input$file, {
+  observeEvent(input$file, once=T,
+               ignoreInit=T, {
     showModal(modalDialog(
       title = "Reading Data", "Please Wait", 
       footer = NULL,
@@ -259,7 +260,8 @@ server_file <- function(input, output, session) {
       report <- reactiveValues(filepath = NULL) 
       
       # Render report
-      observeEvent(input$generate, {
+      observeEvent(input$generate, once=T,
+                   ignoreInit=T,{
         
         req(input$file, datainput(), input$selection_outcome$right)
         

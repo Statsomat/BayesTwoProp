@@ -15,9 +15,10 @@ server_table <- function(input, output, session) {
       
       report <- reactiveValues(filepath = NULL) 
       # Render report
-      observeEvent(input$generate, {
+      observeEvent(input$generate, once=T,
+                   ignoreInit=T,{
         
-        #req(input$file, datainput(), input$selection_outcome$right)
+        req(input$sample)
         
         src1 <- normalizePath('report.Rmd')
         src2 <- normalizePath('references.bib')
@@ -47,31 +48,31 @@ server_table <- function(input, output, session) {
         tryCatch({
           
           withProgress(message = 'Please wait, the Statsomat app is computing. This may take a while.', value=0, {
-            
+
             for (i in 1:15) {
               incProgress(1/15)
               Sys.sleep(0.25)
-              
+
             }
-            
+
             if (input$rcode == "Data Analysis Report (PDF)"){
-              
+
               tmp_file <- render('report.Rmd', pdf_document(latex_engine = "xelatex"),
                                  params = params,
                                  envir = new.env(parent = globalenv())
               )
-              
+
             } else {
-              
+
               tmp_file <- render('report_code_container.Rmd', html_document(),
                                  params = params,
                                  envir = new.env(parent = globalenv())
               )
-              
+
             }
-            
-            report$filepath <- tmp_file 
-            
+
+            report$filepath <- tmp_file
+
           })
           
           showNotification("Now you can download the file.", duration=20)
@@ -85,6 +86,7 @@ server_table <- function(input, output, session) {
         )
         
       })
+      
       
       
       # Enable downloadbutton 

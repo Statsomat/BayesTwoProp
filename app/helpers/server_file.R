@@ -7,8 +7,6 @@ server_file <- function(input, output, session) {
     session$close()
   })
   
-  # Reload app button
-  observeEvent(input$reload,session$reload())
   
   # On session end
   session$onSessionEnded(stopApp)

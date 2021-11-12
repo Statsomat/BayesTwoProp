@@ -7,26 +7,8 @@ server_table <- function(input, output, session) {
     session$close()
   })
   
-  # Reload app button
-  observeEvent(input$reload,session$reload())
-  
   # On session end
   session$onSessionEnded(stopApp)
-  
-  # Upload message
-  observeEvent(input$file, {
-    showModal(modalDialog(
-      title = "Reading Data", "Please Wait", 
-      footer = NULL,
-      fade = FALSE,
-      easyClose = TRUE
-    ))
-    
-    Sys.sleep(2)
-    
-  }, priority=100)
-  
-  
   
 
     

@@ -26,19 +26,19 @@
 #     
 #   }, priority=100)
   
+function(input, output, session) { 
   
-  
-  #observeEvent(input$input_type, {
+observeEvent(input$input_type, {
 
   if(input$input_type==1){
-    server=server_file()
+    server_file(input, output, session)
   }else{
-    server=server_table()
+    server_table(input, output, session)
   }
     
- # }
- #)
+  }
+ )
   
   
   
-#}
+}

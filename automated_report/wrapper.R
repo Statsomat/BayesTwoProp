@@ -57,6 +57,7 @@ rmarkdown::render("report.Rmd", params = list(
   filename = filename,
   decimal = decimal,
   data = NA, #data,
+  data = data,
   outcome = outcome,
   exposure = exposure, 
   presence_outcome = presence_outcome,

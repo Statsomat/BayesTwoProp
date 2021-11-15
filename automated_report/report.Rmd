@@ -199,7 +199,56 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 
 ```{r desctable, eval=eval_final, dev="cairo_pdf", results='asis'}
 cat("## Frequency Table", fill=TRUE)
-# Insert a nice frequency and percentage table for the data
+cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
+
+
+# Frequency table
+df_table = as.data.frame.matrix(table(df)) 
+
+totalsum = sum(df_table)
+rowsum = apply(df_table, MARGIN  = 1, FUN = sum)
+colsum = apply(df_table, MARGIN  = 2, FUN = sum)
+
+freq = as.vector(t(table(df)))
+perc_total = paste(freq/totalsum*100,"%")
+perc_row = paste(round(freq/rep(rowsum,each=2),4)*100,"%")
+perc_col =paste(round(freq/rep(colsum,2),4)*100,"%")
+
+freq_perc_table = as.data.frame(matrix(c(freq[1:2], perc_total[1:2], perc_row[1:2], perc_col[1:2], freq[3:4], perc_total[3:4], perc_row[3:4], perc_col[3:4]), ncol=2, byrow=T))
+
+colnames(freq_perc_table) =  colnames(df_table) 
+
+
+freq_perc_table["Total"]= c(rowsum[1], paste(round(rowsum[1]/totalsum,4)*100,"%"), NA , NA , rowsum[2], paste(round(rowsum[2]/totalsum,4)*100,"%"), NA, NA)
+freq_perc_table = rbind(freq_perc_table,c(colsum,totalsum))
+freq_perc_table = rbind(freq_perc_table,c(paste(round(colsum/totalsum,4)*100,"%"),"100 %"))
+
+# for automated header and index names
+exp <- params$exposure
+exp_header <- c(exp = 2, " "= 1)
+names(exp_header) <- c(exp, " ")
+
+not_present_outcome = unique(df[,colnames(df)==params$outcome])[unique(df[,colnames(df)==params$outcome])!=params$presence_outcome]
+
+out_present <- paste(params$outcome,"=",params$presence_outcome)
+out_not_present <- paste(params$outcome,"=",not_present_outcome)
+out_header <- c(out_present=4, out_not_present=4, "Total"=2)
+names(out_header) <- c(out_present, out_not_present, "Total")
+
+options(knitr.kable.NA = '')
+x1 <- knitr::kable(freq_perc_table, digits=2, escape = T, linesep = '', caption=cat(" ", fill=TRUE), longtable = T, align = "rrr")
+kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))%>%
+  row_spec(4, hline_after = T)%>% 
+  row_spec(8,hline_after = T)%>% 
+  add_header_above(header = exp_header, escape = F)%>% 
+  pack_rows(index = out_header)
+
+
+
+
+
+
+
 ```
 
 ```{r descplots, eval=eval_final, dev="cairo_pdf", results='asis'}

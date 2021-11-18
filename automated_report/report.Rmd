@@ -199,9 +199,6 @@ if (user_selection_function_param==1) {
 } else {
   cat("$1-\\frac{\\theta_1}{\\theta_2}$", fill=TRUE)  
 }
-# Why Bayesian. Explain what benefits will be gleaned by a Bayesian analysis (as opposed to a frequentist analysis).
-# Goals of analysis. Explain the goals of the analysis. This prepares the audience for the type of models to expect and how the results will be described. 
-# Check references: Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021
 ```
 
 ```{r title_descstats, eval=eval_final, results='asis'}

@@ -164,8 +164,10 @@ shinyUI(fluidPage(
                        textInput("name_Exposure","Name the Exposure Variable","Exposure"),
                        textInput("name_Outcome","Name the Outcome Variable","Outcome"),
                        
-                       matrixInput("sample","Insert Frequencies of Cases",
-                                   value = matrix(c("Insert here","Insert here","Insert here","Insert here"), 2, 2, dimnames = list(c("Non-Outcome","Outcome"), c("Non-Exposure", "Exposure"))),
+                       h4("Please Insert in the Table Below the Frequencies of Cases"),
+                       h5("(type directly in the browser)"),
+                       matrixInput("sample",
+                                   value = matrix(NA, 2, 2, dimnames = list(c("Non-Outcome","Outcome"), c("Non-Exposure", "Exposure"))),
                                    rows = list(
                                      extend = FALSE,names = TRUE, multiheader=FALSE,editableNames=FALSE),
                                    cols = list(

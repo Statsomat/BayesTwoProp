@@ -11,3 +11,5 @@ library(shinyMatrix)
 
 source("helpers/chooser.R")
 source("helpers/Functions.R")
+source("helpers/server_file.R")
+source("helpers/server_table.R")

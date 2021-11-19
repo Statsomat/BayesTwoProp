@@ -90,7 +90,7 @@ shinyUI(fluidPage(
                      
                      h3("Choose an Option to Upload the Data"),
       radioButtons("input_type", "Input type",
-                  choices = list("Upload a CVS File"=1,
+                  choices = list("Upload a CSV File"=1,
                                  "Insert Frequencies of Occurence"=2)
       )
     ),
@@ -164,12 +164,13 @@ shinyUI(fluidPage(
                        textInput("name_Exposure","Name the Exposure Variable","Exposure"),
                        textInput("name_Outcome","Name the Outcome Variable","Outcome"),
                        
-                       matrixInput("sample","Enter Frequencies of Cases",
-                                   value = matrix(0, 2, 2, dimnames = list(c("Non-Outcome","Outcome"), c("Non-Exposure", "Exposure"))),
+                       matrixInput("sample","Insert Frequencies of Cases",
+                                   value = matrix(c("Insert here","Insert here","Insert here","Insert here"), 2, 2, dimnames = list(c("Non-Outcome","Outcome"), c("Non-Exposure", "Exposure"))),
                                    rows = list(
                                      extend = FALSE,names = TRUE, multiheader=FALSE,editableNames=FALSE),
                                    cols = list(
-                                     names = TRUE, multiheader=FALSE,editableNames=FALSE)
+                                     names = TRUE, multiheader=FALSE,editableNames=FALSE),
+                                   class="numeric", lazy=FALSE
                        ),
                        tags$small("By clicking the Browse button and uploading a file, you agree to the",
                                   style="color: #808080;"),

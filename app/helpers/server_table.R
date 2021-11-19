@@ -7,6 +7,9 @@ server_table <- function(input, output, session) {
     session$close()
   })
   
+  # Reload app button
+  observeEvent(input$reload,session$reload())
+  
   # On session end
   session$onSessionEnded(stopApp)
   
@@ -15,11 +18,10 @@ server_table <- function(input, output, session) {
       
       report <- reactiveValues(filepath = NULL) 
       # Render report
-      observeEvent(input$generate, once=T,
-                   ignoreInit=T,{
-        
-        req(input$sample)
-        
+      observeEvent(input$generate, once=TRUE,
+                   ignoreInit=TRUE,{
+       
+          
         src1 <- normalizePath('report.Rmd')
         src2 <- normalizePath('references.bib')
         #  src3 <- normalizePath('report_code_container.Rmd') 
@@ -75,7 +77,12 @@ server_table <- function(input, output, session) {
 
           })
           
-          showNotification("Now you can download the file.", duration=20)
+          showModal(modalDialog(
+            title = "Report generated", "Please Download now", 
+            footer = NULL,
+            fade = FALSE,
+            easyClose = TRUE
+          ))
           
         },
         
@@ -87,7 +94,7 @@ server_table <- function(input, output, session) {
         
       })
       
-      
+
       
       # Enable downloadbutton 
       observe({
@@ -95,8 +102,7 @@ server_table <- function(input, output, session) {
         session$sendCustomMessage("check_generation", list(check_generation  = 1))
       })
       
-      
-      
+
       
       
       # Download report  

@@ -148,7 +148,6 @@ cat("Presence of Exposure: ", params$presence_exposure, fill=TRUE)
 
 \pagebreak
 
-
 ```{r descplots_title, eval=eval, results='asis'}
 cat("# Descriptive Plots", fill=TRUE)
 

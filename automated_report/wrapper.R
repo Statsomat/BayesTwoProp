@@ -56,11 +56,13 @@ rope_user <- NULL
 rmarkdown::render("report.Rmd", params = list(
   filename = filename,
   decimal = decimal,
+  data = NA, #data,
   data = data,
   outcome = outcome,
   exposure = exposure, 
   presence_outcome = presence_outcome,
   presence_exposure = presence_exposure,
+  user_selection_function_param = user_selection_function_param,
   s1=s1,
   n1=n1,
   s2=s2,
@@ -70,6 +72,8 @@ rmarkdown::render("report.Rmd", params = list(
   a2=a2,
   b2=b2
 ))
+
+
 
 
 

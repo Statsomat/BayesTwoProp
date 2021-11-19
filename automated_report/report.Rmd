@@ -121,6 +121,7 @@ tryCatch({
 cat("# User Selection", fill=TRUE)
 ```
 
+
 ```{r guifile, results="asis", eval=eval_final}
 # Basic information for the case file upload
 cat("Automatic statistics for the file:", fill=TRUE)
@@ -162,10 +163,14 @@ if (exists("vars")){
 
 ```{r cellupload, eval=evalcellfreq , results='asis'}
 # Upload as cell frequencies, display them nicely
-cat(s1,fill=TRUE)
-cat(n1,fill=TRUE)
-cat(s2,fill=TRUE)
-cat(n2,fill=TRUE)
+cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and present Exposure (",params$exposure ," is equal to ",params$presence_exposure , "): ", params$s1),fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat(paste("Number of Observations with present Exposure (",params$exposure ," is equal to ",params$presence_exposure ,") : ",params$n1),fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and without Exposure (",params$exposure ," is not equal to ",params$presence_exposure ,") : ",params$s2),fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat(paste("Numbers of Observations without Exposure(",params$exposure ," is not equal to ",params$presence_exposure ,"): ",params$n2),fill=TRUE)
+cat("\\newline",fill=TRUE) 
 ```
 
 
@@ -177,9 +182,23 @@ cat(n2,fill=TRUE)
 
 ```{r preamble, eval=eval_final, results='asis'}
 cat("# Goals of the Analysis", fill=TRUE)
-# Why Bayesian. Explain what benefits will be gleaned by a Bayesian analysis (as opposed to a frequentist analysis).
-# Goals of analysis. Explain the goals of the analysis. This prepares the audience for the type of models to expect and how the results will be described. 
-# Check references: Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021
+cat("The data is analyzed in this app by means of Baysian data analysis. Baysian data analysis is a branch of statistical data analysis based on two fundamental ideas: The first idea is that Baysian inference is a reallocation of credibility across possibilities, by means of the well known Bayes' theorem. The second idea is that the possibilities, over which we allocate credibility are parameter values in a meaningful mathematical model.", fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat("\\newline",fill=TRUE) 
+cat("In Bayes' theorem, an existing knowledge about the parameter(s) under investigation (the a priori distribution, or prior for short) is combined with the new knowledge from the data ('likelihood'), resulting in a new, improved knowledge (a posteriori probability distribution).", fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat("\\newline",fill=TRUE) 
+cat("'An important benefit of Bayesian analysis is the ability to generate estimates and credible intervals for any derived parameter. Differences, ratios, effect sizes and novel parameter combinations are directly computed from the posterior distribution. Another benefit of Bayesian analysis is computationally robust estimates of parameter values and their credible intervals. The credible intervals do not depend on large-N approximations (as confidence intervals often do in frequentist approaches), nor do credible intervals depend on which tests are intended (as confidence intervals do in frequentist approaches).' (Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021)", fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat("\\newline",fill=TRUE) 
+cat("The goal of this app is to generate Bayes estimates and credible intervals for the user selected function of parameters: ", fill=TRUE)
+if (user_selection_function_param==1) {
+  cat("$\\theta_1 - \\theta_2$", fill=TRUE)
+} else if (user_selection_function_param==2) {
+    cat("$\\frac{\\theta_1}{\\theta_2}$", fill=TRUE)
+} else {
+  cat("$1-\\frac{\\theta_1}{\\theta_2}$", fill=TRUE)  
+}
 ```
 
 ```{r title_descstats, eval=eval_final, results='asis'}
@@ -194,7 +213,58 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 
 ```{r desctable, eval=eval_final, dev="cairo_pdf", results='asis'}
 cat("## Frequency Table", fill=TRUE)
-# Insert a nice frequency and percentage table for the data
+cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
+
+
+# compute frequencies and percentages
+df_table <- as.data.frame.matrix(table(df)) 
+
+totalsum <- sum(df_table)
+rowsum <- apply(df_table, MARGIN  = 1, FUN = sum)
+colsum <- apply(df_table, MARGIN  = 2, FUN = sum)
+
+freq <- as.vector(t(table(df)))
+perc_total <- paste(freq/totalsum*100,"%")
+perc_row <- paste(round(freq/rep(rowsum,each=2),4)*100,"%")
+perc_col <-paste(round(freq/rep(colsum,2),4)*100,"%")
+
+# put together frequencies and percentages in right order
+freq_perc_table <- as.data.frame(matrix(c(freq[1:2], perc_total[1:2], perc_row[1:2], perc_col[1:2], freq[3:4], perc_total[3:4], perc_row[3:4], perc_col[3:4]), ncol=2, byrow=T))
+
+colnames(freq_perc_table) <-  colnames(df_table) 
+
+# add Total counts and perentages
+freq_perc_table["Total"]<- c(rowsum[1], paste(round(rowsum[1]/totalsum,4)*100,"%"), NA , NA , rowsum[2], paste(round(rowsum[2]/totalsum,4)*100,"%"), NA, NA)
+freq_perc_table <- rbind(freq_perc_table,c(colsum,totalsum))
+freq_perc_table <- rbind(freq_perc_table,c(paste(round(colsum/totalsum,4)*100,"%"),"100 %"))
+
+# names for automated header and index names
+exp <- params$exposure
+exp_header <- c(exp = 2, " "= 1)
+names(exp_header) <- c(exp, " ")
+
+not_present_outcome <- unique(df[,colnames(df)==params$outcome])[unique(df[,colnames(df)==params$outcome])!=params$presence_outcome]
+
+out_present <- paste(params$outcome,"=",params$presence_outcome)
+out_not_present <- paste(params$outcome,"=",not_present_outcome)
+out_header <- c(out_present=4, out_not_present=4, "Total"=2)
+names(out_header) <- c(out_present, out_not_present, "Total")
+
+# print table
+options(knitr.kable.NA = '')
+x1 <- knitr::kable(freq_perc_table, digits=2, escape = T, linesep = '', caption=cat(" ", fill=TRUE), longtable = T, align = "rrr")
+kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))%>%
+  row_spec(4, hline_after = T)%>% 
+  row_spec(8,hline_after = T)%>% 
+  add_header_above(header = exp_header, escape = F)%>% 
+  pack_rows(index = out_header)
+
+
+
+
+
+
+
 ```
 
 ```{r descplots, eval=eval_final, dev="cairo_pdf", results='asis'}
@@ -205,9 +275,26 @@ cat("## Barplots", fill=TRUE)
 ```{r the_model, eval=eval, results='asis'}
 cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)
-# Insert latex equations for the model 
-# Highlight and explain the parameters in natural language
-# Display and explain the user selected function of parameters 
+cat("The statistical model of this analysis derives from the data: ", fill=TRUE)
+cat("$$X_{11},...,X_{1n_1} \\hspace{1cm} iid \\text{ \\~{ } } Be(\\theta_1)$$", fill=TRUE)
+cat("$$X_{21},...,X_{2n_2} \\hspace{1cm} iid \\text{ \\~{ } } Be(\\theta_2)$$", fill=TRUE)
+cat(paste0("with sample sizes $n_1=$ ",n1," and $n_2=$ ",n2,", and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_i \\, , i\\in\\{1,2\\}$.\\
+The Exposure variable indicates in which of the two groups (",colnames(table(params$data))[1]," and ",colnames(table(params$data))[2], ") an individual is. The Outcome variable indicates whether the event (",colnames(params$data)[1],") occurred for an individual or not and corresponds to either a value of 1 or 0. \\"), fill=TRUE)
+cat("Summing up the values of 0 and 1 in the respective groups results in the following random variables:", fill=TRUE)
+cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} iid \\text{ \\~{ } } Bi(n_1,\\theta_1)$$", fill=TRUE)
+cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} iid \\text{ \\~{ } } Bi(n_2,\\theta_2)$$", fill=TRUE)
+cat("These random variables are binomially distributed with the distribution parameters $n_i$ and $\\theta_i \\, , i\\in\\{1,2\\}$. \\", fill=TRUE)
+cat("The selected function ", fill=TRUE)
+if (user_selection_function_param==1) {
+  cat("$\\theta_1 - \\theta_2$, describes the Difference between two success probabilities.", fill=TRUE)
+} else {
+  if (user_selection_function_param==2) {
+  cat("$\\theta_1 / \\theta_2$, describes the Relative Risk, e.g. ratio of two success probabilities.", fill=TRUE)
+} else {
+  cat("$1-\\theta_1 / \\theta_2$, describes 1-Relative Risk, where Relative Risk is e.g. the ratio of two probabilities of success.", fill=TRUE)  
+}
+}
+
 ```
 
 ```{r likelihood, eval=eval_final, results='asis'}

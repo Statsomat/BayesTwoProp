@@ -8,7 +8,6 @@ library(data.table)
 library(readr)
 library(shinydisconnect)
 library(shinyMatrix)
-library(shinyjs)
 
 source("helpers/chooser.R")
 source("helpers/Functions.R")

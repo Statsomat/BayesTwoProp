@@ -9,6 +9,7 @@ output:
     latex_engine: xelatex
     toc: true
     toc_depth: 2
+    extra_dependencies: "subfig" 
 #bibliography: ["references.bib"]
 classoption: landscape
 params:
@@ -197,6 +198,8 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
   kable_styling(font_size = 8, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))
 ```
 
+\pagebreak
+
 ```{r desctable, eval=eval_final, dev="cairo_pdf", results='asis'}
 cat("## Frequency Table", fill=TRUE)
 cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
@@ -245,18 +248,36 @@ kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HO
   add_header_above(header = exp_header, escape = F)%>% 
   pack_rows(index = out_header)
 
+```
 
-
-
-
-
+```{r descplot fourfold, eval=eval_final, dev="cairo_pdf", results='asis', out.height= "40%", fig.align='center'}
+cat("The next plot is a visualisation of the frequency table. \n", fill =TRUE)
+fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, margin = 1)
 
 ```
 
-```{r descplots, eval=eval_final, dev="cairo_pdf", results='asis'}
+\pagebreak
+
+```{r descplots, eval=eval_final, dev="cairo_pdf", results='asis', fig.cap='Barplots', fig.subcap=c("Barplot of Outcome", "Barplot of Exposure", "Barplot of Outcome with present Exposure", "Barplot of Outcome without present Exposure" ), fig.ncol=2, out.width="50%" ,fig.align='left', out.height="30%",}
 cat("## Barplots", fill=TRUE)
-# Insert beautiful descriptive plots suitable for our data, e.g. barplots and if you want to also other kind 
+out_vec <- df[params$outcome]
+exp_vec <- df[params$exposure]
+total <- nrow(df)
+
+barplot(table(out_vec)/total, ylim=c(0,1), ylab= "Percentage of total Observations", col=c("#2fa42d","#396e9f")) #main = paste("Barplot of Outcome", params$outcome),
+
+barplot(table(exp_vec)/total,ylim=c(0,1), ylab ="Percentage of total Observations", col=c("#2fa42d","#396e9f"))#, main= paste("Barplot of Exposure", params$exposure)
+
+
+out_vec_exp1 <- out_vec[exp_vec==params$presence_exposure]
+barplot(table(out_vec_exp1)/total,ylim=c(0,1), ylab ="Percentage of total Observations", col=c("#2fa42d","#396e9f"))#, main= paste("Barplot of Outcome with present Exposure (", params$outcome, " with ", params$exposure,"=",params$presence_exposure, ")")
+
+out_vec_exp0 <- out_vec[exp_vec!=params$presence_exposure]
+barplot(table(out_vec_exp0)/total,ylim=c(0,1), ylab ="Percentage of total Observations", col=c("#2fa42d","#396e9f"))
+
 ```
+
+\pagebreak
 
 ```{r the_model, eval=eval, results='asis'}
 cat("# The Model", fill=TRUE)

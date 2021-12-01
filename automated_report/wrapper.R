@@ -51,7 +51,7 @@ rope_user <- NULL
 ##############################################################
 # Run parametric, automatic .Rmd file 
 ##############################################################
-rmarkdown::render("report.Rmd", params = list(
+rmarkdown::render("report_html.Rmd", params = list(
   filename = filename,
   decimal = decimal,
   data =data,

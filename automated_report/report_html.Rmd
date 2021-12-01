@@ -1,0 +1,439 @@
+---
+title: "Two Proportions by Bayes"
+author: 
+  - Denise Welsch
+  - Contributors^[Viktoria Daum, Konrad Junkes, Simone Schüttler]
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+#bibliography: ["references.bib"]
+classoption: landscape
+params:
+  data: NA
+  filename: NA
+  fencoding: NA # used in Shiny app 
+  decimal: NA
+  enc_guessed: NA # used in Shiny app 
+  presence_exposure: NA
+  presence_outcome: NA
+  exposure: NA
+  outcome: NA
+  s1: NA 
+  n1: NA 
+  s2: NA 
+  n2: NA
+  a1: NA
+  b1: NA
+  a2: NA
+  b2: NA
+  user_selection_function_param: NA
+  rope_user: NA
+header-includes:
+   - \usepackage{xcolor}
+#   - \setmainfont[BoldFont=FiraSans-Bold, Extension=.otf]{FiraSans-Regular}  # used in Shiny app 
+   - \usepackage{booktabs}
+   - \usepackage{longtable}
+   - \usepackage{float}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment='', message = FALSE, error = TRUE, warning=FALSE, fig.width=8)
+
+# Import libraries used further below
+library(knitr) # for tables
+library(kableExtra) # for tables 
+library(plotly) # for 3d plots
+library(bayestestR)
+library(LearnBayes)
+```
+
+
+```{r chunksinit}
+# Initialize evaluation resp. execution of subsequent chunks
+## Evaluation only for file upload
+evalfile <- is.data.frame(params$data)
+## Evaluation for cell frequency upload 
+evalcellfreq  <- !is.na(params$s1)
+## Other initializations
+evalfile2 <- FALSE
+eval_rows <- FALSE
+eval_final <- evalcellfreq # if file is missing, cells are mandatory 
+```
+
+
+```{r getdatafile, eval = evalfile}
+# Get data as a file 
+tryCatch({
+  
+  # Get data
+  df <- params$data
+  
+  # Save a copy for other purposes (downloadable code) 
+  df_code <- df
+  
+  # Restrict to exposure and outcome
+  vars <- c(params$outcome, params$exposure)
+  df <- df[,vars,drop=FALSE]
+  
+  # Drop empty rows
+  rowsums <- data.frame(sapply(df,is.na))
+  if (length(which(rowSums(rowsums) == dim(df)[2])) != 0L){
+    eval_rows <- TRUE
+    rows_drop <- (which(rowSums(rowsums) == dim(df)[2]))
+    length_non_complete <- length(which(rowSums(rowsums) == dim(df)[2]))
+    df <- df[-rows_drop, ,drop=FALSE]
+  }
+  
+  # frequencies are called n_
+# for example n_exposure0_outcome1 is the frequency of datapoints without exposure but with present outcome
+  n_exposure1_outcome1 = sum(df[params$outcome]==params$presence_outcome & df[params$exposure]==params$presence_exposure)
+  n_exposure0_outcome1 = sum(df[params$outcome]== params$presence_outcome & df[params$exposure]!=params$presence_exposure)
+  n_exposure1_outcome0 = sum(df[params$outcome]!=params$presence_outcome & df[params$exposure]==params$presence_exposure)
+  n_exposure0_outcome0 = sum(df[params$outcome]!=params$presence_outcome & df[params$exposure]!=params$presence_exposure)
+  
+  n_exposure1 = sum(df[params$exposure]==params$presence_exposure)
+  n_exposure0 = sum(df[params$exposure]!=params$presence_exposure)
+  
+  # Initialize next computations
+  evalfile2 <- TRUE
+  
+  # Move on if file upload and successful current chunk 
+  eval_final <- as.logical(evalfile*evalfile2)
+  
+  # Set cell freq upload to false 
+  evalcellfreq <- FALSE 
+
+}, error=function(e) {
+  
+  stop(safeError("Could not get the file data. "))
+})
+
+```
+
+
+\pagebreak
+
+```{r guititle, results="asis", eval=eval_final}
+cat("# User Selection", fill=TRUE)
+```
+
+
+```{r guifile, results="asis", eval=eval_final}
+# Basic information for the case file upload
+cat("Automatic statistics for the file:", fill=TRUE)
+dataname <- params$filename[1]
+kable(dataname, col.names = "File", linesep = '', longtable=T) 
+
+cat("Your selection for the encoding:", fill=TRUE)
+if (params$fencoding=="unknown"){
+  cat("Auto")
+} else {cat("UTF-8")}
+cat("\\newline",fill=TRUE) 
+
+cat("Your selection for the decimal character:", fill=TRUE)
+if (params$decimal=="auto"){
+  cat("Auto")
+} else {cat(params$decimal)}
+cat("\\newline",fill=TRUE) 
+  
+cat("Observations (rows with at least one non-missing value): ", fill=TRUE)
+cat(dim(df)[1])
+cat("\\newline",fill=TRUE) 
+
+# Missing rows
+if (exists("length_non_complete")){
+  cat("Number of rows that are dropped because they contain no values (all values are missing):", length_non_complete)
+  cat("\\newline",fill=TRUE) 
+}
+
+if (exists("vars")){
+  cat("Name of the Outcome Variable: ", params$outcome, fill=TRUE)
+  cat("\\newline",fill=TRUE) 
+}
+
+if (exists("vars")){
+  cat("Name of the Exposure Variable: ", params$exposure, fill=TRUE)
+}
+```
+
+
+```{r cellupload, eval=evalcellfreq , results='asis'}
+# Upload as cell frequencies, display them nicely
+cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and present Exposure (",params$exposure ," is equal to ",params$presence_exposure , "): ", params$s1),fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat(paste("Number of Observations with present Exposure (",params$exposure ," is equal to ",params$presence_exposure ,") : ",params$n1),fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and without Exposure (",params$exposure ," is not equal to ",params$presence_exposure ,") : ",params$s2),fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat(paste("Numbers of Observations without Exposure(",params$exposure ," is not equal to ",params$presence_exposure ,"): ",params$n2),fill=TRUE)
+cat("\\newline",fill=TRUE) 
+```
+
+
+```{r guirest, eval=eval_final, results='asis'}
+# display in the report the rest of the information arising from the GUI (e.g. priors, function of parameters etc.)
+```
+
+\pagebreak
+
+```{r preamble, eval=eval_final, results='asis'}
+cat("# Goals of the Analysis", fill=TRUE)
+cat("The data is analyzed in this app by means of Baysian data analysis. Baysian data analysis is a branch of statistical data analysis based on two fundamental ideas: The first idea is that Baysian inference is a reallocation of credibility across possibilities, by means of the well known Bayes' theorem. The second idea is that the possibilities, over which we allocate credibility are parameter values in a meaningful mathematical model.", fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat("\\newline",fill=TRUE) 
+cat("In Bayes' theorem, an existing knowledge about the parameter(s) under investigation (the a priori distribution, or prior for short) is combined with the new knowledge from the data ('likelihood'), resulting in a new, improved knowledge (a posteriori probability distribution).", fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat("\\newline",fill=TRUE) 
+cat("'An important benefit of Bayesian analysis is the ability to generate estimates and credible intervals for any derived parameter. Differences, ratios, effect sizes and novel parameter combinations are directly computed from the posterior distribution. Another benefit of Bayesian analysis is computationally robust estimates of parameter values and their credible intervals. The credible intervals do not depend on large-N approximations (as confidence intervals often do in frequentist approaches), nor do credible intervals depend on which tests are intended (as confidence intervals do in frequentist approaches).' (Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021)", fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat("\\newline",fill=TRUE) 
+cat("The goal of this app is to generate Bayes estimates and credible intervals for the user selected function of parameters: ", fill=TRUE)
+if (user_selection_function_param==1) {
+  cat("$\\theta_1 - \\theta_2$", fill=TRUE)
+} else if (user_selection_function_param==2) {
+    cat("$\\frac{\\theta_1}{\\theta_2}$", fill=TRUE)
+} else {
+  cat("$1-\\frac{\\theta_1}{\\theta_2}$", fill=TRUE)  
+}
+```
+
+```{r title_descstats, eval=eval_final, results='asis'}
+cat("# The Data", fill=TRUE)
+```
+
+```{r datahead, eval=evalfile2, results='asis'}
+cat("## Data Head (first five observations)", fill=TRUE)
+knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longtable=T) %>%
+  kable_styling(font_size = 8, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))
+```
+
+\pagebreak
+
+```{r desctable, eval=eval_final, results='asis'}
+cat("## Frequency Table", fill=TRUE)
+cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
+
+
+# compute frequencies and percentages
+df_table <- as.data.frame.matrix(table(df)) 
+
+totalsum <- sum(df_table)
+rowsum <- apply(df_table, MARGIN  = 1, FUN = sum)
+colsum <- apply(df_table, MARGIN  = 2, FUN = sum)
+
+freq <- as.vector(t(table(df)))
+perc_total <- paste(freq/totalsum*100,"%")
+perc_row <- paste(round(freq/rep(rowsum,each=2),4)*100,"%")
+perc_col <-paste(round(freq/rep(colsum,2),4)*100,"%")
+
+# put together frequencies and percentages in right order
+freq_perc_table <- as.data.frame(matrix(c(freq[1:2], perc_total[1:2], perc_row[1:2], perc_col[1:2], freq[3:4], perc_total[3:4], perc_row[3:4], perc_col[3:4]), ncol=2, byrow=T))
+
+colnames(freq_perc_table) <-  colnames(df_table) 
+
+# add Total counts and perentages
+freq_perc_table["Total"]<- c(rowsum[1], paste(round(rowsum[1]/totalsum,4)*100,"%"), NA , NA , rowsum[2], paste(round(rowsum[2]/totalsum,4)*100,"%"), NA, NA)
+freq_perc_table <- rbind(freq_perc_table,c(colsum,totalsum))
+freq_perc_table <- rbind(freq_perc_table,c(paste(round(colsum/totalsum,4)*100,"%"),"100 %"))
+
+# names for automated header and index names
+exp <- params$exposure
+exp_header <- c(exp = 2, " "= 1)
+names(exp_header) <- c(exp, " ")
+
+not_present_outcome <- unique(df[,colnames(df)==params$outcome])[unique(df[,colnames(df)==params$outcome])!=params$presence_outcome]
+
+out_present <- paste(params$outcome,"=",params$presence_outcome)
+out_not_present <- paste(params$outcome,"=",not_present_outcome)
+out_header <- c(out_present=4, out_not_present=4, "Total"=2)
+names(out_header) <- c(out_present, out_not_present, "Total")
+
+# print table
+options(knitr.kable.NA = '')
+x1 <- knitr::kable(freq_perc_table, digits=2, escape = T, linesep = '', caption=cat(" ", fill=TRUE), longtable = T, align = "rrr")
+kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))%>%
+  row_spec(4, hline_after = T)%>% 
+  row_spec(8,hline_after = T)%>% 
+  add_header_above(header = exp_header, escape = F)%>% 
+  pack_rows(index = out_header)
+
+```
+
+```{r descplot fourfold, eval=eval_final, results='asis', out.height= "40%", fig.align='center'}
+cat("The next plot is a visualisation of the frequency table. \n", fill =TRUE)
+fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, margin = 1)
+
+```
+
+\pagebreak
+
+```{r descplots, eval=eval_final, results='asis', fig.cap='Barplots', fig.subcap=c("Barplot of Outcome", "Barplot of Exposure", "Barplot of Outcome with present Exposure", "Barplot of Outcome without present Exposure" ), fig.ncol=2, out.width="50%" ,fig.align='left', out.height="30%"}
+cat("## Barplots", fill=TRUE)
+out_vec <- df[params$outcome]
+exp_vec <- df[params$exposure]
+total <- nrow(df)
+
+barplot(table(out_vec)/total, ylim=c(0,1), ylab= "Percentage of total Observations", col=c("#2fa42d","#396e9f")) 
+
+barplot(table(exp_vec)/total,ylim=c(0,1), ylab ="Percentage of total Observations", col=c("#2fa42d","#396e9f"))
+
+
+out_vec_exp1 <- out_vec[exp_vec==params$presence_exposure]
+barplot(table(out_vec_exp1)/total,ylim=c(0,1), ylab ="Percentage of total Observations", col=c("#2fa42d","#396e9f"))
+
+out_vec_exp0 <- out_vec[exp_vec!=params$presence_exposure]
+barplot(table(out_vec_exp0)/total,ylim=c(0,1), ylab ="Percentage of total Observations", col=c("#2fa42d","#396e9f"))
+
+```
+
+\pagebreak
+
+```{r the_model, eval=eval, results='asis'}
+cat("# The Model", fill=TRUE)
+cat("\n## Notation", fill=TRUE)
+cat("The statistical model of this analysis derives from the data: ", fill=TRUE)
+cat("$$X_{11},...,X_{1n_1} \\hspace{1cm} iid \\text{ \\~{ } } Be(\\theta_1)$$", fill=TRUE)
+cat("$$X_{21},...,X_{2n_2} \\hspace{1cm} iid \\text{ \\~{ } } Be(\\theta_2)$$", fill=TRUE)
+cat(paste0("with sample sizes $n_1=$ ",n1," and $n_2=$ ",n2,", and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_i \\, , i\\in\\{1,2\\}$.\\
+The Exposure variable indicates in which of the two groups (",colnames(table(params$data))[1]," and ",colnames(table(params$data))[2], ") an individual is. The Outcome variable indicates whether the event (",colnames(params$data)[1],") occurred for an individual or not and corresponds to either a value of 1 or 0. \\"), fill=TRUE)
+cat("Summing up the values of 0 and 1 in the respective groups results in the following random variables:", fill=TRUE)
+cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} iid \\text{ \\~{ } } Bi(n_1,\\theta_1)$$", fill=TRUE)
+cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} iid \\text{ \\~{ } } Bi(n_2,\\theta_2)$$", fill=TRUE)
+cat("These random variables are binomially distributed with the distribution parameters $n_i$ and $\\theta_i \\, , i\\in\\{1,2\\}$. \\", fill=TRUE)
+cat("The selected function ", fill=TRUE)
+if (user_selection_function_param==1) {
+  cat("$\\theta_1 - \\theta_2$, describes the Difference between two success probabilities.", fill=TRUE)
+} else {
+  if (user_selection_function_param==2) {
+  cat("$\\theta_1 / \\theta_2$, describes the Relative Risk, e.g. ratio of two success probabilities.", fill=TRUE)
+} else {
+  cat("$1-\\theta_1 / \\theta_2$, describes 1-Relative Risk, where Relative Risk is e.g. the ratio of two probabilities of success.", fill=TRUE)  
+}
+}
+
+```
+
+```{r likelihood, eval=eval_final, results='asis'}
+cat("## The Likelihood", fill=TRUE)
+
+# Insert equation as latex or as code
+
+# Plot the likelihood (follow second row from page 167 DDBA)
+## Region to plot 
+Theta1 = seq(0.001, 0.999, by=0.001) 
+Theta2 = seq(0.001, 0.999, by=0.001) 
+
+## Check the next line as a solution, export as a png and include or find another solution 
+## plot_ly(x = Theta1, y = Theta2, z = ..., type = "surface") 
+```
+
+```{r priortext, eval=eval_final, results='asis'}
+cat("## The Prior Distribution", fill=TRUE)
+# if the default is used, explain and justify the prior distribution of the parameters in the model.
+# otherwise, display again the user defined priors 
+```
+
+```{r priorplot, eval=eval_final, results='asis'}
+# Plot the prior (follow first row from page 167 DDBA)
+pTheta1 = dbeta(Theta1,a1,b1)
+pTheta2 = dbeta(Theta2,a2,b2) 
+
+## Check the next line as a solution, export as a png and include or find another solution 
+## plot_ly(x = Theta1, y = Theta2, z = ..., type = "surface") 
+```
+
+```{r priorcheck, eval=eval_final, results='asis'}
+cat("### Prior Predictive Check", fill=TRUE)
+# Prior predictive check. Especially when using informed priors but even with broad priors, it is valuable to report a prior predictive check to demonstrate that the prior really generates simulated data consistent with the assumed prior knowledge.
+# References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
+```
+
+
+```{r posterior, eval=eval_final, results='asis'}
+cat("## The Posterior Distribution", fill=TRUE)
+# Insert latex or code equation for the posterior distribution 
+
+# Posterior for plotting (follow last row from page 167 DDBA)
+pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
+for (i in 1:length(Theta1)){
+  for (j in 1:length(Theta2)){
+    pTheta1Theta2GivenData[i,j]<- dbeta(Theta1[i], a1+s1, b1+n1-s1)*dbeta(Theta2[j], a2+s2, b2+n2-s2)   
+  }
+} 
+
+## Generate plot, export as a png and include or find another solution 
+## plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData, type = "surface") 
+```
+
+```{r posterior_check, eval=eval_final, results='asis'}
+cat("### Posterior Predictive Check", fill=TRUE)
+# Posterior predictive check. Provide a posterior predictive check to show that the model usefully mimics the data.
+# References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
+```
+
+```{r simulate, eval=eval}
+## Simulate from posterior
+posterior_Theta1 <- rbeta(10000,s1+a1,(n1-s1)+b1)
+posterior_Theta2 <- rbeta(10000,s2+a2,(n2-s2)+b2)
+```
+
+```{r functionparameter, eval=eval_final}
+## Function of parameters of interest
+if (user_selection_function_param == 3) {
+  estimate <- 1-posterior_Theta1/posterior_Theta2
+} else if (user_selection_function_param == 2){
+  estimate <- posterior_Theta1/posterior_Theta2  
+} else {
+  estimate <- posterior_Theta1-posterior_Theta2  
+}
+```
+
+```{r function_posterior, eval=eval_final, results="asis"}
+cat("# Primary Interest", fill=TRUE)
+cat("\n## Summary", fill=TRUE)
+```
+
+
+```{r function_posterior2, eval=eval_final}
+# Summarize posterior in a table. For continuous parameters, derived functions of parameters and predicted values, report the central tendency and limits of the credible interval. Explicitly state whether you are using density-based values (mode and HDI) or quantile-based values (median and ETI), and state the mass of the credible interval (for example, 95%)
+if (is.null(rope_user)==TRUE){
+  describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL)
+} else {
+  describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range = rope_user)
+  # ROPE limits and decisions. 
+}
+```
+
+
+```{r plot_hdi, eval=eval_final, results="asis"}
+cat("## HDI Plot", fill=TRUE)
+# Display graphical posterior information
+# Use bayestestR package 
+plot(hdi(estimate, ci = c(.89, .95, .99)))
+```
+
+```{r plot_eti, eval=eval_final, results="asis"}
+cat("## ETI Plot", fill=TRUE)
+## Display graphical posterior information
+### Use bayestestR package 
+plot(eti(estimate))
+```
+
+```{r plotpost, eval=rope_user, results="asis"}
+cat("## More Plots", fill=TRUE)
+# Use the plotPost function (page 205 Kruschke)
+```
+
+```{r runtests}
+# Run tests  
+library('testthat')
+testthat::test_dir('tests/testthat/')
+```
+
+```{r cleanenv}
+# Clean environment 
+rm(list=ls())
+```

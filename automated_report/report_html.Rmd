@@ -268,22 +268,26 @@ fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, margin = 
 
 \pagebreak
 
-```{r descplots, eval=eval_final, results='asis', fig.cap='Barplots', fig.subcap=c("Barplot of Outcome", "Barplot of Exposure", "Barplot of Outcome with present Exposure", "Barplot of Outcome without present Exposure" ), fig.ncol=2, out.width="50%" ,fig.align='left', out.height="30%"}
+```{r descplots, eval=eval_final, results='asis', fig.cap='Barplots', fig.subcap=c("Barplot of Outcome", "Barplot of Exposure", "Barplot of Outcome with present Exposure", "Barplot of Outcome without present Exposure" ), fig.ncol=2, out.width="50%", fig.align='left', out.height="30%"}
+
 cat("## Barplots", fill=TRUE)
 out_vec <- df[params$outcome]
 exp_vec <- df[params$exposure]
 total <- nrow(df)
 
-barplot(table(out_vec)/total, ylim=c(0,1), ylab= "Percentage of total Observations", col=c("#2fa42d","#396e9f")) 
+# Outcome
+barplot(table(out_vec)/total, ylim=c(0,1), xlab="Outcome", ylab= "Proportion", col=c("#2fa42d","#396e9f")) 
 
-barplot(table(exp_vec)/total,ylim=c(0,1), ylab ="Percentage of total Observations", col=c("#2fa42d","#396e9f"))
+# Exposure
+barplot(table(exp_vec)/total, ylim=c(0,1), xlab="Exposure", ylab ="Proportion", col=c("#2fa42d","#396e9f"))
 
-
+#  Outcome with present Exposure
 out_vec_exp1 <- out_vec[exp_vec==params$presence_exposure]
-barplot(table(out_vec_exp1)/total,ylim=c(0,1), ylab ="Percentage of total Observations", col=c("#2fa42d","#396e9f"))
+barplot(table(out_vec_exp1)/total,ylim=c(0,1), xlab="Outcome", ylab ="Proportion (under Exposure)", col=c("#2fa42d","#396e9f"))
 
+#  Outcome without present Exposure
 out_vec_exp0 <- out_vec[exp_vec!=params$presence_exposure]
-barplot(table(out_vec_exp0)/total,ylim=c(0,1), ylab ="Percentage of total Observations", col=c("#2fa42d","#396e9f"))
+barplot(table(out_vec_exp0)/total,ylim=c(0,1),  xlab="Outcome", ylab ="Proportion (without Exposure)", col=c("#2fa42d","#396e9f"))
 
 ```
 

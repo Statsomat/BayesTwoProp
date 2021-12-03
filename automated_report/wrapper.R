@@ -16,7 +16,7 @@ library(coda)
 #########################################################################################
 
 # Data as a file 
-filename <- "datasets/testfile.csv" 
+filename <- "datasets/biontech.csv" 
 decimal <- "."
 data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "") 
 outcome <- "y" # outcome variable 

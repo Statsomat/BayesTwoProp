@@ -5,11 +5,9 @@ author:
   - Contributors^[Viktoria Daum, Konrad Junkes, Simone Schüttler]
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
-  pdf_document:
-    latex_engine: xelatex
+  html_document:
     toc: true
     toc_depth: 2
-    extra_dependencies: "subfig" 
 #bibliography: ["references.bib"]
 classoption: landscape
 params:
@@ -34,7 +32,6 @@ params:
   rope_user: NA
 header-includes:
    - \usepackage{xcolor}
-#   - \setmainfont[BoldFont=FiraSans-Bold, Extension=.otf]{FiraSans-Regular}  # used in Shiny app 
    - \usepackage{booktabs}
    - \usepackage{longtable}
    - \usepackage{float}
@@ -119,41 +116,40 @@ tryCatch({
 \pagebreak
 
 ```{r guititle, results="asis", eval=eval_final}
-cat("# User Selection", fill=TRUE)
+cat("# Basic Information", fill=TRUE)
 ```
 
 
 ```{r guifile, results="asis", eval=eval_final}
 # Basic information for the case file upload
-cat("Automatic statistics for the file:", fill=TRUE)
-dataname <- params$filename[1]
-kable(dataname, col.names = "File", linesep = '', longtable=T) 
+cat("Automatic statistics for the file:", params$filename[1], fill=TRUE)
+cat("<br>",fill=TRUE) 
 
 cat("Your selection for the encoding:", fill=TRUE)
 if (params$fencoding=="unknown"){
   cat("Auto")
 } else {cat("UTF-8")}
-cat("\\newline",fill=TRUE) 
+cat("<br>",fill=TRUE) 
 
 cat("Your selection for the decimal character:", fill=TRUE)
 if (params$decimal=="auto"){
   cat("Auto")
 } else {cat(params$decimal)}
-cat("\\newline",fill=TRUE) 
+cat("<br>",fill=TRUE) 
   
 cat("Observations (rows with at least one non-missing value): ", fill=TRUE)
 cat(dim(df)[1])
-cat("\\newline",fill=TRUE) 
+cat("<br>",fill=TRUE) 
 
 # Missing rows
 if (exists("length_non_complete")){
   cat("Number of rows that are dropped because they contain no values (all values are missing):", length_non_complete)
-  cat("\\newline",fill=TRUE) 
+  cat("<br>",fill=TRUE) 
 }
 
 if (exists("vars")){
   cat("Name of the Outcome Variable: ", params$outcome, fill=TRUE)
-  cat("\\newline",fill=TRUE) 
+  cat("<br>",fill=TRUE) 
 }
 
 if (exists("vars")){
@@ -165,13 +161,13 @@ if (exists("vars")){
 ```{r cellupload, eval=evalcellfreq , results='asis'}
 # Upload as cell frequencies, display them nicely
 cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and present Exposure (",params$exposure ," is equal to ",params$presence_exposure , "): ", params$s1),fill=TRUE)
-cat("\\newline",fill=TRUE) 
+cat("<br>",fill=TRUE) 
 cat(paste("Number of Observations with present Exposure (",params$exposure ," is equal to ",params$presence_exposure ,") : ",params$n1),fill=TRUE)
-cat("\\newline",fill=TRUE) 
+cat("<br>",fill=TRUE) 
 cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and without Exposure (",params$exposure ," is not equal to ",params$presence_exposure ,") : ",params$s2),fill=TRUE)
-cat("\\newline",fill=TRUE) 
+cat("<br>",fill=TRUE) 
 cat(paste("Numbers of Observations without Exposure(",params$exposure ," is not equal to ",params$presence_exposure ,"): ",params$n2),fill=TRUE)
-cat("\\newline",fill=TRUE) 
+cat("<br>",fill=TRUE) 
 ```
 
 
@@ -184,14 +180,14 @@ cat("\\newline",fill=TRUE)
 ```{r preamble, eval=eval_final, results='asis'}
 cat("# Goals of the Analysis", fill=TRUE)
 cat("The data is analyzed in this app by means of Baysian data analysis. Baysian data analysis is a branch of statistical data analysis based on two fundamental ideas: The first idea is that Baysian inference is a reallocation of credibility across possibilities, by means of the well known Bayes' theorem. The second idea is that the possibilities, over which we allocate credibility are parameter values in a meaningful mathematical model.", fill=TRUE)
-cat("\\newline",fill=TRUE) 
-cat("\\newline",fill=TRUE) 
+cat("<br>",fill=TRUE) 
+cat("<br>",fill=TRUE) 
 cat("In Bayes' theorem, an existing knowledge about the parameter(s) under investigation (the a priori distribution, or prior for short) is combined with the new knowledge from the data ('likelihood'), resulting in a new, improved knowledge (a posteriori probability distribution).", fill=TRUE)
-cat("\\newline",fill=TRUE) 
-cat("\\newline",fill=TRUE) 
+cat("<br>",fill=TRUE) 
+cat("<br>",fill=TRUE) 
 cat("'An important benefit of Bayesian analysis is the ability to generate estimates and credible intervals for any derived parameter. Differences, ratios, effect sizes and novel parameter combinations are directly computed from the posterior distribution. Another benefit of Bayesian analysis is computationally robust estimates of parameter values and their credible intervals. The credible intervals do not depend on large-N approximations (as confidence intervals often do in frequentist approaches), nor do credible intervals depend on which tests are intended (as confidence intervals do in frequentist approaches).' (Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021)", fill=TRUE)
-cat("\\newline",fill=TRUE) 
-cat("\\newline",fill=TRUE) 
+cat("<br>",fill=TRUE) 
+cat("<br>",fill=TRUE) 
 cat("The goal of this app is to generate Bayes estimates and credible intervals for the user selected function of parameters: ", fill=TRUE)
 if (user_selection_function_param==1) {
   cat("$\\theta_1 - \\theta_2$", fill=TRUE)
@@ -214,7 +210,7 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 
 \pagebreak
 
-```{r desctable, eval=eval_final, dev="cairo_pdf", results='asis'}
+```{r desctable, eval=eval_final, results='asis'}
 cat("## Frequency Table", fill=TRUE)
 cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
 
@@ -264,7 +260,7 @@ kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HO
 
 ```
 
-```{r descplot fourfold, eval=eval_final, dev="cairo_pdf", results='asis', out.height= "40%", fig.align='center'}
+```{r descplot fourfold, eval=eval_final, results='asis', out.height= "40%", fig.align='center'}
 cat("The next plot is a visualisation of the frequency table. \n", fill =TRUE)
 fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, margin = 1)
 
@@ -272,22 +268,26 @@ fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, margin = 
 
 \pagebreak
 
-```{r descplots, eval=eval_final, dev="cairo_pdf", results='asis', fig.cap='Barplots', fig.subcap=c("Barplot of Outcome", "Barplot of Exposure", "Barplot of Outcome with present Exposure", "Barplot of Outcome without present Exposure" ), fig.ncol=2, out.width="50%" ,fig.align='left', out.height="30%"}
+```{r descplots, eval=eval_final, results='asis', fig.cap='Barplots', fig.subcap=c("Barplot of Outcome", "Barplot of Exposure", "Barplot of Outcome with present Exposure", "Barplot of Outcome without present Exposure" ), fig.ncol=2, out.width="50%", fig.align='left', out.height="30%"}
+
 cat("## Barplots", fill=TRUE)
 out_vec <- df[params$outcome]
 exp_vec <- df[params$exposure]
 total <- nrow(df)
 
-barplot(table(out_vec)/total, ylim=c(0,1), ylab= "Percentage of total Observations", col=c("#2fa42d","#396e9f")) 
+# Outcome
+barplot(table(out_vec)/total, ylim=c(0,1), xlab="Outcome", ylab= "Proportion", col=c("#2fa42d","#396e9f")) 
 
-barplot(table(exp_vec)/total,ylim=c(0,1), ylab ="Percentage of total Observations", col=c("#2fa42d","#396e9f"))
+# Exposure
+barplot(table(exp_vec)/total, ylim=c(0,1), xlab="Exposure", ylab ="Proportion", col=c("#2fa42d","#396e9f"))
 
-
+#  Outcome with present Exposure
 out_vec_exp1 <- out_vec[exp_vec==params$presence_exposure]
-barplot(table(out_vec_exp1)/total,ylim=c(0,1), ylab ="Percentage of total Observations", col=c("#2fa42d","#396e9f"))
+barplot(table(out_vec_exp1)/total,ylim=c(0,1), xlab="Outcome", ylab ="Proportion (under Exposure)", col=c("#2fa42d","#396e9f"))
 
+#  Outcome without present Exposure
 out_vec_exp0 <- out_vec[exp_vec!=params$presence_exposure]
-barplot(table(out_vec_exp0)/total,ylim=c(0,1), ylab ="Percentage of total Observations", col=c("#2fa42d","#396e9f"))
+barplot(table(out_vec_exp0)/total,ylim=c(0,1),  xlab="Outcome", ylab ="Proportion (without Exposure)", col=c("#2fa42d","#396e9f"))
 
 ```
 
@@ -297,13 +297,13 @@ barplot(table(out_vec_exp0)/total,ylim=c(0,1), ylab ="Percentage of total Observ
 cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)
 cat("The statistical model of this analysis derives from the data: ", fill=TRUE)
-cat("$$X_{11},...,X_{1n_1} \\hspace{1cm} iid \\text{ \\~{ } } Be(\\theta_1)$$", fill=TRUE)
-cat("$$X_{21},...,X_{2n_2} \\hspace{1cm} iid \\text{ \\~{ } } Be(\\theta_2)$$", fill=TRUE)
+cat("$$X_{11},...,X_{1n_1} \\hspace{1cm} i.i.d. \\sim Be(\\theta_1)$$", fill=TRUE)
+cat("$$X_{21},...,X_{2n_2} \\hspace{1cm} i.i.d.  \\sim Be(\\theta_2)$$", fill=TRUE)
 cat(paste0("with sample sizes $n_1=$ ",n1," and $n_2=$ ",n2,", and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_i \\, , i\\in\\{1,2\\}$.\\
 The Exposure variable indicates in which of the two groups (",colnames(table(params$data))[1]," and ",colnames(table(params$data))[2], ") an individual is. The Outcome variable indicates whether the event (",colnames(params$data)[1],") occurred for an individual or not and corresponds to either a value of 1 or 0. \\"), fill=TRUE)
 cat("Summing up the values of 0 and 1 in the respective groups results in the following random variables:", fill=TRUE)
-cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} iid \\text{ \\~{ } } Bi(n_1,\\theta_1)$$", fill=TRUE)
-cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} iid \\text{ \\~{ } } Bi(n_2,\\theta_2)$$", fill=TRUE)
+cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} i.i.d.  \\sim Bi(n_1,\\theta_1)$$", fill=TRUE)
+cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} i.i.d. \\sim Bi(n_2,\\theta_2)$$", fill=TRUE)
 cat("These random variables are binomially distributed with the distribution parameters $n_i$ and $\\theta_i \\, , i\\in\\{1,2\\}$. \\", fill=TRUE)
 cat("The selected function ", fill=TRUE)
 if (user_selection_function_param==1) {
@@ -336,10 +336,6 @@ Theta2 = seq(0.001, 0.999, by=0.001)
 cat("## The Prior Distribution", fill=TRUE)
 # if the default is used, explain and justify the prior distribution of the parameters in the model.
 # otherwise, display again the user defined priors 
-
-cat("$\\theta_1 \\text{ \\~{ } } Beta(a_1,b_1)$ ")
-cat("$\\theta_2 \\text{ \\~{ } } Beta(a_2, b_2)$")
-
 ```
 
 ```{r priorplot, eval=eval_final, results='asis'}
@@ -358,7 +354,7 @@ cat("### Prior Predictive Check", fill=TRUE)
 ```
 
 
-```{r posterior, eval=eval_final, dev="cairo_pdf", results='asis'}
+```{r posterior, eval=eval_final, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
 
@@ -374,7 +370,7 @@ for (i in 1:length(Theta1)){
 ## plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData, type = "surface") 
 ```
 
-```{r posterior_check, eval=eval_final, dev="cairo_pdf", results='asis'}
+```{r posterior_check, eval=eval_final, results='asis'}
 cat("### Posterior Predictive Check", fill=TRUE)
 # Posterior predictive check. Provide a posterior predictive check to show that the model usefully mimics the data.
 # References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
@@ -414,21 +410,21 @@ if (is.null(rope_user)==TRUE){
 ```
 
 
-```{r plot_hdi, eval=eval_final, dev="cairo_pdf", results="asis"}
+```{r plot_hdi, eval=eval_final, results="asis"}
 cat("## HDI Plot", fill=TRUE)
 # Display graphical posterior information
 # Use bayestestR package 
 plot(hdi(estimate, ci = c(.89, .95, .99)))
 ```
 
-```{r plot_eti, eval=eval_final, dev="cairo_pdf", results="asis"}
+```{r plot_eti, eval=eval_final, results="asis"}
 cat("## ETI Plot", fill=TRUE)
 ## Display graphical posterior information
 ### Use bayestestR package 
 plot(eti(estimate))
 ```
 
-```{r plotpost, eval=rope_user, dev="cairo_pdf", results="asis"}
+```{r plotpost, eval=rope_user, results="asis"}
 cat("## More Plots", fill=TRUE)
 # Use the plotPost function (page 205 Kruschke)
 ```

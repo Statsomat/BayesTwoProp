@@ -322,10 +322,13 @@ if (user_selection_function_param==1) {
 cat("## The Likelihood", fill=TRUE)
 
 # Insert equation as latex or as code
-cat("$$L_{n_1}(\\theta_1) = \\begin{pmatrix} n_1 \\\\ \\theta_1 \\end{pmatrix} \\theta_1^{y_1}(1-\\theta_1)^{n_1 - y_1}, \\qquad y_1, n_1 \\textrm{ given}$$", fill = TRUE)
+cat("$$L(D_1 | \\theta_1) = \\begin{pmatrix} n_1 \\\\ \\theta_1 \\end{pmatrix} \\theta_1^{y_1}(1-\\theta_1)^{n_1 - y_1}, \\qquad D_1 = \\{y_1, n_1\\}$$", fill = TRUE)
 cat("\\newline",fill=TRUE)
 cat("\\newline",fill=TRUE) 
-cat("$$L_{n_2}(\\theta_2) = \\begin{pmatrix} n_2 \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}, \\qquad y_2, n_2 \\textrm{ given}$$", fill = TRUE)
+cat("$$L(D_2 | \\theta_2) = \\begin{pmatrix} n_2 \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}, \\qquad D_2 = \\{y_2, n_2\\}$$", fill = TRUE)
+cat("\\newline",fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat("$$L(D|\\theta_1, \\theta_2) = \\begin{pmatrix} n_1 \\\\ \\theta_1 \\end{pmatrix} \\theta_1^{y_1}(1-\\theta_1)^{n_1 - y_1} \\begin{pmatrix} n_2 \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}, \\qquad D = \\{y_1, n_1, y_2, n_2\\}$$",fill=TRUE)
 # Plot the likelihood (follow second row from page 167 DDBA)
 ## Region to plot 
 Theta1 = seq(0.000, 1, by=0.001) 
@@ -351,7 +354,8 @@ fig <- plot_ly(z = ~grid_likeli, x = ~Theta1, y = ~Theta2, contours = list(z = l
 
 fig <- fig %>% add_surface(colorscale = list(c(0, 1), c("#2fa42d", "#396e9f")), hovertemplate = paste0('\u03b8\u2081: %{x}<br>', '\u03b8\u2082: %{y}<br>', 'L(\u03b8\u2081, \u03b8\u2082): %{z}<extra></extra>')) 
 
-fig <- fig %>% layout(scene = list(xaxis=list(title = "\u03b8\u2081"), 
+fig <- fig %>% layout(scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
+                                   xaxis=list(title = "\u03b8\u2081"), 
                                    yaxis=list(title = "\u03b8\u2082"), 
                                    zaxis=list(title = "L(\u03b8\u2081, \u03b8\u2082)"), 
                                    title = "theta"))

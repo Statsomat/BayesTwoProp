@@ -321,7 +321,6 @@ if (user_selection_function_param==1) {
 ```{r likelihood, eval=eval_final, results='asis'}
 cat("## The Likelihood", fill=TRUE)
 cat("The likelihood function describes the plausibility of the observed data $D$ given the parameters $\\theta_1$, $\\theta_2$. The likelihood function should not be confused as a probability function.", fill = TRUE)
-# Insert equation as latex or as code
 cat("\\newline",fill=TRUE)
 cat("\\newline",fill=TRUE) 
 cat("$$p(D | \\theta_1, \\theta_2) = \\begin{pmatrix} n_1 \\\\ \\theta_1 \\end{pmatrix} \\theta_1^{Y_1}(1-\\theta_1)^{n_1 - Y_1} \\cdot  \\begin{pmatrix} n_2 \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{Y_2}(1-\\theta_2)^{n_2 - Y_2}, \\qquad D = \\{n_1, n_2, Y_1, Y_2\\}$$",fill=TRUE)
@@ -335,7 +334,7 @@ cat("$$p(D_1 | \\theta_1) = \\begin{pmatrix} n_1 \\\\ \\theta_1 \\end{pmatrix} \
 cat("\\newline",fill=TRUE)
 cat("\\newline",fill=TRUE) 
 cat("$$p(D_2 | \\theta_2) = \\begin{pmatrix} n_2 \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{Y_2}(1-\\theta_2)^{n_2 - Y_2}, \\qquad D_2 = \\{n_2, Y_2\\} \\textrm{ given}$$", fill = TRUE)
-# Plot the likelihood (follow second row from page 167 DDBA)
+
 ## Region to plot 
 Theta1 = seq(0.000, 1, by=0.001) 
 Theta2 = seq(0.000, 1, by=0.001) 
@@ -345,7 +344,7 @@ bin = function(n, k) {
 }
 
 likelihood = function(theta, s, n) {
-  bin(n, theta) * theta^s * (1-theta)^(n - s) #
+  bin(n, theta) * theta^s * (1-theta)^(n - s)
 }
 
 l1 = likelihood(Theta1, s1, n1)
@@ -365,12 +364,7 @@ fig <- fig %>% layout(scene = list(camera = list(eye = list(x = -1.5, y = -1.5, 
   
 fig <- fig %>% layout(legend=list(title=list(text='<b> p(D | \u03b8\u2081, \u03b8\u2082) </b>')))
 
-#layout(scene = list(xaxis=list(title = "&Theta;"), yaxis=list(title = "Test2"), zaxis=list(title = "Test3"), title = TeX("\\theta")) %>% config(mathjax = 'cdn'))
-
 fig
-
-## Check the next line as a solution, export as a png and include or find another solution 
-## plot_ly(x = Theta1, y = Theta2, z = ..., type = "surface") 
 ```
 
 ```{r priortext, eval=eval_final, results='asis'}

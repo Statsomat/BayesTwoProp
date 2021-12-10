@@ -357,7 +357,7 @@ cat("### Prior Predictive Check", fill=TRUE)
 ```{r posterior, eval=eval_final, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
-cat("The posterior distribution is an update of the prior distribution using the likelihood. This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data D. \\cite{kruschke} Thus, it is proportional to the prior and the likelihood (posterior $\\propto$ prior x likelihood). ", fill=TRUE)
+cat("The posterior distribution is an update of the prior distribution using the likelihood. This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data D. \\cite{kruschke} ", fill=TRUE)
 cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\vert D)&= beta(\\theta_1 \\vert a_1+Y_1,b_1+n_1-Y_1) \\cdot beta(\\theta_2 \\vert a_2+Y_2,b_2+n_2-Y_2) \\\\
 &= beta(\\theta_1 \\vert \\underbrace{",a1,"+",s1,"}_{",a1+s1,"},\\underbrace{",b1,"+",n1,"-",s1,"}_{",b1+n1-s1,"}) \\cdot beta(\\theta_2 \\vert \\underbrace{",a2,"+",s2,"}_{",a2+s2,"},\\underbrace{",b2,"+",n2,"-",s2,"}_{",b2+n2-s2,"}) \\end{align}"))
 
@@ -368,7 +368,7 @@ for (i in 1:length(Theta1)){
     pTheta1Theta2GivenData[i,j]<- dbeta(Theta1[i], a1+s1, b1+n1-s1)*dbeta(Theta2[j], a2+s2, b2+n2-s2)   
   }
 } 
-
+cat("The following figure shows the probability density function (pdf):  ", fill=TRUE)
 ## Generate plot, export as a png and include or find another solution 
  plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData, type = "surface",
          contours = list(
@@ -379,7 +379,7 @@ for (i in 1:length(Theta1)){
              yaxis = list(title = "\u03b8\u2082"),
              zaxis = list(title = "p(\u03b8\u2081, \u03b8\u2082 \u2223 D)" )))
  
-cat("In the figure, at each point in the parameter space ($\\theta_1$,$\\theta_2$) the posterior is the product of the prior and likelihood values at that point divided by the normalizer p(D).") 
+cat("In the figure, at each point in the parameter space ($\\theta_1$,$\\theta_2$) the posterior is the product of the prior and likelihood values at that point divided by the normalizer p(D). Thus, it is proportional to the prior and the likelihood (posterior $\\propto$ prior x likelihood).") 
 
 ```
 

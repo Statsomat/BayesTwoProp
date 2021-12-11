@@ -322,11 +322,32 @@ if (user_selection_function_param==1) {
 cat("## The Likelihood", fill=TRUE)
 
 # Insert equation as latex or as code
-
+cat("$$L_{n_1}(\\theta_1) = \\begin{pmatrix} n_1 \\\\ \\theta_1 \\end{pmatrix} \\theta_1^{y_1}(1-\\theta_1)^{n_1 - y_1}, \\qquad y_1, n_1 \\textrm{ given}$$", fill = TRUE)
+cat("\\newline",fill=TRUE)
+cat("\\newline",fill=TRUE) 
+cat("$$L_{n_2}(\\theta_2) = \\begin{pmatrix} n_2 \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}, \\qquad y_2, n_2 \\textrm{ given}$$", fill = TRUE)
 # Plot the likelihood (follow second row from page 167 DDBA)
 ## Region to plot 
 Theta1 = seq(0.001, 0.999, by=0.001) 
 Theta2 = seq(0.001, 0.999, by=0.001) 
+
+bin = function(n, k) {
+  return(factorial(n) / (factorial(k) * factorial(n - k)))
+}
+
+likelihood = function(theta, s, n) {
+  bin(n, theta) * theta^s * (1-theta)^(n - s) #
+}
+
+l1 = likelihood(Theta1, s1, n1)
+l2 = likelihood(Theta2, s2, n1)
+
+grid_likeli = l1 %*% t(l2)
+
+fig <- plot_ly(z = ~grid_likeli, x = ~theta1, y = ~theta2)
+fig <- fig %>% add_surface()
+
+fig
 
 ## Check the next line as a solution, export as a png and include or find another solution 
 ## plot_ly(x = Theta1, y = Theta2, z = ..., type = "surface") 

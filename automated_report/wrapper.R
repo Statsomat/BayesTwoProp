@@ -70,9 +70,3 @@ rmarkdown::render("report_html.Rmd", params = list(
   a2=a2,
   b2=b2
 ))
-
-
-
-
-
-

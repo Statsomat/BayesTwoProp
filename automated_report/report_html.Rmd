@@ -370,7 +370,7 @@ fig <- fig %>% layout(scene = list(camera = list(eye = list(x = -1.5, y = -1.5, 
                                    yaxis=list(title = "\u03b8\u2082"), 
                                    zaxis=list(title = "p(D | \u03b8\u2081, \u03b8\u2082)"), 
                                    title = "theta"))
-  
+#Display plot in report  
 fig
 ```
 

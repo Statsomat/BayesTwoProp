@@ -357,6 +357,10 @@ fig
 cat("## The Prior Distribution", fill=TRUE)
 # if the default is used, explain and justify the prior distribution of the parameters in the model.
 # otherwise, display again the user defined priors 
+
+cat("$\\theta_1 \\text{ \\~{ } } Beta(a_1,b_1)$ ")
+cat("$\\theta_2 \\text{ \\~{ } } Beta(a_2, b_2)$")
+
 ```
 
 ```{r priorplot, eval=eval_final, results='asis'}

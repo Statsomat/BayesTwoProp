@@ -267,7 +267,7 @@ server_file <- function(input, output, session) {
         
         req(input$file, datainput(), input$selection_outcome$right)
         
-        src1 <- normalizePath('report.Rmd')
+        src1 <- normalizePath('report_html.Rmd')
         src2 <- normalizePath('references.bib')
         #  src3 <- normalizePath('report_code_container.Rmd') 
         #  src4 <- normalizePath('report_code.Rmd') 
@@ -277,7 +277,7 @@ server_file <- function(input, output, session) {
         # Temporarily switch to the temp dir
         owd <- setwd(tempdir())
         on.exit(setwd(owd))
-        file.copy(src1, 'report.Rmd', overwrite = TRUE)
+        file.copy(src1, 'report_html.Rmd', overwrite = TRUE)
         file.copy(src2, 'references.bib', overwrite = TRUE)
         # file.copy(src3, 'report_code_container.Rmd', overwrite = TRUE)
         # file.copy(src4, 'report_code.Rmd', overwrite = TRUE)
@@ -304,9 +304,9 @@ server_file <- function(input, output, session) {
               
             }
             
-            if (input$rcode == "Data Analysis Report (PDF)"){
+            if (input$rcode == "Data Analysis Report (HTML)"){
               
-              tmp_file <- render('report.Rmd', pdf_document(latex_engine = "xelatex"),
+              tmp_file <- render('report_html.Rmd', html_document(),
                                  params = params,
                                  envir = new.env(parent = globalenv())
               )
@@ -352,8 +352,8 @@ server_file <- function(input, output, session) {
         
         filename = function() {
           
-          if (input$rcode == "Data Analysis Report (PDF)"){
-            paste('MyReport',sep = '.','pdf')
+          if (input$rcode == "Data Analysis Report (HTML)"){
+            paste('MyReport',sep = '.','html')
           } else {
             paste('MyCode',sep = '.','html')
           }

@@ -60,7 +60,7 @@ evalcellfreq  <- !is.na(params$s1)
 ## Other initializations
 evalfile2 <- FALSE
 eval_rows <- FALSE
-eval_final <- evalcellfreq # if file is missing, cells are mandatory 
+eval_final <- evalcellfreq # if file is missing, cells are mandatory
 rope_user <- FALSE
 ```
 

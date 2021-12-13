@@ -188,7 +188,7 @@ shinyUI(fluidPage(
                      
                      h3("Click to Generate Results"),
                      
-                     radioButtons('rcode', '', c('Data Analysis Report (PDF)', 'R Code'), inline = TRUE),
+                     radioButtons('rcode', '', c('Data Analysis Report (HTML)', 'R Code'), inline = TRUE),
                      
                      
                      actionButton("generate", "", style="

@@ -1,0 +1,948 @@
+2024-03-31 16:13:17: == Sync Started by User Command
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/hooks/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/info/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/logs/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/logs/refs/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/logs/refs/heads/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/logs/refs/remotes/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/logs/refs/remotes/origin/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/00/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/01/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/02/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/03/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/04/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/05/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/06/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/07/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/08/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/09/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/0a/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/0b/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/0c/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/0d/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/0e/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/0f/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/10/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/11/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/12/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/13/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/14/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/15/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/16/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/17/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/18/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/19/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/1a/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/1b/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/1c/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/1d/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/1e/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/1f/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/20/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/21/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/22/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/23/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/24/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/25/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/26/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/27/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/28/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/29/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/2a/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/2b/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/2c/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/2d/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/2e/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/2f/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/30/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/31/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/32/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/33/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/34/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/35/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/36/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/37/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/38/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/39/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/3a/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/3b/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/3c/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/3d/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/3e/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/3f/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/40/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/41/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/42/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/43/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/44/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/45/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/46/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/47/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/48/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/49/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/4a/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/4b/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/4c/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/4d/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/4e/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/4f/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/50/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/51/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/52/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/53/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/54/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/55/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/56/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/57/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/58/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/59/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/5a/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/5b/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/5c/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/5d/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/5e/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/5f/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/60/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/61/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/62/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/63/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/64/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/65/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/66/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/67/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/68/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/69/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/6a/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/6b/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/6c/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/6d/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/6e/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/6f/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/70/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/71/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/72/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/73/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/74/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/75/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/76/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/77/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/78/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/79/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/7a/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/7b/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/7c/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/7d/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/7e/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/7f/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/80/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/81/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/82/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/83/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/84/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/85/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/86/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/87/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/88/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/89/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/8a/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/8b/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/8c/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/8d/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/8e/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/8f/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/90/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/91/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/92/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/93/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/94/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/95/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/96/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/97/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/98/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/99/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/9a/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/9b/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/9c/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/9d/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/9e/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/9f/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/a0/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/a1/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/a2/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/a3/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/a4/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/a5/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/a6/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/a7/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/a8/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/a9/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/aa/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/ab/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/ac/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/ad/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/ae/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/af/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/b0/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/b1/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/b2/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/b4/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/b5/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/b6/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/b7/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/b8/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/b9/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/ba/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/bb/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/bc/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/bd/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/be/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/bf/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/c0/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/c1/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/c2/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/c3/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/c4/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/c5/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/c6/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/c7/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/c8/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/c9/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/ca/desktop.ini
+2024-03-31 16:13:17: Delete File E:/My Drive/BayesTwoProp/.git/objects/cb/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/cc/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/cd/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/ce/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/cf/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/d0/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/d1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/d2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/d3/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/d4/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/d5/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/d6/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/d7/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/d8/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/d9/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/da/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/db/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/dc/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/dd/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/de/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/df/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/e0/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/e1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/e2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/e3/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/e4/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/e5/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/e6/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/e7/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/e8/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/e9/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/ea/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/eb/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/ec/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/ed/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/ee/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/ef/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/f0/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/f1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/f2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/f3/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/f4/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/f5/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/f6/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/f7/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/f8/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/f9/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/fa/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/fb/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/fc/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/fd/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/fe/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/info/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/objects/pack/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/refs/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/refs/heads/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/refs/remotes/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/refs/remotes/origin/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/.git/refs/tags/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/ctx/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/explorer-cache/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/jobs/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/pcs/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/presentation/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/profiles-cache/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/sources/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/sources/per/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/sources/per/t/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/sources/per/u/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/sources/prop/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/tutorial/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/viewer-cache/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/2D9751F5/viewer_history/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/45EA7973-report/1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/45EA7973-report/1/s/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/45EA7973-report/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/713E1804-report_html/1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/713E1804-report_html/1/s/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/713E1804-report_html/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/DE544C0D-report/1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/DE544C0D-report/1/s/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/DE544C0D-report/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/EEDA9F75-report_html/1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/EEDA9F75-report_html/1/s/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/.Rproj.user/shared/notebooks/EEDA9F75-report_html/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/datasets/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/helpers/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/rsconnect/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/rsconnect/shinyapps.io/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/rsconnect/shinyapps.io/statsomat/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/app/www/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/bibliography-index/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/ctx/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/explorer-cache/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/pcs/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/presentation/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/profiles-cache/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/sources/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/sources/per/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/sources/per/t/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/sources/per/u/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/sources/prop/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/tutorial/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer-cache/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/crosstalk-1.1.0.1/css/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/crosstalk-1.1.0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/crosstalk-1.1.0.1/js/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/htmlwidgets-1.5.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/jquery-1.11.3/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/plotly-binding-4.9.2.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/plotly-htmlwidgets-css-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/plotly-main-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/typedarray-0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/crosstalk-1.1.0.1/css/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/crosstalk-1.1.0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/crosstalk-1.1.0.1/js/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/htmlwidgets-1.5.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/jquery-1.11.3/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/plotly-binding-4.9.2.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/plotly-htmlwidgets-css-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/plotly-main-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/typedarray-0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/crosstalk-1.1.0.1/css/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/crosstalk-1.1.0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/crosstalk-1.1.0.1/js/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/htmlwidgets-1.5.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/jquery-1.11.3/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/plotly-binding-4.9.2.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/plotly-htmlwidgets-css-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/plotly-main-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/typedarray-0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/crosstalk-1.1.0.1/css/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/crosstalk-1.1.0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/crosstalk-1.1.0.1/js/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/htmlwidgets-1.5.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/jquery-1.11.3/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/plotly-binding-4.9.2.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/plotly-htmlwidgets-css-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/plotly-main-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/typedarray-0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/crosstalk-1.1.0.1/css/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/crosstalk-1.1.0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/crosstalk-1.1.0.1/js/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/htmlwidgets-1.5.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/jquery-1.11.3/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/plotly-binding-4.9.2.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/plotly-htmlwidgets-css-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/plotly-main-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/typedarray-0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/crosstalk-1.1.0.1/css/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/crosstalk-1.1.0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/crosstalk-1.1.0.1/js/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/htmlwidgets-1.5.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/jquery-1.11.3/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/plotly-binding-4.9.2.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/plotly-htmlwidgets-css-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/plotly-main-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/typedarray-0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/crosstalk-1.1.0.1/css/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/crosstalk-1.1.0.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/crosstalk-1.1.0.1/js/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/htmlwidgets-1.5.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/jquery-1.11.3/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/plotly-binding-4.9.2.1/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/plotly-htmlwidgets-css-1.52.2/desktop.ini
+2024-03-31 16:13:18: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/plotly-main-1.52.2/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/typedarray-0.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/crosstalk-1.1.0.1/css/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/crosstalk-1.1.0.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/crosstalk-1.1.0.1/js/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/htmlwidgets-1.5.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/jquery-1.11.3/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/plotly-binding-4.9.2.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/plotly-htmlwidgets-css-1.52.2/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/plotly-main-1.52.2/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/typedarray-0.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/crosstalk-1.1.0.1/css/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/crosstalk-1.1.0.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/crosstalk-1.1.0.1/js/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/htmlwidgets-1.5.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/jquery-1.11.3/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/plotly-binding-4.9.2.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/plotly-htmlwidgets-css-1.52.2/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/plotly-main-1.52.2/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/typedarray-0.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/crosstalk-1.1.0.1/css/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/crosstalk-1.1.0.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/crosstalk-1.1.0.1/js/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/htmlwidgets-1.5.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/jquery-1.11.3/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/plotly-binding-4.9.2.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/plotly-htmlwidgets-css-1.52.2/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/plotly-main-1.52.2/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/typedarray-0.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/crosstalk-1.1.0.1/css/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/crosstalk-1.1.0.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/crosstalk-1.1.0.1/js/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/htmlwidgets-1.5.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/jquery-1.11.3/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/plotly-binding-4.9.2.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/plotly-htmlwidgets-css-1.52.2/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/plotly-main-1.52.2/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/typedarray-0.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/crosstalk-1.1.0.1/css/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/crosstalk-1.1.0.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/crosstalk-1.1.0.1/js/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/htmlwidgets-1.5.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/jquery-1.11.3/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/plotly-binding-4.9.2.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/plotly-htmlwidgets-css-1.52.2/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/plotly-main-1.52.2/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/typedarray-0.1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/5606E4D4-report_html/1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/5606E4D4-report_html/1/s/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/5606E4D4-report_html/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/5BDAA513-report/1/2D9751F54F299260/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/5BDAA513-report/1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/5BDAA513-report/1/s/co7sty645bv1q/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/5BDAA513-report/1/s/csetup_chunk/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/5BDAA513-report/1/s/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/5BDAA513-report/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/8B57F34E-report/1/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/8B57F34E-report/1/s/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/8B57F34E-report/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/.Rproj.user/shared/notebooks/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/datasets/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/DBDA/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/tests/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/tests/testthat/_snaps/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/automated_report/tests/testthat/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/desktop.ini
+2024-03-31 16:13:19: Delete File E:/My Drive/BayesTwoProp/documents/desktop.ini
+2024-03-31 16:13:19: Start only 1 threads, limited by tasks to run
+2024-03-31 16:13:20: Copy Over 'G:/REYAR/Statsomat/Development/Bayes/documents/Ziele für die Bachelorarbeit.docx' -> 'E:/My Drive/BayesTwoProp/documents/Ziele für die Bachelorarbeit.docx' (15,167)
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/logs/refs/heads
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/refs/heads
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/refs/tags
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/hooks
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/info
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/00
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/01
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/02
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/03
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/04
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/05
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/06
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/07
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/08
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/09
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/0a
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/0b
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/0c
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/0d
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/0e
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/0f
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/10
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/11
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/12
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/13
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/14
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/15
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/16
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/17
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/18
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/19
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/1a
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/1b
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/1c
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/1d
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/1e
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/1f
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/20
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/21
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/22
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/23
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/24
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/25
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/26
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/27
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/28
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/29
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/2a
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/2b
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/2c
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/2d
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/2e
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/2f
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/30
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/31
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/32
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/33
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/34
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/35
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/36
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/37
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/38
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/39
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/3a
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/3b
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/3c
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/3d
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/3e
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/3f
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/40
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/41
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/42
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/43
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/44
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/45
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/46
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/47
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/48
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/49
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/4a
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/4b
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/4c
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/4d
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/4e
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/4f
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/50
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/51
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/52
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/53
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/54
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/55
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/56
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/57
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/58
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/59
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/5a
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/5b
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/5c
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/5d
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/5e
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/5f
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/60
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/61
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/62
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/63
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/64
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/65
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/66
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/67
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/68
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/69
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/6a
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/6b
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/6c
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/6d
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/6e
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/6f
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/70
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/71
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/72
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/73
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/74
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/75
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/76
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/77
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/78
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/79
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/7a
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/7b
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/7c
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/7d
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/7e
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/7f
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/80
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/81
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/82
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/83
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/84
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/85
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/86
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/87
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/88
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/89
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/8a
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/8b
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/8c
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/8d
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/8e
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/8f
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/90
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/91
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/92
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/93
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/94
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/95
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/96
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/97
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/98
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/99
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/9a
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/9b
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/9c
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/9d
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/9e
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/9f
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/a0
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/a1
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/a2
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/a3
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/a4
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/a5
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/a6
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/a7
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/a8
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/a9
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/aa
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/ab
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/ac
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/ad
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/ae
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/af
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/b0
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/b1
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/b2
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/b4
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/b5
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/b6
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/b7
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/b8
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/b9
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/ba
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/bb
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/bc
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/bd
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/be
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/bf
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/c0
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/c1
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/c2
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/c3
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/c4
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/c5
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/c6
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/c7
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/c8
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/c9
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/ca
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/cb
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/cc
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/cd
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/ce
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/cf
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/d0
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/d1
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/d2
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/d3
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/d4
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/d5
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/d6
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/d7
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/d8
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/d9
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/da
+2024-03-31 16:13:20: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/db
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/dc
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/dd
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/de
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/df
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/e0
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/e1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/e2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/e3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/e4
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/e5
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/e6
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/e7
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/e8
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/e9
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/ea
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/eb
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/ec
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/ed
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/ee
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/ef
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/f0
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/f1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/f2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/f3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/f4
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/f5
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/f6
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/f7
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/f8
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/f9
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/fa
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/fb
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/fc
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/fd
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/fe
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/info
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects/pack
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/.git/objects
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/ctx
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/explorer-cache
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/jobs
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/pcs
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/presentation
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/profiles-cache
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/sources/per/t
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/sources/per/u
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/sources/per
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/sources/prop
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/sources
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/tutorial
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/viewer-cache
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5/viewer_history
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/2D9751F5
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks/45EA7973-report/1/s
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks/45EA7973-report/1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks/45EA7973-report
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks/713E1804-report_html/1/s
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks/713E1804-report_html/1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks/713E1804-report_html
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks/DE544C0D-report/1/s
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks/DE544C0D-report/1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks/DE544C0D-report
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks/EEDA9F75-report_html/1/s
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks/EEDA9F75-report_html/1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks/EEDA9F75-report_html
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared/notebooks
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user/shared
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/.Rproj.user
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/datasets
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/helpers
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/rsconnect/shinyapps.io/statsomat
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/rsconnect/shinyapps.io
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/rsconnect
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app/www
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/app
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/bibliography-index
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/ctx
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/explorer-cache
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/pcs
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/presentation
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/profiles-cache
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/sources/per/t
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/sources/per/u
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/sources/per
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/sources/prop
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/sources
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/tutorial
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer-cache
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/crosstalk-1.1.0.1/css
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/crosstalk-1.1.0.1/js
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/crosstalk-1.1.0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/htmlwidgets-1.5.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/jquery-1.11.3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/plotly-binding-4.9.2.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/plotly-htmlwidgets-css-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/plotly-main-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib/typedarray-0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45/lib
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4141e3b45
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/crosstalk-1.1.0.1/css
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/crosstalk-1.1.0.1/js
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/crosstalk-1.1.0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/htmlwidgets-1.5.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/jquery-1.11.3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/plotly-binding-4.9.2.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/plotly-htmlwidgets-css-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/plotly-main-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib/typedarray-0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e/lib
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d41cfb2c5e
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/crosstalk-1.1.0.1/css
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/crosstalk-1.1.0.1/js
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/crosstalk-1.1.0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/htmlwidgets-1.5.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/jquery-1.11.3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/plotly-binding-4.9.2.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/plotly-htmlwidgets-css-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/plotly-main-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib/typedarray-0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4/lib
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4207b14a4
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/crosstalk-1.1.0.1/css
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/crosstalk-1.1.0.1/js
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/crosstalk-1.1.0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/htmlwidgets-1.5.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/jquery-1.11.3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/plotly-binding-4.9.2.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/plotly-htmlwidgets-css-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/plotly-main-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib/typedarray-0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93/lib
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4229c6f93
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/crosstalk-1.1.0.1/css
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/crosstalk-1.1.0.1/js
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/crosstalk-1.1.0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/htmlwidgets-1.5.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/jquery-1.11.3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/plotly-binding-4.9.2.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/plotly-htmlwidgets-css-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/plotly-main-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib/typedarray-0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d/lib
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d436e72c0d
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/crosstalk-1.1.0.1/css
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/crosstalk-1.1.0.1/js
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/crosstalk-1.1.0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/htmlwidgets-1.5.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/jquery-1.11.3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/plotly-binding-4.9.2.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/plotly-htmlwidgets-css-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/plotly-main-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib/typedarray-0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a/lib
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d43974703a
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/crosstalk-1.1.0.1/css
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/crosstalk-1.1.0.1/js
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/crosstalk-1.1.0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/htmlwidgets-1.5.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/jquery-1.11.3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/plotly-binding-4.9.2.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/plotly-htmlwidgets-css-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/plotly-main-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib/typedarray-0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9/lib
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d44829b9
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/crosstalk-1.1.0.1/css
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/crosstalk-1.1.0.1/js
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/crosstalk-1.1.0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/htmlwidgets-1.5.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/jquery-1.11.3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/plotly-binding-4.9.2.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/plotly-htmlwidgets-css-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/plotly-main-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib/typedarray-0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55/lib
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4500f2b55
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/crosstalk-1.1.0.1/css
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/crosstalk-1.1.0.1/js
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/crosstalk-1.1.0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/htmlwidgets-1.5.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/jquery-1.11.3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/plotly-binding-4.9.2.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/plotly-htmlwidgets-css-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/plotly-main-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib/typedarray-0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22/lib
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d455c8f22
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/crosstalk-1.1.0.1/css
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/crosstalk-1.1.0.1/js
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/crosstalk-1.1.0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/htmlwidgets-1.5.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/jquery-1.11.3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/plotly-binding-4.9.2.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/plotly-htmlwidgets-css-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/plotly-main-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib/typedarray-0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127/lib
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d46096127
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/crosstalk-1.1.0.1/css
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/crosstalk-1.1.0.1/js
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/crosstalk-1.1.0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/htmlwidgets-1.5.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/jquery-1.11.3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/plotly-binding-4.9.2.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/plotly-htmlwidgets-css-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/plotly-main-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib/typedarray-0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253/lib
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4798d5253
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/crosstalk-1.1.0.1/css
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/crosstalk-1.1.0.1/js
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/crosstalk-1.1.0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/htmlwidgets-1.5.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/jquery-1.11.3
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/plotly-binding-4.9.2.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/plotly-htmlwidgets-css-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/plotly-main-1.52.2
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib/typedarray-0.1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917/lib
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history/viewhtml43d4a413917
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5/viewer_history
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/2D9751F5
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks/5606E4D4-report_html/1/s
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks/5606E4D4-report_html/1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks/5606E4D4-report_html
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks/5BDAA513-report/1/2D9751F54F299260
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks/5BDAA513-report/1/s/co7sty645bv1q
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks/5BDAA513-report/1/s/csetup_chunk
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks/5BDAA513-report/1/s
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks/5BDAA513-report/1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks/5BDAA513-report
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks/8B57F34E-report/1/s
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks/8B57F34E-report/1
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks/8B57F34E-report
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared/notebooks
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user/shared
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/.Rproj.user
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/datasets
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/DBDA
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/tests/testthat/_snaps
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/tests/testthat
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report/tests
+2024-03-31 16:13:21: GsDeleteEmptyFoldersFS: /_gsdata_/_saved_/automated_report
+2024-03-31 16:13:21: == Sync Complete. Time: 00:00:04, Speed: 43.97 MB/s, OK: 2.014, Errors: 0

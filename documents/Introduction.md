@@ -12,22 +12,22 @@ by Denise Welsch
     -	Downloadable learner-code to reproduce the results 
     -	Help for learners all over the world 
 
--	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. The statistical application is the relationship of two proportions (difference, ratio, efficacy) by using one-two models: 
+-	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. The statistical application is the analysis of the relationship between two proportions (difference, ratio, efficacy) by using the models:  
     -  Analytically (priors given by Beta distributions)
     -  MCMC simulation (priors given by Beta distributions)
 
--	GitHub und GitHuB Desktop, our repository and the subdirectories 
-
 -	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests):
-    - To get "satisfactory" you need to show: >= 25 meaningful comments, >= 25 code line additions, >= 1 commit to the master, >=1 review help, >=0 deletions.  
+    - To get "satisfactory" you need to show: >= 25 meaningful comments, >= 25 meaningful code line additions, >=1 merged pull requests, >=1 review help 
 
--	Installation: Download and Install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and all the required packages demanded by the R scripts. Alternatively: Work on RCloud. 
+-	Installation local: Download and Install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and all the required packages demanded by the R scripts.
+
+-	Alternatively: Work in the R Posit Cloud. 
 
 - Start with Issues 1,2,3. These are introductory issues. 
 
 - Rules for next issues
     - Each student should work on at least one issue (each issue has a leader)
-    - Pick up a next open issue and create a new branch to make your changes and to add your lines. Give the branch a short name representing the issue and your name 
+    - Pick up a next open issue and create a new branch to make your contribution. Give the branch a short name representing the issue and your name 
     - Commit significant changes to the branch and push them to the cloud
     - Open a pull request to add significant commits to the master
     - You can create branches to work also on the issues of your collegues and to give them hints (comments) 
@@ -44,12 +44,10 @@ by Denise Welsch
 7. Datasets: Adverse Events of Vaccine and Sars-Cov-2 (https://www.nejm.org/doi/full/10.1056/NEJMoa2110475, https://www.nejm.org/doi/suppl/10.1056/NEJMoa2110475/suppl_file/nejmoa2110475_appendix.pdf)
 8. Datasets: Pfizer Vaccine (https://arxiv.org/abs/2102.11022v1)
 
-Google Drive Denise Welsch: (https://drive.google.com/drive/folders/1baXEFnHuUCJLmgvrdR93Q0tlIr5B3uze?usp=sharing) 
-
 
 # Further Comments
 -	Please use the `data.table` package for EDA (extract, transform, load) data. Use the package `dplyr` only if really needed.
--	Debugging: Discuss the errors in our group. Google the errors. Check solutions on StackOverflow or on the official GitHub pages of the R packages. 
+-	Debugging: Discuss the errors in our group. Use AI programming copilots.
 -	Programming best practices:
     - Use human-readable object names (e.g. do not name objects with `x` or `y`) 
     - Write short lines (break the lines if they are too long)

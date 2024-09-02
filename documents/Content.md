@@ -37,7 +37,7 @@ by Denise Welsch
 
 1. GitHub Fundamentals (https://github.com/reyar/BayesTwoProp/blob/master/documents/Git_Fundamentals.md)
 2. Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021,  (https://www.nature.com/articles/s41562-021-01177-7#rightslink)
-3. Kruschke, John K., BARG-Supplement.html: https://osf.io/w7cph/ (check the html file)
+3. Kruschke, John K., BARG-Supplement.html: https://osf.io/w7cph/ (check the html file in the documents folder)
 4. Kruschke, John K., Doing Bayesian Data Analysis, Elsevier 2015, ISBN: 978-0-12-405888-0, especially chapters 6,7 and 8.4
 5. Rmarkdown (https://bookdown.org/yihui/rmarkdown/), (https://bookdown.org/yihui/rmarkdown-cookbook/)
 6. Shiny Gallery (https://shiny.rstudio.com/gallery/#demos)

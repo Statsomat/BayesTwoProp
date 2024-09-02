@@ -1,10 +1,7 @@
 # Bayes-Statistik, WS2021/2022
 ## Contribution to open-source is fun! 
 
-by Denise Welsch
 
-# Content 
--	Welcome
 -	Statsomat https://statsomat.com 
     -	Minimal but sufficient GUI user-interaction 
     -	Automatic reporting (automated tables and graphics) 
@@ -12,25 +9,30 @@ by Denise Welsch
     -	Downloadable learner-code to reproduce the results 
     -	Help for learners all over the world 
 
--	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. The statistical application is the analysis of the relationship between two proportions (difference, ratio, efficacy) by using the models:  
+-	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. The statistical application performs the automated analysis of the relationship between two proportions (difference, ratio, efficacy) by using the models:  
     -  Analytically (priors given by Beta distributions)
     -  MCMC simulation (priors given by Beta distributions)
+ 
+-  Goals more detailed:
+    - Bayesian Analysis of Two Proportions - An Automated Report with R
+    - Bayesian Analysis of Two Proportions – A Shiny App in the Statsomat portal 
 
--	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests):
-    - To get "satisfactory" you need to show: >= 25 meaningful comments, >= 25 meaningful code line additions, >=1 merged pull requests, >=1 review help 
+-	Technical:
+    -	Installation local: Download and Install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and all the required packages demanded by the R scripts.
+    -	Alternatively: Work in the R Posit Cloud.
+    -	See also Clouds and Communication in the presentation Introduction.pptx. 
 
--	Installation local: Download and Install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio, tinytex (https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html) and all the required packages demanded by the R scripts.
-
--	Alternatively: Work in the R Posit Cloud. 
-
-- Start with Issues 1,2,3. These are introductory issues. 
-
-- Rules for next issues
-    - Each student should work on at least one issue (each issue has a leader)
-    - Pick up a next open issue and create a new branch to make your contribution. Give the branch a short name representing the issue and your name 
-    - Commit significant changes to the branch and push them to the cloud
-    - Open a pull request to add significant commits to the master
-    - You can create branches to work also on the issues of your collegues and to give them hints (comments) 
+- Issues:
+    - Start with Issues 1,2,3. These are introductory issues. 
+    - Rules for next issues
+        - Each student should work on at least one issue (each issue has a leader)
+        - Pick up a next open issue and create a new branch to make your contribution. Give the branch a short name representing the issue and your name 
+        - Commit significant changes to the branch and push them to the cloud
+        - Open a pull request to add significant commits to the master
+        - You can create branches to work also on the issues of your collegues and to give them hints (comments)
+ 
+-	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests) at 31.01.2024, 10:00:
+    - To get "satisfactory" you need to show: >= 25 meaningful comments, >= 100 meaningful code line additions, >=10 commits, >=1 merged pull requests, >=1 review help 
 
 # Literature and Useful Links 
 (additional to references of Prof. Neuhäuser) 

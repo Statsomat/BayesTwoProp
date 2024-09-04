@@ -5,24 +5,23 @@ library(shiny)
 library(coda)
 
 
-########### CLOSE THE repot.pdf FILE BEFORE RUNNING THE WRAPPER !!!!!  ##################
+########### CLOSE THE report.pdf FILE BEFORE RUNNING THE WRAPPER !!!!!  ##################
 
 
 #########################################################################################
 # Simulate the Shiny GUI 
 # The user uploads a file or inserts the cell frequencies directly 
-# If both file and cell frequencies are nonempty, then the algorithms considers the file 
-# Otherwise, the cell frequencies must be nonempty 
+# in the automated report, currently both needed
 #########################################################################################
 
 # Data as a file 
-filename <- "datasets/biontech.csv" 
+filename <- "/cloud/project/automated_report/datasets/biontech.csv" 
 decimal <- "."
 data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "") 
 outcome <- "y" # outcome variable 
 exposure <- "s" # exposure variable 
 presence_outcome <- 1 # presence for the existence of the outcome 
-presence_exposure <- "Vaccine" #presence for the existence of the exposure
+presence_exposure <- "Vaccine" # resence for the existence of the exposure
 
 # Data as cell frequencies 
 s1 <- 8 # outcome positive
@@ -41,7 +40,7 @@ b2 <- 2
 # User selection for the function of parameters 
 ## Possible values: "Theta1-Theta2", "Theta1/Theta2", "1-Theta1/Theta2" 
 ## Use integers 1,2,3 to represent values from above 
-user_selection_function_param <- 3
+user_selection_function_param <- 1
 
 
 # Region of practical equivalence (we will learn later about it)
@@ -51,7 +50,7 @@ rope_user <- NULL
 ##############################################################
 # Run parametric, automatic .Rmd file 
 ##############################################################
-rmarkdown::render("report_html.Rmd", params = list(
+rmarkdown::render("/cloud/project/automated_report/report_html.Rmd", params = list(
   filename = filename,
   decimal = decimal,
   data =data,

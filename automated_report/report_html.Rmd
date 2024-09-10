@@ -402,7 +402,7 @@ cat("We assume that the beliefs about the two parameters are independent, i.e. $
 ```
 
 
-```{r priorplot, eval=eval_final, results='asis'}
+```{r priorplot, eval=TRUE, results='asis'}
 # Plot the prior (follow first row from page 167 DDBA)
 cat("The next plot shows the probability density function (pdf) of the prior distribution",fill=TRUE)
 
@@ -435,7 +435,7 @@ cat("### Prior Predictive Check", fill=TRUE)
 ```
 
 
-```{r posterior, eval=eval_final, results='asis'}
+```{r posterior, eval=FALSE, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
 cat("The posterior distribution is an update of the prior distribution using the likelihood. This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data D. \\cite{kruschke} For our modell assumptions the posterior distribution has the following form:", fill=TRUE)
@@ -524,7 +524,7 @@ cat("## More Plots", fill=TRUE)
 # Use the plotPost function (page 205 Kruschke)
 ```
 
-```{r runtests}
+```{r runtests, eval=FALSE}
 # Run tests  
 library('testthat')
 testthat::test_dir('tests/testthat/')

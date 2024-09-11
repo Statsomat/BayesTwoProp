@@ -40,6 +40,7 @@
 7. Shiny Gallery (https://shiny.rstudio.com/gallery/#demos)
 8. Datasets: Adverse Events of Vaccine and Sars-Cov-2 (https://www.nejm.org/doi/full/10.1056/NEJMoa2110475, https://www.nejm.org/doi/suppl/10.1056/NEJMoa2110475/suppl_file/nejmoa2110475_appendix.pdf)
 9. Datasets: Pfizer Vaccine (https://arxiv.org/abs/2102.11022v1)
+10. Documents under /documents
 
 
 # Further Comments

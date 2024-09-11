@@ -33,14 +33,14 @@
 (additional to references of Prof. Neuhäuser) 
 
 1. GitHub Fundamentals (https://github.com/reyar/BayesTwoProp/blob/master/documents/Git_Fundamentals.md)
-2. Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021,  (https://www.nature.com/articles/s41562-021-01177-7#rightslink)
-3. Kruschke, John K., BARG-Supplement.html: https://osf.io/w7cph/ (check the html file in the documents folder)
+2. Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021,  (https://www.nature.com/articles/s41562-021-01177-7#rightslink) (check also the file in the documents folder)
+3. Kruschke, John K., BARG-Supplement.html: https://osf.io/w7cph/ (check also the file in the documents folder)
 4. Kruschke, John K., Doing Bayesian Data Analysis, Elsevier 2015, ISBN: 978-0-12-405888-0, especially chapters 6, 7 and 8.4 (https://nyu-cdsc.github.io/learningr/assets/kruschke_bayesian_in_R.pdf)
 6. Rmarkdown (https://bookdown.org/yihui/rmarkdown/), (https://bookdown.org/yihui/rmarkdown-cookbook/)
 7. Shiny Gallery (https://shiny.rstudio.com/gallery/#demos)
 8. Datasets: Adverse Events of Vaccine and Sars-Cov-2 (https://www.nejm.org/doi/full/10.1056/NEJMoa2110475, https://www.nejm.org/doi/suppl/10.1056/NEJMoa2110475/suppl_file/nejmoa2110475_appendix.pdf)
 9. Datasets: Pfizer Vaccine (https://arxiv.org/abs/2102.11022v1)
-10. Documents under /documents
+10. Most docs also under /documents
 
 
 # Further Comments

@@ -14,8 +14,9 @@
     -  MCMC simulation (priors given by Beta distributions)
  
 -	Technical:
-    -	Installation local: Download and Install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts.
-    -	Alternatively: Work in the R Posit Cloud, connect the GitHub repository and you will get a token (a password)
+    -	Installation local: Sign up to GitHub, download and install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts.
+    -	Alternatively to R locally: Work in the R Posit Cloud, connect the GitHub repository and you will get a token (a password). If the resources are not satisfactory, you can work in my account (to check) 
+	- 	https://github.com/users/reyar/projects/3 for project planning 
     -	See also the presentation Introduction.pptx. 
 
 - Issues:
@@ -26,8 +27,7 @@
         - Commit significant changes to the branch and push them to the cloud
         - Open a pull request to add significant commits to the master
  
--	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests) at 31.01.2024, 10:00:
-    - To get "satisfactory" you need to show: >= 5 meaningful comments, >= 100 meaningful code line additions, >=10 commits, >=1 merged pull request 
+-	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests) at 31.01.2024, 10:00. There are no limits set. Please check the insight of the project to see the work of other students. 
 
 # Literature and Useful Links 
 (additional to references of Prof. Neuhäuser) 

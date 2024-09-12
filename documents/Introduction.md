@@ -10,6 +10,7 @@
     -	Help for learners and researchers all over the world
 (Live-Show)
 
+
 2.	Goal of this course: 
 	- Is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. 
 	- We will start with a "starting code" which we will extend and develop. The "starting code" is the code developed by students during WS21/22. 

@@ -13,7 +13,8 @@
 
 
 2.	Goal of this course: 
-	- Is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. 
+	- Is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy.
+ 	- The name of the app is "Statsomat/BayesTwoProp" 
 	- We will start with a "starting code" which we will extend and develop. The "starting code" is the code developed by students during WS21/22. 
 	- The statistical application performs the automated analysis of the relationship between two proportions (difference, ratio, efficacy) by using models:  
 		-  Analytically (priors given by Beta distributions)

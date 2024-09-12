@@ -18,6 +18,7 @@
 	- The statistical application performs the automated analysis of the relationship between two proportions (difference, ratio, efficacy) by using models:  
 		-  Analytically (priors given by Beta distributions)
 		-  MCMC simulation (priors given by Beta distributions)
+
 (Live-Show)
  
 3.	Technical:
@@ -30,6 +31,7 @@
 
     - ToDo: Sign up to GitHub, download and install GitHub Desktop , clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts.
     - Alternatively to local RStudio: Work in the R Posit Cloud, connect reyar/BayesTwoProp repository and you will get a token (a password). If the resources are not satisfactory, you can work in my account (to check) 
+
 (send invitations) 
 
 4.  Issues and Project:
@@ -43,6 +45,7 @@
 (Live-Show)
  
 5.	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests) at 31.01.2024, 10:00. There are no limits set. Please check the insight of the project to see the work of other students. 
+
 (Live-Show)
 
 # Literature and Useful Links 

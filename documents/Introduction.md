@@ -1,33 +1,47 @@
-# Bayes-Statistik, WS2021/2022
+# Bayes-Statistik, WS2024/2025
 ## Contribution to open-source is fun! 
 
 
--	Statsomat https://statsomat.com 
+1.	Statsomat https://statsomat.com 
     -	Minimal but sufficient GUI user-interaction 
-    -	Automatic reporting (automated tables and graphics) 
+    -	Automatic reporting 
     -	Human-readable interpretation in natural language
     -	Downloadable learner-code to reproduce the results 
-    -	Help for learners and researchers all over the world 
+    -	Help for learners and researchers all over the world
+	(Live-Show)
 
--	Goal: The goal of this course is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. We will start with a "starting code" which we will extend and develop. The statistical application performs the automated analysis of the relationship between two proportions (difference, ratio, efficacy) by using the models:  
-    -  Analytically (priors given by Beta distributions)
-    -  MCMC simulation (priors given by Beta distributions)
+2.	Goal of this course: 
+	- Is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. 
+	- We will start with a "starting code" which we will extend and develop. The "starting code" is the code developed by students during WS21/22. 
+	- The statistical application performs the automated analysis of the relationship between two proportions (difference, ratio, efficacy) by using models:  
+		-  Analytically (priors given by Beta distributions)
+		-  MCMC simulation (priors given by Beta distributions)
+	(Live-Show)
  
--	Technical:
-    -	Installation local: Sign up to GitHub, download and install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts.
-    -	Alternatively to R locally: Work in the R Posit Cloud, connect the GitHub repository and you will get a token (a password). If the resources are not satisfactory, you can work in my account (to check) 
-	- 	https://github.com/users/reyar/projects/3 for project planning 
-    -	See also the presentation Introduction.pptx. 
+3.	Technical:
+	- GitHub Web (repository and project) https://github.com/reyar/BayesTwoProp
+	- GitHub Desktop https://desktop.github.com/download/
+	- R Studio Desktop & R 
+	- R Posit Cloud (we need to check if the free resources are satisfactory)
+	- OLAT: Only for announcements (Mitteilungen)
+	- Zoom: In special cases 
 
-- Issues:
-    - Start with introductory issues. 
+    - ToDo: Sign up to GitHub, download and install GitHub Desktop , clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts.
+    - Alternatively to local RStudio: Work in the R Posit Cloud, connect reyar/BayesTwoProp repository and you will get a token (a password). If the resources are not satisfactory, you can work in my account (to check) 
+	(send invitations) 
+
+4.  Issues and Project:
+	- Check the Roadmap of the Project 
+    - Start with introductory issues 
     - Rules for next issues
         - Each student should work on at least one issue 
         - Pick up a next open issue and create a new branch FROM inside the issue to make your contribution 
         - Commit significant changes to the branch and push them to the cloud
         - Open a pull request to add significant commits to the master
+	(Live-Show)
  
--	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests) at 31.01.2024, 10:00. There are no limits set. Please check the insight of the project to see the work of other students. 
+5.	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests) at 31.01.2024, 10:00. There are no limits set. Please check the insight of the project to see the work of other students. 
+	(Live-Show)
 
 # Literature and Useful Links 
 (additional to references of Prof. Neuhäuser) 

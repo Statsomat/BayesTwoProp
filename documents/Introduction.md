@@ -1,5 +1,5 @@
 # Bayes-Statistik, WS2024/2025
-## Contribution to open-source is fun! 
+## Contributing to open-source is fun! 
 
 
 1.	Statsomat https://statsomat.com 
@@ -8,7 +8,7 @@
     -	Human-readable interpretation in natural language
     -	Downloadable learner-code to reproduce the results 
     -	Help for learners and researchers all over the world
-	(Live-Show)
+(Live-Show)
 
 2.	Goal of this course: 
 	- Is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy. 
@@ -16,7 +16,7 @@
 	- The statistical application performs the automated analysis of the relationship between two proportions (difference, ratio, efficacy) by using models:  
 		-  Analytically (priors given by Beta distributions)
 		-  MCMC simulation (priors given by Beta distributions)
-	(Live-Show)
+(Live-Show)
  
 3.	Technical:
 	- GitHub Web (repository and project) https://github.com/reyar/BayesTwoProp
@@ -28,7 +28,7 @@
 
     - ToDo: Sign up to GitHub, download and install GitHub Desktop , clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts.
     - Alternatively to local RStudio: Work in the R Posit Cloud, connect reyar/BayesTwoProp repository and you will get a token (a password). If the resources are not satisfactory, you can work in my account (to check) 
-	(send invitations) 
+(send invitations) 
 
 4.  Issues and Project:
 	- Check the Roadmap of the Project 
@@ -38,10 +38,10 @@
         - Pick up a next open issue and create a new branch FROM inside the issue to make your contribution 
         - Commit significant changes to the branch and push them to the cloud
         - Open a pull request to add significant commits to the master
-	(Live-Show)
+(Live-Show)
  
 5.	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests) at 31.01.2024, 10:00. There are no limits set. Please check the insight of the project to see the work of other students. 
-	(Live-Show)
+(Live-Show)
 
 # Literature and Useful Links 
 (additional to references of Prof. Neuhäuser) 

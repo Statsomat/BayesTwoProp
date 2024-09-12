@@ -100,8 +100,8 @@ You can check out the GitHub Explore website [at github.com/explore](https://git
 * [GitHub community forum](https://github.community/)
 
 ## Posit.Cloud
-First Pull from Origin
+- First Pull from Origin
 
-Select to Staged 
-Commit 
-Push to Origin 
+- Select to Staged 
+- Commit 
+- Push to Origin 

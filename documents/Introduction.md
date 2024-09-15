@@ -31,7 +31,7 @@
 	- Zoom: In special cases 
 
     - ToDo: Sign up to GitHub, download and install GitHub Desktop , clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts.
-    - Alternatively to local RStudio: Work in the R Posit Cloud, connect reyar/BayesTwoProp repository and you will get a token (a password). If the resources are not satisfactory, you can work in my account (to check) 
+    - Alternatively to local RStudio: Work in the R Posit Cloud, connect reyar/BayesTwoProp repository and you will get a token (a password). If the resources are not satisfactory, you can also work in my workspace. 
 
 (send invitations) 
 

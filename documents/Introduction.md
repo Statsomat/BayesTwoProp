@@ -45,7 +45,8 @@
         - Open a pull request to add significant commits to the master
 (Live-Show)
  
-5.	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests) at 31.01.2024, 10:00. There are no limits set. Please check the insight of the project to see the work of other students. 
+5.	Evaluation of your contributions (comments, commits, additions, deletions, pull requests) at 24.01.2024, 11:30. Cluster grading: Students are grouped into performance bands (e.g., "Excellent," "Proficient," "Basic", "Not sufficient") based on the range of scores. 
+Please check the insight of the project to see the work of other students. 
 
 (Live-Show)
 

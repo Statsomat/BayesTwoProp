@@ -3,8 +3,7 @@
 
 
 1.	Statsomat https://statsomat.com 
-    -	Minimal but sufficient GUI user-interaction 
-    -	Automatic reporting 
+    -	Automated Statistical Data Analysis and Reporting
     -	Human-readable interpretation in natural language
     -	Downloadable learner-code to reproduce the results 
     -	Help for learners and researchers all over the world

@@ -23,14 +23,13 @@
  
 3.	Technical:
 	- GitHub Web (repository and project) https://github.com/reyar/BayesTwoProp
-	- GitHub Desktop https://desktop.github.com/download/
-	- R Studio Desktop & R 
-	- R Posit Cloud (we need to check if the free resources are satisfactory)
+	- Work locally: GitHub Desktop https://desktop.github.com/download/ and R Studio Desktop and R 
+	- Work in the Cloud: R Posit Cloud (we need to check if the free resources are satisfactory)
 	- OLAT: Only for announcements (Mitteilungen)
 	- Zoom: In special cases 
 
-    - ToDo: Sign up to GitHub, download and install GitHub Desktop , clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts.
-    - Alternatively to local RStudio: Work in the R Posit Cloud, connect reyar/BayesTwoProp repository and you will get a token (a password). If the resources are not satisfactory, you can also work in my workspace. 
+    - To work locally: Sign up to GitHub, download and install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts.
+    - Work in the Cloud: Work in the R Posit Cloud, connect reyar/BayesTwoProp repository and you will get a token (a password). If the resources are not satisfactory, you can also work in my workspace. 
 
 (send invitations) 
 
@@ -48,6 +47,8 @@
 Please check the insight of the project to see the work of other students. 
 
 (Live-Show)
+
+6.	Workload:	ca. 4h/week 
 
 # Literature and Useful Links 
 (additional to references of Prof. Neuhäuser) 

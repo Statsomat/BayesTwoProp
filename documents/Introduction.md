@@ -3,8 +3,7 @@
 
 
 1.	Statsomat https://statsomat.com 
-    -	Minimal but sufficient GUI user-interaction 
-    -	Automatic reporting 
+    -	Automated Statistical Data Analysis and Reporting
     -	Human-readable interpretation in natural language
     -	Downloadable learner-code to reproduce the results 
     -	Help for learners and researchers all over the world
@@ -24,14 +23,13 @@
  
 3.	Technical:
 	- GitHub Web (repository and project) https://github.com/reyar/BayesTwoProp
-	- GitHub Desktop https://desktop.github.com/download/
-	- R Studio Desktop & R 
-	- R Posit Cloud (we need to check if the free resources are satisfactory)
+	- Work locally: GitHub Desktop https://desktop.github.com/download/ and R Studio Desktop and R 
+	- Work in the Cloud: R Posit Cloud (we need to check if the free resources are satisfactory)
 	- OLAT: Only for announcements (Mitteilungen)
 	- Zoom: In special cases 
 
-    - ToDo: Sign up to GitHub, download and install GitHub Desktop , clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts.
-    - Alternatively to local RStudio: Work in the R Posit Cloud, connect reyar/BayesTwoProp repository and you will get a token (a password). If the resources are not satisfactory, you can work in my account (to check) 
+    - To work locally: Sign up to GitHub, download and install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts.
+    - Work in the Cloud: Work in the R Posit Cloud, connect reyar/BayesTwoProp repository and you will get a token (a password). If the resources are not satisfactory, you can also work in my workspace. 
 
 (send invitations) 
 
@@ -45,9 +43,12 @@
         - Open a pull request to add significant commits to the master
 (Live-Show)
  
-5.	Evaluation of your contributions (comments, commits, additions, deletions, reviews/tests) at 31.01.2024, 10:00. There are no limits set. Please check the insight of the project to see the work of other students. 
+5.	Evaluation of your contributions (comments, commits, additions, deletions, pull requests) at 24.01.2024, 11:30. Cluster grading: Students are grouped into performance bands (e.g., "Excellent," "Proficient," "Basic", "Not sufficient") based on the range of scores. 
+Please check the insight of the project to see the work of other students. 
 
 (Live-Show)
+
+6.	Workload:	ca. 4h/week 
 
 # Literature and Useful Links 
 (additional to references of Prof. Neuhäuser) 

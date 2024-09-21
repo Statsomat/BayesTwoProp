@@ -23,7 +23,8 @@
  
 3.	Technical:
 	- GitHub Web (repository and project) https://github.com/reyar/BayesTwoProp
-	- Work locally: GitHub Desktop https://desktop.github.com/download/ and R Studio Desktop and R 
+	- Work locally: Client GitHub Desktop https://desktop.github.com/download/ or Tortoise
+ 	- R Studio Desktop and R 
 	- Work in the Cloud: R Posit Cloud (we need to check if the free resources are satisfactory)
 	- OLAT: Only for announcements (Mitteilungen)
 	- Zoom: In special cases 

@@ -7,11 +7,12 @@
     -	Human-readable interpretation in natural language
     -	Downloadable learner-code to reproduce the results 
     -	Help for learners and researchers all over the world
+	- 	Open-source (see also slides)
 
 (Live-Show)
 
 
-2.	Goal of this course: 
+2.	Goal: 
 	- Is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy.
  	- The name of the app is "Statsomat/BayesTwoProp" 
 	- We will start with a "starting code" which we will extend and develop. The "starting code" is the code developed by students during WS21/22. 
@@ -21,7 +22,7 @@
 
 (Live-Show)
  
-3.	Technical:
+3.	Technical (see also slides):
 	- GitHub Web (repository and project) https://github.com/reyar/BayesTwoProp
 	- Work locally: Client GitHub Desktop https://desktop.github.com/download/ or Tortoise
  	- R Studio Desktop and R 
@@ -44,7 +45,7 @@
         - Open a pull request to add significant commits to the master
 (Live-Show)
  
-5.	Evaluation of your contributions (comments, commits, additions, deletions, pull requests) at 24.01.2024, 11:30. Cluster grading: Students are grouped into performance bands (e.g., "Excellent," "Proficient," "Basic", "Not sufficient") based on the range of scores. 
+5.	Evaluation of your contribution (comments, commits, additions, deletions, pull requests, code review, oral collaboration) at 24.01.2024, 13:15.  Cluster grading: Students are grouped into performance bands (e.g., "Excellent," "Proficient," "Basic") based on the range of scores. 
 Please check the insight of the project to see the work of other students. 
 
 (Live-Show)

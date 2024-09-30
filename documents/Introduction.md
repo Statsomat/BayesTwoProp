@@ -15,10 +15,10 @@
 2.	Goal: 
 	- Is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy.
  	- The name of the app is "Statsomat/BayesTwoProp" 
-	- We will start with a "starting code" which we will extend and develop. The "starting code" is the code developed by students during WS21/22. 
-	- The statistical application performs the automated analysis of the relationship between two proportions (difference, ratio, efficacy) by using models:  
+	- The statistical application shall perform the automated analysis of the relationship between two proportions (difference, ratio, efficacy) by using models:  
 		-  Analytically (priors given by Beta distributions)
 		-  MCMC simulation (priors given by Beta distributions)
+    	- We will start with a "starting code" which we will extend and further develop. The "starting code" is the code developed by students during WS21/22. 
 
 (Live-Show)
  
@@ -30,7 +30,7 @@
 	- OLAT: Only for announcements (Mitteilungen)
 	- Zoom: In special cases 
 
-    - To work locally: Sign up to GitHub, download and install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts.
+    - To work locally: Sign up to GitHub, download and install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts. Or Tortoise. 
     - Work in the Cloud: Work in the R Posit Cloud, connect reyar/BayesTwoProp repository and you will get a token (a password). If the resources are not satisfactory, you can also work in my workspace. 
 
 (send invitations) 
@@ -39,13 +39,13 @@
 	- Check the Roadmap of the Project 
     - Start with introductory issues 
     - Rules for next issues
-        - Each student should work on at least one issue 
+        - Each student group should work on at least one issue 
         - Pick up a next open issue and create a new branch FROM inside the issue to make your contribution 
         - Commit significant changes to the branch and push them to the cloud
         - Open a pull request to add significant commits to the master
 (Live-Show)
  
-5.	Evaluation of your contribution (comments, commits, additions, deletions, pull requests, code review, oral collaboration) at 24.01.2024, 13:15.  Cluster grading: Students are grouped into performance bands (e.g., "Excellent," "Proficient," "Basic") based on the range of scores. 
+5.	Evaluation: Commits, Comments, Final Oral Report per Zoom in January (each student ca. 10 minutes on 17.01.2024 and 24.01.2024, describe: goals, achievements, my contribution) 
 Please check the insight of the project to see the work of other students. 
 
 (Live-Show)

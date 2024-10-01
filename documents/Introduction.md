@@ -45,8 +45,7 @@
         - Open a pull request to add significant commits to the master
 (Live-Show)
  
-5.	Evaluation: Commits, Comments, Final Oral Report per Zoom in January (each student ca. 10 minutes on 17.01.2024 and 24.01.2024, describe: goals, achievements, my contribution) 
-Please check the insight of the project to see the work of other students. 
+5.	Evaluation: GitHub Traces (Commits, Comments etc, for the group), Written Report (Delivery: 14.02.2025, 10:00. Describe: The (prospected) functions of the app, our work during the semester, my own contribution, approx. 1500 words). Details at the beginning of January. 
 
 (Live-Show)
 

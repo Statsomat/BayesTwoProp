@@ -2,7 +2,7 @@
 ## Contributing to open-source is fun! 
 
 
-1.	Statsomat https://statsomat.com 
+##	Statsomat https://statsomat.com 
     -	Automated Statistical Data Analysis and Reporting
     -	Human-readable interpretation in natural language
     -	Downloadable learner-code to reproduce the results 
@@ -10,7 +10,7 @@
 	- 	Open-source 
 
 
-2.	Goal: 
+##	Goal: 
 	- Is to develop an app for a statistical application treated by Bayes-theory and satisfying the Statsomat philosophy.
  	- The name of the app is "Statsomat/BayesTwoProp" 
 	- The statistical application shall perform the automated analysis of the relationship between two proportions (difference, ratio, efficacy) by using models:  
@@ -20,13 +20,13 @@
 
 (Live-Show)
 
-3. Learning Objectives
+## Learning Objectives
 	- Learn to apply Bayes theory on a certain data problem 
 	- Learn to code with R (diverse packages)
 	- Learn to work with Git and GitHub
 	- Learn to collaborate in software engineering projects 
 
-3.	Technical Components:
+##	Technical Components:
 	- Git (a version control system used by developers to track changes in their code over time) https://git-scm.com/
 	- GitHub (web-based platform that uses Git for version control) https://github.com/reyar/BayesTwoProp
 	- GitHub clients: "GitHub Desktop" https://desktop.github.com/download/ or "TortoiseGit" https://tortoisegit.org/ or "RPosit" https://posit.cloud/
@@ -42,7 +42,7 @@
 	- Work at Home (5): R + RPosit + GitHub
 	
 	
-4.  GitHub Issues and Project:
+##  GitHub Issues and Project:
 	- Check the Roadmap of the Project 
 	- Work the Project line 
     - Rules for next issues
@@ -54,13 +54,13 @@
 
 (Live-Show)
  
-5.	Evaluation: GitHub Traces (Commits, Comments etc, for the group), Written Report (Delivery: 14.02.2025, 10:00. Describe: The (prospected) functions of the app, our work during the semester, my own contribution, approx. 1500 words). Details at the beginning of January. 
+##	Evaluation: GitHub Traces (Commits, Comments etc, for the group), Written Report (Delivery: 14.02.2025, 10:00. Describe: The (prospected) functions of the app, our work during the semester, my own contribution, approx. 1500 words). Details at the beginning of January. 
 
 (Live-Show)
 
-6. Workload at home: Approx. 3h/week 
+## Workload at home: Approx. 3h/week 
 
-7. Open-Source Software at GitHub
+## Open-Source Software at GitHub
 	- The repository reyar/BayesTwoprop is currently private
 	- When finalized, the repository will be set on public and will be open-source
 	- Open-source software is a great source of learning and motivation for humans and non-humans... 
@@ -70,7 +70,7 @@
 	- You agree with the terms of GitHub 
 
 
-# Literature and Useful Links 
+## Literature and Useful Links 
 (additional to references of Prof. Neuhäuser) 
 
 1. GitHub Fundamentals (https://github.com/reyar/BayesTwoProp/blob/master/documents/Git_Fundamentals.md)
@@ -84,7 +84,7 @@
 10. Most docs also under /documents
 
 
-# Further Comments
+## Further Comments
 -	Please use the `data.table` package for EDA (extract, transform, load) data. Use the package `dplyr` only if really needed.
 -	Debugging: Discuss the errors in our group. Use AI programming copilots.
 -	Programming best practices:
@@ -95,7 +95,7 @@
     - Do not use libraries which do not have a large community  
 
 
-# ChatGPT & other AIs: 
+## ChatGPT & other AIs: 
 - For programming: Allowed and recommended. You need to know WHAT you want to program. It doesn't matter where you got the codes from. The main thing is that they are ALLOWABLE lines of code and, ideally, ELEGANT lines of code. 
 - Other: Allowed with the following instructions: 
 	- AIs can make mistakes, provide incorrect information or give distorted answers. Check mistakes. Every statement from your work that was generated with the help of AI should ideally be checked and confirmed by existing sources in the form of, for example, ISBN or DOI. 
@@ -104,8 +104,8 @@
 
 
 
-# Let's start 
+## Let's start 
 	- Send invitations from GitHub, Rposit workspace, token 
-	- Work method 1: Sign up to GitHub, clone the reyar/BayesTwoProp repository from TortoiseGit
-	- Work Method 4: Sign up to GitHub, download and install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts
-    - Work method 3 and 5: Connect the reyar/BayesTwoProp repository 
+	- Work at RAC (1): Sign up to GitHub, clone the reyar/BayesTwoProp repository from TortoiseGit (see document documents/Clone_repo_tortoisegit.md)
+	- Work at Home (4): Sign up to GitHub, download and install GitHub Desktop, clone the reyar/BayesTwoProp repository, install R, RStudio and all the required packages demanded by the R scripts
+    - Work RAC/Home (3) and (5): Create a token in GitHub, connect the reyar/BayesTwoProp repository in RPosit (see document documents/Create_GitHub_Token.md).   

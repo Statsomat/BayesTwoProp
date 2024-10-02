@@ -44,10 +44,10 @@
 	
 4.  GitHub Issues and Project:
 	- Check the Roadmap of the Project 
-    - Start with introductory issues 
+	- Work the Project line 
     - Rules for next issues
         - Each student group should work on at least one issue, I will allocate the issues to groups 
-        - Create a new branch FROM INSIDE the issue in GitHub and do here y´our work 
+        - Create a new branch FROM INSIDE the issue in GitHub and do here your work 
         - Commit significant changes to the branch and push them to the cloud
         - Open a pull request to add significant commits to the master
 		- Do not work on master! 
@@ -58,7 +58,7 @@
 
 (Live-Show)
 
-6. Workload at home:	ca. 3h/week 
+6. Workload at home: Approx. 3h/week 
 
 7. Open-Source Software at GitHub
 	- The repository reyar/BayesTwoprop is currently private

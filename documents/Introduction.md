@@ -16,7 +16,7 @@
 	- The statistical application shall perform the automated analysis of the relationship between two proportions (difference, ratio, efficacy) by using models:  
 		-  Analytically (priors given by Beta distributions)
 		-  MCMC simulation (priors given by Beta distributions)
-    	- We will start with a "starting code" which we will extend and further develop. The "starting code" is the code developed by students during WS21/22. 
+   - We will start with a "starting code" which we will extend and further develop. The "starting code" is the code developed by students during WS21/22. 
 
 (Live-Show)
  

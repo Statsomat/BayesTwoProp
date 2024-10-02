@@ -1,6 +1,4 @@
-Sure! Here’s a guide addressed directly to students:
 
----
 
 ### Hi Students!
 

@@ -30,8 +30,6 @@ To clone a Git repository using **TortoiseGit**, follow these steps:
    - You can now navigate to the cloned folder in your file explorer, and it will contain all the files and Git history from the repository.
 
 ## Additional Tips:
-- **Authentication**: If the repository is private, you will be prompted to enter your credentials (username, password, or SSH key passphrase) to access it.
-- **SSH or HTTPS**: You can clone via HTTPS or SSH depending on how you set up access to the repository. For SSH, make sure your SSH keys are properly configured.
-- **Advanced Options**: In the clone dialog, you can access more advanced options like shallow clones (only fetching the latest commits), selecting specific branches, or setting depth limits on history.
+- **Authentication**: If the repository is private, you will be prompted to enter your credentials (username, password, or SSH key passphrase, token) to access it.
 
 By following these steps, you'll have a complete copy of the repository on your local machine and can start working with it using TortoiseGit.

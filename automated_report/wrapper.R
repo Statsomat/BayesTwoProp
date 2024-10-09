@@ -5,9 +5,6 @@ library(shiny)
 library(coda)
 
 
-########### CLOSE THE report.pdf FILE BEFORE RUNNING THE WRAPPER !!!!!  ##################
-
-
 #########################################################################################
 # Simulate the Shiny GUI 
 # The user uploads a file or inserts the cell frequencies directly 

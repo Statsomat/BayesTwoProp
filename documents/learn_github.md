@@ -13,6 +13,7 @@ Hello, my name is Simone and I just added a line!
 Hello, my name is Simone and I just added a line!
 Hello, my name is Jomana and I just added a line!
 Hello, my name is Jomana and I just added a line!
+Hello, my name is Renée and I just added a line!
 
 Hello, my name is Denise and I just added a line to test Tortoise!
 

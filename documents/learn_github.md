@@ -14,15 +14,14 @@ Hello, my name is Simone and I just added a line!
 Hello, my name is Jomana and I just added a line!
 Hello, my name is Jomana and I just added a line!
 Hello, my name is Anna-Lena and I just added a line!
+Hello, my name is Anna-Lena and I just added a line!
 Hello, my name is Renée and I just added a line!
 Hello, my name is Jule and I just added a line!
 Hello, my name is Jule and I just added a line!
 Hello, my name is Denise and I just added a line to test Tortoise!
-
 Hello, my name is Denise and I just added a line to test Tortoise!
-
 Hello, my name is Chiara and I just added a line!
-
 Hello, my name is Felix and I just added this line!
 Hello, my name is Theresa and I just added a line!
 Hello, my name is Theresa and I just added a line!
+Hello, my name is Chiara and I just added a line!

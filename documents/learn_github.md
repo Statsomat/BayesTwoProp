@@ -26,4 +26,5 @@ Hello, my name is Theresa and I just added a line!
 Hello, my name is Theresa and I just added a line!
 Hello, my name is Chiara and I just added a line!
 Hello, my name is Johannes and I just added a line!
-
+Hello, my name is Luise and I just added a line!
+Hello, my name is Philipp and I just added a line! 

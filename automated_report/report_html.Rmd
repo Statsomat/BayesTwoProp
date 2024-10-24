@@ -359,7 +359,7 @@ L1 = likelihood(s1/n1,s1,n1)*likelihood(s2/n2,s2,n2)
 L2 = likelihood(0.5,s1,n1)*likelihood(0.5,s2,n2)
 
 cat("<br>", fill=TRUE)
-cat(paste0("\\begin{align} L \\Big( \\theta_1= \\frac{", s1, "}{", n1, "}, \\theta_2= \\frac{", s2, "}{", n2, "} \\ \\Big | \\ y_1=", s1, ", y_2=", s2, " \\Big) &=", round(L1,4),", \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", s1, ", y_2=", s2, ") &=", round(L2,4),".\\end{align}"), fill=TRUE)
+cat(paste0("\\begin{align} L \\biggl( \\theta_1= \\frac{", s1, "}{", n1, "}, \\theta_2= \\frac{", s2, "}{", n2, "} \\ \\biggl | \\ y_1=", s1, ", y_2=", s2, " \\biggl) &=", round(L1,4),", \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", s1, ", y_2=", s2, ") &=", round(L2,4),".\\end{align}"), fill=TRUE)
 cat("<br>", fill=TRUE)
 cat("Remark: Because of the independence of $Y_1$ and $Y_2$ you can get the following marginal distributions: ",fill=TRUE) 
 #Marginal distribution of D_1 given theta_1 and of D_2 given theta_2

@@ -30,9 +30,9 @@ chooserInput <- function(inputId, leftLabel, rightLabel, leftChoices, rightChoic
         
         div(style="min-width:50px; display:table-cell;vertical-align: middle;",
           div(class="chooser-container chooser-center-container", style="padding:10px;",
-              icon("arrow-circle-o-right", "right-arrow fa-3x"),
+              icon("arrow-right", "right-arrow fa-3x"),
               tags$br(),
-              icon("arrow-circle-o-left", "left-arrow fa-3x")
+              icon("arrow-left", "left-arrow fa-3x")
           )
         ),
         

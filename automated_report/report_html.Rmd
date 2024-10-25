@@ -324,20 +324,41 @@ if (user_selection_function_param==1) {
 
 ```{r likelihood, eval=eval_final, results='asis'}
 cat("## The Likelihood", fill=TRUE)
-cat("The likelihood function describes the plausibility of the observed data $D$ given the parameters $\\theta_1$, $\\theta_2$. The likelihood function should not be confused as a probability function.", fill = TRUE)
-cat("<br>",fill=TRUE)
-#Likelihood formular of D given theta_1 and theta_2
-cat("$$p(D | \\theta_1, \\theta_2) = \\begin{pmatrix} n_1 \\\\ \\theta_1 \\end{pmatrix} \\theta_1^{Y_1}(1-\\theta_1)^{n_1 - Y_1} \\cdot  \\begin{pmatrix} n_2 \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{Y_2}(1-\\theta_2)^{n_2 - Y_2}, \\qquad D = \\{n_1, n_2, Y_1, Y_2\\}$$",fill=TRUE)
-cat("<br>",fill=TRUE)
+cat("The likelihood function is a function of $(\\theta_1, \\theta_2 )$, that describes the plausibility of $(Y_1,Y_2)=(y_1,y_2)$ with different $(\\theta_1, \\theta_2 )$.The likelihood function should not be confused as a probability function.", fill = TRUE)
+cat("<br>", fill=TRUE)
+cat("$$(Y_1,Y_2) $$")
+cat("<br>", fill=TRUE)
+#Likelihood formula of D given theta_1 and theta_2
+cat("$$f(y_1,y_2)=P(Y_1=y_1,Y_2=y_2 | \\theta_1, \\theta_2)=P(Y_1=y_1|\\theta_1, \\theta_2) \\cdot P(Y_2=y_2|\\theta_1, \\theta_2)$$")
+cat("<br>", fill=TRUE)
+cat("$$=P(Y_1=y1|\\theta_1) \\cdot P(Y_2=y2|\\theta_2)$$", fill=TRUE)
+cat("<br>", fill=TRUE)
+cat("$$= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1}(1-\\theta_1)^{n_1 - y_1} \\cdot  \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}$$", fill=TRUE)
+cat("<br>", fill=TRUE)
+cat("The likelihood function $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
+cat("<br>", fill=TRUE)
+cat("$$L(\\theta_1, \\theta_2|y_1,y_2)= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1}(1-\\theta_1)^{n_1 - y_1} \\cdot  \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}$$", fill=TRUE)
+cat("<br>", fill=TRUE)
 #Likelihood formular of D given theta_1 and theta_2 with user entered data
-cat(paste0("$$p(D | \\theta_1, \\theta_2) = \\begin{pmatrix} "), n1, "\\\\ \\theta_1 \\end{pmatrix} \\theta_1^{", s1, "}(1-\\theta_1)^{", n1, " - ", s1, "} \\cdot  \\begin{pmatrix} ", n2, " \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{", s2, "}(1-\\theta_2)^{", n2, " - ", s2, "}, \\qquad D = \\{", n1, ", ", n2, ", ", s1, ", ", s2, "\\}$$",fill=TRUE)
-cat("<br>",fill=TRUE)
-cat("Because of the independence of $\\theta_1$ and $\\theta_2$ you can get the following marginal distributions: ",fill=TRUE) 
+cat("Consider our data:",fill=TRUE)
+cat(paste0("$$n_1=", n1, ", n_2=", n2, ", y_1=", s1, ", y_2=", s2, "$$"), fill=TRUE)
+cat("<br>", fill=TRUE)
+cat(paste0("$$P(Y_1=", s1, ",Y_2=", s2, "| \\theta_1, \\theta_2) = \\begin{pmatrix} ", n1, " \\\\ ", s1," \\end{pmatrix} \\theta_1^{", s1, "}(1-\\theta_1)^{", n1, " - ", s1, "} \\cdot  \\begin{pmatrix} ", n2, " \\\\ ", s2," \\end{pmatrix} \\theta_2^{", s2, "}(1-\\theta_2)^{", n2, " - ", s2, "}$$"), fill=TRUE)
+cat("<br>", fill=TRUE)
+cat(paste0("Then $$L(\\theta_1, \\theta_2|y_1=", s1, ",y_2=", s2, ")=\\begin{pmatrix} ", n1, " \\\\ ", s1," \\end{pmatrix} \\theta_1^{", s1, "}(1-\\theta_1)^{", n1, " - ", s1, "} \\cdot  \\begin{pmatrix} ", n2, " \\\\ ", s2," \\end{pmatrix} \\theta_2^{", s2, "}(1-\\theta_2)^{", n2, " - ", s2, "}$$"),fill=TRUE)
+cat("<br>", fill=TRUE)
+cat("Examples:", fill=TRUE)
+cat("<br>", fill=TRUE)
+cat(paste0("Then $$L(\\theta_1= \\frac{", s1, "}{n_1}, \\theta_2= \\frac{", s2, "}{n_2} | y_1=", s1, ", y_2=", s2, ") =---$$"), fill=TRUE)
+cat("<br>", fill=TRUE)
+cat(paste0("Then $$L(\\theta_1= 0 \\cdot 5, \\theta_2= 0 \\cdot 5 | y_1=", s1, ", y_2=", s2, ") =---$$"), fill=TRUE)
+cat("<br>", fill=TRUE)
+cat("Remark: Because of the independence of $Y_1$ and $Y_2$ you can get the following marginal distributions: ",fill=TRUE) 
 #Marginal distribution of D_1 given theta_1
-cat("$$p(D_1 | \\theta_1) = \\begin{pmatrix} n_1 \\\\ \\theta_1 \\end{pmatrix} \\theta_1^{Y_1}(1-\\theta_1)^{n_1 - Y_1}, \\qquad D_1 = \\{n_1, Y_1\\} \\textrm{ given}$$", fill = TRUE)
+cat("$$P(Y_1=y_1 | \\theta_1 ) = \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1}(1-\\theta_1)^{n_1 - y_1}$$", fill = TRUE)
 cat("<br>",fill=TRUE)
 #Marginal distribution of D_2 given theta_2
-cat("$$p(D_2 | \\theta_2) = \\begin{pmatrix} n_2 \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{Y_2}(1-\\theta_2)^{n_2 - Y_2}, \\qquad D_2 = \\{n_2, Y_2\\} \\textrm{ given}$$", fill = TRUE)
+cat("$$P(Y_2=y_2 | \\theta_2) = \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}$$", fill = TRUE)
 
 ## Region to plot 
 Theta1 = seq(0.000, 1, by=0.001) 

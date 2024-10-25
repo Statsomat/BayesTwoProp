@@ -12,7 +12,7 @@ library(coda)
 #########################################################################################
 
 # Data as a file 
-filename <- "./automated_report/datasets/biontech.csv" 
+filename <- "./automated_report/datasets/biontech.csv" ## Pfad ändern
 decimal <- "."
 data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "") 
 outcome <- "y" # outcome variable 
@@ -47,6 +47,7 @@ rope_user <- NULL
 ##############################################################
 # Run parametric, automatic .Rmd file 
 ##############################################################
+## Pfad ändern
 rmarkdown::render("./automated_report/report_html.Rmd", params = list(
   filename = filename,
   decimal = decimal,

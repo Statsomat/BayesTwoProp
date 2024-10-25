@@ -47,8 +47,10 @@ rope_user <- NULL
 ##############################################################
 # Run parametric, automatic .Rmd file 
 ##############################################################
+
 ## Pfad ändern
 rmarkdown::render("./automated_report/report_html.Rmd", params = list(
+
   filename = filename,
   decimal = decimal,
   data =data,

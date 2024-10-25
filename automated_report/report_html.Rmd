@@ -325,6 +325,7 @@ if (user_selection_function_param==1) {
 
 ```{r likelihood, eval=eval_final, results='asis'}
 cat("## The Likelihood", fill=TRUE)
+
 cat("The likelihood function is a function of $(\\theta_1, \\theta_2 )$ that describes the plausibility of $(Y_1,Y_2)=(y_1,y_2)$ with different $(\\theta_1, \\theta_2 )$. The likelihood function should not be confused with a probability function.", fill = TRUE)
 cat("<br>", fill=TRUE)
 cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2),$$ where $f$ is a probability mass function with")

@@ -374,7 +374,7 @@ Theta2 = seq(0.000, 1, by=0.001)
 
 #Calculation of both marginal distributions
 l1 = likelihood(Theta1, s1, n1)
-l2 = likelihood(Theta2, s2, n1)
+l2 = likelihood(Theta2, s2, n2)
 
 #Matrix multiplication to calculate likelihood of D given theta_1 and theta_2
 Likelihood = l1 %*% t(l2)

@@ -391,7 +391,7 @@ fig <- fig %>% add_surface(hovertemplate = paste0('\u03b8\u2081: %{x}<br>', '\u0
 fig <- fig %>% layout(scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
                                    xaxis=list(title = "\u03b8\u2081"), 
                                    yaxis=list(title = "\u03b8\u2082"), 
-                                   zaxis=list(title = "p(D | \u03b8\u2081, \u03b8\u2082)"), 
+                                   zaxis=list(title = "L(\u03b8\u2081, \u03b8\u2082 | y\u2081, y\u2082)"), 
                                    title = "theta"))
 #Display plot in report  
 fig

@@ -411,6 +411,10 @@ pTheta2 = dbeta(Theta2,params$a2,params$b2)
 
 pTheta1Theta2 <- pTheta1 %*% t(pTheta2)
 
+# Bounding for density values -> better colourscaling
+pTheta1Theta2[is.infinite(pTheta1Theta2)] <- NA  # replaces infinity by NA
+pTheta1Theta2 <- pmin(pTheta1Theta2, quantile(pTheta1Theta2, 0.99, na.rm = TRUE))  
+
 scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
              xaxis = list(title = "\u03b8\u2081"),
              yaxis = list(title = "\u03b8\u2082"),

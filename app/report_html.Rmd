@@ -61,7 +61,7 @@ evalcellfreq  <- !is.na(params$s1)
 evalfile2 <- FALSE
 eval_rows <- FALSE
 eval_final <- evalcellfreq # if file is missing, cells are mandatory
-rope_user <- FALSE
+rope_user <- NULL
 ```
 
 
@@ -402,7 +402,7 @@ cat("We assume that the beliefs about the two parameters are independent, i.e. $
 ```
 
 
-```{r priorplot, eval=eval_final, results='asis'}
+```{r priorplot, eval=TRUE, results='asis'}
 # Plot the prior (follow first row from page 167 DDBA)
 cat("The next plot shows the probability density function (pdf) of the prior distribution",fill=TRUE)
 
@@ -435,14 +435,17 @@ cat("### Prior Predictive Check", fill=TRUE)
 ```
 
 
-```{r posterior, eval=eval_final, results='asis'}
+```{r posterior1, eval=FALSE, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
 cat("The posterior distribution is an update of the prior distribution using the likelihood. This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data D. \\cite{kruschke} For our modell assumptions the posterior distribution has the following form:", fill=TRUE)
 cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\vert D)&= beta(\\theta_1 \\vert a_1+Y_1,b_1+n_1-Y_1) \\cdot beta(\\theta_2 \\vert a_2+Y_2,b_2+n_2-Y_2) \\\\
 &= beta(\\theta_1 \\vert \\underbrace{",a1,"+",s1,"}_{",a1+s1,"},\\underbrace{",b1,"+",n1,"-",s1,"}_{",b1+n1-s1,"}) \\cdot beta(\\theta_2 \\vert \\underbrace{",a2,"+",s2,"}_{",a2+s2,"},\\underbrace{",b2,"+",n2,"-",s2,"}_{",b2+n2-s2,"}) \\end{align}"))
+```
 
 
+```{r posterior2, eval=FALSE, results='asis'}
+cat("## The Posterior Distribution", fill=TRUE)
 # Posterior for plotting (follow last row from page 167 DDBA)
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
 for (i in 1:length(Theta1)){
@@ -489,14 +492,14 @@ if (user_selection_function_param == 3) {
 ```
 
 ```{r function_posterior, eval=eval_final, results="asis"}
-cat("# Primary Interest", fill=TRUE)
+cat("# Inference with respect to Posterior", fill=TRUE)
 cat("\n## Summary", fill=TRUE)
 ```
 
 
 ```{r function_posterior2, eval=eval_final}
 # Summarize posterior in a table. For continuous parameters, derived functions of parameters and predicted values, report the central tendency and limits of the credible interval. Explicitly state whether you are using density-based values (mode and HDI) or quantile-based values (median and ETI), and state the mass of the credible interval (for example, 95%)
-if (is.null(rope_user)==TRUE){
+if (is.null(rope_user)){
   describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL)
 } else {
   describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range = rope_user)
@@ -524,7 +527,7 @@ cat("## More Plots", fill=TRUE)
 # Use the plotPost function (page 205 Kruschke)
 ```
 
-```{r runtests}
+```{r runtests, eval=FALSE}
 # Run tests  
 library('testthat')
 testthat::test_dir('tests/testthat/')

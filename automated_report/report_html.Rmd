@@ -22,14 +22,14 @@ params:
   outcome: NA
   s1: NA 
   n1: NA 
-  s2: NA 
+  s2: NA
   n2: NA
   a1: NA
   b1: NA
   a2: NA
   b2: NA
   user_selection_function_param: NA
-  rope_user: NA
+rope_user: NA
 header-includes:
    - \usepackage{xcolor}
    - \usepackage{booktabs}
@@ -264,8 +264,8 @@ kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HO
 ```
 
 ```{r descplot fourfold, eval=eval_final, results='asis'}
-cat("The next plot is a visualisation of the frequency table. \n", fill =TRUE)
-fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, std="ind.max")
+#cat("The next plot is a visualisation of the frequency table. \n", fill =TRUE)
+#fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, std="ind.max")
 
 ```
 
@@ -278,20 +278,21 @@ exp_vec <- df[params$exposure]
 total <- nrow(df)
 
 # Outcome
-barplot(table(out_vec)/total, ylim=c(0,1), xlab="Outcome", ylab= "Proportion", col=c("#2fa42d","#396e9f")) 
+barplot(table(out_vec)/total, ylim=c(0,1), xlab="Outcome", ylab= "Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5) 
 
 # Exposure
-barplot(table(exp_vec)/total, ylim=c(0,1), xlab="Exposure", ylab ="Proportion", col=c("#2fa42d","#396e9f"))
+barplot(table(exp_vec)/total, ylim=c(0,1), xlab="Exposure", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5) 
+
 
 #  Outcome with present Exposure
 out_vec_exp1 <- out_vec[exp_vec==params$presence_exposure]
 total_exp1 <- nrow(df[exp_vec==params$presence_exposure,])
-barplot(table(out_vec_exp1)/total_exp1 ,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population (", params$presence_exposure,")"))
+barplot(table(out_vec_exp1)/total_exp1 ,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population (", params$presence_exposure,")"), cex.main = 1.5)
 
 #  Outcome without present Exposure
 out_vec_exp0 <- out_vec[exp_vec!=params$presence_exposure]
 total_exp0 <- nrow(df[exp_vec!=params$presence_exposure,])
-barplot(table(out_vec_exp0)/total_exp0,ylim=c(0,1),  xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the not Exposed Population (",unique(exp_vec)[unique(exp_vec)!=params$presence_exposure],")"))
+barplot(table(out_vec_exp0)/total_exp0,ylim=c(0,1),  xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the not Exposed Population (",unique(exp_vec)[unique(exp_vec)!=params$presence_exposure],")"), cex.main = 1.5) 
 
 ```
 

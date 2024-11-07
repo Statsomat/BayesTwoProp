@@ -12,7 +12,7 @@ library(coda)
 #########################################################################################
 
 # Data as a file 
-filename <- "/cloud/project/automated_report/datasets/biontech.csv" 
+filename <- "/Users/johannesepe/Desktop/Studium/BayesTwoProp/automated_report/datasets/biontech.csv" 
 decimal <- "."
 data <- fread(filename, header = "auto", sep ="auto", dec = decimal, encoding ="UTF-8", data.table = FALSE, na.strings = "") 
 outcome <- "y" # outcome variable 
@@ -47,7 +47,7 @@ rope_user <- NULL
 ##############################################################
 # Run parametric, automatic .Rmd file 
 ##############################################################
-rmarkdown::render("/cloud/project/automated_report/report_html.Rmd", params = list(
+rmarkdown::render("/Users/johannesepe/Desktop/Studium/BayesTwoProp/automated_report/report_html.Rmd", params = list(
   filename = filename,
   decimal = decimal,
   data =data,

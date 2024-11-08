@@ -99,45 +99,18 @@ server_file <- function(input, output, session) {
           
           if (input$fencoding == "UTF-8" & input$decimal == "auto"){ 
             
-            datainput1 <- fread(input$file$datapath, header = "auto", sep="auto", dec=".", encoding = "UTF-8", data.table = FALSE, na.strings = "")
-            
-            # Probably comma as decimal
-            colnames <- sapply(datainput1, function(col) is.numeric(col) & Negate(is.integer)(col))
-            if (sum(colnames) == 0L){
-              
-              datainput1 <- fread(input$file$datapath, header = "auto", sep="auto", dec=",", encoding = "UTF-8", data.table = FALSE, na.strings = "")
-              datainput1
-              
-            } else {datainput1}
+            datainput1 <- fread(input$file$datapath, header = "auto", sep="auto", dec="auto", encoding = "UTF-8", data.table = FALSE, na.strings = "")
             
           } else if (input$fencoding == "UTF-8" & input$decimal != "auto") {
             
             datainput1 <- fread(input$file$datapath, header = "auto", sep="auto", dec=input$decimal, encoding = "UTF-8", data.table = FALSE, na.strings = "")
-            datainput1
             
             
           } else if (input$fencoding == "unknown" &  input$decimal == "auto"){
             
             enc_guessed <- guess_encoding(input$file$datapath)
             enc_guessed_first <- enc_guessed[[1]][1]
-            datainput1 <- fread(input$file$datapath, header = "auto", sep="auto", dec=".", encoding = "unknown", data.table = FALSE, na.strings = "")
-            
-            # Probably comma as decimal
-            colnames <- sapply(datainput1, function(col) is.numeric(col) & Negate(is.integer)(col))
-            if (sum(colnames) == 0L){
-              
-              datainput1 <- fread(input$file$datapath, header = "auto", sep="auto", dec=",", encoding = "unknown", data.table = FALSE, na.strings = "")
-              colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
-              col_names <- sapply(datainput1, is.character)
-              datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
-              datainput1
-              
-            } else {
-              
-              colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
-              col_names <- sapply(datainput1 , is.character)
-              datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
-              datainput1}
+            datainput1 <- fread(input$file$datapath, header = "auto", sep="auto", dec="auto", encoding = "unknown", data.table = FALSE, na.strings = "")
             
           } else {
             

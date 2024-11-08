@@ -182,13 +182,20 @@ shinyUI(fluidPage(
                      )
     ),
     
-            wellPanel(style = "background: #adc7de;", 
-                      h3("Set Parameters a1, b1, a2, b2"),
-                      numericInput("a1", "Value for a1", value = 0.5, min = 0, step = 0.1, width = "30%"),
-                      numericInput("b1", "Value for b1", value = 0.5, min = 0, step = 0.1, width = "30%"),
-                      numericInput("a2", "Value for a2", value = 0.5, min = 0, step = 0.1, width = "30%"),
-                      numericInput("b2", "Value for b2", value = 0.5, min = 0, step = 0.1, width = "30%"),
-            ),            
+            wellPanel(
+              style = "background: #adc7de;", 
+              h3("Set Parameters a1, b1, a2, b2"),
+              
+              fluidRow(
+                column(6, numericInput("a1", "Value for a1", value = 0.5, min = 0, step = 0.1, width = "100%")),
+                column(6, numericInput("b1", "Value for b1", value = 0.5, min = 0, step = 0.1, width = "100%"))
+              ),
+              
+              fluidRow(
+                column(6, numericInput("a2", "Value for a2", value = 0.5, min = 0, step = 0.1, width = "100%")),
+                column(6, numericInput("b2", "Value for b2", value = 0.5, min = 0, step = 0.1, width = "100%"))
+              )
+            ),
            
            wellPanel(style = "background: #ff9900", align="center", 
                      

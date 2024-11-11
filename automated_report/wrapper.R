@@ -29,9 +29,9 @@ n2 <- 100 # not-exposed
 
 # User delivers the priors (are beta distributions with parameters a and b, for each Theta)
 a1 <- 2 
-b1 <- 2
+b1 <- 3
 a2 <- 2
-b2 <- 2
+b2 <- 4
 
 
 # User selection for the function of parameters 

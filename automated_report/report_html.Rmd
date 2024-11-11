@@ -340,8 +340,8 @@ cat("<br>",fill=TRUE)
 cat("$$p(D_2 | \\theta_2) = \\begin{pmatrix} n_2 \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{Y_2}(1-\\theta_2)^{n_2 - Y_2}, \\qquad D_2 = \\{n_2, Y_2\\} \\textrm{ given}$$", fill = TRUE)
 
 ## Region to plot 
-Theta1 = seq(0.000, 1, by=0.001) 
-Theta2 = seq(0.000, 1, by=0.001) 
+Theta1 = seq(0.01, 0.99, by=0.01)  
+Theta2 = seq(0.01, 0.99, by=0.01)
 
 #Function to calculate binomial coefficient
 bin = function(n, k) {
@@ -406,16 +406,10 @@ cat("We assume that the beliefs about the two parameters are independent, i.e. $
 # Plot the prior (follow first row from page 167 DDBA)
 cat("The next plot shows the probability density function (pdf) of the prior distribution",fill=TRUE)
 
-Theta1 = seq(0.01, 0.99, by=0.01)  
-Theta2 = seq(0.01, 0.99, by=0.01)
-
 pTheta1 = dbeta(Theta1,params$a1,params$b1)
 pTheta2 = dbeta(Theta2,params$a2,params$b2) 
 
 pTheta1Theta2 <- pTheta1 %*% t(pTheta2)
-
-# Limit density values for better color scaling
-pTheta1Theta2[is.infinite(pTheta1Theta2)] <- NA
 
 scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
              xaxis = list(title = "\u03b8\u2081"),

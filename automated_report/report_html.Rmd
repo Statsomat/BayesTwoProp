@@ -402,7 +402,9 @@ cat("## The Prior Distribution", fill=TRUE)
 cat("Preliminary information is included in the analysis with the help of the prior distribution.
 For binomially distributed measurement data, a beta distribution is suitable as an a priori distribution: \n",fill=TRUE)
 
-cat("$$(\\theta_1, \\theta_2) \\sim p(\\theta_1,\\theta_2) = p(\\theta_1) \\cdot p(\\theta_2) = beta(a_1,b_1) \\cdot beta(a_2,b_2).$$",fill=TRUE)
+cat("\\begin{align}(\\theta_1, \\theta_2) \\sim p(\\theta_1,\\theta_2) = p(\\theta_1) \\cdot p(\\theta_2) &= beta(a_1,b_1) \\cdot beta(a_2,b_2) \\\\[1em] &= \\frac{1}{B(a_1,b_1)} \\theta_1^{a_1-1} \\left(1-\\theta_1\\right)^{b_1-1} \\cdot \\frac{1}{B(a_2,b_2)} \\theta_2^{a_2-1} \\left(1-\\theta_2\\right)^{b_2-1}\\end{align}",fill=TRUE)
+cat("with $B$ as the beta function (also called \'Euler integral of the first kind\').",fill=TRUE)
+cat("<br>", fill=TRUE)
 cat("We assume that the beliefs about the two parameters are independent, i.e. $\\theta_1$ and $\\theta_2$ are independent, with marginal belief distributions $p(\\theta_1)$, $p(\\theta_2)$.",fill = TRUE) 
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
@@ -415,7 +417,7 @@ if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
   cat(paste("$$(\\theta_1, \\theta_2) \\sim beta(",a1,",",b1,") \\cdot
             beta(",a2,",",b2,").$$"),fill=TRUE)
   if(a1 == a2 & a1 == b1 & a1 == b2){
-    cat("In this case, all parameters were chosen to be the same. This means it          was assumed that little or no information about the parameters to be           estimated was known in advance. The maximum of the prior distribution          is therefore at $(0.5, 0.5)$")
+    cat("In this case, all parameters were chosen to be the same. This means that it was assumed that little or no information about the parameters to be estimated was known in advance. The maximum of the prior distribution is therefore at $(0.5, 0.5)$.")
   }else{
     if(a1 >1 & b1 > 1){
       t1_m = round((a1-1)/(a1+b1-2), digits=3)
@@ -429,23 +431,21 @@ if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
       t2_m = "not defined"
     }
     
-    cat("In this case not all parameters were chosen to be the same. This means
-        it was assumed that there were information about the parameters in
-        advance. The prior is peaked in (",t1_m,",",t2_m,").")
+    cat(paste0("In this case, not all parameters were chosen to be the same. This means that it was assumed that there was information about the parameters in advance. The prior is peaked in (",t1_m,", ",t2_m,")."))
   }
     
 }else{
   cat("The default parameters are chosen: \n",fill=TRUE)
   cat("$$(\\theta_1, \\theta_2) \\sim  beta(0.5,0.5) \\cdot beta(0.5,0.5).$$",fill=TRUE)
-  cat("These default parameters have their origin in the so called Jeffrey's prior which is a non-informative prior distribution. Non-informative prior distributions are used when little or no information is available about the parameters to be determined and therefore no statement can be made about the distribution of the parameters. In our assumed situation we have two parameters $\\theta_1$ and $\\theta_2$. In the following the Jeffrey's prior is described for one general $\\theta$, but we can use this results from Jeffrey's prior and insert them in both of the beta distributions multiplied in our prior. The priors $p(\\theta)=beta(0.5,0.5)$ result from Jeffrey's rule: $$p(\\theta) \\propto \\sqrt{I(\\theta)}$$ where $I(\\theta)$ is the Fisher information function $$I(\\theta)=-E\\left[ \\frac{\\partial^2}{\\partial \\theta^2} f(\\bullet \\ | \\ \\theta) \\right]$$ and where $f(\\bullet \\ | \\ \\theta)$ is the likelihood function of the data $\\bullet$.",fill=TRUE)
+  cat("These default parameters have their origin in the so called Jeffrey's prior which is a non-informative prior distribution. Non-informative prior distributions are used when little or no information is available about the parameters to be determined and therefore no statement can be made about the distribution of the parameters. In our assumed situation we have two parameters $\\theta_1$ and $\\theta_2$. In the following, Jeffrey's prior is described for one general $\\theta$ but we can use these results from Jeffrey's prior and insert them in both of the beta distributions multiplied in our prior. The priors $p(\\theta)=beta(0.5,0.5)$ result from Jeffrey's rule $$p(\\theta) \\propto \\sqrt{I(\\theta)}$$ where $I(\\theta)$ is the Fisher information function $$I(\\theta)=-E\\left[ \\frac{\\partial^2}{\\partial \\theta^2} L(\\theta \\ | \\ \\bullet) \\right]$$ and where $L(\\theta \\ | \\ \\bullet)$ is the likelihood function of the data $\\bullet$.",fill=TRUE)
   cat("<br>", fill=TRUE)
-  cat("In our case, the likelihood is a binomial distribution. Hence, the Fisher information function is $$I(\\theta)=\\frac{1}{\\theta (1-\\theta)} \\, .$$ This results in $$p(\\theta) \\propto \\theta^{-0.5}(1-\\theta)^{-0.5}$$ because of Jeffrey's rule. The resulting prior distribution is now proportional to $beta(0.5,0.5)$.",fill=TRUE)
-cat("The default shape parameters of the beta distributions indicate that the prior distribution is peaked at (0.5,0.5) which represents a mild prior belief.")
+  cat("In our case, the likelihood is a binomial distribution. Hence, the Fisher information function is $$I(\\theta)=\\frac{1}{\\theta (1-\\theta)} \\, .$$ This results in $$p(\\theta) \\propto \\theta^{-0.5}(1-\\theta)^{-0.5}$$ because of Jeffrey's rule. The resulting prior distribution is now $beta(0.5,0.5)$.",fill=TRUE)
+cat("The default shape parameters of the beta distributions indicate that the prior distribution is peaked at $(0.5,0.5)$ which represents a mild prior belief.")
 }
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
-cat("Notice when choosing the prior distribution, the amount of information already known about the probabilities $\\theta_1$ and $\\theta_2$ should be taken into account. If not so much or nothing at all is known, $a_i = b_i$ should be selected for the distribution of $\\theta_i$ $i=1,2$ so that the mean and the mode is equal at 0.5. In general the mean an the mode can be calculated as follows: $$ \\mu_i = \\frac{a_i}{a_i+b_i} \\text{ and } \\omega_i = \\frac{a_i -1}{a_i+b_i-2} \\text{ } a_i,b_i > 1$$",fill=TRUE)
-cat("So if $a_i>b_i$ $\\mu_i$ and $\\omega_i$ are greater than 0.5 and if $a_i<b_i$ $\\mu_i$ and $\\omega_i$ are less than 0.5. So the prior distribution as product of two $beta(a_i,b_i)$ distributions is peaked in $(\\omega_1,\\omega_2)$, when $a_i,b_i > 1$ for all $i=1,2$, because all values of the beta density are greater or equal 0. The larger the sum $a_i+b_i$, the more certain one is in the assumption of the tendencies for the $\\theta_i$.")
+cat("Note that when choosing the prior distribution, the amount of information already known about the probabilities $\\theta_1$ and $\\theta_2$ should be taken into account. If not so much or nothing at all is known, $a_i = b_i$ should be selected for the distribution of $\\theta_i$, $i=1,2$, so that the mean and the mode is equal at $0.5$. In general, the mean $\\mu_i$ and the mode $\\omega_i$ can be calculated as follows: $$ \\mu_i = \\frac{a_i}{a_i+b_i} \\text{ and } \\omega_i = \\frac{a_i -1}{a_i+b_i-2} \\, , \\  a_i,b_i > 1. $$",fill=TRUE)
+cat("So if $a_i>b_i$, $\\mu_i$ and $\\omega_i$ are greater than $0.5$ and if $a_i<b_i$, $\\mu_i$ and $\\omega_i$ are less than $0.5$. So the prior distribution as a product of two $beta(a_i,b_i)$ distributions is peaked in $(\\omega_1,\\omega_2)$ when $a_i,b_i > 1$ for all $i=1,2$ because all values of the beta density are greater than or equal to $0$. The larger the sum $a_i+b_i$, the more certain one is in the assumption of the tendencies for $\\theta_i$.")
 
 
 
@@ -457,7 +457,7 @@ cat("So if $a_i>b_i$ $\\mu_i$ and $\\omega_i$ are greater than 0.5 and if $a_i<b
 
 ```{r priorplot, eval=TRUE, results='asis'}
 # Plot the prior (follow first row from page 167 DDBA)
-cat("The next plot shows the probability density function (pdf) of the prior distribution",fill=TRUE)
+cat("The next plot shows the probability density function (pdf) of the prior distribution.",fill=TRUE)
 
 
 # Bounding for density values -> better colourscaling

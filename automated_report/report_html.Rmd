@@ -340,8 +340,8 @@ cat("<br>",fill=TRUE)
 cat("$$p(D_2 | \\theta_2) = \\begin{pmatrix} n_2 \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{Y_2}(1-\\theta_2)^{n_2 - Y_2}, \\qquad D_2 = \\{n_2, Y_2\\} \\textrm{ given}$$", fill = TRUE)
 
 ## Region to plot 
-Theta1 = seq(0.000, 1, by=0.001) 
-Theta2 = seq(0.000, 1, by=0.001) 
+Theta1 = seq(0.01, 0.99, by=0.01)  
+Theta2 = seq(0.01, 0.99, by=0.01)
 
 #Function to calculate binomial coefficient
 bin = function(n, k) {

@@ -21,9 +21,9 @@ presence_outcome <- 1 # presence for the existence of the outcome
 presence_exposure <- "Vaccine" # resence for the existence of the exposure
 
 # Data as cell frequencies 
-s1 <- 8 # outcome positive
+s1 <- 8 # outcome positive Vaccine
 n1 <- 100 # exposed 
-s2 <- 25 # outcome positive  
+s2 <- 25 # outcome positive Placebo 
 n2 <- 100 # not-exposed  
 
 

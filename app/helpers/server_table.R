@@ -17,72 +17,66 @@ server_table <- function(input, output, session) {
     
       
       report <- reactiveValues(filepath = NULL) 
+      
       # Render report
       observeEvent(input$generate, once=TRUE,
                    ignoreInit=TRUE,{
        
           
-        src1 <- normalizePath('report.Rmd')
+        src1 <- normalizePath('report_html.Rmd')
         src2 <- normalizePath('references.bib')
-        #  src3 <- normalizePath('report_code_container.Rmd') 
-        #  src4 <- normalizePath('report_code.Rmd') 
         src5 <- normalizePath('FiraSans-Bold.otf')
         src6 <- normalizePath('FiraSans-Regular.otf')
         
         # Temporarily switch to the temp dir
         owd <- setwd(tempdir())
         on.exit(setwd(owd))
-        file.copy(src1, 'report.Rmd', overwrite = TRUE)
+        file.copy(src1, 'report_html.Rmd', overwrite = TRUE)
         file.copy(src2, 'references.bib', overwrite = TRUE)
-        # file.copy(src3, 'report_code_container.Rmd', overwrite = TRUE)
-        # file.copy(src4, 'report_code.Rmd', overwrite = TRUE)
         file.copy(src5, 'FiraSans-Bold.otf', overwrite = TRUE)
         file.copy(src6, 'FiraSans-Regular.otf', overwrite = TRUE)
         
         # Set up parameters to pass to Rmd document
-        #enc_guessed <- guess_encoding(input$file$datapath)
-        #enc_guessed_first <- enc_guessed[[1]][1]
         
-        params <- list(dataTableInput= input$sample, exposurename= input$name_Exposure, outcomename= input$name_Outcome)
-        
+
+         params <- list(exposurename = input$name_Exposure, outcomename = input$name_Outcome, 
+                        a1 = 1/2, b1 = 1/2, a2 = 1/2, b2 = 1/2,
+                        user_selection_function_param = 1, 
+                        s1 = input$sample[2,2], s2 = input$sample[2,1], n1 = (input$sample[2,2]+input$sample[1,2]),
+                        n2 = (input$sample[2,1]+input$sample[1,1]))
         
         
         tryCatch({
           
           withProgress(message = 'Please wait, the Statsomat app is computing. This may take a while.', value=0, {
-
+            
             for (i in 1:15) {
               incProgress(1/15)
               Sys.sleep(0.25)
-
+              
             }
-
-            if (input$rcode == "Data Analysis Report (PDF)"){
-
-              tmp_file <- render('report.Rmd', pdf_document(latex_engine = "xelatex"),
+            
+            if (input$rcode == "Data Analysis Report (HTML)"){
+              
+              tmp_file <- render('report_html.Rmd', html_document(),
                                  params = params,
                                  envir = new.env(parent = globalenv())
               )
-
+              
             } else {
-
-              tmp_file <- render('report_code_container.Rmd', html_document(),
+              
+              tmp_file <- render('report_html.Rmd', html_document(),
                                  params = params,
                                  envir = new.env(parent = globalenv())
               )
-
+              
             }
-
-            report$filepath <- tmp_file
-
+            
+            report$filepath <- tmp_file 
+            
           })
           
-          showModal(modalDialog(
-            title = "Report generated", "Please Download now", 
-            footer = NULL,
-            fade = FALSE,
-            easyClose = TRUE
-          ))
+          showNotification("Now you can download the file.", duration=20)
           
         },
         
@@ -92,9 +86,8 @@ server_table <- function(input, output, session) {
         }
         )
         
-      })
+                   })
       
-
       
       # Enable downloadbutton 
       observe({
@@ -102,7 +95,8 @@ server_table <- function(input, output, session) {
         session$sendCustomMessage("check_generation", list(check_generation  = 1))
       })
       
-
+      
+      
       
       
       # Download report  
@@ -110,8 +104,8 @@ server_table <- function(input, output, session) {
         
         filename = function() {
           
-          if (input$rcode == "Data Analysis Report (PDF)"){
-            paste('MyReport',sep = '.','pdf')
+          if (input$rcode == "Data Analysis Report (HTML)"){
+            paste('MyReport',sep = '.','html')
           } else {
             paste('MyCode',sep = '.','html')
           }
@@ -123,9 +117,10 @@ server_table <- function(input, output, session) {
           
         }
       )
-    
-    
-
-  
-  
+      
+      
+      
+      
+      
+      
 }

@@ -444,7 +444,7 @@ cat("The default shape parameters of the beta distributions indicate that the pr
 }
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
-cat("Note that when choosing the prior distribution, the amount of information already known about the probabilities $\\theta_1$ and $\\theta_2$ should be taken into account. If not so much or nothing at all is known, $a_i = b_i$ should be selected for the distribution of $\\theta_i$, $i=1,2$, so that the mean and the mode is equal at $0.5$. In general, the mean $\\mu_i$ and the mode $\\omega_i$ can be calculated as follows: $$ \\mu_i = \\frac{a_i}{a_i+b_i} \\text{ and } \\omega_i = \\frac{a_i -1}{a_i+b_i-2} \\, , \\  a_i,b_i > 1. $$",fill=TRUE)
+cat("Note that when choosing the prior distribution, the amount of information already known about the probabilities $\\theta_1$ and $\\theta_2$ should be taken into account. If not so much or nothing at all is known, $a_i = b_i$ should be selected for the distribution of $\\theta_i$, $i=1,2$, so that the  mean and the mode are equal at $0.5$. In general, the mean $\\mu_i$ and the mode $\\omega_i$ can be calculated as follows: $$ \\mu_i = \\frac{a_i}{a_i+b_i} \\text{ and } \\omega_i = \\frac{a_i -1}{a_i+b_i-2} \\, , \\  a_i,b_i > 1. $$",fill=TRUE)
 cat("So if $a_i>b_i$, $\\mu_i$ and $\\omega_i$ are greater than $0.5$ and if $a_i<b_i$, $\\mu_i$ and $\\omega_i$ are less than $0.5$. So the prior distribution as a product of two $beta(a_i,b_i)$ distributions is peaked in $(\\omega_1,\\omega_2)$ when $a_i,b_i > 1$ for all $i=1,2$ because all values of the beta density are greater than or equal to $0$. The larger the sum $a_i+b_i$, the more certain one is in the assumption of the tendencies for $\\theta_i$.")
 
 

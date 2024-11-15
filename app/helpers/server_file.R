@@ -269,8 +269,6 @@ server_file <- function(input, output, session) {
         
         src1 <- normalizePath('report_html.Rmd')
         src2 <- normalizePath('references.bib')
-        #  src3 <- normalizePath('report_code_container.Rmd') 
-        #  src4 <- normalizePath('report_code.Rmd') 
         src5 <- normalizePath('FiraSans-Bold.otf')
         src6 <- normalizePath('FiraSans-Regular.otf')
         
@@ -279,8 +277,6 @@ server_file <- function(input, output, session) {
         on.exit(setwd(owd))
         file.copy(src1, 'report_html.Rmd', overwrite = TRUE)
         file.copy(src2, 'references.bib', overwrite = TRUE)
-        # file.copy(src3, 'report_code_container.Rmd', overwrite = TRUE)
-        # file.copy(src4, 'report_code.Rmd', overwrite = TRUE)
         file.copy(src5, 'FiraSans-Bold.otf', overwrite = TRUE)
         file.copy(src6, 'FiraSans-Regular.otf', overwrite = TRUE)
         
@@ -290,7 +286,8 @@ server_file <- function(input, output, session) {
         
         params <- list(data = datainput(), filename=input$file, fencoding=input$fencoding, decimal=input$decimal, enc_guessed = enc_guessed_first, 
                        outcome = input$selection_outcome$right, exposure = input$selection_exposure$right, presence_outcome = referencename_outcome(),
-                       presence_exposure = referencename_exposure())
+                       presence_exposure = referencename_exposure(), a1 = 1/2, b1 = 1/2, a2 = 1/2, b2 = 1/2,
+                       user_selection_function_param = 1) 
         
         
         
@@ -313,7 +310,7 @@ server_file <- function(input, output, session) {
               
             } else {
               
-              tmp_file <- render('report_code_container.Rmd', html_document(),
+              tmp_file <- render('report_html.Rmd', html_document(),
                                  params = params,
                                  envir = new.env(parent = globalenv())
               )

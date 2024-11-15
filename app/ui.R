@@ -185,6 +185,7 @@ shinyUI(fluidPage(
             wellPanel(
               style = "background: #adc7de;", 
               h3("Set Parameters a1, b1, a2, b2"),
+              h4("We consider beta(a1,b1) and beta(a2,b2) as prior distributions for Theta1 and Theta2."),
               
               fluidRow(
                 column(6, numericInput("a1", "Value for a1", value = 0.5, min = 0, step = 0.1, width = "100%")),

@@ -388,9 +388,9 @@ For binomially distributed measurement data, a beta distribution is suitable as 
 
 cat("$$(\\theta_1, \\theta_2) \\sim p(\\theta_1,\\theta_2) = p(\\theta_1)*p(\\theta_2) = beta(a_1,b_1)*beta(a_2,b_2)$$",fill=TRUE)
 
-if(a1!=2 | b1!=2 | a2!=2 | b2!=2){
+if(params$a1!=2 | params$b1!=2 | params$a2!=2 | params$b2!=2){
   cat("Your Choice of the parameters for the prior distributions is:\n ")
-  cat(paste("$$(\\theta_1, \\theta_2) \\sim beta(",a1,",",b1,")*beta(",a2,",",b2,")$$"),fill=TRUE)
+  cat(paste("$$(\\theta_1, \\theta_2) \\sim beta(",params$a1,",",params$b1,")*beta(",params$a2,",",params$b2,")$$"),fill=TRUE)
 }else{
   cat("The default Parameters are chosen: \n",fill=TRUE)
   cat("$$(\\theta_1, \\theta_2) \\sim  beta(2,2)*beta(2,2) $$",fill=TRUE)

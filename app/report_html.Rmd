@@ -63,10 +63,25 @@ evalcellfreq  <- !is.na(params$s1)
 ## Other initializations
 evalfile2 <- FALSE
 eval_rows <- FALSE
-eval_final <- FALSE
+#eval_final <- evalcellfreq # if file is missing, cells are mandatory
 rope_user <- NULL
 ```
 
+Dieser chunk hat folgende Variablen zur Verfügung:
+data
+filename
+fencoding
+decimal
+enc_guessed
+outcome
+exposure
+presence_outcome
+presence_exposure
+user_selection_function_param
+a1, a2, b1, b2
+
+Dieser chunk muss folgende Variablen erzeugen:
+s1, s2, n1, n2 --> sind eventuell schon die frequencies n_ ab Zeile 109 --> prüfen
 
 ```{r getdatafile, eval = evalfile}
 # Get data as a file 
@@ -91,23 +106,15 @@ tryCatch({
     df <- df[-rows_drop, ,drop=FALSE]
   }
   
-  # # frequencies are called n_
-  # # for example n_exposure0_outcome1 is the frequency of datapoints without exposure but with present outcome
-  # n_exposure1_outcome1 = sum(df[params$outcome]==params$presence_outcome & df[params$exposure]==params$presence_exposure) #s1
-  # n_exposure0_outcome1 = sum(df[params$outcome]== params$presence_outcome & df[params$exposure]!=params$presence_exposure) #s2
-  # n_exposure1_outcome0 = sum(df[params$outcome]!=params$presence_outcome & df[params$exposure]==params$presence_exposure) # maybe delete, no in use !!!
-  # n_exposure0_outcome0 = sum(df[params$outcome]!=params$presence_outcome & df[params$exposure]!=params$presence_exposure) # maybe delete, no in use !!!
-  # 
-  # n_exposure1 = sum(df[params$exposure]==params$presence_exposure) #n1
-  # n_exposure0 = sum(df[params$exposure]!=params$presence_exposure) #n2
-  
   # frequencies are called n_
   # for example n_exposure0_outcome1 is the frequency of datapoints without exposure but with present outcome
-  s1 = sum(df[params$outcome]==params$presence_outcome & df[params$exposure]==params$presence_exposure) #s1
-  s2 = sum(df[params$outcome]== params$presence_outcome & df[params$exposure]!=params$presence_exposure) #s2
+  n_exposure1_outcome1 = sum(df[params$outcome]==params$presence_outcome & df[params$exposure]==params$presence_exposure)
+  n_exposure0_outcome1 = sum(df[params$outcome]== params$presence_outcome & df[params$exposure]!=params$presence_exposure)
+  n_exposure1_outcome0 = sum(df[params$outcome]!=params$presence_outcome & df[params$exposure]==params$presence_exposure)
+  n_exposure0_outcome0 = sum(df[params$outcome]!=params$presence_outcome & df[params$exposure]!=params$presence_exposure)
   
-  n1 = sum(df[params$exposure]==params$presence_exposure) #n1
-  n2 = sum(df[params$exposure]!=params$presence_exposure) #n2
+  n_exposure1 = sum(df[params$exposure]==params$presence_exposure)
+  n_exposure0 = sum(df[params$exposure]!=params$presence_exposure)
   
   # Initialize next computations
   evalfile2 <- TRUE
@@ -126,22 +133,22 @@ tryCatch({
 ```
 
 
-<!-- Dieser chunk hat folgende Variablen zur Verfügung: -->
-<!-- exposurename -->
-<!-- outcomename -->
-<!-- user_selection_function_param -->
-<!-- a1, a2, b1, b2, -->
-<!-- s1, s2, n1, n2 -->
+Dieser chunk hat folgende Variablen zur Verfügung:
+exposurename
+outcomename
+user_selection_function_param
+a1, a2, b1, b2,
+s1, s2, n1, n2
 
-<!-- Dieser chunk muss folgende Variablen erzeugen: (werden unten verwendet) -->
-<!-- exposure -->
-<!-- outcome -->
-<!-- presence_outcome -->
-<!-- presence_exposure -->
+Dieser chunk muss folgende Variablen erzeugen: (werden unten verwendet)
+exposure
+outcome
+presence_outcome
+presence_exposure
 ```{r getcellfreq, eval=evalcellfreq}
 
 
-eval_final = TRUE
+
 ```
 
 ```{r getprior, eval=TRUE}
@@ -161,10 +168,10 @@ b2 = params$b2
 cat("# Basic Information", fill=TRUE)
 ```
 
-<!-- Dieser Chunk darf nur mit eval = evalfile laufen -->
+Dieser Chunk darf nur mit eval = evalfile laufen
 ```{r guifile, results="asis", eval=eval_final}
 # Basic information for the case file upload
-cat("Automatic statistics for the file:", as.character(params$filename[1]), fill=TRUE)
+cat("Automatic statistics for the file:", params$filename[1], fill=TRUE)
 cat("<br>",fill=TRUE) 
 
 cat("Your selection for the encoding:", fill=TRUE)
@@ -200,7 +207,7 @@ if (exists("vars")){
 ```
 
 
-<!-- Der chunk geht schief, weil man beim cell upload noch nicht params$outcome, params$exposure, params$presence_outcome, params$presence_exposure hat -->
+Der chunk geht schief, weil man beim cell upload noch nicht params$outcome, params$exposure, params$presence_outcome, params$presence_exposure hat
 ```{r cellupload, eval=evalcellfreq , results='asis'}
 # Upload as cell frequencies, display them nicely
 cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and present Exposure (",params$exposure ," is equal to ",params$presence_exposure , "): ", params$s1),fill=TRUE)
@@ -253,7 +260,7 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 
 \pagebreak
 
-<!-- params$exposure, params$outcome wird verwendet -->
+params$exposure, params$outcome wird verwendet
 ```{r desctable, eval=eval_final, results='asis'}
 cat("## Frequency Table", fill=TRUE)
 cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
@@ -312,7 +319,7 @@ fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, std="ind.
 ```
 
 \pagebreak
-<!-- params$outcome, params$exposure, params$presence_outcome, params$presence_exposure -->
+params$outcome, params$exposure, params$presence_outcome, params$presence_exposure hat
 ```{r descplots, eval=eval_final, results='asis', fig.cap=' ', fig.subcap=c("Barplot of Outcome", "Barplot of Exposure", "Barplot of Outcome with present Exposure", "Barplot of Outcome without present Exposure" ), fig.ncol=2, out.width="50%", fig.align='left', out.height="30%"}
 cat("## Barplots", fill=TRUE)
 out_vec <- df[params$outcome]
@@ -338,7 +345,7 @@ barplot(table(out_vec_exp0)/total_exp0,ylim=c(0,1),  xlab="Outcome", ylab ="Prop
 ```
 
 \pagebreak
-<!-- hier wird params$data Ist das in Abhängigkeit von file upload? Wenn ja ist OK -->
+hier wird params$data Ist das in Abhängigkeit von file upload? Wenn ja ist OK
 ```{r the_model, eval=eval, results='asis'}
 cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)

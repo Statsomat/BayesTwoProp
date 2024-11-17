@@ -1,6 +1,9 @@
-MAX_FILE_SIZE_MB <- 5
+MAX_FILE_SIZE_MB <- 15
 options(shiny.maxRequestSize = MAX_FILE_SIZE_MB*1024^2)
-options(shiny.sanitize.errors = TRUE)
+#options(shiny.sanitize.errors = TRUE)
+options(shiny.reactlog = TRUE) # enables reactive log
+shiny::reactiveConsole(TRUE)
+
 
 library(shiny)
 library(rmarkdown)

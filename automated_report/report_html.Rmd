@@ -411,36 +411,40 @@ cat("<br>", fill=TRUE)
 
 
 
-
+# no default parameters
 if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
   cat("Your choice of the parameters for the prior distributions is:\n ")
   cat(paste("$$(\\theta_1, \\theta_2) \\sim beta(",a1,",",b1,") \\cdot
             beta(",a2,",",b2,").$$"),fill=TRUE)
   
-  if(a1 == a2 & a1 == b1 & a1 == b2){
+  # mode exists
+  if(a1 > 1 & b1 > 1 & a2 > 1 & b2 > 1){
+    
+    # same values
+    if(a1 == a2 & a1 == b1 & a1 == b2){
     cat("In this case, all parameters were chosen to be the same. This means that it was assumed that little or no information about the parameters to be estimated was known in advance. The maximum of the prior distribution is therefore at $(0.5, 0.5)$.",fill=TRUE)
-  }
-  else{
-    if(a1 >1 & b1 > 1 & a2 > 1 & b2 > 1){
-      t1_m = round((a1-1)/(a1+b1-2), digits=3)
-      t2_m = round((a2-1)/(a2+b2-2), digits=3)
-    # }else{
-    #   t1_m = "not defined"
-    # }
-    # 
-    # if(a2 >1 & b2 > 1){
-    #   t2_m = round((a2-1)/(a2+b2-2))
-    # }else{
-    #   t2_m = "not defined"
-    # }
+    # different values
+    } else{
+    t1_m = round((a1-1)/(a1+b1-2), digits=3)
+    t2_m = round((a2-1)/(a2+b2-2), digits=3)
     cat(paste0("In this case, not all parameters were chosen to be the same. This means that it was assumed that there was information about the parameters in advance. The prior is peaked in $(",t1_m,", ",t2_m,")$."),fill=TRUE)
     }
-    else{
-    cat("In this case, not all parameters were chosen to be the same. This means that it was assumed that there was information about the parameters in advance.",fill=TRUE)
-     }
-  }
+  
+  # mode does not exist  
+  } else{
     
-}else{
+    # same values
+    if(a1 == a2 & a1 == b1 & a1 == b2){
+    cat("In this case, all parameters were chosen to be the same. This means that it was assumed that little or no information about the parameters to be estimated was known in advance.",fill=TRUE)
+    # different values
+    } else{
+    cat("In this case, not all parameters were chosen to be the same. This means that it was assumed that there was information about the parameters in advance.",fill=TRUE)
+    }
+    
+  }
+
+# default parameters    
+} else{
   cat("The default parameters are chosen: \n",fill=TRUE)
   cat("$$(\\theta_1, \\theta_2) \\sim  beta(0.5,0.5) \\cdot beta(0.5,0.5).$$",fill=TRUE)
   cat("These default parameters have their origin in the so called Jeffrey's prior which is a non-informative prior distribution. Non-informative prior distributions are used when little or no information is available about the parameters to be determined and therefore no statement can be made about the distribution of the parameters. In our assumed situation we have two parameters $\\theta_1$ and $\\theta_2$. In the following, Jeffrey's prior is described for one general $\\theta$ but we can use these results from Jeffrey's prior and insert them in both of the beta distributions multiplied in our prior. The priors $p(\\theta)=beta(0.5,0.5)$ result from Jeffrey's rule $$p(\\theta) \\propto \\sqrt{I(\\theta)}$$ where $I(\\theta)$ is the Fisher information function $$I(\\theta)=-E\\left[ \\frac{\\partial^2}{\\partial \\theta^2} L(\\theta \\ | \\ \\bullet) \\right]$$ and where $L(\\theta \\ | \\ \\bullet)$ is the likelihood function of the data $\\bullet$.",fill=TRUE)

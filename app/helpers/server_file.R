@@ -113,27 +113,12 @@ server_file <- function(input, output, session) {
         datainput1 <- fread(input$file$datapath, 
                             header = "auto", 
                             sep="auto", 
-                            dec=".", 
+                            dec="auto", 
                             encoding = "UTF-8", 
                             data.table = FALSE, 
                             na.strings = "")
         
-        # Probably comma as decimal
-        colnames <- sapply(datainput1, function(col) is.numeric(col) & Negate(is.integer)(col))
-        
-        if (sum(colnames) == 0L){
-          
-          datainput1 <- fread(input$file$datapath, 
-                              header = "auto", 
-                              sep="auto", 
-                              dec=",", 
-                              encoding = "UTF-8", 
-                              data.table = FALSE, 
-                              na.strings = "")
-
-          datainput1
-          
-          } else {datainput1}
+        datainput1
         
         } else if (input$fencoding == "UTF-8" & input$decimal != "auto") {
           
@@ -155,37 +140,16 @@ server_file <- function(input, output, session) {
             datainput1 <- fread(input$file$datapath, 
                                 header = "auto", 
                                 sep="auto", 
-                                dec=".", 
+                                dec="auto", 
                                 encoding = "unknown", 
                                 data.table = FALSE, 
                                 na.strings = "")
             
-            # Probably comma as decimal
-            colnames <- sapply(datainput1, function(col) is.numeric(col) & Negate(is.integer)(col))
+            colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
+            col_names <- sapply(datainput1, is.character)
             
-            if (sum(colnames) == 0L){
-              
-              datainput1 <- fread(input$file$datapath, 
-                                  header = "auto", 
-                                  sep="auto", 
-                                  dec=",", 
-                                  encoding = "unknown", 
-                                  data.table = FALSE, 
-                                  na.strings = "")
-              
-              colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
-              col_names <- sapply(datainput1, is.character)
-              
-              datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
-              datainput1
-              
-              } else {
-                
-                colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
-                col_names <- sapply(datainput1 , is.character)
-              
-                datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
-                datainput1}
+            datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
+            datainput1
             
             } else {
             
@@ -205,6 +169,7 @@ server_file <- function(input, output, session) {
             
             datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
             datainput1
+            
             }
       ,error=function(e) stop(safeError(e))
       
@@ -223,7 +188,7 @@ server_file <- function(input, output, session) {
       session$close()
       }
     
-    if (nrow(datainput()) < 20){
+    if (nrow(datainput()) < 1){ # Vorruebergehend auf 1 gesetzt
       showNotification("Error: Minimum 20 observations required. ", duration=30)
       Sys.sleep(5)
       session$close()
@@ -299,13 +264,13 @@ server_file <- function(input, output, session) {
     if (length(input$selection_outcome$right) > 1 ){
       showNotification("Please select only one outcome variable.", duration=30)
       Sys.sleep(5)
-      session$close()
+      #session$close() Temporaer auskommentiert zu Testzwecken
       }
     
     if (length(input$selection_exposure$right) > 1 ){
       showNotification("Please select only one exposure variable.", duration=30)
       Sys.sleep(5)
-      session$close()
+      #session$close() Temporaer auskommentiert zu Testzwecken
       }
     })
   

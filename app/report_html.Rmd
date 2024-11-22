@@ -16,6 +16,9 @@ params:
   fencoding: NA # used in Shiny app 
   decimal: NA
   enc_guessed: NA # used in Shiny app 
+  dataTableInput: NA
+  outcomename: NA
+  exposurename: NA
   presence_exposure: NA
   presence_outcome: NA
   exposure: NA
@@ -35,6 +38,7 @@ header-includes:
    - \usepackage{booktabs}
    - \usepackage{longtable}
    - \usepackage{float}
+   - \usepackage{amsmath}
 ---
 
 
@@ -61,7 +65,7 @@ evalcellfreq  <- !is.na(params$s1)
 evalfile2 <- FALSE
 eval_rows <- FALSE
 eval_final <- evalcellfreq # if file is missing, cells are mandatory
-rope_user <- FALSE
+rope_user <- NULL
 ```
 
 
@@ -174,7 +178,7 @@ cat("<br>",fill=TRUE)
 
 
 ```{r guirest, eval=eval_final, results='asis'}
-# display in the report the rest of the information arising from the GUI (e.g. priors, function of parameters etc.)
+# display in the Basic Information the rest of the information arising from the GUI (e.g. priors, function of parameters etc.)
 ```
 
 \pagebreak
@@ -191,9 +195,9 @@ cat("'An important benefit of Bayesian analysis is the ability to generate estim
 cat("<br>",fill=TRUE) 
 cat("<br>",fill=TRUE) 
 cat("The goal of this app is to generate Bayes estimates and credible intervals for the user selected function of parameters: ", fill=TRUE)
-if (user_selection_function_param==1) {
+if (params$user_selection_function_param==1) {
   cat("$\\theta_1 - \\theta_2$", fill=TRUE)
-} else if (user_selection_function_param==2) {
+} else if (params$user_selection_function_param==2) {
     cat("$\\frac{\\theta_1}{\\theta_2}$", fill=TRUE)
 } else {
   cat("$1-\\frac{\\theta_1}{\\theta_2}$", fill=TRUE)  
@@ -310,10 +314,10 @@ cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} i.i.d.  \\sim Bi(n_1,\\theta_
 cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} i.i.d. \\sim Bi(n_2,\\theta_2)$$", fill=TRUE)
 cat("These random variables are binomially distributed with the distribution parameters $n_i$ and $\\theta_i \\, , i\\in\\{1,2\\}$. \\", fill=TRUE)
 cat("The selected function ", fill=TRUE)
-if (user_selection_function_param==1) {
+if (params$user_selection_function_param==1) {
   cat("$\\theta_1 - \\theta_2$, describes the Difference between two success probabilities.", fill=TRUE)
 } else {
-  if (user_selection_function_param==2) {
+  if (params$user_selection_function_param==2) {
   cat("$\\theta_1 / \\theta_2$, describes the Relative Risk, e.g. ratio of two success probabilities.", fill=TRUE)
 } else {
   cat("$1-\\theta_1 / \\theta_2$, describes 1-Relative Risk, where Relative Risk is e.g. the ratio of two probabilities of success.", fill=TRUE)  
@@ -324,25 +328,28 @@ if (user_selection_function_param==1) {
 
 ```{r likelihood, eval=eval_final, results='asis'}
 cat("## The Likelihood", fill=TRUE)
-cat("The likelihood function describes the plausibility of the observed data $D$ given the parameters $\\theta_1$, $\\theta_2$. The likelihood function should not be confused as a probability function.", fill = TRUE)
-cat("<br>",fill=TRUE)
-#Likelihood formular of D given theta_1 and theta_2
-cat("$$p(D | \\theta_1, \\theta_2) = \\begin{pmatrix} n_1 \\\\ \\theta_1 \\end{pmatrix} \\theta_1^{Y_1}(1-\\theta_1)^{n_1 - Y_1} \\cdot  \\begin{pmatrix} n_2 \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{Y_2}(1-\\theta_2)^{n_2 - Y_2}, \\qquad D = \\{n_1, n_2, Y_1, Y_2\\}$$",fill=TRUE)
-cat("<br>",fill=TRUE)
+
+cat("The likelihood function is a function of $(\\theta_1, \\theta_2 )$ that describes the plausibility of $(Y_1,Y_2)=(y_1,y_2)$ with different $(\\theta_1, \\theta_2 )$. The likelihood function should not be confused with a probability function. In our case, the binomial distribution (which is a discrete distribution) is used. Therefore, the likelihood function is a probability mass function. Note that the likelihood function can also be a density function if a continuous distribution is used.", fill = TRUE)
+cat("<br>", fill=TRUE)
+cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2),$$ where $f$ is a probability mass function with")
+cat("<br>", fill=TRUE)
+#Likelihood formula of D given theta_1 and theta_2
+cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= P(Y_1=y_1 \\ | \\ \\theta_1) \\cdot P(Y_2=y_2 \\ | \\ \\theta_2) \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2} \\, . \\end{align}")
+cat("<br>", fill=TRUE)
+cat("The likelihood function is defined as followes $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
+cat("<br>", fill=TRUE)
+cat("$$L(\\theta_1, \\theta_2 \\ | \\ y_1,y_2) = \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot  \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2} \\, .$$", fill=TRUE)
+cat("<br>", fill=TRUE)
 #Likelihood formular of D given theta_1 and theta_2 with user entered data
-cat(paste0("$$p(D | \\theta_1, \\theta_2) = \\begin{pmatrix} "), n1, "\\\\ \\theta_1 \\end{pmatrix} \\theta_1^{", s1, "}(1-\\theta_1)^{", n1, " - ", s1, "} \\cdot  \\begin{pmatrix} ", n2, " \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{", s2, "}(1-\\theta_2)^{", n2, " - ", s2, "}, \\qquad D = \\{", n1, ", ", n2, ", ", s1, ", ", s2, "\\}$$",fill=TRUE)
-cat("<br>",fill=TRUE)
-cat("Because of the independence of $\\theta_1$ and $\\theta_2$ you can get the following marginal distributions: ",fill=TRUE) 
-#Marginal distribution of D_1 given theta_1
-cat("$$p(D_1 | \\theta_1) = \\begin{pmatrix} n_1 \\\\ \\theta_1 \\end{pmatrix} \\theta_1^{Y_1}(1-\\theta_1)^{n_1 - Y_1}, \\qquad D_1 = \\{n_1, Y_1\\} \\textrm{ given}$$", fill = TRUE)
-cat("<br>",fill=TRUE)
-#Marginal distribution of D_2 given theta_2
-cat("$$p(D_2 | \\theta_2) = \\begin{pmatrix} n_2 \\\\ \\theta_2 \\end{pmatrix} \\theta_2^{Y_2}(1-\\theta_2)^{n_2 - Y_2}, \\qquad D_2 = \\{n_2, Y_2\\} \\textrm{ given}$$", fill = TRUE)
+cat(paste0("Consider our data $n_1=", n1, ", n_2=", n2, ", y_1=", s1, ", y_2=", s2,"$:"),fill=TRUE)
+cat("<br>", fill=TRUE)
+cat(paste0("$$P(Y_1=", s1, ",Y_2=", s2, " \\ | \\ \\theta_1, \\theta_2) = \\begin{pmatrix} ", n1, " \\\\ ", s1," \\end{pmatrix} \\theta_1^{", s1, "}(1-\\theta_1)^{", n1, " - ", s1, "} \\cdot  \\begin{pmatrix} ", n2, " \\\\ ", s2," \\end{pmatrix} \\theta_2^{", s2, "}(1-\\theta_2)^{", n2, " - ", s2, "} \\, .$$"), fill=TRUE)
+cat("<br>", fill=TRUE)
+cat(paste0("Then $$L(\\theta_1, \\theta_2 \\ | \\ y_1=", s1, ",y_2=", s2, ")=\\begin{pmatrix} ", n1, " \\\\ ", s1," \\end{pmatrix} \\theta_1^{", s1, "}(1-\\theta_1)^{", n1, " - ", s1, "} \\cdot  \\begin{pmatrix} ", n2, " \\\\ ", s2," \\end{pmatrix} \\theta_2^{", s2, "}(1-\\theta_2)^{", n2, " - ", s2, "} \\, .$$"),fill=TRUE)
+cat("<br>", fill=TRUE)
+cat("Examples for selected $(\\theta_1, \\theta_2)$, given our data:", fill=TRUE)
 
-## Region to plot 
-Theta1 = seq(0.000, 1, by=0.001) 
-Theta2 = seq(0.000, 1, by=0.001) 
-
+# Calculation of the example values
 #Function to calculate binomial coefficient
 bin = function(n, k) {
   return(factorial(n) / (factorial(k) * factorial(n - k)))
@@ -350,12 +357,25 @@ bin = function(n, k) {
 
 #Function to calculate marginal distribution of D given theta
 likelihood = function(theta, s, n) {
-  bin(n, theta) * theta^s * (1-theta)^(n - s)
+  bin(n, s) * theta^s * (1-theta)^(n - s)
 }
+L1 = likelihood(s1/n1,s1,n1)*likelihood(s2/n2,s2,n2)
+L2 = likelihood(0.5,s1,n1)*likelihood(0.5,s2,n2)
+
+cat("<br>", fill=TRUE)
+cat(paste0("\\begin{align} L \\biggl( \\theta_1= \\frac{", s1, "}{", n1, "}, \\theta_2= \\frac{", s2, "}{", n2, "} \\ \\biggl | \\ y_1=", s1, ", y_2=", s2, " \\biggl) &=", round(L1,4),", \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", s1, ", y_2=", s2, ") &=", round(L2,4),".\\end{align}"), fill=TRUE)
+cat("<br>", fill=TRUE)
+cat("Remark: Because of the independence of $Y_1$ and $Y_2$ you can get the following marginal distributions: ",fill=TRUE) 
+#Marginal distribution of D_1 given theta_1 and of D_2 given theta_2
+cat("\\begin{align} P(Y_1=y_1 \\ | \\ \\theta_1 ) &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1}(1-\\theta_1)^{n_1 - y_1} \\, , \\\\[1em] P(Y_2=y_2 \\ | \\ \\theta_2) &= \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2} \\, . \\end{align}", fill = TRUE)
+
+## Region to plot 
+Theta1 = seq(0.01, 0.99, by=0.01)  
+Theta2 = seq(0.01, 0.99, by=0.01)
 
 #Calculation of both marginal distributions
 l1 = likelihood(Theta1, s1, n1)
-l2 = likelihood(Theta2, s2, n1)
+l2 = likelihood(Theta2, s2, n2)
 
 #Matrix multiplication to calculate likelihood of D given theta_1 and theta_2
 Likelihood = l1 %*% t(l2)
@@ -372,7 +392,7 @@ fig <- fig %>% add_surface(hovertemplate = paste0('\u03b8\u2081: %{x}<br>', '\u0
 fig <- fig %>% layout(scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
                                    xaxis=list(title = "\u03b8\u2081"), 
                                    yaxis=list(title = "\u03b8\u2082"), 
-                                   zaxis=list(title = "p(D | \u03b8\u2081, \u03b8\u2082)"), 
+                                   zaxis=list(title = "L(\u03b8\u2081, \u03b8\u2082 | y\u2081, y\u2082)"), 
                                    title = "theta"))
 #Display plot in report  
 fig
@@ -402,7 +422,7 @@ cat("We assume that the beliefs about the two parameters are independent, i.e. $
 ```
 
 
-```{r priorplot, eval=eval_final, results='asis'}
+```{r priorplot, eval=TRUE, results='asis'}
 # Plot the prior (follow first row from page 167 DDBA)
 cat("The next plot shows the probability density function (pdf) of the prior distribution",fill=TRUE)
 
@@ -435,14 +455,17 @@ cat("### Prior Predictive Check", fill=TRUE)
 ```
 
 
-```{r posterior, eval=eval_final, results='asis'}
+```{r posterior1, eval=FALSE, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
 cat("The posterior distribution is an update of the prior distribution using the likelihood. This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data D. \\cite{kruschke} For our modell assumptions the posterior distribution has the following form:", fill=TRUE)
 cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\vert D)&= beta(\\theta_1 \\vert a_1+Y_1,b_1+n_1-Y_1) \\cdot beta(\\theta_2 \\vert a_2+Y_2,b_2+n_2-Y_2) \\\\
 &= beta(\\theta_1 \\vert \\underbrace{",a1,"+",s1,"}_{",a1+s1,"},\\underbrace{",b1,"+",n1,"-",s1,"}_{",b1+n1-s1,"}) \\cdot beta(\\theta_2 \\vert \\underbrace{",a2,"+",s2,"}_{",a2+s2,"},\\underbrace{",b2,"+",n2,"-",s2,"}_{",b2+n2-s2,"}) \\end{align}"))
+```
 
 
+```{r posterior2, eval=FALSE, results='asis'}
+cat("## The Posterior Distribution", fill=TRUE)
 # Posterior for plotting (follow last row from page 167 DDBA)
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
 for (i in 1:length(Theta1)){
@@ -479,9 +502,9 @@ posterior_Theta2 <- rbeta(10000,s2+a2,(n2-s2)+b2)
 
 ```{r functionparameter, eval=eval_final}
 ## Function of parameters of interest
-if (user_selection_function_param == 3) {
+if (params$user_selection_function_param == 3) {
   estimate <- 1-posterior_Theta1/posterior_Theta2
-} else if (user_selection_function_param == 2){
+} else if (params$user_selection_function_param == 2){
   estimate <- posterior_Theta1/posterior_Theta2  
 } else {
   estimate <- posterior_Theta1-posterior_Theta2  
@@ -489,14 +512,14 @@ if (user_selection_function_param == 3) {
 ```
 
 ```{r function_posterior, eval=eval_final, results="asis"}
-cat("# Primary Interest", fill=TRUE)
+cat("# Inference with respect to Posterior", fill=TRUE)
 cat("\n## Summary", fill=TRUE)
 ```
 
 
 ```{r function_posterior2, eval=eval_final}
 # Summarize posterior in a table. For continuous parameters, derived functions of parameters and predicted values, report the central tendency and limits of the credible interval. Explicitly state whether you are using density-based values (mode and HDI) or quantile-based values (median and ETI), and state the mass of the credible interval (for example, 95%)
-if (is.null(rope_user)==TRUE){
+if (is.null(rope_user)){
   describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL)
 } else {
   describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range = rope_user)
@@ -524,7 +547,7 @@ cat("## More Plots", fill=TRUE)
 # Use the plotPost function (page 205 Kruschke)
 ```
 
-```{r runtests}
+```{r runtests, eval=FALSE}
 # Run tests  
 library('testthat')
 testthat::test_dir('tests/testthat/')

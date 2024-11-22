@@ -344,10 +344,10 @@ server_file <- function(input, output, session) {
                                 exposure = input$selection_exposure$right, 
                                 presence_outcome = referencename_outcome(),
                                 presence_exposure = referencename_exposure(), 
-                                a1 = 1/2, 
-                                b1 = 1/2, 
-                                a2 = 1/2, 
-                                b2 = 1/2,
+                                a1 = input$a1, 
+                                b1 = input$b1, 
+                                a2 = input$a2, 
+                                b2 = input$b2,
                                 user_selection_function_param = 1) 
                  
                  tryCatch({

@@ -411,7 +411,11 @@ cat("We assume that the beliefs about the two parameters are independent, i.e. $
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
 
-
+# Values from UI
+a1 <- params$a1
+a2 <- params$a2
+b1 <- params$b1
+b2 <- params$b2
 
 # no default parameters
 if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
@@ -476,9 +480,6 @@ cat("The next plot shows the probability density function (pdf) of the prior dis
 pTheta1 = dbeta(Theta1,params$a1,params$b1)
 pTheta2 = dbeta(Theta2,params$a2,params$b2)
 pTheta1Theta2 <- pTheta1 %*% t(pTheta2)
-pTheta1Theta2[is.infinite(pTheta1Theta2)] <- NA  # replaces infinity by NA
-pTheta1Theta2 <- pmin(pTheta1Theta2, quantile(pTheta1Theta2, 0.99, na.rm = TRUE))
-
 
 scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
              xaxis = list(title = "\u03b8\u2081"),
@@ -490,11 +491,6 @@ plt3d <- plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2, type = "surface",
                    y = list(show = TRUE, start= 0, end= 1, size = 0.05 ,color = 'white')))%>%
           layout(scene=scene)
 plt3d
-
-
-
-## Check the next line as a solution, export as a png and include or find another solution
-## plot_ly(x = Theta1, y = Theta2, z = ..., type = "surface")
 ```
 
 ```{r priorcheck, eval=eval_final, results='asis'}

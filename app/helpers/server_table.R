@@ -42,8 +42,10 @@ server_table <- function(input, output, session) {
          params <- list(exposurename = input$name_Exposure, outcomename = input$name_Outcome, 
                         a1 = 1/2, b1 = 1/2, a2 = 1/2, b2 = 1/2,
                         user_selection_function_param = 1, 
-                        s1 = input$sample[2,2], s2 = input$sample[2,1], n1 = (input$sample[2,2]+input$sample[1,2]),
-                        n2 = (input$sample[2,1]+input$sample[1,1]))
+                        n_exposure1_outcome1 = input$sample[2,2],
+                        n_exposure0_outcome1 = input$sample[2,1],
+                        n_exposure1 = (input$sample[2,2]+input$sample[1,2]),
+                        n_exposure0 = (input$sample[2,1]+input$sample[1,1]))
         
         
         tryCatch({

@@ -23,10 +23,10 @@ params:
   presence_outcome: NA
   exposure: NA
   outcome: NA
-  s1: NA 
-  n1: NA 
-  s2: NA 
-  n2: NA
+  n_exposure1_outcome1: NA 
+  n_exposure1: NA 
+  n_exposure0_outcome1: NA 
+  n_exposure0: NA
   a1: NA
   b1: NA
   a2: NA
@@ -60,7 +60,7 @@ library(LearnBayes)
 ## Evaluation only for file upload
 evalfile <- is.data.frame(params$data)
 ## Evaluation for cell frequency upload 
-evalcellfreq  <- !is.na(params$s1)
+evalcellfreq  <- !is.na(params$n_exposure1_outcome1)
 ## Other initializations
 evalfile2 <- FALSE
 eval_rows <- FALSE
@@ -92,23 +92,13 @@ tryCatch({
     df <- df[-rows_drop, ,drop=FALSE]
   }
   
-  # # frequencies are called n_
-  # # for example n_exposure0_outcome1 is the frequency of datapoints without exposure but with present outcome
-  # n_exposure1_outcome1 = sum(df[params$outcome]==params$presence_outcome & df[params$exposure]==params$presence_exposure) #s1
-  # n_exposure0_outcome1 = sum(df[params$outcome]== params$presence_outcome & df[params$exposure]!=params$presence_exposure) #s2
-  # n_exposure1_outcome0 = sum(df[params$outcome]!=params$presence_outcome & df[params$exposure]==params$presence_exposure) # maybe delete, no in use !!!
-  # n_exposure0_outcome0 = sum(df[params$outcome]!=params$presence_outcome & df[params$exposure]!=params$presence_exposure) # maybe delete, no in use !!!
-  # 
-  # n_exposure1 = sum(df[params$exposure]==params$presence_exposure) #n1
-  # n_exposure0 = sum(df[params$exposure]!=params$presence_exposure) #n2
-  
   # frequencies are called n_
   # for example n_exposure0_outcome1 is the frequency of datapoints without exposure but with present outcome
-  s1 = sum(df[params$outcome]==params$presence_outcome & df[params$exposure]==params$presence_exposure) #s1
-  s2 = sum(df[params$outcome]== params$presence_outcome & df[params$exposure]!=params$presence_exposure) #s2
+  n_exposure1_outcome1 = sum(df[params$outcome]==params$presence_outcome & df[params$exposure]==params$presence_exposure) #s1
+  n_exposure0_outcome1 = sum(df[params$outcome]== params$presence_outcome & df[params$exposure]!=params$presence_exposure) #s2
   
-  n1 = sum(df[params$exposure]==params$presence_exposure) #n1
-  n2 = sum(df[params$exposure]!=params$presence_exposure) #n2
+  n_exposure1 = sum(df[params$exposure]==params$presence_exposure) #n1
+  n_exposure0 = sum(df[params$exposure]!=params$presence_exposure) #n2
   
   # Initialize next computations
   evalfile2 <- TRUE
@@ -204,13 +194,13 @@ if (exists("vars")){
 <!-- Der chunk geht schief, weil man beim cell upload noch nicht params$outcome, params$exposure, params$presence_outcome, params$presence_exposure hat -->
 ```{r cellupload, eval=evalcellfreq , results='asis'}
 # Upload as cell frequencies, display them nicely
-cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and present Exposure (",params$exposure ," is equal to ",params$presence_exposure , "): ", params$s1),fill=TRUE)
+cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and present Exposure (",params$exposure ," is equal to ",params$presence_exposure , "): ", params$n_exposure1_outcome1),fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Number of Observations with present Exposure (",params$exposure ," is equal to ",params$presence_exposure ,") : ",params$n1),fill=TRUE)
+cat(paste("Number of Observations with present Exposure (",params$exposure ," is equal to ",params$presence_exposure ,") : ",params$n_exposure1),fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and without Exposure (",params$exposure ," is not equal to ",params$presence_exposure ,") : ",params$s2),fill=TRUE)
+cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and without Exposure (",params$exposure ," is not equal to ",params$presence_exposure ,") : ",params$n_exposure0_outcome1),fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Numbers of Observations without Exposure(",params$exposure ," is not equal to ",params$presence_exposure ,"): ",params$n2),fill=TRUE)
+cat(paste("Numbers of Observations without Exposure(",params$exposure ," is not equal to ",params$presence_exposure ,"): ",params$n_exposure0),fill=TRUE)
 cat("<br>",fill=TRUE) 
 ```
 
@@ -346,7 +336,7 @@ cat("\n## Notation", fill=TRUE)
 cat("The statistical model of this analysis derives from the data: ", fill=TRUE)
 cat("$$X_{11},...,X_{1n_1} \\hspace{1cm} i.i.d. \\sim Be(\\theta_1)$$", fill=TRUE)
 cat("$$X_{21},...,X_{2n_2} \\hspace{1cm} i.i.d.  \\sim Be(\\theta_2)$$", fill=TRUE)
-cat(paste0("with sample sizes $n_1=$ ",n1," and $n_2=$ ",n2,", and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_i \\, , i\\in\\{1,2\\}$.\\
+cat(paste0("with sample sizes $n_1=$ ",n_exposure1," and $n_2=$ ",n_exposure0,", and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_i \\, , i\\in\\{1,2\\}$.\\
 The Exposure variable indicates in which of the two groups (",colnames(table(params$data))[1]," and ",colnames(table(params$data))[2], ") an individual is. The Outcome variable indicates whether the event (",colnames(params$data)[1],") occurred for an individual or not and corresponds to either a value of 1 or 0. \\"), fill=TRUE)
 cat("Summing up the values of 0 and 1 in the respective groups results in the following random variables:", fill=TRUE)
 cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} i.i.d.  \\sim Bi(n_1,\\theta_1)$$", fill=TRUE)
@@ -380,11 +370,11 @@ cat("<br>", fill=TRUE)
 cat("$$L(\\theta_1, \\theta_2 \\ | \\ y_1,y_2) = \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot  \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2} \\, .$$", fill=TRUE)
 cat("<br>", fill=TRUE)
 #Likelihood formular of D given theta_1 and theta_2 with user entered data
-cat(paste0("Consider our data $n_1=", n1, ", n_2=", n2, ", y_1=", s1, ", y_2=", s2,"$:"),fill=TRUE)
+cat(paste0("Consider our data $n_1=", n_exposure1, ", n_2=", n_exposure0, ", y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1,"$:"),fill=TRUE)
 cat("<br>", fill=TRUE)
-cat(paste0("$$P(Y_1=", s1, ",Y_2=", s2, " \\ | \\ \\theta_1, \\theta_2) = \\begin{pmatrix} ", n1, " \\\\ ", s1," \\end{pmatrix} \\theta_1^{", s1, "}(1-\\theta_1)^{", n1, " - ", s1, "} \\cdot  \\begin{pmatrix} ", n2, " \\\\ ", s2," \\end{pmatrix} \\theta_2^{", s2, "}(1-\\theta_2)^{", n2, " - ", s2, "} \\, .$$"), fill=TRUE)
+cat(paste0("$$P(Y_1=", n_exposure1_outcome1, ",Y_2=", n_exposure0_outcome1, " \\ | \\ \\theta_1, \\theta_2) = \\begin{pmatrix} ", n_exposure1, " \\\\ ", n_exposure1_outcome1," \\end{pmatrix} \\theta_1^{", n_exposure1_outcome1, "}(1-\\theta_1)^{", n_exposure1, " - ", n_exposure1_outcome1, "} \\cdot  \\begin{pmatrix} ", n_exposure0, " \\\\ ", n_exposure0_outcome1," \\end{pmatrix} \\theta_2^{", n_exposure0_outcome1, "}(1-\\theta_2)^{", n_exposure0, " - ", n_exposure0_outcome1, "} \\, .$$"), fill=TRUE)
 cat("<br>", fill=TRUE)
-cat(paste0("Then $$L(\\theta_1, \\theta_2 \\ | \\ y_1=", s1, ",y_2=", s2, ")=\\begin{pmatrix} ", n1, " \\\\ ", s1," \\end{pmatrix} \\theta_1^{", s1, "}(1-\\theta_1)^{", n1, " - ", s1, "} \\cdot  \\begin{pmatrix} ", n2, " \\\\ ", s2," \\end{pmatrix} \\theta_2^{", s2, "}(1-\\theta_2)^{", n2, " - ", s2, "} \\, .$$"),fill=TRUE)
+cat(paste0("Then $$L(\\theta_1, \\theta_2 \\ | \\ y_1=", n_exposure1_outcome1, ",y_2=", n_exposure0_outcome1, ")=\\begin{pmatrix} ", n_exposure1, " \\\\ ", n_exposure1_outcome1," \\end{pmatrix} \\theta_1^{", n_exposure1_outcome1, "}(1-\\theta_1)^{", n_exposure1, " - ", n_exposure1_outcome1, "} \\cdot  \\begin{pmatrix} ", n_exposure0, " \\\\ ", n_exposure0_outcome1," \\end{pmatrix} \\theta_2^{", n_exposure0_outcome1, "}(1-\\theta_2)^{", n_exposure0, " - ", n_exposure0_outcome1, "} \\, .$$"),fill=TRUE)
 cat("<br>", fill=TRUE)
 cat("Examples for selected $(\\theta_1, \\theta_2)$, given our data:", fill=TRUE)
 
@@ -398,11 +388,11 @@ bin = function(n, k) {
 likelihood = function(theta, s, n) {
   bin(n, s) * theta^s * (1-theta)^(n - s)
 }
-L1 = likelihood(s1/n1,s1,n1)*likelihood(s2/n2,s2,n2)
-L2 = likelihood(0.5,s1,n1)*likelihood(0.5,s2,n2)
+L1 = likelihood(n_exposure1_outcome1/n_exposure1,n_exposure1_outcome1,n_exposure1)*likelihood(n_exposure0_outcome1/n_exposure0,n_exposure0_outcome1,n_exposure0)
+L2 = likelihood(0.5,n_exposure1_outcome1,n_exposure1)*likelihood(0.5,n_exposure0_outcome1,n_exposure0)
 
 cat("<br>", fill=TRUE)
-cat(paste0("\\begin{align} L \\biggl( \\theta_1= \\frac{", s1, "}{", n1, "}, \\theta_2= \\frac{", s2, "}{", n2, "} \\ \\biggl | \\ y_1=", s1, ", y_2=", s2, " \\biggl) &=", round(L1,4),", \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", s1, ", y_2=", s2, ") &=", round(L2,4),".\\end{align}"), fill=TRUE)
+cat(paste0("\\begin{align} L \\biggl( \\theta_1= \\frac{", n_exposure1_outcome1, "}{", n_exposure1, "}, \\theta_2= \\frac{", n_exposure0_outcome1, "}{", n_exposure0, "} \\ \\biggl | \\ y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, " \\biggl) &=", round(L1,4),", \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, ") &=", round(L2,4),".\\end{align}"), fill=TRUE)
 cat("<br>", fill=TRUE)
 cat("Remark: Because of the independence of $Y_1$ and $Y_2$ you can get the following marginal distributions: ",fill=TRUE) 
 #Marginal distribution of D_1 given theta_1 and of D_2 given theta_2
@@ -413,8 +403,8 @@ Theta1 = seq(0.01, 0.99, by=0.01)
 Theta2 = seq(0.01, 0.99, by=0.01)
 
 #Calculation of both marginal distributions
-l1 = likelihood(Theta1, s1, n1)
-l2 = likelihood(Theta2, s2, n2)
+l1 = likelihood(Theta1, n_exposure1_outcome1, n_exposure1)
+l2 = likelihood(Theta2, n_exposure0_outcome1, n_exposure0)
 
 #Matrix multiplication to calculate likelihood of D given theta_1 and theta_2
 Likelihood = l1 %*% t(l2)
@@ -499,7 +489,7 @@ cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
 cat("The posterior distribution is an update of the prior distribution using the likelihood. This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data D. \\cite{kruschke} For our modell assumptions the posterior distribution has the following form:", fill=TRUE)
 cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\vert D)&= beta(\\theta_1 \\vert a_1+Y_1,b_1+n_1-Y_1) \\cdot beta(\\theta_2 \\vert a_2+Y_2,b_2+n_2-Y_2) \\\\
-&= beta(\\theta_1 \\vert \\underbrace{",a1,"+",s1,"}_{",a1+s1,"},\\underbrace{",b1,"+",n1,"-",s1,"}_{",b1+n1-s1,"}) \\cdot beta(\\theta_2 \\vert \\underbrace{",a2,"+",s2,"}_{",a2+s2,"},\\underbrace{",b2,"+",n2,"-",s2,"}_{",b2+n2-s2,"}) \\end{align}"))
+&= beta(\\theta_1 \\vert \\underbrace{",a1,"+",n_exposure1_outcome1,"}_{",a1+n_exposure1_outcome1,"},\\underbrace{",b1,"+",n_exposure1,"-",n_exposure1_outcome1,"}_{",b1+n_exposure1-n_exposure1_outcome1,"}) \\cdot beta(\\theta_2 \\vert \\underbrace{",a2,"+",n_exposure0_outcome1,"}_{",a2+n_exposure0_outcome1,"},\\underbrace{",b2,"+",n_exposure0,"-",n_exposure0_outcome1,"}_{",b2+n_exposure0-n_exposure0_outcome1,"}) \\end{align}"))
 ```
 
 
@@ -509,7 +499,7 @@ cat("## The Posterior Distribution", fill=TRUE)
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
 for (i in 1:length(Theta1)){
   for (j in 1:length(Theta2)){
-    pTheta1Theta2GivenData[i,j]<- dbeta(Theta1[i], a1+s1, b1+n1-s1)*dbeta(Theta2[j], a2+s2, b2+n2-s2)   
+    pTheta1Theta2GivenData[i,j]<- dbeta(Theta1[i], a1+n_exposure1_outcome1, b1+n_exposure1-n_exposure1_outcome1)*dbeta(Theta2[j], a2+n_exposure0_outcome1, b2+n_exposure0-n_exposure0_outcome1)   
   }
 } 
 cat("The following figure shows the probability density function (pdf):  ", fill=TRUE)
@@ -535,8 +525,8 @@ cat("### Posterior Predictive Check", fill=TRUE)
 
 ```{r simulate, eval=eval}
 ## Simulate from posterior
-posterior_Theta1 <- rbeta(10000,s1+a1,(n1-s1)+b1)
-posterior_Theta2 <- rbeta(10000,s2+a2,(n2-s2)+b2)
+posterior_Theta1 <- rbeta(10000,n_exposure1_outcome1+a1,(n_exposure1-n_exposure1_outcome1)+b1)
+posterior_Theta2 <- rbeta(10000,n_exposure0_outcome1+a2,(n_exposure0-n_exposure0_outcome1)+b2)
 ```
 
 ```{r functionparameter, eval=eval_final}

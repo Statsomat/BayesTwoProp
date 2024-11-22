@@ -78,7 +78,7 @@ shinyUI(fluidPage(
   
   fluidRow( 
     
-    column(5, offset = 1,
+    column(8, offset=2,
            wellPanel(style = "background: #adc7de;", 
                      h3("Choose an Option to Upload the Data"),
                      radioButtons("input_type", "Input type",
@@ -210,6 +210,8 @@ shinyUI(fluidPage(
                                     background-image: url('Button.gif');") 
                      )
            ), # end column 
+    
+    column(width=2)
 
     ), # fluidrow
   

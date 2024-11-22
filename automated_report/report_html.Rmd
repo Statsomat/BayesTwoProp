@@ -493,14 +493,8 @@ plt3d <- plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2, type = "surface",
 plt3d
 ```
 
-```{r priorcheck, eval=eval_final, results='asis'}
-cat("### Prior Predictive Check", fill=TRUE)
-# Prior predictive check. Especially when using informed priors but even with broad priors, it is valuable to report a prior predictive check to demonstrate that the prior really generates simulated data consistent with the assumed prior knowledge.
-# References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
-```
 
-
-```{r posterior1, eval=FALSE, results='asis'}
+```{r posterior1, eval=TRUE, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
 cat("The posterior distribution is an update of the prior distribution using the likelihood. This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data D. \\cite{kruschke} For our modell assumptions the posterior distribution has the following form:", fill=TRUE)
@@ -509,7 +503,7 @@ cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\vert D)&= beta(\\theta_1 \\ve
 ```
 
 
-```{r posterior2, eval=FALSE, results='asis'}
+```{r posterior2, eval=TRUE, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Posterior for plotting (follow last row from page 167 DDBA)
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
@@ -531,12 +525,6 @@ cat("The following figure shows the probability density function (pdf):  ", fill
  
 cat("In the figure, at each point in the parameter space ($\\theta_1$,$\\theta_2$) the posterior is the product of the prior and likelihood values at that point divided by the normalizer p(D). Thus, it is proportional to the prior and the likelihood (posterior $\\propto$ prior x likelihood).") 
 
-```
-
-```{r posterior_check, eval=eval_final, results='asis'}
-cat("### Posterior Predictive Check", fill=TRUE)
-# Posterior predictive check. Provide a posterior predictive check to show that the model usefully mimics the data.
-# References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
 ```
 
 ```{r simulate, eval=eval}

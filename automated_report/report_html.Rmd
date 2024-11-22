@@ -413,10 +413,9 @@ cat("<br>", fill=TRUE)
 
 
 # no default parameters
-if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
+if(params$a1!=2 | params$b1!=2 | params$a2!=2 | params$b2!=2){
   cat("Your choice of the parameters for the prior distributions is:\n ")
-  cat(paste("$$(\\theta_1, \\theta_2) \\sim beta(",a1,",",b1,") \\cdot
-            beta(",a2,",",b2,").$$"),fill=TRUE)
+  cat(paste("$$(\\theta_1, \\theta_2) \\sim beta(",params$a1,",",params$b1,")*beta(",params$a2,",",params$b2,")$$"),fill=TRUE)
   
   # mode exists
   if(a1 > 1 & b1 > 1 & a2 > 1 & b2 > 1){

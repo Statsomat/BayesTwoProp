@@ -2,7 +2,7 @@
 title: "Two Proportions by Bayes"
 author: 
   - Denise Welsch
-  - Contributors^[Viktoria Daum, Konrad Junkes, Jomana Reusch, Simone Schüttler]
+  - Contributors^[Viktoria Daum, Renée Defren, Konrad Junkes, Jomana Reusch, Simone Schüttler]
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   html_document:
@@ -405,12 +405,12 @@ For binomially distributed measurement data, a beta distribution is suitable as 
 
 cat("$$(\\theta_1, \\theta_2) \\sim p(\\theta_1,\\theta_2) = p(\\theta_1)*p(\\theta_2) = beta(a_1,b_1)*beta(a_2,b_2)$$",fill=TRUE)
 
-if(a1!=2 | b1!=2 | a2!=2 | b2!=2){
+if(params$a1!=2 | params$b1!=2 | params$a2!=2 | params$b2!=2){
   cat("Your Choice of the parameters for the prior distributions is:\n ")
   cat(paste("$$(\\theta_1, \\theta_2) \\sim beta(",a1,",",b1,")*beta(",a2,",",b2,")$$"),fill=TRUE)
 }else{
   cat("The default Parameters are chosen: \n",fill=TRUE)
-  cat("$$(\\theta_1, \\theta_2) \\sim  beta(2,2)*beta(2,2) $$",fill=TRUE)
+  cat(paste("$$(\\theta_1, \\theta_2) \\sim beta(",params$a1,",",params$b1,")*beta(",params$a2,",",params$b2,")$$"),fill=TRUE)
 }
 cat("We assume that the beliefs about the two parameters are independent, i.e. $\\theta_1$ and $\\theta_2$ are independent, with marginal belief distributions $p(\\theta_1)$, $p(\\theta_2)$. The default shape parameters of the beta distributions indicate that the prior distribution is peaked at (0.5,0.5) which represents a mild prior belief. Notice that for the parameters $a$ and $b$ of an arbitrary $beta(a,b)$ distrbution we have: If $a>1$ and $b>1$, mean equals mode, and if $a=b$, mean and mode equal 0.5.",fill=TRUE)
 

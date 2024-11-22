@@ -16,9 +16,6 @@ params:
   fencoding: NA # used in Shiny app 
   decimal: NA
   enc_guessed: NA # used in Shiny app 
-  dataTableInput: NA ##???
-  outcomename: NA 
-  exposurename: NA 
   presence_exposure: NA
   presence_outcome: NA
   exposure: NA
@@ -116,26 +113,16 @@ tryCatch({
 
 ```
 
-
-<!-- Dieser chunk hat folgende Variablen zur Verfügung: -->
-<!-- exposurename -->
-<!-- outcomename -->
-<!-- user_selection_function_param -->
-<!-- a1, a2, b1, b2, -->
-<!-- s1, s2, n1, n2 -->
-
-<!-- Dieser chunk muss folgende Variablen erzeugen: (werden unten verwendet) -->
-<!-- exposure -->
-<!-- outcome -->
-<!-- presence_outcome -->
-<!-- presence_exposure -->
 ```{r getcellfreq, eval=evalcellfreq}
-
+n_exposure1_outcome1 = params$n_exposure1_outcome1
+n_exposure1 = params$n_exposure1
+n_exposure0_outcome1 = params$n_exposure0_outcome1
+n_exposure0 = params$n_exposure0
 
 eval_final = TRUE
 ```
 
-```{r getprior, eval=TRUE}
+```{r getprior, eval=eval_final}
 # all these variables are in params for the two different data inputs
 user_selection_function_param = params$user_selection_function_param
 a1 = params$a1
@@ -152,8 +139,8 @@ b2 = params$b2
 cat("# Basic Information", fill=TRUE)
 ```
 
-<!-- Dieser Chunk darf nur mit eval = evalfile laufen -->
-```{r guifile, results="asis", eval=eval_final}
+
+```{r guifile, results="asis", eval=evalfile}
 # Basic information for the case file upload
 cat("Automatic statistics for the file:", as.character(params$filename[1]), fill=TRUE)
 cat("<br>",fill=TRUE) 
@@ -191,17 +178,19 @@ if (exists("vars")){
 ```
 
 
-<!-- Der chunk geht schief, weil man beim cell upload noch nicht params$outcome, params$exposure, params$presence_outcome, params$presence_exposure hat -->
 ```{r cellupload, eval=evalcellfreq , results='asis'}
 # Upload as cell frequencies, display them nicely
-cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and present Exposure (",params$exposure ," is equal to ",params$presence_exposure , "): ", params$n_exposure1_outcome1),fill=TRUE)
+cat(paste("Number of Observations with both a present Outcome and  a present Exposure: ", params$n_exposure1_outcome1), fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Number of Observations with present Exposure (",params$exposure ," is equal to ",params$presence_exposure ,") : ",params$n_exposure1),fill=TRUE)
+cat(paste("Number of Observations with present Exposure: ",params$n_exposure1), fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Number of Observations with a present Outcome (",params$outcome, " is equal to ", params$presence_outcome ,") and without Exposure (",params$exposure ," is not equal to ",params$presence_exposure ,") : ",params$n_exposure0_outcome1),fill=TRUE)
+cat(paste("Number of Observations with a present Outcome, but without Exposure: ",params$n_exposure0_outcome1), fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Numbers of Observations without Exposure(",params$exposure ," is not equal to ",params$presence_exposure ,"): ",params$n_exposure0),fill=TRUE)
+cat(paste("Numbers of Observations without Exposure: ",params$n_exposure0),fill=TRUE)
 cat("<br>",fill=TRUE) 
+cat("Name of the Outcome Variable: ", params$outcome, fill=TRUE)
+cat("<br>",fill=TRUE) 
+cat("Name of the Exposure Variable: ", params$exposure, fill=TRUE)
 ```
 
 
@@ -244,7 +233,6 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 
 \pagebreak
 
-<!-- params$exposure, params$outcome wird verwendet -->
 ```{r desctable, eval=eval_final, results='asis'}
 cat("## Frequency Table", fill=TRUE)
 cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
@@ -303,7 +291,7 @@ fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, std="ind.
 ```
 
 \pagebreak
-<!-- params$outcome, params$exposure, params$presence_outcome, params$presence_exposure -->
+
 ```{r descplots, eval=eval_final, results='asis', fig.cap=' ', fig.subcap=c("Barplot of Outcome", "Barplot of Exposure", "Barplot of Outcome with present Exposure", "Barplot of Outcome without present Exposure" ), fig.ncol=2, out.width="50%", fig.align='left', out.height="30%"}
 cat("## Barplots", fill=TRUE)
 out_vec <- df[params$outcome]
@@ -329,7 +317,7 @@ barplot(table(out_vec_exp0)/total_exp0,ylim=c(0,1),  xlab="Outcome", ylab ="Prop
 ```
 
 \pagebreak
-<!-- hier wird params$data Ist das in Abhängigkeit von file upload? Wenn ja ist OK -->
+
 ```{r the_model, eval=eval, results='asis'}
 cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)
@@ -451,7 +439,7 @@ cat("We assume that the beliefs about the two parameters are independent, i.e. $
 ```
 
 
-```{r priorplot, eval=TRUE, results='asis'}
+```{r priorplot, eval=eval_final, results='asis'}
 # Plot the prior (follow first row from page 167 DDBA)
 cat("The next plot shows the probability density function (pdf) of the prior distribution",fill=TRUE)
 

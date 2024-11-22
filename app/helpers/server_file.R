@@ -289,7 +289,7 @@ server_file <- function(input, output, session) {
                        presence_exposure = referencename_exposure(), a1 = 1/2, b1 = 1/2, a2 = 1/2, b2 = 1/2,
                        user_selection_function_param = 1) 
         
-        
+        print(params)
         
         tryCatch({
           

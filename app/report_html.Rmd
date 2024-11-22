@@ -237,15 +237,22 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 cat("## Frequency Table", fill=TRUE)
 cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
 
-
 # compute frequencies and percentages
-df_table <- as.data.frame.matrix(table(df)) 
+df_table <- as.data.frame.matrix(matrix(c(
+  n_exposure0 - n_exposure0_outcome1, # Not exposed without outcome
+  n_exposure1 - n_exposure1_outcome1, # Exposed without outcome
+  n_exposure0_outcome1,               # Not exposed with outcome
+  n_exposure1_outcome1                # Exposed with outcome
+), nrow = 2, byrow = TRUE))
+colnames(df_table) <- c("Placebo", "Vaccine")
+rownames(df_table) <- c("0", "1")
 
 totalsum <- sum(df_table)
+
 rowsum <- apply(df_table, MARGIN  = 1, FUN = sum)
 colsum <- apply(df_table, MARGIN  = 2, FUN = sum)
 
-freq <- as.vector(t(table(df)))
+freq <- as.vector(t(df_table))
 perc_total <- paste( round(freq/totalsum,4)*100,"%")
 perc_row <- paste(round(freq/rep(rowsum,each=2),4)*100,"%")
 perc_col <-paste(round(freq/rep(colsum,2),4)*100,"%")
@@ -253,7 +260,7 @@ perc_col <-paste(round(freq/rep(colsum,2),4)*100,"%")
 # put together frequencies and percentages in right order
 freq_perc_table <- as.data.frame(matrix(c(freq[1:2], perc_total[1:2], perc_row[1:2], perc_col[1:2], freq[3:4], perc_total[3:4], perc_row[3:4], perc_col[3:4]), ncol=2, byrow=T))
 
-colnames(freq_perc_table) <-  colnames(df_table) 
+colnames(freq_perc_table) <-  colnames(df_table)
 
 # add Total counts and perentages
 freq_perc_table["Total"]<- c(rowsum[1], paste(round(rowsum[1]/totalsum,4)*100,"%"), NA , NA , rowsum[2], paste(round(rowsum[2]/totalsum,4)*100,"%"), NA, NA)
@@ -286,7 +293,18 @@ kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HO
 
 ```{r descplot fourfold, eval=eval_final, results='asis'}
 cat("The next plot is a visualisation of the frequency table. \n", fill =TRUE)
-fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, std="ind.max")
+contingency_matrix <- as.matrix(df_table)
+
+colnames(contingency_matrix) <- c(
+  paste(params$exposure, ": Placebo"), 
+  paste(params$exposure, ": Vaccine")
+)
+rownames(contingency_matrix) <- c(
+  paste(params$outcome, ": 0"), 
+  paste(params$outcome, ": 1")
+)
+
+fourfoldplot(contingency_matrix, color = c("#2fa42d","#396e9f"),conf.level = 0, std="ind.max")
 
 ```
 
@@ -294,25 +312,19 @@ fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, std="ind.
 
 ```{r descplots, eval=eval_final, results='asis', fig.cap=' ', fig.subcap=c("Barplot of Outcome", "Barplot of Exposure", "Barplot of Outcome with present Exposure", "Barplot of Outcome without present Exposure" ), fig.ncol=2, out.width="50%", fig.align='left', out.height="30%"}
 cat("## Barplots", fill=TRUE)
-out_vec <- df[params$outcome]
-exp_vec <- df[params$exposure]
-total <- nrow(df)
 
 # Outcome
-barplot(table(out_vec)/total, ylim=c(0,1), xlab="Outcome", ylab= "Proportion", col=c("#2fa42d","#396e9f")) 
+barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"))
 
 # Exposure
-barplot(table(exp_vec)/total, ylim=c(0,1), xlab="Exposure", ylab ="Proportion", col=c("#2fa42d","#396e9f"))
+barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table), xlab = "Exposure", ylab = "Proportion", col = c("#2fa42d", "#396e9f"))
 
 #  Outcome with present Exposure
-out_vec_exp1 <- out_vec[exp_vec==params$presence_exposure]
-total_exp1 <- nrow(df[exp_vec==params$presence_exposure,])
-barplot(table(out_vec_exp1)/total_exp1 ,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population (", params$presence_exposure,")"))
+barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population (", colnames(df_table)[2],")"),names.arg = c("0", "1"))
 
 #  Outcome without present Exposure
-out_vec_exp0 <- out_vec[exp_vec!=params$presence_exposure]
-total_exp0 <- nrow(df[exp_vec!=params$presence_exposure,])
-barplot(table(out_vec_exp0)/total_exp0,ylim=c(0,1),  xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the not Exposed Population (",unique(exp_vec)[unique(exp_vec)!=params$presence_exposure],")"))
+barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure0, ylim = c(0, 1), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main = paste("Distribution in the not Exposed Population (", colnames(df_table)[1],")" ),  names.arg = c("0", "1"))
+
 
 ```
 
@@ -325,7 +337,7 @@ cat("The statistical model of this analysis derives from the data: ", fill=TRUE)
 cat("$$X_{11},...,X_{1n_1} \\hspace{1cm} i.i.d. \\sim Be(\\theta_1)$$", fill=TRUE)
 cat("$$X_{21},...,X_{2n_2} \\hspace{1cm} i.i.d.  \\sim Be(\\theta_2)$$", fill=TRUE)
 cat(paste0("with sample sizes $n_1=$ ",n_exposure1," and $n_2=$ ",n_exposure0,", and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_i \\, , i\\in\\{1,2\\}$.\\
-The Exposure variable indicates in which of the two groups (",colnames(table(params$data))[1]," and ",colnames(table(params$data))[2], ") an individual is. The Outcome variable indicates whether the event (",colnames(params$data)[1],") occurred for an individual or not and corresponds to either a value of 1 or 0. \\"), fill=TRUE)
+The Exposure variable indicates in which of the two groups (",colnames(df_table)[1]," and ",colnames(df_table)[2], ") an individual is. The Outcome variable indicates whether the event occurred for an individual or not and corresponds to either a value of 1 or 0. \\"), fill=TRUE)
 cat("Summing up the values of 0 and 1 in the respective groups results in the following random variables:", fill=TRUE)
 cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} i.i.d.  \\sim Bi(n_1,\\theta_1)$$", fill=TRUE)
 cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} i.i.d. \\sim Bi(n_2,\\theta_2)$$", fill=TRUE)

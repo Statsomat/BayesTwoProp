@@ -325,7 +325,6 @@ barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,yli
 #  Outcome without present Exposure
 barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure0, ylim = c(0, 1), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main = paste("Distribution in the not Exposed Population (", colnames(df_table)[1],")" ),  names.arg = c("0", "1"))
 
-
 ```
 
 \pagebreak
@@ -430,18 +429,66 @@ fig
 ```{r priortext, eval=eval_final, results='asis'}
 cat("## The Prior Distribution", fill=TRUE)
 cat("Preliminary information is included in the analysis with the help of the prior distribution.
-For binomially distributed measurement data, a beta distribution is suitable as an a priori distribution. \n",fill=TRUE)
+For binomially distributed measurement data, a beta distribution is suitable as an a priori distribution: \n",fill=TRUE)
 
-cat("$$(\\theta_1, \\theta_2) \\sim p(\\theta_1,\\theta_2) = p(\\theta_1)*p(\\theta_2) = beta(a_1,b_1)*beta(a_2,b_2)$$",fill=TRUE)
+cat("\\begin{align}(\\theta_1, \\theta_2) \\sim p(\\theta_1,\\theta_2) = p(\\theta_1) \\cdot p(\\theta_2) &= beta(a_1,b_1) \\cdot beta(a_2,b_2) \\\\[1em] &= \\frac{1}{B(a_1,b_1)} \\theta_1^{a_1-1} \\left(1-\\theta_1\\right)^{b_1-1} \\cdot \\frac{1}{B(a_2,b_2)} \\theta_2^{a_2-1} \\left(1-\\theta_2\\right)^{b_2-1}\\end{align}",fill=TRUE)
+cat("with $B$ as the beta function (also called \'Euler integral of the first kind\').",fill=TRUE)
+cat("<br>", fill=TRUE)
+cat("We assume that the beliefs about the two parameters are independent, i.e. $\\theta_1$ and $\\theta_2$ are independent, with marginal belief distributions $p(\\theta_1)$, $p(\\theta_2)$.",fill = TRUE) 
+cat("<br>", fill=TRUE)
+cat("<br>", fill=TRUE)
 
-if(a1!=2 | b1!=2 | a2!=2 | b2!=2){
-  cat("Your Choice of the parameters for the prior distributions is:\n ")
-  cat(paste("$$(\\theta_1, \\theta_2) \\sim beta(",a1,",",b1,")*beta(",a2,",",b2,")$$"),fill=TRUE)
-}else{
-  cat("The default Parameters are chosen: \n",fill=TRUE)
-  cat("$$(\\theta_1, \\theta_2) \\sim  beta(2,2)*beta(2,2) $$",fill=TRUE)
+# Values from UI
+a1 <- params$a1
+a2 <- params$a2
+b1 <- params$b1
+b2 <- params$b2
+
+# no default parameters
+if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
+  cat("Your choice of the parameters for the prior distributions is:\n ")
+  cat(paste("$$(\\theta_1, \\theta_2) \\sim beta(",a1,",",b1,") \\cdot
+            beta(",a2,",",b2,").$$"),fill=TRUE)
+  
+  # mode exists
+  if(a1 > 1 & b1 > 1 & a2 > 1 & b2 > 1){
+    
+    # same values
+    if(a1 == a2 & a1 == b1 & a1 == b2){
+    cat("In this case, all parameters were chosen to be the same. This means that it was assumed that little or no information about the parameters to be estimated was known in advance. The maximum of the prior distribution is therefore at $(0.5, 0.5)$.",fill=TRUE)
+    # different values
+    } else{
+    t1_m = round((a1-1)/(a1+b1-2), digits=3)
+    t2_m = round((a2-1)/(a2+b2-2), digits=3)
+    cat(paste0("In this case, not all parameters were chosen to be the same. This means that it was assumed that there was information about the parameters in advance. The prior is peaked in $(",t1_m,", ",t2_m,")$."),fill=TRUE)
+    }
+  
+  # mode does not exist  
+  } else{
+    
+    # same values
+    if(a1 == a2 & a1 == b1 & a1 == b2){
+    cat("In this case, all parameters were chosen to be the same. This means that it was assumed that little or no information about the parameters to be estimated was known in advance.",fill=TRUE)
+    # different values
+    } else{
+    cat("In this case, not all parameters were chosen to be the same. This means that it was assumed that there was information about the parameters in advance.",fill=TRUE)
+    }
+    
+  }
+
+# default parameters    
+} else{
+  cat("The default parameters are chosen: \n",fill=TRUE)
+  cat("$$(\\theta_1, \\theta_2) \\sim  beta(0.5,0.5) \\cdot beta(0.5,0.5).$$",fill=TRUE)
+  cat("These default parameters have their origin in the so called Jeffrey's prior which is a non-informative prior distribution. Non-informative prior distributions are used when little or no information is available about the parameters to be determined and therefore no statement can be made about the distribution of the parameters. In our assumed situation we have two parameters $\\theta_1$ and $\\theta_2$. In the following, Jeffrey's prior is described for one general $\\theta$ but we can use these results from Jeffrey's prior and insert them in both of the beta distributions multiplied in our prior. The priors $p(\\theta)=beta(0.5,0.5)$ result from Jeffrey's rule $$p(\\theta) \\propto \\sqrt{I(\\theta)}$$ where $I(\\theta)$ is the Fisher information function $$I(\\theta)=-E\\left[ \\frac{\\partial^2}{\\partial \\theta^2} L(\\theta \\ | \\ \\bullet) \\right]$$ and where $L(\\theta \\ | \\ \\bullet)$ is the likelihood function of the data $\\bullet$.",fill=TRUE)
+  cat("<br>", fill=TRUE)
+  cat("In our case, the likelihood is a binomial distribution. Hence, the Fisher information function is $$I(\\theta)=\\frac{1}{\\theta (1-\\theta)} \\, .$$ This results in $$p(\\theta) \\propto \\theta^{-0.5}(1-\\theta)^{-0.5}$$ because of Jeffrey's rule. The resulting prior distribution is now $beta(0.5,0.5)$.",fill=TRUE)
+cat("The default shape parameters of the beta distributions indicate that the prior distribution is peaked at $(0.5,0.5)$ which represents a mild prior belief.")
 }
-cat("We assume that the beliefs about the two parameters are independent, i.e. $\\theta_1$ and $\\theta_2$ are independent, with marginal belief distributions $p(\\theta_1)$, $p(\\theta_2)$. The default shape parameters of the beta distributions indicate that the prior distribution is peaked at (0.5,0.5) which represents a mild prior belief. Notice that for the parameters $a$ and $b$ of an arbitrary $beta(a,b)$ distrbution we have: If $a>1$ and $b>1$, mean equals mode, and if $a=b$, mean and mode equal 0.5.",fill=TRUE)
+cat("<br>", fill=TRUE)
+cat("<br>", fill=TRUE)
+cat("Note that when choosing the prior distribution, the amount of information already known about the probabilities $\\theta_1$ and $\\theta_2$ should be taken into account. If not so much or nothing at all is known, $a_i = b_i$ should be selected for the distribution of $\\theta_i$, $i=1,2$, so that the  mean and the mode are equal to $0.5$. In general, the mean $\\mu_i$ and the mode $\\omega_i$ can be calculated as follows: $$ \\mu_i = \\frac{a_i}{a_i+b_i} \\text{ and } \\omega_i = \\frac{a_i -1}{a_i+b_i-2} \\, , \\  a_i,b_i > 1. $$",fill=TRUE)
+cat("So if $a_i>b_i$, $\\mu_i$ and $\\omega_i$ are greater than $0.5$ and if $a_i<b_i$, $\\mu_i$ and $\\omega_i$ are less than $0.5$. So the prior distribution as a product of two $beta(a_i,b_i)$ distributions is peaked in $(\\omega_1,\\omega_2)$ when $a_i,b_i > 1$ for all $i=1,2$ because all values of the beta density are greater than or equal to $0$. The greater the sum $a_i+b_i$, the more confident one is in the assumption of the tendencies for $\\theta_i$.")
 
 
 
@@ -453,11 +500,12 @@ cat("We assume that the beliefs about the two parameters are independent, i.e. $
 
 ```{r priorplot, eval=eval_final, results='asis'}
 # Plot the prior (follow first row from page 167 DDBA)
-cat("The next plot shows the probability density function (pdf) of the prior distribution",fill=TRUE)
+cat("The next plot shows the probability density function (pdf) of the prior distribution.",fill=TRUE)
 
+
+# Bounding for density values -> better colourscaling
 pTheta1 = dbeta(Theta1,params$a1,params$b1)
-pTheta2 = dbeta(Theta2,params$a2,params$b2) 
-
+pTheta2 = dbeta(Theta2,params$a2,params$b2)
 pTheta1Theta2 <- pTheta1 %*% t(pTheta2)
 
 scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
@@ -470,21 +518,10 @@ plt3d <- plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2, type = "surface",
                    y = list(show = TRUE, start= 0, end= 1, size = 0.05 ,color = 'white')))%>%
           layout(scene=scene)
 plt3d
-
-
-
-## Check the next line as a solution, export as a png and include or find another solution 
-## plot_ly(x = Theta1, y = Theta2, z = ..., type = "surface") 
-```
-
-```{r priorcheck, eval=eval_final, results='asis'}
-cat("### Prior Predictive Check", fill=TRUE)
-# Prior predictive check. Especially when using informed priors but even with broad priors, it is valuable to report a prior predictive check to demonstrate that the prior really generates simulated data consistent with the assumed prior knowledge.
-# References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
 ```
 
 
-```{r posterior1, eval=FALSE, results='asis'}
+```{r posterior1, eval=TRUE, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
 cat("The posterior distribution is an update of the prior distribution using the likelihood. This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data D. \\cite{kruschke} For our modell assumptions the posterior distribution has the following form:", fill=TRUE)
@@ -493,7 +530,7 @@ cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\vert D)&= beta(\\theta_1 \\ve
 ```
 
 
-```{r posterior2, eval=FALSE, results='asis'}
+```{r posterior2, eval=TRUE, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Posterior for plotting (follow last row from page 167 DDBA)
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
@@ -515,12 +552,6 @@ cat("The following figure shows the probability density function (pdf):  ", fill
  
 cat("In the figure, at each point in the parameter space ($\\theta_1$,$\\theta_2$) the posterior is the product of the prior and likelihood values at that point divided by the normalizer p(D). Thus, it is proportional to the prior and the likelihood (posterior $\\propto$ prior x likelihood).") 
 
-```
-
-```{r posterior_check, eval=eval_final, results='asis'}
-cat("### Posterior Predictive Check", fill=TRUE)
-# Posterior predictive check. Provide a posterior predictive check to show that the model usefully mimics the data.
-# References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
 ```
 
 ```{r simulate, eval=eval}

@@ -33,17 +33,17 @@ server_table <- function(input, output, session) {
                  file.copy(src6, 'FiraSans-Regular.otf', overwrite = TRUE)
                  
                  # Set up parameters to pass to Rmd document
-                 params <- list(exposurename = input$name_Exposure, 
-                                outcomename = input$name_Outcome,
+                 params <- list(exposure = input$name_Exposure, 
+                                outcome = input$name_Outcome,
                                 a1 = input$a1, 
                                 b1 = input$b1, 
                                 a2 = input$a2, 
                                 b2 = input$b2,
                                 user_selection_function_param = 1,
-                                s1 = input$sample[2,2], 
-                                s2 = input$sample[2,1], 
-                                n1 = (input$sample[2,2]+input$sample[1,2]),
-                                n2 = (input$sample[2,1]+input$sample[1,1]))
+                                n_exposure1_outcome1 = input$sample[2,2], 
+                                n_exposure0_outcome1 = input$sample[2,1], 
+                                n_exposure1 = (input$sample[2,2]+input$sample[1,2]),
+                                n_exposure0 = (input$sample[2,1]+input$sample[1,1]))
                  
                  tryCatch({
                    

@@ -52,6 +52,7 @@ server_file <- function(input, output, session) {
                      "Error. File cannot be read. Input is either empty, fully whitespace, or skip has been set after the last non-whitespace."
                   )
              )
+    
     validate(need(tryCatch(datainput1 <- fread(input$file$datapath,
                                                header = "auto",
                                                sep="auto",

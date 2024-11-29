@@ -291,22 +291,6 @@ kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HO
 
 ```
 
-```{r descplot fourfold, eval=eval_final, results='asis'}
-cat("The next plot is a visualisation of the frequency table. \n", fill =TRUE)
-contingency_matrix <- as.matrix(df_table)
-
-colnames(contingency_matrix) <- c(
-  paste(params$exposure, ": Placebo"), 
-  paste(params$exposure, ": Vaccine")
-)
-rownames(contingency_matrix) <- c(
-  paste(params$outcome, ": 0"), 
-  paste(params$outcome, ": 1")
-)
-
-fourfoldplot(contingency_matrix, color = c("#2fa42d","#396e9f"),conf.level = 0, std="ind.max")
-
-```
 
 \pagebreak
 
@@ -314,16 +298,16 @@ fourfoldplot(contingency_matrix, color = c("#2fa42d","#396e9f"),conf.level = 0, 
 cat("## Barplots", fill=TRUE)
 
 # Outcome
-barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"))
+barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
 
 # Exposure
-barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table), xlab = "Exposure", ylab = "Proportion", col = c("#2fa42d", "#396e9f"))
+barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table), xlab = "Exposure", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
 
 #  Outcome with present Exposure
-barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population (", colnames(df_table)[2],")"),names.arg = c("0", "1"))
+barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population"), cex.main = 1.5)
 
 #  Outcome without present Exposure
-barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure0, ylim = c(0, 1), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main = paste("Distribution in the not Exposed Population (", colnames(df_table)[1],")" ),  names.arg = c("0", "1"))
+barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure0, ylim = c(0, 1), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the NOT Exposed Population"), cex.main = 1.5)
 
 ```
 

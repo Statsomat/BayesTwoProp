@@ -100,19 +100,6 @@ shinyUI(fluidPage(
                                                 buttonLabel = "Browse...",
                                                 placeholder = "No file selected"),
                                       
-                                      # # Input: Select encoding ----
-                                      # radioButtons("fencoding", "Encoding",
-                                      #              choices = c(Auto = "unknown", 
-                                      #                          "UTF-8" = "UTF-8"),
-                                      #              selected = "unknown", inline=TRUE),
-                                      # 
-                                      # # Input: Select decimal ----
-                                      # radioButtons("decimal", "Decimal",
-                                      #              choices = c(Auto = "auto",
-                                      #                          Comma = ",",
-                                      #                          Dot = "."),
-                                      #              selected = "auto", inline=TRUE),
-                                      
                                       h5("Select the Exposure Variable", style="font-weight: bold; font-size: 10pt;"),
                                       uiOutput("selection_exposure"),
                                       

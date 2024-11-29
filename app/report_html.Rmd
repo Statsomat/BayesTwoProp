@@ -357,7 +357,7 @@ if (params$user_selection_function_param==1) {
 ```{r likelihood, eval=eval_final, results='asis'}
 cat("## The Likelihood", fill=TRUE)
 
-cat("The likelihood function is a function of $(\\theta_1, \\theta_2 )$ that describes the plausibility of $(Y_1,Y_2)=(y_1,y_2)$ with different $(\\theta_1, \\theta_2 )$. The likelihood function should not be confused with a probability function. In our case, the binomial distribution (which is a discrete distribution) is used. Therefore, the likelihood function is a probability mass function. Note that the likelihood function can also be a density function if a continuous distribution is used.", fill = TRUE)
+cat("The likelihood function is a function of $(\\theta_1, \\theta_2 )$ that describes the plausibility of $(Y_1,Y_2)=(y_1,y_2)$ with different $(\\theta_1, \\theta_2 )$. The likelihood function should not be confused with a probability function.", fill = TRUE)
 cat("<br>", fill=TRUE)
 cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2),$$ where $f$ is a probability mass function with")
 cat("<br>", fill=TRUE)
@@ -480,7 +480,7 @@ if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
 } else{
   cat("The default parameters are chosen: \n",fill=TRUE)
   cat("$$(\\theta_1, \\theta_2) \\sim  beta(0.5,0.5) \\cdot beta(0.5,0.5).$$",fill=TRUE)
-  cat("These default parameters have their origin in the so called Jeffrey's prior which is a non-informative prior distribution. Non-informative prior distributions are used when little or no information is available about the parameters to be determined and therefore no statement can be made about the distribution of the parameters. In our assumed situation we have two parameters $\\theta_1$ and $\\theta_2$. In the following, Jeffrey's prior is described for one general $\\theta$ but we can use these results from Jeffrey's prior and insert them in both of the beta distributions multiplied in our prior. The priors $p(\\theta)=beta(0.5,0.5)$ result from Jeffrey's rule $$p(\\theta) \\propto \\sqrt{I(\\theta)}$$ where $I(\\theta)$ is the Fisher information function $$I(\\theta)=-E\\left[ \\frac{\\partial^2}{\\partial \\theta^2} L(\\theta \\ | \\ \\bullet) \\right]$$ and where $L(\\theta \\ | \\ \\bullet)$ is the likelihood function of the data $\\bullet$.",fill=TRUE)
+  cat("These default parameters have their origin in the so called Jeffrey's prior which is a non-informative prior distribution. Non-informative prior distributions are used when little or no information is available about the parameters to be determined and therefore no statement can be made about the distribution of the parameters. In our assumed situation we have two parameters $\\theta_1$ and $\\theta_2$. In the following, Jeffrey's prior is described for one general $\\theta$, but we can use these results from Jeffrey's prior and insert them in both of the beta distributions multiplied in our prior. The priors $p(\\theta)=beta(0.5,0.5)$ result from Jeffrey's rule $$p(\\theta) \\propto \\sqrt{I(\\theta)}$$ where $I(\\theta)$ is the Fisher information function $$I(\\theta)=-E\\left[ \\frac{\\partial^2}{\\partial \\theta^2} L(\\theta \\ | \\ \\bullet) \\right]$$ and where $L(\\theta \\ | \\ \\bullet)$ is the likelihood function of the data $\\bullet$.",fill=TRUE)
   cat("<br>", fill=TRUE)
   cat("In our case, the likelihood is a binomial distribution. Hence, the Fisher information function is $$I(\\theta)=\\frac{1}{\\theta (1-\\theta)} \\, .$$ This results in $$p(\\theta) \\propto \\theta^{-0.5}(1-\\theta)^{-0.5}$$ because of Jeffrey's rule. The resulting prior distribution is now $beta(0.5,0.5)$.",fill=TRUE)
 cat("The default shape parameters of the beta distributions indicate that the prior distribution is peaked at $(0.5,0.5)$ which represents a mild prior belief.")
@@ -524,14 +524,48 @@ plt3d
 ```{r posterior1, eval=TRUE, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
-cat("The posterior distribution is an update of the prior distribution using the likelihood. This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data D. \\cite{kruschke} For our modell assumptions the posterior distribution has the following form:", fill=TRUE)
-cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\vert D)&= beta(\\theta_1 \\vert a_1+Y_1,b_1+n_1-Y_1) \\cdot beta(\\theta_2 \\vert a_2+Y_2,b_2+n_2-Y_2) \\\\
-&= beta(\\theta_1 \\vert \\underbrace{",a1,"+",n_exposure1_outcome1,"}_{",a1+n_exposure1_outcome1,"},\\underbrace{",b1,"+",n_exposure1,"-",n_exposure1_outcome1,"}_{",b1+n_exposure1-n_exposure1_outcome1,"}) \\cdot beta(\\theta_2 \\vert \\underbrace{",a2,"+",n_exposure0_outcome1,"}_{",a2+n_exposure0_outcome1,"},\\underbrace{",b2,"+",n_exposure0,"-",n_exposure0_outcome1,"}_{",b2+n_exposure0-n_exposure0_outcome1,"}) \\end{align}"))
+cat("The posterior distribution is an update of the prior distribution using the likelihood. \\cite{kruschke} This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data $(y_1,y_2)$. It is calculated with the help of Bayes theorem. In what follows we derive the posterior in general terms for arbitrary sample sizes and outcome summaries")  
+cat("\\begin{align}
+    p(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)&=\\frac{p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2)p(\\theta_1,\\theta_2)}{p(y_1,y_2)},
+    \\end{align}")
+cat("where \\begin{align} 
+        p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2) &= L(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)
+        \\end{align}
+        is the likelihood function and
+        \\begin{align}
+        p(y_1,y_2) &= \\int \\int
+        p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2)p(\\theta_1,\\theta_2) \\ d \\theta_1 d
+        \\theta_2 
+    \\end{align} is a normalizing constant.")
+cat("<br>",fill=TRUE) 
+cat("Including the likelihood and the assumed prior distributions of the $\\theta_i$,  $i=1,2$, we get the numerator of the Bayes theorem:")
+cat("\\begin{align}
+    z = \\underbrace{\\binom{n_1}{y_1}\\theta_1 ^{y_1}(1-\\theta_1)^{n_1-y_1} \\cdot \\binom{n_2}{y_2}\\theta_2 ^{y_2}(1-\\theta_2)^{n_2-y_2}}_{\\text{likelihood function}} \\cdot \\underbrace{\\frac{\\theta_1^{a_1-1}(1-\\theta_1)^{b_1-1}}{B(a_1,b_1)}}_{\\text{prior } \\theta_1} \\cdot \\underbrace{\\frac{\\theta_2^{a_2-1}(1-\\theta_2)^{b_2-1}}{B(a_2,b_2)}}_{\\text{prior } \\theta_2} \\, . \\end{align}")
+cat("Now we can insert this in the actual Bayes theorem. With some power calculations we get:")
+cat("\\begin{align}
+     p(\\theta_1,\\theta_2 \\ | \\ y_1,y_2) &= 
+     \\frac{\\frac{\\binom{n_1}{y_1}\\binom{n_2}{y_2}}{B(a_1,b_1)B(a_2,b_2)}
+     \\cdot \\theta_1^{y_1+a_1-1}(1-\\theta_1)^{n_1-y_1+b_1-1}\\cdot\\theta_2^
+     {y_2+a_2-1}(1-\\theta_2)^{n_2-y_2+b_2-1}}{p(y_1,y_2)} \\\\[1em]
+     &= \\frac{\\theta_1^{y_1+a_1-1}(1-\\theta_1)^{n_1-y_1+b_1-1}\\cdot\\theta_
+     2^{y_2+a_2-1}(1-\\theta_2)^{n_2-y_2+b_2-1}}{B(a_1+y_1,b_1+n_1-y_1)\\cdot
+     B(a_2+y_2,n_2-y_2+b_2) \\, . }
+     \\end{align}")
+
+cat("The last step in this computation follows from the normalizing constant and the condition that a density has to integrate to one. $B(\\cdot,\\cdot)$ are the normalizing constants of the Beta-distribution. ")
+cat("Hence, our posterior function is distributed as follows:
+    \\begin{align}
+    \\theta_1,\\theta_2 \\ | \\ y_1,y_2 \\sim beta(a_1+y_1,b_1+n_1-y_1) \\cdot 
+    beta(a_2+y_2, n_2+b_2-y_2) \\, . 
+    \\end{align}")
+cat("As can be seen here, the $\\theta_i$, $i=1,2$, are independent under the posterior. For our model assumptions, the posterior distribution has the following form:", fill=TRUE)
+cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)
+&= beta(",a1,"+",n_exposure1_outcome1,",",b1,"+",n_exposure1,"-",n_exposure1_outcome1,") \\cdot beta(",a2,"+",n_exposure0_outcome1,",",b2,"+",n_exposure0,"-",n_exposure0_outcome1,") \\\\
+&= beta(",a1+n_exposure1_outcome1,",",b1+n_exposure1-n_exposure1_outcome1,") \\cdot beta(",a2+n_exposure0_outcome1,",",b2+n_exposure0-n_exposure0_outcome1,") \\, .  \\end{align}"))
 ```
 
 
 ```{r posterior2, eval=TRUE, results='asis'}
-cat("## The Posterior Distribution", fill=TRUE)
 # Posterior for plotting (follow last row from page 167 DDBA)
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
 for (i in 1:length(Theta1)){
@@ -548,9 +582,9 @@ cat("The following figure shows the probability density function (pdf):  ", fill
          layout(scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
              xaxis = list(title = "\u03b8\u2081"),
              yaxis = list(title = "\u03b8\u2082"),
-             zaxis = list(title = "p(\u03b8\u2081, \u03b8\u2082 \u2223 D)" )))
+             zaxis = list(title = "p(\u03b8\u2081, \u03b8\u2082 \u2223 y\u2081, y\u2082)" )))
  
-cat("In the figure, at each point in the parameter space ($\\theta_1$,$\\theta_2$) the posterior is the product of the prior and likelihood values at that point divided by the normalizer p(D). Thus, it is proportional to the prior and the likelihood (posterior $\\propto$ prior x likelihood).") 
+cat("In the figure, at each point in the parameter space ($\\theta_1$,$\\theta_2$), the posterior is the product of the prior and likelihood values at that point divided by the normalizer $p(y_1,y_2)$. Thus, it is proportional to the prior and the likelihood (posterior $\\propto$ prior x likelihood).") 
 
 ```
 

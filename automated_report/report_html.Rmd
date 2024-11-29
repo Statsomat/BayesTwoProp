@@ -268,8 +268,8 @@ kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HO
 ```
 
 ```{r descplot fourfold, eval=eval_final, results='asis'}
-cat("The next plot is a visualisation of the frequency table. \n", fill =TRUE)
-fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, std="ind.max")
+#cat("The next plot is a visualisation of the frequency table. \n", fill =TRUE)
+#fourfoldplot(table(df), color = c("#2fa42d","#396e9f"),conf.level = 0, std="ind.max")
 
 ```
 
@@ -282,20 +282,21 @@ exp_vec <- df[params$exposure]
 total <- nrow(df)
 
 # Outcome
-barplot(table(out_vec)/total, ylim=c(0,1), xlab="Outcome", ylab= "Proportion", col=c("#2fa42d","#396e9f")) 
+barplot(table(out_vec)/total, ylim=c(0,1), xlab="Outcome", ylab= "Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5) 
 
 # Exposure
-barplot(table(exp_vec)/total, ylim=c(0,1), xlab="Exposure", ylab ="Proportion", col=c("#2fa42d","#396e9f"))
+barplot(table(exp_vec)/total, ylim=c(0,1), xlab="Exposure", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5) 
+
 
 #  Outcome with present Exposure
 out_vec_exp1 <- out_vec[exp_vec==params$presence_exposure]
 total_exp1 <- nrow(df[exp_vec==params$presence_exposure,])
-barplot(table(out_vec_exp1)/total_exp1 ,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population (", params$presence_exposure,")"))
+barplot(table(out_vec_exp1)/total_exp1 ,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population (", params$presence_exposure,")"), cex.main = 1.5)
 
 #  Outcome without present Exposure
 out_vec_exp0 <- out_vec[exp_vec!=params$presence_exposure]
 total_exp0 <- nrow(df[exp_vec!=params$presence_exposure,])
-barplot(table(out_vec_exp0)/total_exp0,ylim=c(0,1),  xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the not Exposed Population (",unique(exp_vec)[unique(exp_vec)!=params$presence_exposure],")"))
+barplot(table(out_vec_exp0)/total_exp0,ylim=c(0,1),  xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the not Exposed Population (",unique(exp_vec)[unique(exp_vec)!=params$presence_exposure],")"), cex.main = 1.5) 
 
 ```
 
@@ -410,7 +411,11 @@ cat("We assume that the beliefs about the two parameters are independent, i.e. $
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
 
-
+# Values from UI
+a1 <- params$a1
+a2 <- params$a2
+b1 <- params$b1
+b2 <- params$b2
 
 # no default parameters
 if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
@@ -475,9 +480,6 @@ cat("The next plot shows the probability density function (pdf) of the prior dis
 pTheta1 = dbeta(Theta1,params$a1,params$b1)
 pTheta2 = dbeta(Theta2,params$a2,params$b2)
 pTheta1Theta2 <- pTheta1 %*% t(pTheta2)
-pTheta1Theta2[is.infinite(pTheta1Theta2)] <- NA  # replaces infinity by NA
-pTheta1Theta2 <- pmin(pTheta1Theta2, quantile(pTheta1Theta2, 0.99, na.rm = TRUE))
-
 
 scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
              xaxis = list(title = "\u03b8\u2081"),
@@ -489,21 +491,10 @@ plt3d <- plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2, type = "surface",
                    y = list(show = TRUE, start= 0, end= 1, size = 0.05 ,color = 'white')))%>%
           layout(scene=scene)
 plt3d
-
-
-
-## Check the next line as a solution, export as a png and include or find another solution
-## plot_ly(x = Theta1, y = Theta2, z = ..., type = "surface")
-```
-
-```{r priorcheck, eval=eval_final, results='asis'}
-cat("### Prior Predictive Check", fill=TRUE)
-# Prior predictive check. Especially when using informed priors but even with broad priors, it is valuable to report a prior predictive check to demonstrate that the prior really generates simulated data consistent with the assumed prior knowledge.
-# References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
 ```
 
 
-```{r posterior1, eval=FALSE, results='asis'}
+```{r posterior1, eval=TRUE, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
 cat("The posterior distribution is an update of the prior distribution using the likelihood. This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data D. \\cite{kruschke} For our modell assumptions the posterior distribution has the following form:", fill=TRUE)
@@ -512,7 +503,7 @@ cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\vert D)&= beta(\\theta_1 \\ve
 ```
 
 
-```{r posterior2, eval=FALSE, results='asis'}
+```{r posterior2, eval=TRUE, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Posterior for plotting (follow last row from page 167 DDBA)
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
@@ -534,12 +525,6 @@ cat("The following figure shows the probability density function (pdf):  ", fill
  
 cat("In the figure, at each point in the parameter space ($\\theta_1$,$\\theta_2$) the posterior is the product of the prior and likelihood values at that point divided by the normalizer p(D). Thus, it is proportional to the prior and the likelihood (posterior $\\propto$ prior x likelihood).") 
 
-```
-
-```{r posterior_check, eval=eval_final, results='asis'}
-cat("### Posterior Predictive Check", fill=TRUE)
-# Posterior predictive check. Provide a posterior predictive check to show that the model usefully mimics the data.
-# References: Jim Albert page 31, plots similar to BARG-Supplement 6.1.2
 ```
 
 ```{r simulate, eval=eval}

@@ -78,7 +78,7 @@ shinyUI(fluidPage(
   
   fluidRow( 
     
-    column(5, offset = 1,
+    column(8, offset=2,
            wellPanel(style = "background: #adc7de;", 
                      h3("Choose an Option to Upload the Data"),
                      radioButtons("input_type", "Input type",
@@ -160,6 +160,23 @@ shinyUI(fluidPage(
                               )
                             ),
            
+           wellPanel(
+             style = "background: #adc7de;", 
+             h3("Set Parameters for beta(a1,b1) and beta(a2,b2)"),
+             h4("We consider beta(a1,b1) and beta(a2,b2) as prior distributions for Theta1 and Theta2.", style="font-weight: bold; font-size: 11pt;"),
+             fluidRow(
+               column(6, numericInput("a1", "Value for a1", value = 0.5, min = 0, step = 0.1, width = "100%")),
+               column(6, numericInput("b1", "Value for b1", value = 0.5, min = 0, step = 0.1, width = "100%"))
+             ),
+             
+             fluidRow(
+               column(6, numericInput("a2", "Value for a2", value = 0.5, min = 0, step = 0.1, width = "100%")),
+               column(6, numericInput("b2", "Value for b2", value = 0.5, min = 0, step = 0.1, width = "100%"))
+             )
+           ),
+           
+           
+           
            wellPanel(style = "background: #ff9900", align="center", 
                      
                      h3("Click to Generate Results"),
@@ -178,6 +195,7 @@ shinyUI(fluidPage(
                                    ")
                      ), 
            
+        
            wellPanel(style = "background: #ff9900", align="center", 
                      
                      h3("Click to Download"),
@@ -193,15 +211,8 @@ shinyUI(fluidPage(
                      )
            ), # end column 
     
-    column(5, 
-           wellPanel(style = "background: #fff;", includeHTML("www/Description.html")),
-           wellPanel(style = "background: #fff;", includeHTML("www/Instructions.html")),
-           wellPanel(style = "background: #fff;", includeHTML("www/Secure.html")), 
-           wellPanel(style = "background: #fff;", includeHTML("www/OpenSource.html")), 
-           wellPanel(style = "background: #fff;", includeHTML("www/Contact.html"))
-           ), # column 
-    
-    column(1,)
+    column(width=2)
+
     ), # fluidrow
   
   includeHTML("www/Footer.html"),

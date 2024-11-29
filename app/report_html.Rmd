@@ -508,7 +508,7 @@ plt3d
 ```{r posterior1, eval=TRUE, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
-cat("The posterior distribution is an update of the prior distribution using the likelihood. \\cite{kruschke} This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data $(y_1,y_2)$. It is calculated with the help of Bayes theorem. In what follows we derive the posterior in general terms for arbitrary sample sizes and outcome summaries")  
+cat("The posterior distribution is an update of the prior distribution using the likelihood. \\cite{kruschke} This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data $(y_1,y_2)$ out of $(n_1,n_2)$. It is calculated with the help of Bayes theorem. In what follows we derive the posterior in general terms for arbitrary sample sizes and outcome summaries")  
 cat("\\begin{align}
     p(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)&=\\frac{p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2)p(\\theta_1,\\theta_2)}{p(y_1,y_2)},
     \\end{align}")
@@ -543,7 +543,7 @@ cat("Hence, our posterior function is distributed as follows:
     beta(a_2+y_2, n_2+b_2-y_2) \\, . 
     \\end{align}")
 cat("As can be seen here, the $\\theta_i$, $i=1,2$, are independent under the posterior. For our model assumptions, the posterior distribution has the following form:", fill=TRUE)
-cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)
+cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\ | \\ ", n_exposure1_outcome1,",",n_exposure0_outcome1,")
 &= beta(",a1,"+",n_exposure1_outcome1,",",b1,"+",n_exposure1,"-",n_exposure1_outcome1,") \\cdot beta(",a2,"+",n_exposure0_outcome1,",",b2,"+",n_exposure0,"-",n_exposure0_outcome1,") \\\\
 &= beta(",a1+n_exposure1_outcome1,",",b1+n_exposure1-n_exposure1_outcome1,") \\cdot beta(",a2+n_exposure0_outcome1,",",b2+n_exposure0-n_exposure0_outcome1,") \\, .  \\end{align}"))
 ```

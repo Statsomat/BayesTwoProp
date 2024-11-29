@@ -108,16 +108,24 @@ server_file <- function(input, output, session) {
     
     ### Data Input ###
     
-    return(tryCatch(
+    return(tryCatch({
+      
+      enc_guessed <- guess_encoding(input$file$datapath)
+      enc_guessed_first <- enc_guessed[[1]][1]
       
       datainput1 <- fread(input$file$datapath, 
-                            header = "auto", 
-                            sep="auto", 
-                            dec="auto", 
-                            encoding = "UTF-8", 
-                            data.table = FALSE, 
-                            na.strings = "")
+                          header = "auto", 
+                          sep="auto", 
+                          dec ="auto", 
+                          encoding = "unknown", 
+                          data.table = FALSE, 
+                          na.strings = "")
       
+      colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
+      col_names <- sapply(datainput1, is.character)
+      
+      datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
+      datainput1}
       ,error=function(e) stop(safeError(e))
       
       ))

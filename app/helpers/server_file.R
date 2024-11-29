@@ -348,7 +348,7 @@ server_file <- function(input, output, session) {
                                 b1 = input$b1, 
                                 a2 = input$a2, 
                                 b2 = input$b2,
-                                user_selection_function_param = 1) 
+                                user_selection_function_param = input$user_selection_function_param) 
                  
                  tryCatch({
                    

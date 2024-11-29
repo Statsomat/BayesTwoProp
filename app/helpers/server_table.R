@@ -39,7 +39,7 @@ server_table <- function(input, output, session) {
                                 b1 = input$b1, 
                                 a2 = input$a2, 
                                 b2 = input$b2,
-                                user_selection_function_param = 1,
+                                user_selection_function_param = input$user_selection_function_param,
                                 n_exposure1_outcome1 = input$sample[2,2], 
                                 n_exposure0_outcome1 = input$sample[2,1], 
                                 n_exposure1 = (input$sample[2,2]+input$sample[1,2]),

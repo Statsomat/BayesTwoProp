@@ -316,14 +316,14 @@ barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure
 ```{r the_model, eval=eval, results='asis'}
 cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)
-cat("The statistical model of this analysis derives from the data: ", fill=TRUE)
-cat("$$X_{11},...,X_{1n_1} \\hspace{1cm} i.i.d. \\sim Be(\\theta_1)$$", fill=TRUE)
+cat("The statistical model of this analysis derives from the data ", fill=TRUE)
+cat("$$X_{11},...,X_{1n_1} \\hspace{1cm} i.i.d. \\sim Be(\\theta_1) \\, ,$$", fill=TRUE)
 cat("$$X_{21},...,X_{2n_2} \\hspace{1cm} i.i.d.  \\sim Be(\\theta_2)$$", fill=TRUE)
-cat(paste0("with sample sizes $n_1=$ ",n_exposure1," and $n_2=$ ",n_exposure0,", and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_i \\, , i\\in\\{1,2\\}$.\\
+cat(paste0("with sample sizes $n_1=$ ",n_exposure1," and $n_2=$ ",n_exposure0," and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_i \\, , i\\in\\{1,2\\}$.\\
 The Exposure variable indicates in which of the two groups (",colnames(df_table)[1]," and ",colnames(df_table)[2], ") an individual is. The Outcome variable indicates whether the event occurred for an individual or not and corresponds to either a value of 1 or 0. \\"), fill=TRUE)
 cat("Summing up the values of 0 and 1 in the respective groups results in the following random variables:", fill=TRUE)
-cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} i.i.d.  \\sim Bi(n_1,\\theta_1)$$", fill=TRUE)
-cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} i.i.d. \\sim Bi(n_2,\\theta_2)$$", fill=TRUE)
+cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} i.i.d.  \\sim Bi(n_1,\\theta_1) \\, ,$$", fill=TRUE)
+cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} i.i.d. \\sim Bi(n_2,\\theta_2) \\, .$$", fill=TRUE)
 cat("These random variables are binomially distributed with the distribution parameters $n_i$ and $\\theta_i \\, , i\\in\\{1,2\\}$. \\", fill=TRUE)
 cat("The selected function ", fill=TRUE)
 if (params$user_selection_function_param==1) {
@@ -343,10 +343,10 @@ cat("## The Likelihood", fill=TRUE)
 
 cat("The likelihood function is a function of $(\\theta_1, \\theta_2 )$ that describes the plausibility of $(Y_1,Y_2)=(y_1,y_2)$ with different $(\\theta_1, \\theta_2 )$. The likelihood function should not be confused with a probability function.", fill = TRUE)
 cat("<br>", fill=TRUE)
-cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2),$$ where $f$ is a probability mass function with")
+cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2)\\, ,$$ where $f$ is a probability mass function with")
 cat("<br>", fill=TRUE)
 #Likelihood formula of D given theta_1 and theta_2
-cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= P(Y_1=y_1 \\ | \\ \\theta_1) \\cdot P(Y_2=y_2 \\ | \\ \\theta_2) \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2} \\, . \\end{align}")
+cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= P(Y_1=y_1 \\ | \\ \\theta_1) \\cdot P(Y_2=y_2 \\ | \\ \\theta_2) \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}")
 cat("<br>", fill=TRUE)
 cat("The likelihood function is defined as followes $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
 cat("<br>", fill=TRUE)
@@ -375,7 +375,7 @@ L1 = likelihood(n_exposure1_outcome1/n_exposure1,n_exposure1_outcome1,n_exposure
 L2 = likelihood(0.5,n_exposure1_outcome1,n_exposure1)*likelihood(0.5,n_exposure0_outcome1,n_exposure0)
 
 cat("<br>", fill=TRUE)
-cat(paste0("\\begin{align} L \\biggl( \\theta_1= \\frac{", n_exposure1_outcome1, "}{", n_exposure1, "}, \\theta_2= \\frac{", n_exposure0_outcome1, "}{", n_exposure0, "} \\ \\biggl | \\ y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, " \\biggl) &=", round(L1,4),", \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, ") &=", round(L2,4),".\\end{align}"), fill=TRUE)
+cat(paste0("\\begin{align} L \\biggl( \\theta_1= \\frac{", n_exposure1_outcome1, "}{", n_exposure1, "}, \\theta_2= \\frac{", n_exposure0_outcome1, "}{", n_exposure0, "} \\ \\biggl | \\ y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, " \\biggl) &=", round(L1,4),"\\, , \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, ") &=", round(L2,4),"\\, .\\end{align}"), fill=TRUE)
 cat("<br>", fill=TRUE)
 cat("Remark: Because of the independence of $Y_1$ and $Y_2$ you can get the following marginal distributions: ",fill=TRUE) 
 #Marginal distribution of D_1 given theta_1 and of D_2 given theta_2
@@ -463,7 +463,7 @@ if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
 # default parameters    
 } else{
   cat("The default parameters are chosen: \n",fill=TRUE)
-  cat("$$(\\theta_1, \\theta_2) \\sim  beta(0.5,0.5) \\cdot beta(0.5,0.5).$$",fill=TRUE)
+  cat("$$(\\theta_1, \\theta_2) \\sim  beta(0.5,0.5) \\cdot beta(0.5,0.5) \\, .$$",fill=TRUE)
   cat("These default parameters have their origin in the so called Jeffrey's prior which is a non-informative prior distribution. Non-informative prior distributions are used when little or no information is available about the parameters to be determined and therefore no statement can be made about the distribution of the parameters. In our assumed situation we have two parameters $\\theta_1$ and $\\theta_2$. In the following, Jeffrey's prior is described for one general $\\theta$, but we can use these results from Jeffrey's prior and insert them in both of the beta distributions multiplied in our prior. The priors $p(\\theta)=beta(0.5,0.5)$ result from Jeffrey's rule $$p(\\theta) \\propto \\sqrt{I(\\theta)}$$ where $I(\\theta)$ is the Fisher information function $$I(\\theta)=-E\\left[ \\frac{\\partial^2}{\\partial \\theta^2} L(\\theta \\ | \\ \\bullet) \\right]$$ and where $L(\\theta \\ | \\ \\bullet)$ is the likelihood function of the data $\\bullet$.",fill=TRUE)
   cat("<br>", fill=TRUE)
   cat("In our case, the likelihood is a binomial distribution. Hence, the Fisher information function is $$I(\\theta)=\\frac{1}{\\theta (1-\\theta)} \\, .$$ This results in $$p(\\theta) \\propto \\theta^{-0.5}(1-\\theta)^{-0.5}$$ because of Jeffrey's rule. The resulting prior distribution is now $beta(0.5,0.5)$.",fill=TRUE)
@@ -471,7 +471,7 @@ cat("The default shape parameters of the beta distributions indicate that the pr
 }
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
-cat("Note that when choosing the prior distribution, the amount of information already known about the probabilities $\\theta_1$ and $\\theta_2$ should be taken into account. If not so much or nothing at all is known, $a_i = b_i$ should be selected for the distribution of $\\theta_i$, $i=1,2$, so that the  mean and the mode are equal to $0.5$. In general, the mean $\\mu_i$ and the mode $\\omega_i$ can be calculated as follows: $$ \\mu_i = \\frac{a_i}{a_i+b_i} \\text{ and } \\omega_i = \\frac{a_i -1}{a_i+b_i-2} \\, , \\  a_i,b_i > 1. $$",fill=TRUE)
+cat("Note that when choosing the prior distribution, the amount of information already known about the probabilities $\\theta_1$ and $\\theta_2$ should be taken into account. If not so much or nothing at all is known, $a_i = b_i$ should be selected for the distribution of $\\theta_i$, $i=1,2$, so that the  mean and the mode are equal to $0.5$. In general, the mean $\\mu_i$ and the mode $\\omega_i$ can be calculated as follows: $$ \\mu_i = \\frac{a_i}{a_i+b_i} \\text{ and } \\omega_i = \\frac{a_i -1}{a_i+b_i-2} \\, , \\  a_i,b_i > 1 \\, . $$",fill=TRUE)
 cat("So if $a_i>b_i$, $\\mu_i$ and $\\omega_i$ are greater than $0.5$ and if $a_i<b_i$, $\\mu_i$ and $\\omega_i$ are less than $0.5$. So the prior distribution as a product of two $beta(a_i,b_i)$ distributions is peaked in $(\\omega_1,\\omega_2)$ when $a_i,b_i > 1$ for all $i=1,2$ because all values of the beta density are greater than or equal to $0$. The greater the sum $a_i+b_i$, the more confident one is in the assumption of the tendencies for $\\theta_i$.")
 
 
@@ -510,7 +510,7 @@ cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
 cat("The posterior distribution is an update of the prior distribution using the likelihood. \\cite{kruschke} This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data $(y_1,y_2)$ out of $(n_1,n_2)$. It is calculated with the help of Bayes theorem. In what follows we derive the posterior in general terms for arbitrary sample sizes and outcome summaries")  
 cat("\\begin{align}
-    p(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)&=\\frac{p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2)p(\\theta_1,\\theta_2)}{p(y_1,y_2)},
+    p(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)&=\\frac{p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2)p(\\theta_1,\\theta_2)}{p(y_1,y_2)} \\, ,
     \\end{align}")
 cat("where \\begin{align} 
         p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2) &= L(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)
@@ -533,13 +533,13 @@ cat("\\begin{align}
      {y_2+a_2-1}(1-\\theta_2)^{n_2-y_2+b_2-1}}{p(y_1,y_2)} \\\\[1em]
      &= \\frac{\\theta_1^{y_1+a_1-1}(1-\\theta_1)^{n_1-y_1+b_1-1}\\cdot\\theta_
      2^{y_2+a_2-1}(1-\\theta_2)^{n_2-y_2+b_2-1}}{B(a_1+y_1,b_1+n_1-y_1)\\cdot
-     B(a_2+y_2,n_2-y_2+b_2) \\, . }
+     B(a_2+y_2,n_2-y_2+b_2) } \\, .
      \\end{align}")
 
 cat("The last step in this computation follows from the normalizing constant and the condition that a density has to integrate to one. $B(\\cdot,\\cdot)$ are the normalizing constants of the Beta-distribution. ")
 cat("Hence, our posterior function is distributed as follows:
     \\begin{align}
-    \\theta_1,\\theta_2 \\ | \\ y_1,y_2 \\sim beta(a_1+y_1,b_1+n_1-y_1) \\cdot 
+    \\left( \\theta_1,\\theta_2 \\ | \\ y_1,y_2 \\right) \\sim beta(a_1+y_1,b_1+n_1-y_1) \\cdot 
     beta(a_2+y_2, n_2+b_2-y_2) \\, . 
     \\end{align}")
 cat("As can be seen here, the $\\theta_i$, $i=1,2$, are independent under the posterior. For our model assumptions, the posterior distribution has the following form:", fill=TRUE)

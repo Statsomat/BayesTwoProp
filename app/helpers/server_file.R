@@ -105,7 +105,7 @@ server_file <- function(input, output, session) {
       }
     
     if (nrow(datainput()) < 20){
-      showNotification("Error: Minimum 2 observations required. ", duration=30)
+      showNotification("Error: Minimum 20 observations required. ", duration=30)
       Sys.sleep(5)
       session$close()
       }

@@ -13,8 +13,6 @@ classoption: landscape
 params:
   data: NA
   filename: NA
-  fencoding: NA # used in Shiny app 
-  decimal: NA
   enc_guessed: NA # used in Shiny app 
   presence_exposure: NA
   presence_outcome: NA
@@ -143,18 +141,6 @@ cat("# Basic Information", fill=TRUE)
 ```{r guifile, results="asis", eval=evalfile}
 # Basic information for the case file upload
 cat("Automatic statistics for the file:", as.character(params$filename[1]), fill=TRUE)
-cat("<br>",fill=TRUE) 
-
-cat("Your selection for the encoding:", fill=TRUE)
-if (params$fencoding=="unknown"){
-  cat("Auto")
-} else {cat("UTF-8")}
-cat("<br>",fill=TRUE) 
-
-cat("Your selection for the decimal character:", fill=TRUE)
-if (params$decimal=="auto"){
-  cat("Auto")
-} else {cat(params$decimal)}
 cat("<br>",fill=TRUE) 
   
 cat("Observations (rows with at least one non-missing value): ", fill=TRUE)

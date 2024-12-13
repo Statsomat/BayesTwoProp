@@ -291,22 +291,6 @@ kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HO
 
 ```
 
-```{r descplot fourfold, eval=eval_final, results='asis'}
-cat("The next plot is a visualisation of the frequency table. \n", fill =TRUE)
-contingency_matrix <- as.matrix(df_table)
-
-colnames(contingency_matrix) <- c(
-  paste(params$exposure, ": Placebo"), 
-  paste(params$exposure, ": Vaccine")
-)
-rownames(contingency_matrix) <- c(
-  paste(params$outcome, ": 0"), 
-  paste(params$outcome, ": 1")
-)
-
-fourfoldplot(contingency_matrix, color = c("#2fa42d","#396e9f"),conf.level = 0, std="ind.max")
-
-```
 
 \pagebreak
 
@@ -314,16 +298,16 @@ fourfoldplot(contingency_matrix, color = c("#2fa42d","#396e9f"),conf.level = 0, 
 cat("## Barplots", fill=TRUE)
 
 # Outcome
-barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"))
+barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
 
 # Exposure
-barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table), xlab = "Exposure", ylab = "Proportion", col = c("#2fa42d", "#396e9f"))
+barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table), xlab = "Exposure", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
 
 #  Outcome with present Exposure
-barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population (", colnames(df_table)[2],")"),names.arg = c("0", "1"))
+barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population"), cex.main = 1.5)
 
 #  Outcome without present Exposure
-barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure0, ylim = c(0, 1), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main = paste("Distribution in the not Exposed Population (", colnames(df_table)[1],")" ),  names.arg = c("0", "1"))
+barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure0, ylim = c(0, 1), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the NOT Exposed Population"), cex.main = 1.5)
 
 ```
 
@@ -332,14 +316,14 @@ barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure
 ```{r the_model, eval=eval, results='asis'}
 cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)
-cat("The statistical model of this analysis derives from the data: ", fill=TRUE)
-cat("$$X_{11},...,X_{1n_1} \\hspace{1cm} i.i.d. \\sim Be(\\theta_1)$$", fill=TRUE)
+cat("The statistical model of this analysis derives from the data ", fill=TRUE)
+cat("$$X_{11},...,X_{1n_1} \\hspace{1cm} i.i.d. \\sim Be(\\theta_1) \\, ,$$", fill=TRUE)
 cat("$$X_{21},...,X_{2n_2} \\hspace{1cm} i.i.d.  \\sim Be(\\theta_2)$$", fill=TRUE)
-cat(paste0("with sample sizes $n_1=$ ",n_exposure1," and $n_2=$ ",n_exposure0,", and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_i \\, , i\\in\\{1,2\\}$.\\
+cat(paste0("with sample sizes $n_1=$ ",n_exposure1," and $n_2=$ ",n_exposure0," and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_i \\, , i\\in\\{1,2\\}$.\\
 The Exposure variable indicates in which of the two groups (",colnames(df_table)[1]," and ",colnames(df_table)[2], ") an individual is. The Outcome variable indicates whether the event occurred for an individual or not and corresponds to either a value of 1 or 0. \\"), fill=TRUE)
 cat("Summing up the values of 0 and 1 in the respective groups results in the following random variables:", fill=TRUE)
-cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} i.i.d.  \\sim Bi(n_1,\\theta_1)$$", fill=TRUE)
-cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} i.i.d. \\sim Bi(n_2,\\theta_2)$$", fill=TRUE)
+cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} i.i.d.  \\sim Bi(n_1,\\theta_1) \\, ,$$", fill=TRUE)
+cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} i.i.d. \\sim Bi(n_2,\\theta_2) \\, .$$", fill=TRUE)
 cat("These random variables are binomially distributed with the distribution parameters $n_i$ and $\\theta_i \\, , i\\in\\{1,2\\}$. \\", fill=TRUE)
 cat("The selected function ", fill=TRUE)
 if (params$user_selection_function_param==1) {
@@ -357,12 +341,12 @@ if (params$user_selection_function_param==1) {
 ```{r likelihood, eval=eval_final, results='asis'}
 cat("## The Likelihood", fill=TRUE)
 
-cat("The likelihood function is a function of $(\\theta_1, \\theta_2 )$ that describes the plausibility of $(Y_1,Y_2)=(y_1,y_2)$ with different $(\\theta_1, \\theta_2 )$. The likelihood function should not be confused with a probability function. In our case, the binomial distribution (which is a discrete distribution) is used. Therefore, the likelihood function is a probability mass function. Note that the likelihood function can also be a density function if a continuous distribution is used.", fill = TRUE)
+cat("The likelihood function is a function of $(\\theta_1, \\theta_2 )$ that describes the plausibility of $(Y_1,Y_2)=(y_1,y_2)$ with different $(\\theta_1, \\theta_2 )$. The likelihood function should not be confused with a probability function.", fill = TRUE)
 cat("<br>", fill=TRUE)
-cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2),$$ where $f$ is a probability mass function with")
+cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2)\\, ,$$ where $f$ is a probability mass function with")
 cat("<br>", fill=TRUE)
 #Likelihood formula of D given theta_1 and theta_2
-cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= P(Y_1=y_1 \\ | \\ \\theta_1) \\cdot P(Y_2=y_2 \\ | \\ \\theta_2) \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2} \\, . \\end{align}")
+cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= P(Y_1=y_1 \\ | \\ \\theta_1) \\cdot P(Y_2=y_2 \\ | \\ \\theta_2) \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}")
 cat("<br>", fill=TRUE)
 cat("The likelihood function is defined as followes $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
 cat("<br>", fill=TRUE)
@@ -391,7 +375,7 @@ L1 = likelihood(n_exposure1_outcome1/n_exposure1,n_exposure1_outcome1,n_exposure
 L2 = likelihood(0.5,n_exposure1_outcome1,n_exposure1)*likelihood(0.5,n_exposure0_outcome1,n_exposure0)
 
 cat("<br>", fill=TRUE)
-cat(paste0("\\begin{align} L \\biggl( \\theta_1= \\frac{", n_exposure1_outcome1, "}{", n_exposure1, "}, \\theta_2= \\frac{", n_exposure0_outcome1, "}{", n_exposure0, "} \\ \\biggl | \\ y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, " \\biggl) &=", round(L1,4),", \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, ") &=", round(L2,4),".\\end{align}"), fill=TRUE)
+cat(paste0("\\begin{align} L \\biggl( \\theta_1= \\frac{", n_exposure1_outcome1, "}{", n_exposure1, "}, \\theta_2= \\frac{", n_exposure0_outcome1, "}{", n_exposure0, "} \\ \\biggl | \\ y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, " \\biggl) &=", round(L1,4),"\\, , \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, ") &=", round(L2,4),"\\, .\\end{align}"), fill=TRUE)
 cat("<br>", fill=TRUE)
 cat("Remark: Because of the independence of $Y_1$ and $Y_2$ you can get the following marginal distributions: ",fill=TRUE) 
 #Marginal distribution of D_1 given theta_1 and of D_2 given theta_2
@@ -479,15 +463,15 @@ if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
 # default parameters    
 } else{
   cat("The default parameters are chosen: \n",fill=TRUE)
-  cat("$$(\\theta_1, \\theta_2) \\sim  beta(0.5,0.5) \\cdot beta(0.5,0.5).$$",fill=TRUE)
-  cat("These default parameters have their origin in the so called Jeffrey's prior which is a non-informative prior distribution. Non-informative prior distributions are used when little or no information is available about the parameters to be determined and therefore no statement can be made about the distribution of the parameters. In our assumed situation we have two parameters $\\theta_1$ and $\\theta_2$. In the following, Jeffrey's prior is described for one general $\\theta$ but we can use these results from Jeffrey's prior and insert them in both of the beta distributions multiplied in our prior. The priors $p(\\theta)=beta(0.5,0.5)$ result from Jeffrey's rule $$p(\\theta) \\propto \\sqrt{I(\\theta)}$$ where $I(\\theta)$ is the Fisher information function $$I(\\theta)=-E\\left[ \\frac{\\partial^2}{\\partial \\theta^2} L(\\theta \\ | \\ \\bullet) \\right]$$ and where $L(\\theta \\ | \\ \\bullet)$ is the likelihood function of the data $\\bullet$.",fill=TRUE)
+  cat("$$(\\theta_1, \\theta_2) \\sim  beta(0.5,0.5) \\cdot beta(0.5,0.5) \\, .$$",fill=TRUE)
+  cat("These default parameters have their origin in the so called Jeffrey's prior which is a non-informative prior distribution. Non-informative prior distributions are used when little or no information is available about the parameters to be determined and therefore no statement can be made about the distribution of the parameters. In our assumed situation we have two parameters $\\theta_1$ and $\\theta_2$. In the following, Jeffrey's prior is described for one general $\\theta$, but we can use these results from Jeffrey's prior and insert them in both of the beta distributions multiplied in our prior. The priors $p(\\theta)=beta(0.5,0.5)$ result from Jeffrey's rule $$p(\\theta) \\propto \\sqrt{I(\\theta)}$$ where $I(\\theta)$ is the Fisher information function $$I(\\theta)=-E\\left[ \\frac{\\partial^2}{\\partial \\theta^2} L(\\theta \\ | \\ \\bullet) \\right]$$ and where $L(\\theta \\ | \\ \\bullet)$ is the likelihood function of the data $\\bullet$.",fill=TRUE)
   cat("<br>", fill=TRUE)
   cat("In our case, the likelihood is a binomial distribution. Hence, the Fisher information function is $$I(\\theta)=\\frac{1}{\\theta (1-\\theta)} \\, .$$ This results in $$p(\\theta) \\propto \\theta^{-0.5}(1-\\theta)^{-0.5}$$ because of Jeffrey's rule. The resulting prior distribution is now $beta(0.5,0.5)$.",fill=TRUE)
 cat("The default shape parameters of the beta distributions indicate that the prior distribution is peaked at $(0.5,0.5)$ which represents a mild prior belief.")
 }
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
-cat("Note that when choosing the prior distribution, the amount of information already known about the probabilities $\\theta_1$ and $\\theta_2$ should be taken into account. If not so much or nothing at all is known, $a_i = b_i$ should be selected for the distribution of $\\theta_i$, $i=1,2$, so that the  mean and the mode are equal to $0.5$. In general, the mean $\\mu_i$ and the mode $\\omega_i$ can be calculated as follows: $$ \\mu_i = \\frac{a_i}{a_i+b_i} \\text{ and } \\omega_i = \\frac{a_i -1}{a_i+b_i-2} \\, , \\  a_i,b_i > 1. $$",fill=TRUE)
+cat("Note that when choosing the prior distribution, the amount of information already known about the probabilities $\\theta_1$ and $\\theta_2$ should be taken into account. If not so much or nothing at all is known, $a_i = b_i$ should be selected for the distribution of $\\theta_i$, $i=1,2$, so that the  mean and the mode are equal to $0.5$. In general, the mean $\\mu_i$ and the mode $\\omega_i$ can be calculated as follows: $$ \\mu_i = \\frac{a_i}{a_i+b_i} \\text{ and } \\omega_i = \\frac{a_i -1}{a_i+b_i-2} \\, , \\  a_i,b_i > 1 \\, . $$",fill=TRUE)
 cat("So if $a_i>b_i$, $\\mu_i$ and $\\omega_i$ are greater than $0.5$ and if $a_i<b_i$, $\\mu_i$ and $\\omega_i$ are less than $0.5$. So the prior distribution as a product of two $beta(a_i,b_i)$ distributions is peaked in $(\\omega_1,\\omega_2)$ when $a_i,b_i > 1$ for all $i=1,2$ because all values of the beta density are greater than or equal to $0$. The greater the sum $a_i+b_i$, the more confident one is in the assumption of the tendencies for $\\theta_i$.")
 
 
@@ -524,14 +508,48 @@ plt3d
 ```{r posterior1, eval=TRUE, results='asis'}
 cat("## The Posterior Distribution", fill=TRUE)
 # Insert latex or code equation for the posterior distribution 
-cat("The posterior distribution is an update of the prior distribution using the likelihood. This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data D. \\cite{kruschke} For our modell assumptions the posterior distribution has the following form:", fill=TRUE)
-cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\vert D)&= beta(\\theta_1 \\vert a_1+Y_1,b_1+n_1-Y_1) \\cdot beta(\\theta_2 \\vert a_2+Y_2,b_2+n_2-Y_2) \\\\
-&= beta(\\theta_1 \\vert \\underbrace{",a1,"+",n_exposure1_outcome1,"}_{",a1+n_exposure1_outcome1,"},\\underbrace{",b1,"+",n_exposure1,"-",n_exposure1_outcome1,"}_{",b1+n_exposure1-n_exposure1_outcome1,"}) \\cdot beta(\\theta_2 \\vert \\underbrace{",a2,"+",n_exposure0_outcome1,"}_{",a2+n_exposure0_outcome1,"},\\underbrace{",b2,"+",n_exposure0,"-",n_exposure0_outcome1,"}_{",b2+n_exposure0-n_exposure0_outcome1,"}) \\end{align}"))
+cat("The posterior distribution is an update of the prior distribution using the likelihood. \\cite{kruschke} This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data $(y_1,y_2)$ out of $(n_1,n_2)$. It is calculated with the help of Bayes theorem. In what follows we derive the posterior in general terms for arbitrary sample sizes and outcome summaries")  
+cat("\\begin{align}
+    p(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)&=\\frac{p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2)p(\\theta_1,\\theta_2)}{p(y_1,y_2)} \\, ,
+    \\end{align}")
+cat("where \\begin{align} 
+        p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2) &= L(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)
+        \\end{align}
+        is the likelihood function and
+        \\begin{align}
+        p(y_1,y_2) &= \\int \\int
+        p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2)p(\\theta_1,\\theta_2) \\ d \\theta_1 d
+        \\theta_2 
+    \\end{align} is a normalizing constant.")
+cat("<br>",fill=TRUE) 
+cat("Including the likelihood and the assumed prior distributions of the $\\theta_i$,  $i=1,2$, we get the numerator of the Bayes theorem:")
+cat("\\begin{align}
+    z = \\underbrace{\\binom{n_1}{y_1}\\theta_1 ^{y_1}(1-\\theta_1)^{n_1-y_1} \\cdot \\binom{n_2}{y_2}\\theta_2 ^{y_2}(1-\\theta_2)^{n_2-y_2}}_{\\text{likelihood function}} \\cdot \\underbrace{\\frac{\\theta_1^{a_1-1}(1-\\theta_1)^{b_1-1}}{B(a_1,b_1)}}_{\\text{prior } \\theta_1} \\cdot \\underbrace{\\frac{\\theta_2^{a_2-1}(1-\\theta_2)^{b_2-1}}{B(a_2,b_2)}}_{\\text{prior } \\theta_2} \\, . \\end{align}")
+cat("Now we can insert this in the actual Bayes theorem. With some power calculations we get:")
+cat("\\begin{align}
+     p(\\theta_1,\\theta_2 \\ | \\ y_1,y_2) &= 
+     \\frac{\\frac{\\binom{n_1}{y_1}\\binom{n_2}{y_2}}{B(a_1,b_1)B(a_2,b_2)}
+     \\cdot \\theta_1^{y_1+a_1-1}(1-\\theta_1)^{n_1-y_1+b_1-1}\\cdot\\theta_2^
+     {y_2+a_2-1}(1-\\theta_2)^{n_2-y_2+b_2-1}}{p(y_1,y_2)} \\\\[1em]
+     &= \\frac{\\theta_1^{y_1+a_1-1}(1-\\theta_1)^{n_1-y_1+b_1-1}\\cdot\\theta_
+     2^{y_2+a_2-1}(1-\\theta_2)^{n_2-y_2+b_2-1}}{B(a_1+y_1,b_1+n_1-y_1)\\cdot
+     B(a_2+y_2,n_2-y_2+b_2) } \\, .
+     \\end{align}")
+
+cat("The last step in this computation follows from the normalizing constant and the condition that a density has to integrate to one. $B(\\cdot,\\cdot)$ are the normalizing constants of the Beta-distribution. ")
+cat("Hence, our posterior function is distributed as follows:
+    \\begin{align}
+    \\left( \\theta_1,\\theta_2 \\ | \\ y_1,y_2 \\right) \\sim beta(a_1+y_1,b_1+n_1-y_1) \\cdot 
+    beta(a_2+y_2, n_2+b_2-y_2) \\, . 
+    \\end{align}")
+cat("As can be seen here, the $\\theta_i$, $i=1,2$, are independent under the posterior. For our model assumptions, the posterior distribution has the following form:", fill=TRUE)
+cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\ | \\ ", n_exposure1_outcome1,",",n_exposure0_outcome1,")
+&= beta(",a1,"+",n_exposure1_outcome1,",",b1,"+",n_exposure1,"-",n_exposure1_outcome1,") \\cdot beta(",a2,"+",n_exposure0_outcome1,",",b2,"+",n_exposure0,"-",n_exposure0_outcome1,") \\\\
+&= beta(",a1+n_exposure1_outcome1,",",b1+n_exposure1-n_exposure1_outcome1,") \\cdot beta(",a2+n_exposure0_outcome1,",",b2+n_exposure0-n_exposure0_outcome1,") \\, .  \\end{align}"))
 ```
 
 
 ```{r posterior2, eval=TRUE, results='asis'}
-cat("## The Posterior Distribution", fill=TRUE)
 # Posterior for plotting (follow last row from page 167 DDBA)
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
 for (i in 1:length(Theta1)){
@@ -548,9 +566,9 @@ cat("The following figure shows the probability density function (pdf):  ", fill
          layout(scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
              xaxis = list(title = "\u03b8\u2081"),
              yaxis = list(title = "\u03b8\u2082"),
-             zaxis = list(title = "p(\u03b8\u2081, \u03b8\u2082 \u2223 D)" )))
+             zaxis = list(title = "p(\u03b8\u2081, \u03b8\u2082 \u2223 y\u2081, y\u2082)" )))
  
-cat("In the figure, at each point in the parameter space ($\\theta_1$,$\\theta_2$) the posterior is the product of the prior and likelihood values at that point divided by the normalizer p(D). Thus, it is proportional to the prior and the likelihood (posterior $\\propto$ prior x likelihood).") 
+cat("In the figure, at each point in the parameter space ($\\theta_1$,$\\theta_2$), the posterior is the product of the prior and likelihood values at that point divided by the normalizer $p(y_1,y_2)$. Thus, it is proportional to the prior and the likelihood (posterior $\\propto$ prior x likelihood).") 
 
 ```
 

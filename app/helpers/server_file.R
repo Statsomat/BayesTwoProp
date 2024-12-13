@@ -180,13 +180,13 @@ server_file <- function(input, output, session) {
     if (length(input$selection_outcome$right) > 1 ){
       showNotification("Please select only one outcome variable.", duration=30)
       Sys.sleep(5)
-      #session$close() Temporaer auskommentiert zu Testzwecken
+      session$close()
       }
     
     if (length(input$selection_exposure$right) > 1 ){
       showNotification("Please select only one exposure variable.", duration=30)
       Sys.sleep(5)
-      #session$close() Temporaer auskommentiert zu Testzwecken
+      session$close()
       }
     })
   

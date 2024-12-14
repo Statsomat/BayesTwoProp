@@ -236,15 +236,16 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 ```{r desctable, eval=eval_final, results='asis'}
 cat("## Frequency Table", fill=TRUE)
 #cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
-
+rowsum_1 = n_exposure0 - n_exposure0_outcome1+n_exposure1 - n_exposure1_outcome1
+rowsum_2 = n_exposure0_outcome1+n_exposure1_outcome1
 # compute frequencies and percentages
 df_table <- as.data.frame.matrix(matrix(c(
   n_exposure0 - n_exposure0_outcome1, # Not exposed without outcome
   n_exposure1 - n_exposure1_outcome1, # Exposed without outcome
-  n_exposure0 - n_exposure0_outcome1+n_exposure1 - n_exposure1_outcome1, # sum no outcome
+  rowsum_1, # sum no outcome
   n_exposure0_outcome1,               # Not exposed with outcome
   n_exposure1_outcome1,                # Exposed with outcome
-  n_exposure0_outcome1+n_exposure1_outcome1,
+  rowsum_2,
   n_exposure0,
   n_exposure1,
   n_exposure0+n_exposure1
@@ -252,8 +253,7 @@ df_table <- as.data.frame.matrix(matrix(c(
 colnames(df_table) <- c("Placebo", "Vaccine","sum")
 rownames(df_table) <- c("non-outcome", "outcome","sum")
 
-total <- n_exposure0+n_exposure1
-totalsum <- sum(df_table)
+totalsum <- n_exposure0+n_exposure1
 
 df_table %>%
   kbl(caption = "Contingency Table: absolute numbers") %>%
@@ -265,14 +265,14 @@ df_table %>%
   column_spec(3, extra_css = "border-right: 2px solid black;") %>%               row_spec(1, extra_css = "border-top: 1px solid lightgray;")
 
 df_table_percent<- as.data.frame.matrix(matrix(c(
-  paste0((n_exposure0 - n_exposure0_outcome1)/total*100,"%"), 
-  paste0((n_exposure1 - n_exposure1_outcome1)/total*100,"%"),
-  paste0((n_exposure0 - n_exposure0_outcome1+n_exposure1 - n_exposure1_outcome1)/total*100,"%"), 
-  paste0((n_exposure0_outcome1)/total*100,"%"), 
-  paste0((n_exposure1_outcome1)/total*100,"%"),                
-  paste0((n_exposure0_outcome1+n_exposure1_outcome1)/total*100,"%"),
-  paste0((n_exposure0)/total*100,"%"),
-  paste0((n_exposure1)/total*100,"%"),
+  paste0((n_exposure0 - n_exposure0_outcome1)/totalsum*100,"%"), 
+  paste0((n_exposure1 - n_exposure1_outcome1)/totalsum*100,"%"),
+  paste0((n_exposure0 - n_exposure0_outcome1+n_exposure1 - n_exposure1_outcome1)/totalsum*100,"%"), 
+  paste0((n_exposure0_outcome1)/totalsum*100,"%"), 
+  paste0((n_exposure1_outcome1)/totalsum*100,"%"),                
+  paste0((n_exposure0_outcome1+n_exposure1_outcome1)/totalsum*100,"%"),
+  paste0((n_exposure0)/totalsum*100,"%"),
+  paste0((n_exposure1)/totalsum*100,"%"),
   paste0(100,"%")
 ), nrow = 3, byrow = TRUE))
 colnames(df_table_percent) <- c("Placebo", "Vaccine","sum")
@@ -287,8 +287,8 @@ df_table_percent %>%
   column_spec(2, extra_css = "border-right: 1px solid lightgray;") %>%        
   column_spec(3, extra_css = "border-right: 2px solid black;") %>%               row_spec(1, extra_css = "border-top: 1px solid lightgray;")
 
-rowsum <- apply(df_table, MARGIN  = 1, FUN = sum)
-colsum <- apply(df_table, MARGIN  = 2, FUN = sum)
+rowsum <- c(rowsum_1,rowsum_2)
+colsum <- c(n_exposure0,n_exposure1)
 # 
 # freq <- as.vector(t(df_table))
 # perc_total <- paste( round(freq/totalsum,4)*100,"%")

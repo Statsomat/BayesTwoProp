@@ -287,8 +287,19 @@ df_table_percent %>%
   column_spec(2, extra_css = "border-right: 1px solid lightgray;") %>%        
   column_spec(3, extra_css = "border-right: 2px solid black;") %>%               row_spec(1, extra_css = "border-top: 1px solid lightgray;")
 
-rowsum <- c(rowsum_1,rowsum_2)
-colsum <- c(n_exposure0,n_exposure1)
+df_table_plot <- as.data.frame.matrix(matrix(c(
+  n_exposure0 - n_exposure0_outcome1, # Not exposed without outcome
+  n_exposure1 - n_exposure1_outcome1, # Exposed without outcome
+  n_exposure0_outcome1,               # Not exposed with outcome
+  n_exposure1_outcome1                # Exposed with outcome
+), nrow = 2, byrow = TRUE))
+
+colnames(df_table_plot) <- c("Placebo", "Vaccine")
+rownames(df_table_plot) <- c("non-outcome", "outcome")
+
+rowsum <- apply(df_table_plot, MARGIN  = 1, FUN = sum)
+colsum <- apply(df_table_plot, MARGIN  = 2, FUN = sum)
+
 # 
 # freq <- as.vector(t(df_table))
 # perc_total <- paste( round(freq/totalsum,4)*100,"%")
@@ -336,10 +347,10 @@ colsum <- c(n_exposure0,n_exposure1)
 cat("## Barplots", fill=TRUE)
 
 # Outcome
-barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
+barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table_plot), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
 
 # Exposure
-barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table), xlab = "Exposure", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
+barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table_plot), xlab = "Exposure", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
 
 #  Outcome with present Exposure
 barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population"), cex.main = 1.5)

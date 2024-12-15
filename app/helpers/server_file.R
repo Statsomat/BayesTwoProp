@@ -32,180 +32,61 @@ server_file <- function(input, output, session) {
   ### Validations ###
     
     validate(need(input$file$datapath != "", "Please upload a CSV file."))
-    validate(need(tools::file_ext(input$file$datapath) == "csv", "Error. Not a CSV file. Please upload a CSV file."))
-        
-    if (input$fencoding == "unknown"){
-      
-      validate(need(try(datainput1 <- fread(input$file$datapath, 
-                                            header = "auto", 
-                                            sep="auto", 
-                                            dec=".", 
-                                            encoding = "unknown",
-                                            data.table = FALSE, 
-                                            na.strings = "")),
-                    "Error. File cannot be read. Please check that the file is not empty, fully whitespace, or skip has been set after the last non-whitespace."
-                    )
-               )
-          
-      validate(need(tryCatch(datainput1 <- fread(input$file$datapath, 
-                                                 header = "auto", 
-                                                 sep="auto", 
-                                                 dec=".", 
-                                                 encoding = "unknown", 
-                                                 data.table = FALSE, na.strings = ""), warning=function(w) {}),
-                    "Error. The file cannot be read unambigously. Check the characters for the field separator, quote or decimal. Remove blank lines. "
-                    )
-               )
-      
-      validate(need(try(iconv(colnames(datainput1), guess_encoding(input$file$datapath)[[1]][1], "UTF-8")),
-                    "Error. Encoding cannot be converted. Please revise your data or try other upload options."
-                    )
-               )
-      
-      validate(need(try(sapply(datainput1[, sapply(datainput1, is.character)], function(col) iconv(col, guess_encoding(input$file$datapath)[[1]][1], "UTF-8"))),
-                    "Error. Encoding cannot be converted. Please revise your data or try other upload options."
-                    )
-               )
-
-      }
     
-    if (input$fencoding == "UTF-8"){
-      
-      validate(need(guess_encoding(input$file$datapath)[[1]][1] %in% c("UTF-8","ASCII") & 
-                      guess_encoding(input$file$datapath)[[2]][1] > 0.9,
-                    "Error. The file is probably not UTF-8 encoded. Please convert to UTF-8 or try the automatic encoding option."
-                    )
-               )
-      
-      validate(need(try(datainput1 <- fread(input$file$datapath, 
-                                            header = "auto", 
-                                            sep="auto", 
-                                            dec=".", 
-                                            encoding = "UTF-8", 
-                                            data.table = FALSE, 
-                                            na.strings = "")), 
-                    "Error. File cannot be read. Please check that the file is not empty, fully whitespace, or skip has been set after the last non-whitespace."
-                    )
-               )
-       
-      validate(need(tryCatch(datainput1 <- fread(input$file$datapath, 
-                                                 header = "auto", 
-                                                 sep="auto", 
-                                                 dec=".", 
-                                                 encoding = "unknown", 
-                                                 data.table = FALSE, 
-                                                 na.strings = ""), warning=function(w) {}),
-                    "Error. The file cannot be read unambigously. Check the characters for the field separator, quote or decimal. Remove blank lines. "
-                    )
-               )
-          
-        }
+    validate(need(tools::file_ext(input$file$datapath) == "csv", "Error. Not a CSV file. Please upload a CSV file."))
+    
+    validate(need(try({enc_guessed <- guess_encoding(input$file$datapath)
+                      enc_guessed_first <- enc_guessed[[1]][1]
+                      datainput1 <- fread(input$file$datapath, 
+                                             header = "auto", 
+                                             sep="auto", 
+                                             dec="auto", 
+                                             encoding = "unknown",
+                                             data.table = FALSE, 
+                                             na.strings = "")
+                      colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
+                      col_names <- sapply(datainput1, is.character)
+                      
+                      datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
+                      datainput1}),
+                     "Error. File cannot be read. Input is either empty, fully whitespace, or skip has been set after the last non-whitespace."
+                  )
+             )
+    
+    validate(need(tryCatch(datainput1 <- fread(input$file$datapath,
+                                               header = "auto",
+                                               sep="auto",
+                                               dec="auto",
+                                               encoding = "unknown",
+                                               data.table = FALSE,
+                                               na.strings = ""), warning=function(w) {}),
+                  "Error. The file cannot be read correctly. Discarded single-line footer."
+                  )
+             )
     
     if (is.null(input$file))
       return(NULL)
     
     ### Data Input ###
     
-    return(tryCatch(
+    return(tryCatch({
       
-      if (input$fencoding == "UTF-8" & input$decimal == "auto"){ 
-        
-        datainput1 <- fread(input$file$datapath, 
-                            header = "auto", 
-                            sep="auto", 
-                            dec=".", 
-                            encoding = "UTF-8", 
-                            data.table = FALSE, 
-                            na.strings = "")
-        
-        # Probably comma as decimal
-        colnames <- sapply(datainput1, function(col) is.numeric(col) & Negate(is.integer)(col))
-        
-        if (sum(colnames) == 0L){
-          
-          datainput1 <- fread(input$file$datapath, 
-                              header = "auto", 
-                              sep="auto", 
-                              dec=",", 
-                              encoding = "UTF-8", 
-                              data.table = FALSE, 
-                              na.strings = "")
-
-          datainput1
-          
-          } else {datainput1}
-        
-        } else if (input$fencoding == "UTF-8" & input$decimal != "auto") {
-          
-          datainput1 <- fread(input$file$datapath, 
-                              header = "auto", 
-                              sep="auto", 
-                              dec=input$decimal, 
-                              encoding = "UTF-8", 
-                              data.table = FALSE, 
-                              na.strings = "")
-          
-          datainput1
-          
-          } else if (input$fencoding == "unknown" &  input$decimal == "auto"){
-            
-            enc_guessed <- guess_encoding(input$file$datapath)
-            enc_guessed_first <- enc_guessed[[1]][1]
-            
-            datainput1 <- fread(input$file$datapath, 
-                                header = "auto", 
-                                sep="auto", 
-                                dec=".", 
-                                encoding = "unknown", 
-                                data.table = FALSE, 
-                                na.strings = "")
-            
-            # Probably comma as decimal
-            colnames <- sapply(datainput1, function(col) is.numeric(col) & Negate(is.integer)(col))
-            
-            if (sum(colnames) == 0L){
-              
-              datainput1 <- fread(input$file$datapath, 
-                                  header = "auto", 
-                                  sep="auto", 
-                                  dec=",", 
-                                  encoding = "unknown", 
-                                  data.table = FALSE, 
-                                  na.strings = "")
-              
-              colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
-              col_names <- sapply(datainput1, is.character)
-              
-              datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
-              datainput1
-              
-              } else {
-                
-                colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
-                col_names <- sapply(datainput1 , is.character)
-              
-                datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
-                datainput1}
-            
-            } else {
-            
-            enc_guessed <- guess_encoding(input$file$datapath)
-            enc_guessed_first <- enc_guessed[[1]][1]
-            
-            datainput1 <- fread(input$file$datapath, 
-                                header = "auto", 
-                                sep="auto", 
-                                dec = input$decimal, 
-                                encoding = "unknown", 
-                                data.table = FALSE, 
-                                na.strings = "")
-            
-            colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
-            col_names <- sapply(datainput1, is.character)
-            
-            datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
-            datainput1
-            }
+      enc_guessed <- guess_encoding(input$file$datapath)
+      enc_guessed_first <- enc_guessed[[1]][1]
+      
+      datainput1 <- fread(input$file$datapath, 
+                          header = "auto", 
+                          sep="auto", 
+                          dec ="auto", 
+                          encoding = "unknown", 
+                          data.table = FALSE, 
+                          na.strings = "")
+      
+      colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
+      col_names <- sapply(datainput1, is.character)
+      
+      datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
+      datainput1}
       ,error=function(e) stop(safeError(e))
       
       ))
@@ -337,8 +218,6 @@ server_file <- function(input, output, session) {
                  
                  params <- list(data = datainput(), 
                                 filename=input$file, 
-                                fencoding=input$fencoding, 
-                                decimal=input$decimal, 
                                 enc_guessed = enc_guessed_first, 
                                 outcome = input$selection_outcome$right, 
                                 exposure = input$selection_exposure$right, 

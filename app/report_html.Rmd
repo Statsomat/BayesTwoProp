@@ -2,7 +2,7 @@
 title: "Two Proportions by Bayes"
 author: 
   - Denise Welsch
-  - Contributors^[Viktoria Daum, Konrad Junkes, Anna-Lena Künster, Jomana Reusch, Simone Schüttler]
+  - Contributors^[Viktoria Daum, Chiara Freitag, Konrad Junkes, Anna-Lena Künster, Jomana Reusch, Simone Schüttler]
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   html_document:
@@ -166,13 +166,13 @@ if (exists("vars")){
 
 ```{r cellupload, eval=evalcellfreq , results='asis'}
 # Upload as cell frequencies, display them nicely
-cat(paste("Number of Observations with both a present Outcome and  a present Exposure: ", params$n_exposure1_outcome1), fill=TRUE)
+cat(paste0("Number of Observations with both a present Outcome and a present Exposure: $y_1=", params$n_exposure1_outcome1,"$"), fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Number of Observations with present Exposure: ",params$n_exposure1), fill=TRUE)
+cat(paste0("Number of Observations with present Exposure: $n_1=",params$n_exposure1,"$"), fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Number of Observations with a present Outcome, but without Exposure: ",params$n_exposure0_outcome1), fill=TRUE)
+cat(paste0("Number of Observations with present Outcome but without Exposure: $y_2=",params$n_exposure0_outcome1,"$"), fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Numbers of Observations without Exposure: ",params$n_exposure0),fill=TRUE)
+cat(paste0("Number of Observations without Exposure: $n_2=",params$n_exposure0,"$"),fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("Name of the Outcome Variable: ", params$outcome, fill=TRUE)
 cat("<br>",fill=TRUE) 

@@ -2,7 +2,7 @@
 title: "Two Proportions by Bayes"
 author: 
   - Denise Welsch
-  - Contributors^[Viktoria Daum, Konrad Junkes, Jomana Reusch, Simone Schüttler]
+  - Contributors^[Viktoria Daum, Chiara Freitag, Konrad Junkes, Anna-Lena Künster, Jomana Reusch, Simone Schüttler]
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   html_document:
@@ -13,8 +13,6 @@ classoption: landscape
 params:
   data: NA
   filename: NA
-  fencoding: NA # used in Shiny app 
-  decimal: NA
   enc_guessed: NA # used in Shiny app 
   presence_exposure: NA
   presence_outcome: NA
@@ -144,18 +142,6 @@ cat("# Basic Information", fill=TRUE)
 # Basic information for the case file upload
 cat("Automatic statistics for the file:", as.character(params$filename[1]), fill=TRUE)
 cat("<br>",fill=TRUE) 
-
-cat("Your selection for the encoding:", fill=TRUE)
-if (params$fencoding=="unknown"){
-  cat("Auto")
-} else {cat("UTF-8")}
-cat("<br>",fill=TRUE) 
-
-cat("Your selection for the decimal character:", fill=TRUE)
-if (params$decimal=="auto"){
-  cat("Auto")
-} else {cat(params$decimal)}
-cat("<br>",fill=TRUE) 
   
 cat("Observations (rows with at least one non-missing value): ", fill=TRUE)
 cat(dim(df)[1])
@@ -180,13 +166,13 @@ if (exists("vars")){
 
 ```{r cellupload, eval=evalcellfreq , results='asis'}
 # Upload as cell frequencies, display them nicely
-cat(paste("Number of Observations with both a present Outcome and  a present Exposure: ", params$n_exposure1_outcome1), fill=TRUE)
+cat(paste0("Number of Observations with both a present Outcome and a present Exposure: $y_1=", params$n_exposure1_outcome1,"$"), fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Number of Observations with present Exposure: ",params$n_exposure1), fill=TRUE)
+cat(paste0("Number of Observations with present Exposure: $n_1=",params$n_exposure1,"$"), fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Number of Observations with a present Outcome, but without Exposure: ",params$n_exposure0_outcome1), fill=TRUE)
+cat(paste0("Number of Observations with present Outcome but without Exposure: $y_2=",params$n_exposure0_outcome1,"$"), fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Numbers of Observations without Exposure: ",params$n_exposure0),fill=TRUE)
+cat(paste0("Number of Observations without Exposure: $n_2=",params$n_exposure0,"$"),fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("Name of the Outcome Variable: ", params$outcome, fill=TRUE)
 cat("<br>",fill=TRUE) 
@@ -346,7 +332,7 @@ cat("<br>", fill=TRUE)
 cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2)\\, ,$$ where $f$ is a probability mass function with")
 cat("<br>", fill=TRUE)
 #Likelihood formula of D given theta_1 and theta_2
-cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= P(Y_1=y_1 \\ | \\ \\theta_1) \\cdot P(Y_2=y_2 \\ | \\ \\theta_2) \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}")
+cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= \\underbrace{P(Y_1=y_1 \\ | \\ \\theta_1)}_{\\sim Bi(n_1,\\theta_1)} \\cdot \\underbrace{P(Y_2=y_2 \\ | \\ \\theta_2)}_{\\sim Bi(n_2,\\theta_2)} \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}")
 cat("<br>", fill=TRUE)
 cat("The likelihood function is defined as followes $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
 cat("<br>", fill=TRUE)

@@ -625,9 +625,30 @@ hdi_plot <- plot(hdi_result) +
 
 print(hdi_plot)
 
-# Add text interpretation
+
+# Textuelle Interpretation - Dynamic Expression
 cat("\n\n**Interpretation:**\n\n")
-cat("The Highest Density Interval (HDI) plot visualizes the parameter's posterior distribution. The shaded regions indicate the intervals with the highest density, representing the most credible parameter values under Bayesian analysis.")
+cat("This plot shows the Highest Density Intervals (HDI) for a posterior distribution, illustrating the most credible values for the parameter ")
+
+# Direkte LaTeX-Notation für xlabel
+if (params$user_selection_function_param == 1) {
+  cat("\\(\\theta_1 - \\theta_2\\)")
+} else if (params$user_selection_function_param == 2) {
+  cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
+} else if (params$user_selection_function_param == 3) {
+  cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
+}
+
+cat("\n\nThe curve represents the probability density of the parameter values, with the shaded regions highlighting different HDI levels. ",
+    "The red area corresponds to the 89% HDI, which captures the majority of the distribution’s density and represents the most credible range. ",
+    "The pink region extends this to 95%, including slightly more of the distribution, while the green and blue regions narrow further, covering 99% and 100% of the density, respectively. ",
+    "Overall, the HDIs provide a visual summary of where the most credible parameter estimates lie, while reflecting the uncertainty inherent in the data. ",
+    "The 95% HDI includes all those values of x for which the density is at least as big as some value W, such that the integral over all those x values is 95%. Formally, the values of x in the 95% HDI are those such that\n")
+
+cat("\\begin{align*}\n",
+    "    \\text{HDI}_{95\\%} &= \\left\\{ x \\mid p(x) > W \\right\\} \\\\\n",
+    "    \\text{with} \\quad \\int_{x : p(x) > W} p(x) \\, dx &= 0.95\n",
+    "\\end{align*}")
 
 ```
 

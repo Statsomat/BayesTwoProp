@@ -2,7 +2,7 @@
 title: "Two Proportions by Bayes"
 author: 
   - Denise Welsch
-  - Contributors^[Viktoria Daum, Chiara Freitag, Konrad Junkes, Anna-Lena Künster, Jomana Reusch, Simone Schüttler]
+  - Contributors^[Theresa Binot, Viktoria Daum, Renée Defren, Chiara Freitag, Konrad Junkes, Anna-Lena Künster, Jomana Reusch, Simone Schüttler]
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   html_document:

@@ -596,14 +596,20 @@ if (is.null(rope_user)){
 cat("## HDI Plot", fill=TRUE)
 # Display graphical posterior information using bayestestR package
 
-thetaoptions <- c("$\\theta_1 - \\theta_2$","$\\frac{\\theta_1}{\\theta_2}$","$1-\\frac{\\theta_1}{\\theta_2}$")
-hdi_result <- hdi(estimate, ci = c(.89, .95, .99))
+xlabel <- if (params$user_selection_function_param == 1){
+  expression(theta[1] - theta[2])
+  } else if (params$user_selection_function_param == 2){
+  expression(frac(theta[1],theta[2]))
+  } else if (params$user_selection_function_param == 3){
+  expression(1 - frac(theta[1],theta[2]))
 
+}
+hdi_result <- hdi(estimate, ci = c(.89, .95, .99))
 # Display the HDI plot
 hdi_plot <- plot(hdi_result) +
   labs(
-    x = cat(thetaoptions[params$user_selection_function_param], fill=TRUE ),                 # Label for the x-axis
-    y = "Density",                   # Label for the y-axis
+    x = xlabel,                 # Label for the x-axis
+    y = "Density of the posterior distribution",                   # Label for the y-axis
     title = "Highest Density Interval (HDI)" # Title for the plot
   ) +
   theme_minimal(base_size = 14) +    # Apply a clean theme with readable font size

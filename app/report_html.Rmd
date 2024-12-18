@@ -649,7 +649,7 @@ cat("\\begin{align*}\n",
     "    \\text{HDI}_{95\\%} &= \\left\\{ x \\mid p(x) > W \\right\\} \\\\\n",
     "    \\text{with} \\quad \\int_{x : p(x) > W} p(x) \\, dx &= 0.95\n",
     "\\end{align*}")
-
+cat("(Kruschke, John K., Doing Bayesian Data Analysis, Academic Press, 2015)")
 ```
 
 ```{r plot_eti, eval=eval_final, results="asis"}

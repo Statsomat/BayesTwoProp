@@ -646,7 +646,7 @@ cat("\n\nThe curve represents the probability density of the parameter values, w
     "The 95% HDI includes all those values of x for which the density is at least as big as some value W, such that the integral over all those x values is 95%. Formally, the values of x in the 95% HDI are those such that\n")
 
 cat("\\begin{align*}\n",
-    "    \\text{HDI}_{95\\%} &= \\left\\{ x \\mid p(x) > W \\right\\} \\\\\n",
+    "    \\text{HDI}_{95\\%} &= \\left\\{ x \\mid p(x) > W \\right\\} ",
     "    \\text{with} \\quad \\int_{x : p(x) > W} p(x) \\, dx &= 0.95\n",
     "\\end{align*}")
 cat("(Kruschke, John K., Doing Bayesian Data Analysis, Academic Press, 2015)")

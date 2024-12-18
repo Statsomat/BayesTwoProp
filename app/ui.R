@@ -165,12 +165,17 @@ shinyUI(fluidPage(
            wellPanel(
              style = "background: #adc7de;", 
              h3("Selection for the function of parameters"),
-             radioButtons("user_selection_function_param", 
-                          "Functions:", 
-                          c("Theta1-Theta2" = 1, 
-                            "Theta1/Theta2" = 2, 
-                            "1-Theta1/Theta2" = 3),
-                          selected = 1)),
+             radioButtons(
+               "user_selection_function_param",
+               "Functions:",
+               choiceNames = list(
+                 HTML("&theta;<sub>1</sub> - &theta;<sub>2</sub>"),
+                 HTML("&theta;<sub>1</sub> / &theta;<sub>2</sub>"),
+                 HTML("1 - &theta;<sub>1</sub> / &theta;<sub>2</sub>")
+               ),
+               choiceValues = c(1, 2, 3),
+               selected = 1
+             )),
            
            wellPanel(style = "background: #ff9900", align="center", 
                      

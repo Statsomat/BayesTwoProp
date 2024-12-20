@@ -114,6 +114,14 @@ shinyUI(fluidPage(
              ))
            ),
            
+           wellPanel(style = "background: #adc7de;", 
+                     h3("Choose an Option to Upload the Data"),
+                     radioButtons("input_type", "Input type",
+                                  choices = list("Upload a CSV File"=1,
+                                                 "Insert Frequencies of Occurence"=2)
+                     )
+           ),
+           
            conditionalPanel("input.input_type == 1",
                             wellPanel(style = "background: #adc7de;", 
                                       h3("Data by Uploading a CSV File"),

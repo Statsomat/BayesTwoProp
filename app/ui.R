@@ -79,6 +79,9 @@ shinyUI(fluidPage(
   fluidRow( 
     
     column(8, offset=2,
+           
+           wellPanel(style = "background: #fff;", includeHTML("www/Description.html")),
+           
            wellPanel(style = "background: #adc7de;", 
                      h3("Choose an Option to Upload the Data"),
                      radioButtons("input_type", "Input type",

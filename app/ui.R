@@ -82,13 +82,38 @@ shinyUI(fluidPage(
            
            wellPanel(style = "background: #fff;", includeHTML("www/Description.html")),
            
-           wellPanel(style = "background: #adc7de;", 
-                     h3("Choose an Option to Upload the Data"),
-                     radioButtons("input_type", "Input type",
-                                  choices = list("Upload a CSV File"=1,
-                                                 "Insert Frequencies of Occurence"=2)
-                                  )
-                     ),
+           wellPanel(
+             style = "background: #fff;", 
+             tags$div(
+               id = "description-short",
+               includeHTML("www/Description_Short.html")
+             ),
+             tags$div(
+               id = "description-full",
+               includeHTML("www/Description_Full.html"),
+               style = "display: none;"  # Initially hide the full description
+             ),
+             tags$div(
+               actionLink("toggle_description", "Read More", style = "cursor: pointer; font-weight: bold; color: #2a7bcf;")
+             ),
+             tags$script(HTML(
+               "
+    $(document).on('click', '#toggle_description', function() {
+      var shortDesc = $('#description-short');
+      var fullDesc = $('#description-full');
+      if (fullDesc.is(':visible')) {
+        fullDesc.hide();
+        shortDesc.show();
+        $('#toggle_description').text('Read More');
+      } else {
+        fullDesc.show();
+        shortDesc.hide();
+        $('#toggle_description').text('Read Less');
+      }
+    });
+    "
+             ))
+           ),
            
            conditionalPanel("input.input_type == 1",
                             wellPanel(style = "background: #adc7de;", 

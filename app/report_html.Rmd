@@ -194,7 +194,7 @@ cat("<br>",fill=TRUE)
 cat("In Bayes' theorem, an existing knowledge about the parameter(s) under investigation (the a priori distribution, or prior for short) is combined with the new knowledge from the data ('likelihood'), resulting in a new, improved knowledge (a posteriori probability distribution).", fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("<br>",fill=TRUE) 
-cat("'An important benefit of Bayesian analysis is the ability to generate estimates and credible intervals for any derived parameter. Differences, ratios, effect sizes and novel parameter combinations are directly computed from the posterior distribution. Another benefit of Bayesian analysis is computationally robust estimates of parameter values and their credible intervals. The credible intervals do not depend on large-N approximations (as confidence intervals often do in frequentist approaches), nor do credible intervals depend on which tests are intended (as confidence intervals do in frequentist approaches).' (Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021)", fill=TRUE)
+cat("An important benefit of Bayesian analysis is the ability to generate estimates and credible intervals for any derived parameter. Differences, ratios, effect sizes and novel parameter combinations are directly computed from the posterior distribution. Another benefit of Bayesian analysis are computationally robust estimates of parameter values and their credible intervals. The credible intervals do not depend on large-N approximations (as confidence intervals often do in frequentist approaches), nor do credible intervals depend on which tests are intended (as confidence intervals do in frequentist approaches).' (Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021)", fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("<br>",fill=TRUE) 
 cat("The goal of this app is to generate Bayes estimates and credible intervals for the user selected function of parameters: ", fill=TRUE)
@@ -313,7 +313,7 @@ cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} i.i.d. \\sim Bi(n_2,\\theta_2
 cat("These random variables are binomially distributed with the distribution parameters $n_i$ and $\\theta_i \\, , i\\in\\{1,2\\}$. \\", fill=TRUE)
 cat("The selected function ", fill=TRUE)
 if (params$user_selection_function_param==1) {
-  cat("$\\theta_1 - \\theta_2$, describes the Difference between two success probabilities.", fill=TRUE)
+  cat("$\\theta_1 - \\theta_2$, describes the difference between two success probabilities.", fill=TRUE)
 } else {
   if (params$user_selection_function_param==2) {
   cat("$\\theta_1 / \\theta_2$, describes the Relative Risk, e.g. ratio of two success probabilities.", fill=TRUE)
@@ -334,7 +334,7 @@ cat("<br>", fill=TRUE)
 #Likelihood formula of D given theta_1 and theta_2
 cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= \\underbrace{P(Y_1=y_1 \\ | \\ \\theta_1)}_{\\sim Bi(n_1,\\theta_1)} \\cdot \\underbrace{P(Y_2=y_2 \\ | \\ \\theta_2)}_{\\sim Bi(n_2,\\theta_2)} \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}")
 cat("<br>", fill=TRUE)
-cat("The likelihood function is defined as followes $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
+cat("The likelihood function is defined as follows $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
 cat("<br>", fill=TRUE)
 cat("$$L(\\theta_1, \\theta_2 \\ | \\ y_1,y_2) = \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot  \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2} \\, .$$", fill=TRUE)
 cat("<br>", fill=TRUE)
@@ -399,7 +399,7 @@ fig
 ```{r priortext, eval=eval_final, results='asis'}
 cat("## The Prior Distribution", fill=TRUE)
 cat("Preliminary information is included in the analysis with the help of the prior distribution.
-For binomially distributed measurement data, a beta distribution is suitable as an a priori distribution: \n",fill=TRUE)
+For binomially distributed measurement data, a beta distribution is suitable as a priori distribution: \n",fill=TRUE)
 
 cat("\\begin{align}(\\theta_1, \\theta_2) \\sim p(\\theta_1,\\theta_2) = p(\\theta_1) \\cdot p(\\theta_2) &= beta(a_1,b_1) \\cdot beta(a_2,b_2) \\\\[1em] &= \\frac{1}{B(a_1,b_1)} \\theta_1^{a_1-1} \\left(1-\\theta_1\\right)^{b_1-1} \\cdot \\frac{1}{B(a_2,b_2)} \\theta_2^{a_2-1} \\left(1-\\theta_2\\right)^{b_2-1}\\end{align}",fill=TRUE)
 cat("with $B$ as the beta function (also called \'Euler integral of the first kind\').",fill=TRUE)
@@ -407,12 +407,6 @@ cat("<br>", fill=TRUE)
 cat("We assume that the beliefs about the two parameters are independent, i.e. $\\theta_1$ and $\\theta_2$ are independent, with marginal belief distributions $p(\\theta_1)$, $p(\\theta_2)$.",fill = TRUE) 
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
-
-# Values from UI
-a1 <- params$a1
-a2 <- params$a2
-b1 <- params$b1
-b2 <- params$b2
 
 # no default parameters
 if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){

@@ -648,6 +648,7 @@ cat("(Kruschke, John K., Doing Bayesian Data Analysis, Academic Press, 2015)")
 
 ```{r plot_eti, eval=eval_final, results="asis"}
 cat("## ETI Plot", fill=TRUE)
+
 # Display the ETI plot
 eti_result = eti(estimate)
 
@@ -655,7 +656,7 @@ eti_result = eti(estimate)
 # Display the ETI plot 
 eti_plot <- plot(eti_result) +
   labs(
-    x = "Parameter",                 # Label for the x-axis
+    x = "\\theta_1-\\theta_2",       # Label for the x-axis
     y = "Density",                   # Label for the y-axis
     title = "Credible Interval (CI)" # Title for the plot
   ) +
@@ -674,7 +675,7 @@ print(eti_plot)
 
 # Add text interpretation
 cat("\n\n**Interpretation:**\n\n")
-cat("The Expected Tail Interval (ETI) plot visualizes the parameter's posterior distribution. The density curve highlights where the posterior probabilities are concentrated, and the shaded area (if present) illustrates the credible interval. This interval provides insights into the parameter's uncertainty in Bayesian analysis.\n")
+cat("This plot displays the posterior distribution of a specified parameter \\theta_1-\\theta_2 chosen within this run of the application. The x-axis represents the parameter’s potential values, and the y-axis indicates their relative probability as derived from the posterior density. The density is computed using underlying R functions (e.g., bayestestR::eti() and associated Bayesian sampling methods) that summarize the results of the posterior simulations or analytical calculations. The highlighted Credible Interval (CI), shown here as an Expected Tail Interval (ETI), differs from other intervals, such as the Highest Density Interval (HDI), by including values from the tails of the distribution rather than strictly focusing on the region of highest probability density. Examination of the distribution’s shape, the ETI’s position, and its width provides insight into the plausibility of certain parameter values and the level of uncertainty associated with them.\n")
 ```
 
 ```{r plotpost, eval=rope_user, results="asis"}

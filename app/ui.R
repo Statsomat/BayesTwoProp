@@ -82,7 +82,7 @@ shinyUI(fluidPage(
            
            
            wellPanel(
-             style = "background: #fff;", 
+             style = "background: #c5fbc4", 
              tags$div(
                id = "description-short",
                includeHTML("www/Description_Short.html")

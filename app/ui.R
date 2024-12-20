@@ -182,9 +182,7 @@ shinyUI(fluidPage(
            
            wellPanel(style = "background: #ff9900", align="center", 
                      
-                     h3("Click to Generate Results"),
-                     
-                     radioButtons('rcode', '', c('Data Analysis Report (HTML)', 'R Code'), inline = TRUE),
+                     h3("Click to Generate Data Analysis Report (HTML)"),
                      actionButton("generate", "", style="
                                     height:145px;
                                     width:84px;

@@ -79,6 +79,9 @@ shinyUI(fluidPage(
   fluidRow( 
     
     column(8, offset=2,
+           
+           wellPanel(style = "background: #fff;", includeHTML("www/Description.html")),
+           
            wellPanel(style = "background: #adc7de;", 
                      h3("Choose an Option to Upload the Data"),
                      radioButtons("input_type", "Input type",
@@ -165,7 +168,17 @@ shinyUI(fluidPage(
            wellPanel(
              style = "background: #adc7de;", 
              h3("Selection for the function of parameters"),
-             selectInput("user_selection_function_param", "Choose between 1: Theta1-Theta2, 2: Theta1/Theta2, 3: 1-Theta1/Theta2", choices = c(1,2,3), selected = 1)),
+             radioButtons(
+               "user_selection_function_param",
+               "Functions:",
+               choiceNames = list(
+                 HTML("&theta;<sub>1</sub> - &theta;<sub>2</sub>"),
+                 HTML("&theta;<sub>1</sub> / &theta;<sub>2</sub>"),
+                 HTML("1 - &theta;<sub>1</sub> / &theta;<sub>2</sub>")
+               ),
+               choiceValues = c(1, 2, 3),
+               selected = 1
+             )),
            
            wellPanel(style = "background: #ff9900", align="center", 
                      

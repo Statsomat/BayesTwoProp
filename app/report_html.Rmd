@@ -2,7 +2,7 @@
 title: "Two Proportions by Bayes"
 author: 
   - Denise Welsch
-  - Contributors^[Viktoria Daum, Chiara Freitag, Konrad Junkes, Anna-Lena Künster, Jomana Reusch, Simone Schüttler]
+  - Contributors^[Theresa Binot, Viktoria Daum, Renée Defren, Chiara Freitag, Konrad Junkes, Anna-Lena Künster, Jomana Reusch, Simone Schüttler]
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   html_document:
@@ -594,16 +594,93 @@ if (is.null(rope_user)){
 
 ```{r plot_hdi, eval=eval_final, results="asis"}
 cat("## HDI Plot", fill=TRUE)
-# Display graphical posterior information
-# Use bayestestR package 
-plot(hdi(estimate, ci = c(.89, .95, .99)))
+# Display graphical posterior information using bayestestR package
+
+xlabel <- if (params$user_selection_function_param == 1){
+  expression(theta[1] - theta[2])
+  } else if (params$user_selection_function_param == 2){
+  expression(frac(theta[1],theta[2]))
+  } else if (params$user_selection_function_param == 3){
+  expression(1 - frac(theta[1],theta[2]))
+
+}
+hdi_result <- hdi(estimate, ci = c(.89, .95, .99))
+# Display the HDI plot
+hdi_plot <- plot(hdi_result) +
+  labs(
+    x = xlabel,                 # Label for the x-axis
+    y = "Density of the posterior distribution",                   # Label for the y-axis
+    title = "Highest Density Interval (HDI)" # Title for the plot
+  ) +
+  theme_minimal(base_size = 14) +    # Apply a clean theme with readable font size
+  theme(
+    plot.title = element_text(hjust = 0.5),  # Center the plot title
+    legend.position = "right",               # Keep legend on the right
+    legend.text = element_text(size = 10),   # Reduce legend text size
+    legend.title = element_text(size = 11),  # Reduce legend title size
+    panel.background = element_rect(fill = "gray95", color = NA),  # Light gray background
+    panel.grid.major = element_line(color = "white"),              # Major grid lines in white
+    panel.grid.minor = element_line(color = "white")               # Minor grid lines in white
+  )
+
+print(hdi_plot)
+
+
+# Textuelle Interpretation - Dynamic Expression
+cat("\n\n**Interpretation:**\n\n")
+cat("This plot shows the Highest Density Intervals (HDI) for a posterior distribution, illustrating the most credible values for the parameter ")
+
+# Direkte LaTeX-Notation für xlabel
+if (params$user_selection_function_param == 1) {
+  cat("\\(\\theta_1 - \\theta_2\\)")
+} else if (params$user_selection_function_param == 2) {
+  cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
+} else if (params$user_selection_function_param == 3) {
+  cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
+}
+
+cat("\n\nThe curve represents the probability density of the parameter values, with the shaded regions highlighting different HDI levels. ",
+    "The red area corresponds to the 89% HDI, which captures the majority of the distribution’s density and represents the most credible range. ",
+    "The pink region extends this to 95%, including slightly more of the distribution, while the green and blue regions narrow further, covering 99% and 100% of the density, respectively. ",
+    "Overall, the HDIs provide a visual summary of where the most credible parameter estimates lie, while reflecting the uncertainty inherent in the data. ",
+    "The 95% HDI includes all those values of x for which the density is at least as big as some value W, such that the integral over all those x values is 95%. Formally, the values of x in the 95% HDI are those such that\n")
+
+cat("\\begin{align*}\n",
+    "    \\text{HDI}_{95\\%} &= \\left\\{ x \\mid p(x) > W \\right\\} ",
+    "    \\text{with} \\quad \\int_{x : p(x) > W} p(x) \\, dx &= 0.95\n",
+    "\\end{align*}")
+cat("(Kruschke, John K., Doing Bayesian Data Analysis, Academic Press, 2015)")
 ```
 
 ```{r plot_eti, eval=eval_final, results="asis"}
 cat("## ETI Plot", fill=TRUE)
-## Display graphical posterior information
-### Use bayestestR package 
-plot(eti(estimate))
+# Display the ETI plot
+eti_result = eti(estimate)
+
+
+# Display the ETI plot 
+eti_plot <- plot(eti_result) +
+  labs(
+    x = "Parameter",                 # Label for the x-axis
+    y = "Density",                   # Label for the y-axis
+    title = "Credible Interval (CI)" # Title for the plot
+  ) +
+  theme_minimal(base_size = 14) +    # Apply a clean theme with readable font size
+  theme(
+    plot.title = element_text(hjust = 0.5),  # Center the plot title
+    legend.position = "right",               # Keep legend on the right
+    legend.text = element_text(size = 10),   # Reduce legend text size
+    legend.title = element_text(size = 11),  # Reduce legend title size
+    panel.background = element_rect(fill = "gray95", color = NA),  # Light gray background
+    panel.grid.major = element_line(color = "white"),              # Major grid lines in white
+    panel.grid.minor = element_line(color = "white")               # Minor grid lines in white
+  )
+
+print(eti_plot)
+
+# Add text interpretation
+cat("\n\n**Interpretation:**\n\n")
+cat("The Expected Tail Interval (ETI) plot visualizes the parameter's posterior distribution. The density curve highlights where the posterior probabilities are concentrated, and the shaded area (if present) illustrates the credible interval. This interval provides insights into the parameter's uncertainty in Bayesian analysis.\n")
 ```
 
 ```{r plotpost, eval=rope_user, results="asis"}

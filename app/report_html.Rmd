@@ -2,7 +2,7 @@
 title: "Two Proportions by Bayes"
 author: 
   - Denise Welsch
-  - Contributors^[Viktoria Daum, Konrad Junkes, Jomana Reusch, Simone Schüttler]
+  - Contributors^[Theresa Binot, Viktoria Daum, Renée Defren, Chiara Freitag, Konrad Junkes, Anna-Lena Künster, Jomana Reusch, Simone Schüttler]
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   html_document:
@@ -13,8 +13,6 @@ classoption: landscape
 params:
   data: NA
   filename: NA
-  fencoding: NA # used in Shiny app 
-  decimal: NA
   enc_guessed: NA # used in Shiny app 
   presence_exposure: NA
   presence_outcome: NA
@@ -144,18 +142,6 @@ cat("# Basic Information", fill=TRUE)
 # Basic information for the case file upload
 cat("Automatic statistics for the file:", as.character(params$filename[1]), fill=TRUE)
 cat("<br>",fill=TRUE) 
-
-cat("Your selection for the encoding:", fill=TRUE)
-if (params$fencoding=="unknown"){
-  cat("Auto")
-} else {cat("UTF-8")}
-cat("<br>",fill=TRUE) 
-
-cat("Your selection for the decimal character:", fill=TRUE)
-if (params$decimal=="auto"){
-  cat("Auto")
-} else {cat(params$decimal)}
-cat("<br>",fill=TRUE) 
   
 cat("Observations (rows with at least one non-missing value): ", fill=TRUE)
 cat(dim(df)[1])
@@ -180,13 +166,13 @@ if (exists("vars")){
 
 ```{r cellupload, eval=evalcellfreq , results='asis'}
 # Upload as cell frequencies, display them nicely
-cat(paste("Number of Observations with both a present Outcome and  a present Exposure: ", params$n_exposure1_outcome1), fill=TRUE)
+cat(paste0("Number of Observations with both a present Outcome and a present Exposure: $y_1=", params$n_exposure1_outcome1,"$"), fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Number of Observations with present Exposure: ",params$n_exposure1), fill=TRUE)
+cat(paste0("Number of Observations with present Exposure: $n_1=",params$n_exposure1,"$"), fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Number of Observations with a present Outcome, but without Exposure: ",params$n_exposure0_outcome1), fill=TRUE)
+cat(paste0("Number of Observations with present Outcome but without Exposure: $y_2=",params$n_exposure0_outcome1,"$"), fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat(paste("Numbers of Observations without Exposure: ",params$n_exposure0),fill=TRUE)
+cat(paste0("Number of Observations without Exposure: $n_2=",params$n_exposure0,"$"),fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("Name of the Outcome Variable: ", params$outcome, fill=TRUE)
 cat("<br>",fill=TRUE) 
@@ -208,7 +194,7 @@ cat("<br>",fill=TRUE)
 cat("In Bayes' theorem, an existing knowledge about the parameter(s) under investigation (the a priori distribution, or prior for short) is combined with the new knowledge from the data ('likelihood'), resulting in a new, improved knowledge (a posteriori probability distribution).", fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("<br>",fill=TRUE) 
-cat("'An important benefit of Bayesian analysis is the ability to generate estimates and credible intervals for any derived parameter. Differences, ratios, effect sizes and novel parameter combinations are directly computed from the posterior distribution. Another benefit of Bayesian analysis is computationally robust estimates of parameter values and their credible intervals. The credible intervals do not depend on large-N approximations (as confidence intervals often do in frequentist approaches), nor do credible intervals depend on which tests are intended (as confidence intervals do in frequentist approaches).' (Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021)", fill=TRUE)
+cat("An important benefit of Bayesian analysis is the ability to generate estimates and credible intervals for any derived parameter. Differences, ratios, effect sizes and novel parameter combinations are directly computed from the posterior distribution. Another benefit of Bayesian analysis are computationally robust estimates of parameter values and their credible intervals. The credible intervals do not depend on large-N approximations (as confidence intervals often do in frequentist approaches), nor do credible intervals depend on which tests are intended (as confidence intervals do in frequentist approaches).' (Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021)", fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("<br>",fill=TRUE) 
 cat("The goal of this app is to generate Bayes estimates and credible intervals for the user selected function of parameters: ", fill=TRUE)
@@ -426,7 +412,7 @@ cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} i.i.d. \\sim Bi(n_2,\\theta_2
 cat("These random variables are binomially distributed with the distribution parameters $n_i$ and $\\theta_i \\, , i\\in\\{1,2\\}$. \\", fill=TRUE)
 cat("The selected function ", fill=TRUE)
 if (params$user_selection_function_param==1) {
-  cat("$\\theta_1 - \\theta_2$, describes the Difference between two success probabilities.", fill=TRUE)
+  cat("$\\theta_1 - \\theta_2$, describes the difference between two success probabilities.", fill=TRUE)
 } else {
   if (params$user_selection_function_param==2) {
   cat("$\\theta_1 / \\theta_2$, describes the Relative Risk, e.g. ratio of two success probabilities.", fill=TRUE)
@@ -445,9 +431,9 @@ cat("<br>", fill=TRUE)
 cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2)\\, ,$$ where $f$ is a probability mass function with")
 cat("<br>", fill=TRUE)
 #Likelihood formula of D given theta_1 and theta_2
-cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= P(Y_1=y_1 \\ | \\ \\theta_1) \\cdot P(Y_2=y_2 \\ | \\ \\theta_2) \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}")
+cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= \\underbrace{P(Y_1=y_1 \\ | \\ \\theta_1)}_{\\sim Bi(n_1,\\theta_1)} \\cdot \\underbrace{P(Y_2=y_2 \\ | \\ \\theta_2)}_{\\sim Bi(n_2,\\theta_2)} \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}")
 cat("<br>", fill=TRUE)
-cat("The likelihood function is defined as followes $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
+cat("The likelihood function is defined as follows $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
 cat("<br>", fill=TRUE)
 cat("$$L(\\theta_1, \\theta_2 \\ | \\ y_1,y_2) = \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot  \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2} \\, .$$", fill=TRUE)
 cat("<br>", fill=TRUE)
@@ -512,7 +498,7 @@ fig
 ```{r priortext, eval=eval_final, results='asis'}
 cat("## The Prior Distribution", fill=TRUE)
 cat("Preliminary information is included in the analysis with the help of the prior distribution.
-For binomially distributed measurement data, a beta distribution is suitable as an a priori distribution: \n",fill=TRUE)
+For binomially distributed measurement data, a beta distribution is suitable as a priori distribution: \n",fill=TRUE)
 
 cat("\\begin{align}(\\theta_1, \\theta_2) \\sim p(\\theta_1,\\theta_2) = p(\\theta_1) \\cdot p(\\theta_2) &= beta(a_1,b_1) \\cdot beta(a_2,b_2) \\\\[1em] &= \\frac{1}{B(a_1,b_1)} \\theta_1^{a_1-1} \\left(1-\\theta_1\\right)^{b_1-1} \\cdot \\frac{1}{B(a_2,b_2)} \\theta_2^{a_2-1} \\left(1-\\theta_2\\right)^{b_2-1}\\end{align}",fill=TRUE)
 cat("with $B$ as the beta function (also called \'Euler integral of the first kind\').",fill=TRUE)
@@ -520,12 +506,6 @@ cat("<br>", fill=TRUE)
 cat("We assume that the beliefs about the two parameters are independent, i.e. $\\theta_1$ and $\\theta_2$ are independent, with marginal belief distributions $p(\\theta_1)$, $p(\\theta_2)$.",fill = TRUE) 
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
-
-# Values from UI
-a1 <- params$a1
-a2 <- params$a2
-b1 <- params$b1
-b2 <- params$b2
 
 # no default parameters
 if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
@@ -707,16 +687,93 @@ if (is.null(rope_user)){
 
 ```{r plot_hdi, eval=eval_final, results="asis"}
 cat("## HDI Plot", fill=TRUE)
-# Display graphical posterior information
-# Use bayestestR package 
-plot(hdi(estimate, ci = c(.89, .95, .99)))
+# Display graphical posterior information using bayestestR package
+
+xlabel <- if (params$user_selection_function_param == 1){
+  expression(theta[1] - theta[2])
+  } else if (params$user_selection_function_param == 2){
+  expression(frac(theta[1],theta[2]))
+  } else if (params$user_selection_function_param == 3){
+  expression(1 - frac(theta[1],theta[2]))
+
+}
+hdi_result <- hdi(estimate, ci = c(.89, .95, .99))
+# Display the HDI plot
+hdi_plot <- plot(hdi_result) +
+  labs(
+    x = xlabel,                 # Label for the x-axis
+    y = "Density of the posterior distribution",                   # Label for the y-axis
+    title = "Highest Density Interval (HDI)" # Title for the plot
+  ) +
+  theme_minimal(base_size = 14) +    # Apply a clean theme with readable font size
+  theme(
+    plot.title = element_text(hjust = 0.5),  # Center the plot title
+    legend.position = "right",               # Keep legend on the right
+    legend.text = element_text(size = 10),   # Reduce legend text size
+    legend.title = element_text(size = 11),  # Reduce legend title size
+    panel.background = element_rect(fill = "gray95", color = NA),  # Light gray background
+    panel.grid.major = element_line(color = "white"),              # Major grid lines in white
+    panel.grid.minor = element_line(color = "white")               # Minor grid lines in white
+  )
+
+print(hdi_plot)
+
+
+# Textuelle Interpretation - Dynamic Expression
+cat("\n\n**Interpretation:**\n\n")
+cat("This plot shows the Highest Density Intervals (HDI) for a posterior distribution, illustrating the most credible values for the parameter ")
+
+# Direkte LaTeX-Notation für xlabel
+if (params$user_selection_function_param == 1) {
+  cat("\\(\\theta_1 - \\theta_2\\)")
+} else if (params$user_selection_function_param == 2) {
+  cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
+} else if (params$user_selection_function_param == 3) {
+  cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
+}
+
+cat("\n\nThe curve represents the probability density of the parameter values, with the shaded regions highlighting different HDI levels. ",
+    "The red area corresponds to the 89% HDI, which captures the majority of the distribution’s density and represents the most credible range. ",
+    "The pink region extends this to 95%, including slightly more of the distribution, while the green and blue regions narrow further, covering 99% and 100% of the density, respectively. ",
+    "Overall, the HDIs provide a visual summary of where the most credible parameter estimates lie, while reflecting the uncertainty inherent in the data. ",
+    "The 95% HDI includes all those values of x for which the density is at least as big as some value W, such that the integral over all those x values is 95%. Formally, the values of x in the 95% HDI are those such that\n")
+
+cat("\\begin{align*}\n",
+    "    \\text{HDI}_{95\\%} &= \\left\\{ x \\mid p(x) > W \\right\\} ",
+    "    \\text{with} \\quad \\int_{x : p(x) > W} p(x) \\, dx &= 0.95\n",
+    "\\end{align*}")
+cat("(Kruschke, John K., Doing Bayesian Data Analysis, Academic Press, 2015)")
 ```
 
 ```{r plot_eti, eval=eval_final, results="asis"}
 cat("## ETI Plot", fill=TRUE)
-## Display graphical posterior information
-### Use bayestestR package 
-plot(eti(estimate))
+# Display the ETI plot
+eti_result = eti(estimate)
+
+
+# Display the ETI plot 
+eti_plot <- plot(eti_result) +
+  labs(
+    x = "Parameter",                 # Label for the x-axis
+    y = "Density",                   # Label for the y-axis
+    title = "Credible Interval (CI)" # Title for the plot
+  ) +
+  theme_minimal(base_size = 14) +    # Apply a clean theme with readable font size
+  theme(
+    plot.title = element_text(hjust = 0.5),  # Center the plot title
+    legend.position = "right",               # Keep legend on the right
+    legend.text = element_text(size = 10),   # Reduce legend text size
+    legend.title = element_text(size = 11),  # Reduce legend title size
+    panel.background = element_rect(fill = "gray95", color = NA),  # Light gray background
+    panel.grid.major = element_line(color = "white"),              # Major grid lines in white
+    panel.grid.minor = element_line(color = "white")               # Minor grid lines in white
+  )
+
+print(eti_plot)
+
+# Add text interpretation
+cat("\n\n**Interpretation:**\n\n")
+cat("The Expected Tail Interval (ETI) plot visualizes the parameter's posterior distribution. The density curve highlights where the posterior probabilities are concentrated, and the shaded area (if present) illustrates the credible interval. This interval provides insights into the parameter's uncertainty in Bayesian analysis.\n")
 ```
 
 ```{r plotpost, eval=rope_user, results="asis"}

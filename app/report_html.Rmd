@@ -293,20 +293,14 @@ rownames(df_table_plot) <- c(name_nonoutcome, name_outcome)
 rowsum <- apply(df_table_plot, MARGIN  = 1, FUN = sum)
 colsum <- apply(df_table_plot, MARGIN  = 2, FUN = sum)
 
-cat("This two tables depict the frequency and the frequency in percentage of the whole data. One can also calculate the row percent and the column percent per table.")
+cat("These two tables depict the frequencies and percentages of the total data. One can also calculate the row percentages and column percentages per table.")
 cat("<br>", fill=TRUE)
 ##row percent
-cat(paste0("Estimator for row percent: \\begin{align} P(\\text{",name_nonexposure,"} \\ | \\ \\text{ ",name_nonoutcome,"} ) &= ",round((n_exposure0 - n_exposure0_outcome1)/rowsum_1 * 100,digits = 1),"\\% \\\\
-P(\\text{",name_exposure,"} \\ | \\ \\text{ ",name_nonoutcome,"} ) &= ",round((n_exposure1 - n_exposure1_outcome1)/rowsum_1 * 100,digits = 1),"\\% \\\\ 
-\\P(\\text{",name_nonexposure,"} \\ | \\ \\text{ ",name_outcome,"} ) &= ",round((n_exposure0_outcome1)/rowsum_2 * 100,digits = 1),"\\% \\\\
-\\P(\\text{",name_exposure,"} \\ | \\ \\text{ ",name_outcome,"} ) &= ",round((n_exposure1_outcome1)/rowsum_2 * 100,digits = 1),"\\% \\end{align}"))
+cat(paste0("Estimator for row percentages: \\begin{align} P(\\text{",name_nonexposure,"} \\ | \\ \\text{",name_nonoutcome,"} ) &= ",round((n_exposure0 - n_exposure0_outcome1)/rowsum_1 * 100,digits = 1),"\\% \\\\ P(\\text{",name_exposure,"} \\ | \\ \\text{",name_nonoutcome,"} ) &= ",round((n_exposure1 - n_exposure1_outcome1)/rowsum_1 * 100,digits = 1),"\\% \\\\ P(\\text{",name_nonexposure,"} \\ | \\ \\text{",name_outcome,"} ) &= ",round((n_exposure0_outcome1)/rowsum_2 * 100,digits = 1),"\\% \\\\ P(\\text{",name_exposure,"} \\ | \\ \\text{",name_outcome,"} ) &= ",round((n_exposure1_outcome1)/rowsum_2 * 100,digits = 1),"\\% \\end{align}"))
 
 
 ##column percent
-cat(paste0("Estimator for column percent: \\begin{align} P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_nonexposure,"} ) &= ",round((n_exposure0 - n_exposure0_outcome1)/n_exposure0 * 100,digits = 1),"\\% \\\\
-P(\\text{",name_outcome,"} \\ | \\ \\text{ ",name_nonexposure,"} ) &= ",round((n_exposure1 - n_exposure1_outcome1)/n_exposure0 * 100,digits = 1),"\\% \\\\ 
-P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_exposure,"} ) &= ",round((n_exposure0_outcome1)/n_exposure1 * 100,digits = 1),"\\% \\\\
-P(\\text{",name_outcome,"} \\ | \\ \\text{ ",name_exposure,"} ) &= ",round((n_exposure1_outcome1)/n_exposure * 100,digits = 1),"\\% \\end{align}"))
+cat(paste0("Estimator for column percentages: \\begin{align} P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_nonexposure,"} ) &= ",round((n_exposure0 - n_exposure0_outcome1)/n_exposure0 * 100,digits = 1),"\\% \\\\ P(\\text{",name_outcome,"} \\ | \\ \\text{ ",name_nonexposure,"} ) &= ",round( n_exposure0_outcome1/n_exposure0 * 100,digits = 1),"\\% \\\\ P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_exposure,"} ) &= ",round((n_exposure1-n_exposure1_outcome1)/n_exposure1 * 100,digits = 1),"\\% \\\\ P(\\text{",name_outcome,"} \\ | \\ \\text{ ",name_exposure,"} ) &= ",round((n_exposure1_outcome1)/n_exposure1 * 100,digits = 1),"\\% \\end{align}"))
 
 
 

@@ -376,17 +376,6 @@ l2 = likelihood(Theta2, n_exposure0_outcome1, n_exposure0)
 #Matrix multiplication to calculate likelihood of D given theta_1 and theta_2
 Likelihood = l1 %*% t(l2)
 
-# Check for and handle invalid values in Likelihood
-if (anyNA(Likelihood) || any(is.nan(Likelihood)) || any(is.infinite(Likelihood))) {
-  cat("Warning: Invalid values found in Likelihood. Replacing with 0.\n")
-  Likelihood[is.na(Likelihood) | is.nan(Likelihood) | is.infinite(Likelihood)] <- 0
-}
-
-# Check the range of Likelihood
-if (all(Likelihood == 0)) {
-  stop("Likelihood matrix is entirely zero. Check your likelihood calculations.")
-}
-
 #Generation of the surface plot of D given theta_1 and theta_2
 #with white x and y dimensional contour lines
 fig <- plot_ly(z = ~Likelihood, x = ~Theta1, y = ~Theta2, contours = list(x = list(show = TRUE, start= 0, end= 1, size = 0.05 ,color = 'white'), y = list(show = TRUE, start= 0, end= 1, size = 0.05 ,color = 'white')))

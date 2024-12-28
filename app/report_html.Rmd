@@ -347,16 +347,14 @@ cat(paste0("Then $$L(\\theta_1, \\theta_2 \\ | \\ y_1=", n_exposure1_outcome1, "
 cat("<br>", fill=TRUE)
 cat("Examples for selected $(\\theta_1, \\theta_2)$, given our data:", fill=TRUE)
 
-# Calculation of the example values
-#Function to calculate binomial coefficient
-bin = function(n, k) {
-  return(factorial(n) / (factorial(k) * factorial(n - k)))
+# Define likelihood function (adjust if needed)
+likelihood <- function(theta, successes, trials) {
+  if (any(trials <= 0)) stop("Trials must be greater than 0")
+  if (any(successes < 0)) stop("Successes must be non-negative")
+  if (any(theta <= 0 | theta >= 1)) stop("Theta must be between 0 and 1")
+  dbinom(successes, size = trials, prob = theta)
 }
 
-#Function to calculate marginal distribution of D given theta
-likelihood = function(theta, s, n) {
-  bin(n, s) * theta^s * (1-theta)^(n - s)
-}
 L1 = likelihood(n_exposure1_outcome1/n_exposure1,n_exposure1_outcome1,n_exposure1)*likelihood(n_exposure0_outcome1/n_exposure0,n_exposure0_outcome1,n_exposure0)
 L2 = likelihood(0.5,n_exposure1_outcome1,n_exposure1)*likelihood(0.5,n_exposure0_outcome1,n_exposure0)
 
@@ -377,6 +375,17 @@ l2 = likelihood(Theta2, n_exposure0_outcome1, n_exposure0)
 
 #Matrix multiplication to calculate likelihood of D given theta_1 and theta_2
 Likelihood = l1 %*% t(l2)
+
+# Check for and handle invalid values in Likelihood
+if (anyNA(Likelihood) || any(is.nan(Likelihood)) || any(is.infinite(Likelihood))) {
+  cat("Warning: Invalid values found in Likelihood. Replacing with 0.\n")
+  Likelihood[is.na(Likelihood) | is.nan(Likelihood) | is.infinite(Likelihood)] <- 0
+}
+
+# Check the range of Likelihood
+if (all(Likelihood == 0)) {
+  stop("Likelihood matrix is entirely zero. Check your likelihood calculations.")
+}
 
 #Generation of the surface plot of D given theta_1 and theta_2
 #with white x and y dimensional contour lines

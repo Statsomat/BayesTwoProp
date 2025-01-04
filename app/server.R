@@ -7,11 +7,377 @@ function(input, output, session) {
     
     if(input$input_type==1){
       
-      server_file(input, output, session)
+        # Reload app if disconnected
+        observeEvent(input$disconnect, {
+          session$close()
+        })
+        
+        # Reload app button
+        observeEvent(input$reload,session$reload())
+        
+        # On session end
+        session$onSessionEnded(stopApp)
+        
+        # Upload message
+        observeEvent(input$file, 
+                     once=T,
+                     ignoreInit=T,
+                     {showModal(modalDialog(
+                       title = "Reading Data", "Please Wait",
+                       footer = NULL,
+                       fade = FALSE,
+                       easyClose = TRUE
+                     ))
+                       Sys.sleep(2)}, 
+                     priority=100)
+        
+        # Upload data
+        datainput <- reactive({ 
+          
+          ### Validations ###
+          
+          validate(need(input$file$datapath != "", "Please upload a CSV file."))
+          
+          validate(need(tools::file_ext(input$file$datapath) == "csv", "Error. Not a CSV file. Please upload a CSV file."))
+          
+          validate(need(try({enc_guessed <- guess_encoding(input$file$datapath)
+          enc_guessed_first <- enc_guessed[[1]][1]
+          datainput1 <- fread(input$file$datapath, 
+                              header = "auto", 
+                              sep="auto", 
+                              dec="auto", 
+                              encoding = "unknown",
+                              data.table = FALSE, 
+                              na.strings = "")
+          colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
+          col_names <- sapply(datainput1, is.character)
+          
+          datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
+          datainput1}),
+          "Error. File cannot be read. Input is either empty, fully whitespace, or skip has been set after the last non-whitespace."
+          )
+          )
+          
+          validate(need(tryCatch(datainput1 <- fread(input$file$datapath,
+                                                     header = "auto",
+                                                     sep="auto",
+                                                     dec="auto",
+                                                     encoding = "unknown",
+                                                     data.table = FALSE,
+                                                     na.strings = ""), warning=function(w) {}),
+                        "Error. The file cannot be read correctly. Discarded single-line footer."
+          )
+          )
+          
+          if (is.null(input$file))
+            return(NULL)
+          
+          ### Data Input ###
+          
+          return(tryCatch({
+            
+            enc_guessed <- guess_encoding(input$file$datapath)
+            enc_guessed_first <- enc_guessed[[1]][1]
+            
+            datainput1 <- fread(input$file$datapath, 
+                                header = "auto", 
+                                sep="auto", 
+                                dec ="auto", 
+                                encoding = "unknown", 
+                                data.table = FALSE, 
+                                na.strings = "")
+            
+            colnames(datainput1) <- iconv(colnames(datainput1), enc_guessed_first, "UTF-8")
+            col_names <- sapply(datainput1, is.character)
+            
+            datainput1[ ,col_names] <- sapply(datainput1[, col_names], function(col) iconv(col, enc_guessed_first, "UTF-8"))
+            datainput1}
+            ,error=function(e) stop(safeError(e))
+            
+          ))
+        }
+        )
+        
+        # Row limits 
+        observe({
+          req(input$file, datainput())
+          removeModal()
+          
+          if (nrow(datainput()) > 100000){
+            showNotification("Maximum sample size exceeded. ", duration=30)
+            Sys.sleep(5)
+            session$close()
+          }
+          
+          if (nrow(datainput()) < 20){
+            showNotification("Error: Minimum 20 observations required. ", duration=30)
+            Sys.sleep(5)
+            session$close()
+          }
+        })
+        
+        # Select Exposure Variable
+        #To dynamically scale selection window
+        selection_length_min = 7
+        selection_length_max = 15
+        
+        output$selection_exposure <- renderUI({
+          
+          req(datainput())
+          removeModal()
+          
+          chooserInput("selection_exposure", "Available", "Selected",
+                       colnames(datainput()), c(),
+                       size = min(c(max(c(length(colnames(datainput())), selection_length_min)), selection_length_max)), 
+                       multiple = FALSE)
+          
+        })
+        
+        observeEvent(input$selection_exposure, {
+          
+          factorinterest <- input$selection_exposure$right
+          choices <-  unique(datainput()[,factorinterest])  
+          updateSelectInput(session = getDefaultReactiveDomain(), inputId = "reference_exposure", choices = choices)
+          
+        })
+        
+        referencename_exposure <- reactive({
+          
+          req(input$reference_exposure)
+          input$reference_exposure
+          
+        })
+        
+        # Select Outcome Variable
+        output$selection_outcome <- renderUI({
+          
+          req(datainput())
+          removeModal()
+          
+          chooserInput("selection_outcome", "Available", "Selected",
+                       colnames(datainput()), c(), size = min(c(max(c(length(colnames(datainput())), selection_length_min)), selection_length_max)), multiple = FALSE)
+          
+        })
+        
+        #  Dynamic component for the reference level of the factor of interest
+        
+        observeEvent(input$selection_outcome, {
+          
+          factorinterest <- input$selection_outcome$right
+          choices <-  unique(datainput()[,factorinterest])  
+          updateSelectInput(session = getDefaultReactiveDomain(), inputId = "reference_outcome", choices = choices) 
+        })
+        
+        referencename_outcome <- reactive({
+          
+          req(input$reference_outcome)
+          input$reference_outcome
+          
+        })
+        
+        # Stop if column names not distinct or if too many columns selected
+        
+        observe({
+          
+          req(input$file, datainput())
+          removeModal()
+          
+          if (length(input$selection_outcome$right) > 1 ){
+            showNotification("Please select only one outcome variable.", duration=30)
+            Sys.sleep(5)
+            session$close()
+          }
+          
+          if (length(input$selection_exposure$right) > 1 ){
+            showNotification("Please select only one exposure variable.", duration=30)
+            Sys.sleep(5)
+            session$close()
+          }
+        })
+        
+        # This creates a short-term storage location for a filepath 
+        report <- reactiveValues(filepath = NULL) 
+        
+        # Render report
+        observeEvent(input$generate, once=T,
+                     ignoreInit=T,{
+                       
+                       req(input$file, datainput(), input$selection_outcome$right)
+                       
+                       src1 <- normalizePath('report_html.Rmd')
+                       src2 <- normalizePath('references.bib')
+                       src5 <- normalizePath('FiraSans-Bold.otf')
+                       src6 <- normalizePath('FiraSans-Regular.otf')
+                       
+                       # Temporarily switch to the temp dir
+                       owd <- setwd(tempdir())
+                       on.exit(setwd(owd))
+                       file.copy(src1, 'report_html.Rmd', overwrite = TRUE)
+                       file.copy(src2, 'references.bib', overwrite = TRUE)
+                       file.copy(src5, 'FiraSans-Bold.otf', overwrite = TRUE)
+                       file.copy(src6, 'FiraSans-Regular.otf', overwrite = TRUE)
+                       
+                       # Set up parameters to pass to Rmd document
+                       enc_guessed <- guess_encoding(input$file$datapath)
+                       enc_guessed_first <- enc_guessed[[1]][1]
+                       
+                       params <- list(data = datainput(), 
+                                      filename=input$file, 
+                                      enc_guessed = enc_guessed_first, 
+                                      outcome = input$selection_outcome$right, 
+                                      exposure = input$selection_exposure$right, 
+                                      presence_outcome = referencename_outcome(),
+                                      presence_exposure = referencename_exposure(), 
+                                      a1 = input$a1, 
+                                      b1 = input$b1, 
+                                      a2 = input$a2, 
+                                      b2 = input$b2,
+                                      user_selection_function_param = input$user_selection_function_param) 
+                       
+                       tryCatch({
+                         
+                         withProgress(message = 'Please wait, the Statsomat app is computing. This may take a while.', value=0, {
+                           
+                           for (i in 1:15) {
+                             incProgress(1/15)
+                             Sys.sleep(0.25)
+                           }
+
+                             tmp_file <- render('report_html.Rmd', html_document(),
+                                                params = params,
+                                                envir = new.env(parent = globalenv())
+                             )
+                           
+                           report$filepath <- tmp_file 
+                         })
+                         
+                         showNotification("Now you can download the file.", duration=20)
+                         
+                       },
+                       
+                       error=function(e) {
+                         
+                         # Report not available 
+                         showNotification("Something went wrong. Please contact the support@statsomat.com. ",duration=20)
+                         
+                       }
+                       )
+                     })
+        
+        # Enable downloadbutton 
+        observe({
+          req(!is.null(report$filepath))
+          session$sendCustomMessage("check_generation", list(check_generation  = 1))
+        })
+        
+        # Download report
+        output$download <- downloadHandler(
+          filename = function() {
+              paste('MyReport',sep = '.','html')
+          },
+          
+          content = function(file) {
+            
+            file.copy(report$filepath, file)
+            
+          }
+        )
       
       } else {
         
-        server_table(input, output, session)
+          # Reload app if disconnected
+          observeEvent(input$disconnect, {
+            session$close()
+          })
+          
+          # Reload app button
+          observeEvent(input$reload,session$reload())
+          
+          # On session end
+          session$onSessionEnded(stopApp)
+          
+          report <- reactiveValues(filepath = NULL) 
+          
+          # Render report
+          observeEvent(input$generate, once=TRUE,
+                       ignoreInit=TRUE,{
+                         
+                         src1 <- normalizePath('report_html.Rmd')
+                         src2 <- normalizePath('references.bib')
+                         src5 <- normalizePath('FiraSans-Bold.otf')
+                         src6 <- normalizePath('FiraSans-Regular.otf')
+                         
+                         # Temporarily switch to the temp dir
+                         owd <- setwd(tempdir())
+                         on.exit(setwd(owd))
+                         file.copy(src1, 'report_html.Rmd', overwrite = TRUE)
+                         file.copy(src2, 'references.bib', overwrite = TRUE)
+                         file.copy(src5, 'FiraSans-Bold.otf', overwrite = TRUE)
+                         file.copy(src6, 'FiraSans-Regular.otf', overwrite = TRUE)
+                         
+                         # Set up parameters to pass to Rmd document
+                         params <- list(exposure = input$name_Exposure, 
+                                        outcome = input$name_Outcome,
+                                        a1 = input$a1, 
+                                        b1 = input$b1, 
+                                        a2 = input$a2, 
+                                        b2 = input$b2,
+                                        user_selection_function_param = input$user_selection_function_param,
+                                        n_exposure1_outcome1 = input$sample[2,2], 
+                                        n_exposure0_outcome1 = input$sample[2,1], 
+                                        n_exposure1 = (input$sample[2,2]+input$sample[1,2]),
+                                        n_exposure0 = (input$sample[2,1]+input$sample[1,1]))
+                         
+                         tryCatch({
+                           
+                           withProgress(message = 'Please wait, the Statsomat app is computing. This may take a while.', value=0, {
+                             for (i in 1:15) {
+                               incProgress(1/15)
+                               Sys.sleep(0.25)
+                             }
+                             
+                            
+                            tmp_file <- render('report_html.Rmd', html_document(),
+                                                  params = params,
+                                                  envir = new.env(parent = globalenv())
+                            )
+                             
+                             
+                             
+                            report$filepath <- tmp_file 
+                             
+                           })
+                           
+                           showNotification("Now you can download the file.", duration=20)
+                           
+                         },
+                         
+                         error=function(e) {
+                           
+                           # Report not available 
+                           showNotification("Something went wrong. Please contact the support@statsomat.com. ",duration=20)
+                         }
+                         )
+                       })
+          
+          # Enable downloadbutton 
+          observe({
+            req(!is.null(report$filepath))
+            session$sendCustomMessage("check_generation", list(check_generation  = 1))
+          })
+          
+          # Download report 
+          output$download <- downloadHandler(
+            
+            filename = function() {
+              paste('MyReport',sep = '.','html')
+            },
+            
+            content = function(file) {
+              
+              file.copy(report$filepath, file)
+            }
+          )
       }
     }
     )

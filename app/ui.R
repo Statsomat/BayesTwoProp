@@ -59,7 +59,14 @@ shinyUI(fluidPage(
   
   br(),
   
-  tags$div(a(img(src='Logo.jpg', width=200), href="https://www.statsomat.com", target="_blank")),
+  tags$div(
+    style = "display: flex; justify-content: space-between; align-items: center; padding: 10px;",
+    # Left logo
+    a(img(src='Logo.jpg', width=200), href="https://www.statsomat.com", target="_blank"),
+    # Right logo
+    a(img(src='HSKoblenz.png', width=200), href="https://www.hs-koblenz.de/home", target="_blank")
+  ),
+  
   
   h1("Two Proportions by Bayes", 
      style = "font-family: 'Helvetica';

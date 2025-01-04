@@ -578,12 +578,12 @@ cat("\n## Summary", fill=TRUE)
 ```{r function_posterior2, eval=eval_final}
 # Summarize posterior in a table. For continuous parameters, derived functions of parameters and predicted values, report the central tendency and limits of the credible interval. Explicitly state whether you are using density-based values (mode and HDI) or quantile-based values (median and ETI), and state the mass of the credible interval (for example, 95%)
 if (is.null(rope_user)){
-  a <- describe_posterior(df, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL, ci_method = "ETI") 
-  b <- describe_posterior(df, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL, ci_method = "HDI")
+  a <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL, ci_method = "ETI") 
+  b <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL, ci_method = "HDI")
 
 } else {
-  a <- describe_posterior(df, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range=rope_user, ci_method = "ETI") 
-  b <- describe_posterior(df, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range=rope_user, ci_method = "HDI")
+  a <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range=rope_user, ci_method = "ETI") 
+  b <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range=rope_user, ci_method = "HDI")
 
   # ROPE limits and decisions. 
 }
@@ -598,7 +598,7 @@ combined_results <- cbind(a, CI_HDI = b$CI, CI_HDI_low = b$CI_low, CI_HDI_high =
 
 # Bearbeiten des Dataframes 
 a2 <- data.frame(t(combined_results), interpretation = rep(1,12))
-a2 <- data.frame(parameter =  rownames(a2)[-1], posterior = round(as.numeric(t(combined_results)[-1]),2))
+a2 <- data.frame(parameter =  rownames(a2)[-1], posterior = round(as.numeric(t(combined_results)[-1]),3))
 
 # Function für die Interpretation
 interpretation_func <- function(dataset) {
@@ -681,7 +681,6 @@ hdi_plot <- plot(hdi_result) +
   )
 
 print(hdi_plot)
-
 
 # Textuelle Interpretation - Dynamic Expression
 cat("\n\n**Interpretation:**\n\n")

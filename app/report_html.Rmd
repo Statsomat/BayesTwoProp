@@ -599,11 +599,14 @@ xlabel <- if (params$user_selection_function_param == 1){
 
 }
 hdi_result <- hdi(estimate, ci = c(.89, .95, .99))
+
+hdi_plot_temp = plot(hdi_result)
+
 # Display the HDI plot
-hdi_plot <- plot(hdi_result) +
+hdi_plot <- plot(x=hdi_result, y=hdi_plot_temp[["data"]][["height"]]) +
   labs(
     x = xlabel,                 # Label for the x-axis
-    y = "Density of the posterior distribution",                   # Label for the y-axis
+    y = "Density of the Posterior Distribution",                   # Label for the y-axis
     title = "Highest Density Interval (HDI)" # Title for the plot
   ) +
   theme_minimal(base_size = 14) +    # Apply a clean theme with readable font size
@@ -615,7 +618,9 @@ hdi_plot <- plot(hdi_result) +
     panel.background = element_rect(fill = "gray95", color = NA),  # Light gray background
     panel.grid.major = element_line(color = "white"),              # Major grid lines in white
     panel.grid.minor = element_line(color = "white")               # Minor grid lines in white
-  )
+  ) +
+  scale_y_continuous(breaks = seq(0, max(hdi_plot_temp[["data"]][["height"]]), length.out = 5))  # 5 values for the y-axis
+
 
 print(hdi_plot)
 
@@ -650,7 +655,7 @@ cat("(Kruschke, John K., Doing Bayesian Data Analysis, Academic Press, 2015)")
 cat("## ETI Plot", fill=TRUE)
 
 # Display the ETI plot
-eti_result = eti(estimate)
+eti_result = eti(estimate, ci = c(.89, .95, .99))
 
 eti_plot_temp = plot(eti_result)
 
@@ -658,7 +663,7 @@ eti_plot_temp = plot(eti_result)
 eti_plot <- plot(x=eti_result, y=eti_plot_temp[["data"]][["height"]]) +
   labs(
     x = xlabel,       # Dynamic x-label
-    y = "Density",     # Label for the y-axis
+    y = "Density of the Posterior Distribution",     # Label for the y-axis
     title = "Credible Interval (CI)" # Title for the plot
   ) +
   theme_minimal(base_size = 14) +        # Minimalist theme with readable font size

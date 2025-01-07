@@ -242,20 +242,11 @@ function(input, output, session) {
                              incProgress(1/15)
                              Sys.sleep(0.25)
                            }
-                           
-                           if (input$rcode == "Data Analysis Report (HTML)"){
-                             
+
                              tmp_file <- render('report_html.Rmd', html_document(),
                                                 params = params,
                                                 envir = new.env(parent = globalenv())
                              )
-                           } else {
-                             
-                             tmp_file <- render('report_html.Rmd', html_document(),
-                                                params = params,
-                                                envir = new.env(parent = globalenv())
-                             )
-                           }
                            
                            report$filepath <- tmp_file 
                          })
@@ -282,11 +273,7 @@ function(input, output, session) {
         # Download report
         output$download <- downloadHandler(
           filename = function() {
-            if (input$rcode == "Data Analysis Report (HTML)"){
               paste('MyReport',sep = '.','html')
-            } else {
-              paste('MyCode',sep = '.','html')
-            }
           },
           
           content = function(file) {
@@ -349,21 +336,15 @@ function(input, output, session) {
                                Sys.sleep(0.25)
                              }
                              
-                             if (input$rcode == "Data Analysis Report (HTML)"){
-                               tmp_file <- render('report_html.Rmd', html_document(),
+                            
+                            tmp_file <- render('report_html.Rmd', html_document(),
                                                   params = params,
                                                   envir = new.env(parent = globalenv())
-                               )
-                               
-                             } else {
-                               
-                               tmp_file <- render('report_html.Rmd', html_document(),
-                                                  params = params,
-                                                  envir = new.env(parent = globalenv())
-                               )
-                             }
+                            )
                              
-                             report$filepath <- tmp_file 
+                             
+                             
+                            report$filepath <- tmp_file 
                              
                            })
                            
@@ -389,11 +370,7 @@ function(input, output, session) {
           output$download <- downloadHandler(
             
             filename = function() {
-              if (input$rcode == "Data Analysis Report (HTML)"){
-                paste('MyReport',sep = '.','html')
-              } else {
-                paste('MyCode',sep = '.','html')
-              }
+              paste('MyReport',sep = '.','html')
             },
             
             content = function(file) {

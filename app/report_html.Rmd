@@ -257,14 +257,19 @@ df_table %>%
   column_spec(3, extra_css = "border-right: 2px solid black;") %>%               row_spec(1, extra_css = "border-top: 1px solid lightgray;")
 
 df_table_percent<- as.data.frame.matrix(matrix(c(
-  paste0((n_exposure0 - n_exposure0_outcome1)/totalsum*100,"%"), 
-  paste0((n_exposure1 - n_exposure1_outcome1)/totalsum*100,"%"),
-  paste0((n_exposure0 - n_exposure0_outcome1+n_exposure1 - n_exposure1_outcome1)/totalsum*100,"%"), 
-  paste0((n_exposure0_outcome1)/totalsum*100,"%"), 
-  paste0((n_exposure1_outcome1)/totalsum*100,"%"),                
-  paste0((n_exposure0_outcome1+n_exposure1_outcome1)/totalsum*100,"%"),
-  paste0((n_exposure0)/totalsum*100,"%"),
-  paste0((n_exposure1)/totalsum*100,"%"),
+  paste0(round((n_exposure0 -n_exposure0_outcome1)/totalsum*100,
+               digits=2),"%"), 
+  paste0(round((n_exposure1 - n_exposure1_outcome1)/totalsum*100,
+               digits=2),"%"),
+  paste0(round((n_exposure0 - n_exposure0_outcome1+n_exposure1 -
+                  n_exposure1_outcome1)/totalsum*100,
+               digits=2),"%"), 
+  paste0(round((n_exposure0_outcome1)/totalsum*100,digits=2),"%"), 
+  paste0(round((n_exposure1_outcome1)/totalsum*100,digits=2),"%"),            
+  paste0(round((n_exposure0_outcome1+n_exposure1_outcome1)/totalsum*100,
+               digits=2),"%"),
+  paste0(round((n_exposure0)/totalsum*100,digits=2),"%"),
+  paste0(round((n_exposure1)/totalsum*100,digits=2),"%"),
   paste0(100,"%")
 ), nrow = 3, byrow = TRUE))
 colnames(df_table_percent) <- freq_colnames
@@ -303,7 +308,7 @@ cat("<br>", fill=TRUE)
 
 
 ##column percent
-cat(paste0("\\begin{align} P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_nonexposure,"} ) &= ",round((n_exposure0 - n_exposure0_outcome1)/n_exposure0 * 100,digits = 1),"\\% \\\\ P(\\text{",name_outcome,"} \\ | \\ \\text{ ",name_nonexposure,"} ) &= ",round( n_exposure0_outcome1/n_exposure0 * 100,digits = 1),"\\% \\\\ P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_exposure,"} ) &= ",round((n_exposure1-n_exposure1_outcome1)/n_exposure1 * 100,digits = 1),"\\% \\\\ P(\\text{",name_outcome,"} \\ | \\ \\text{ ",name_exposure,"} ) &= ",round((n_exposure1_outcome1)/n_exposure1 * 100,digits = 1),"\\% \\end{align}"))
+cat(paste0("\\begin{align} P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_nonexposure,"} ) &= ",round((n_exposure0 - n_exposure0_outcome1)/n_exposure0 * 100,digits = 2),"\\% \\\\ P(\\text{",name_outcome,"} \\ | \\ \\text{ ",name_nonexposure,"} ) &= ",round( n_exposure0_outcome1/n_exposure0 * 100,digits = 2),"\\% \\\\ P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_exposure,"} ) &= ",round((n_exposure1-n_exposure1_outcome1)/n_exposure1 * 100,digits = 2),"\\% \\\\ P(\\text{",name_outcome,"} \\ | \\ \\text{ ",name_exposure,"} ) &= ",round((n_exposure1_outcome1)/n_exposure1 * 100,digits = 2),"\\% \\end{align}"))
 
 
 

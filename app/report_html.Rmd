@@ -221,59 +221,160 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 
 ```{r desctable, eval=eval_final, results='asis'}
 cat("## Frequency Table", fill=TRUE)
-cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
-
+#cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
+name_exposure = "Exposure"
+name_nonexposure = "Non-Exposure"
+name_outcome = "Outcome"
+name_nonoutcome = "Non-Outcome"
+rowsum_1 = n_exposure0 - n_exposure0_outcome1+n_exposure1 - n_exposure1_outcome1
+rowsum_2 = n_exposure0_outcome1+n_exposure1_outcome1
+freq_colnames = c(name_nonexposure, name_exposure,"Sum")
+freq_rownames = c(name_nonoutcome, name_outcome,"Sum")
 # compute frequencies and percentages
 df_table <- as.data.frame.matrix(matrix(c(
+  n_exposure0 - n_exposure0_outcome1, # Not exposed without outcome
+  n_exposure1 - n_exposure1_outcome1, # Exposed without outcome
+  rowsum_1, # sum no outcome
+  n_exposure0_outcome1,               # Not exposed with outcome
+  n_exposure1_outcome1,                # Exposed with outcome
+  rowsum_2,
+  n_exposure0,
+  n_exposure1,
+  n_exposure0+n_exposure1
+), nrow = 3, byrow = TRUE))
+colnames(df_table) <- freq_colnames
+rownames(df_table) <- freq_rownames
+
+totalsum <- n_exposure0+n_exposure1
+
+df_table %>%
+  kbl(caption = "Contingency Table: Absolute numbers") %>%
+  kable_styling(full_width = FALSE, position = "center") %>%
+  row_spec(0, extra_css = "font-weight: normal; border-bottom: 2px solid;") %>%
+  row_spec(nrow(df_table) - 1, extra_css = "border-bottom: 2px solid;") %>%   
+  column_spec(1, extra_css = "border-right: 2px solid black;") %>%         
+  column_spec(2, extra_css = "border-right: 1px solid lightgray;") %>%        
+  column_spec(3, extra_css = "border-right: 2px solid black;") %>%               row_spec(1, extra_css = "border-top: 1px solid lightgray;")
+
+df_table_percent<- as.data.frame.matrix(matrix(c(
+  paste0(round((n_exposure0 -n_exposure0_outcome1)/totalsum*100,
+               digits=2),"%"), 
+  paste0(round((n_exposure1 - n_exposure1_outcome1)/totalsum*100,
+               digits=2),"%"),
+  paste0(round((n_exposure0 - n_exposure0_outcome1+n_exposure1 -
+                  n_exposure1_outcome1)/totalsum*100,
+               digits=2),"%"), 
+  paste0(round((n_exposure0_outcome1)/totalsum*100,digits=2),"%"), 
+  paste0(round((n_exposure1_outcome1)/totalsum*100,digits=2),"%"),            
+  paste0(round((n_exposure0_outcome1+n_exposure1_outcome1)/totalsum*100,
+               digits=2),"%"),
+  paste0(round((n_exposure0)/totalsum*100,digits=2),"%"),
+  paste0(round((n_exposure1)/totalsum*100,digits=2),"%"),
+  paste0(100,"%")
+), nrow = 3, byrow = TRUE))
+colnames(df_table_percent) <- freq_colnames
+rownames(df_table_percent) <- freq_rownames
+
+
+df_table_percent %>%
+  kbl(caption = "Contingency Table: Percentages of counts by total frequency") %>%
+  kable_styling(full_width = FALSE, position = "center") %>%
+  row_spec(0, extra_css = "font-weight: normal; border-bottom: 2px solid;") %>%
+  row_spec(nrow(df_table) - 1, extra_css = "border-bottom: 2px solid;") %>%   
+  column_spec(1, extra_css = "border-right: 2px solid black;") %>%         
+  column_spec(2, extra_css = "border-right: 1px solid lightgray;") %>%        
+  column_spec(3, extra_css = "border-right: 2px solid black;") %>%               row_spec(1, extra_css = "border-top: 1px solid lightgray;")
+
+df_table_plot <- as.data.frame.matrix(matrix(c(
   n_exposure0 - n_exposure0_outcome1, # Not exposed without outcome
   n_exposure1 - n_exposure1_outcome1, # Exposed without outcome
   n_exposure0_outcome1,               # Not exposed with outcome
   n_exposure1_outcome1                # Exposed with outcome
 ), nrow = 2, byrow = TRUE))
-colnames(df_table) <- c("Placebo", "Vaccine")
-rownames(df_table) <- c("0", "1")
 
-totalsum <- sum(df_table)
+colnames(df_table_plot) <- c(name_nonexposure, name_exposure)
+rownames(df_table_plot) <- c(name_nonoutcome, name_outcome)
 
-rowsum <- apply(df_table, MARGIN  = 1, FUN = sum)
-colsum <- apply(df_table, MARGIN  = 2, FUN = sum)
+rowsum <- apply(df_table_plot, MARGIN  = 1, FUN = sum)
+colsum <- apply(df_table_plot, MARGIN  = 2, FUN = sum)
 
-freq <- as.vector(t(df_table))
-perc_total <- paste( round(freq/totalsum,4)*100,"%")
-perc_row <- paste(round(freq/rep(rowsum,each=2),4)*100,"%")
-perc_col <-paste(round(freq/rep(colsum,2),4)*100,"%")
+cat("These two tables depict the frequencies and percentages of the total data. One can also calculate the column percentages per table:")
+cat("<br>", fill=TRUE)
 
-# put together frequencies and percentages in right order
-freq_perc_table <- as.data.frame(matrix(c(freq[1:2], perc_total[1:2], perc_row[1:2], perc_col[1:2], freq[3:4], perc_total[3:4], perc_row[3:4], perc_col[3:4]), ncol=2, byrow=T))
+# cat("These two tables depict the frequencies and percentages of the total data. One can also calculate the row percentages and column percentages per table.")
+# cat("<br>", fill=TRUE)
+# ##row percent
+# cat(paste0("Estimator for row percentages: \\begin{align} P(\\text{",name_nonexposure,"} \\ | \\ \\text{",name_nonoutcome,"} ) &= ",round((n_exposure0 - n_exposure0_outcome1)/rowsum_1 * 100,digits = 1),"\\% \\\\ P(\\text{",name_exposure,"} \\ | \\ \\text{",name_nonoutcome,"} ) &= ",round((n_exposure1 - n_exposure1_outcome1)/rowsum_1 * 100,digits = 1),"\\% \\\\ P(\\text{",name_nonexposure,"} \\ | \\ \\text{",name_outcome,"} ) &= ",round((n_exposure0_outcome1)/rowsum_2 * 100,digits = 1),"\\% \\\\ P(\\text{",name_exposure,"} \\ | \\ \\text{",name_outcome,"} ) &= ",round((n_exposure1_outcome1)/rowsum_2 * 100,digits = 1),"\\% \\end{align}"))
 
-colnames(freq_perc_table) <-  colnames(df_table)
 
-# add Total counts and perentages
-freq_perc_table["Total"]<- c(rowsum[1], paste(round(rowsum[1]/totalsum,4)*100,"%"), NA , NA , rowsum[2], paste(round(rowsum[2]/totalsum,4)*100,"%"), NA, NA)
-freq_perc_table <- rbind(freq_perc_table,c(colsum,totalsum))
-freq_perc_table <- rbind(freq_perc_table,c(paste(round(colsum/totalsum,4)*100,"%"),"100 %"))
+##column percent
+cat(paste0("\\begin{align} P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_nonexposure,"} ) &= ",round((n_exposure0 - n_exposure0_outcome1)/n_exposure0 * 100,digits = 2),"\\% \\\\ P(\\text{",name_outcome,"} \\ | \\ \\text{ ",name_nonexposure,"} ) &= ",round( n_exposure0_outcome1/n_exposure0 * 100,digits = 2),"\\% \\\\ P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_exposure,"} ) &= ",round((n_exposure1-n_exposure1_outcome1)/n_exposure1 * 100,digits = 2),"\\% \\\\ P(\\text{",name_outcome,"} \\ | \\ \\text{ ",name_exposure,"} ) &= ",round((n_exposure1_outcome1)/n_exposure1 * 100,digits = 2),"\\% \\end{align}"))
 
-# names for automated header and index names
-exp <- params$exposure
-exp_header <- c(exp = 2, " "= 1)
-names(exp_header) <- c(exp, " ")
 
-#not_present_outcome <- unique(df[,colnames(df)==params$outcome])[unique(df[,colnames(df)==params$outcome])!=params$presence_outcome]
 
-out_present <- paste(params$outcome,"=",rownames(df_table)[1])
-out_not_present <- paste(params$outcome,"=",rownames(df_table)[2])
-out_header <- c(out_present=4, out_not_present=4, "Total"=2)
-names(out_header) <- c(out_present, out_not_present, "Total")
+# cat("<br>", fill=TRUE)
+# cat(paste0("$P(\\text{",name_exposure,"} \\ | \\ \\text{ ",name_nonoutcome,"} ) = ",round((n_exposure1 - n_exposure1_outcome1)/rowsum_1 * 100,digits = 1),"\\%$"))
+# cat("<br>", fill=TRUE)
+# cat(paste0("$P(\\text{",name_nonexposure,"} \\ | \\ \\text{ ",name_outcome,"} ) = ",round((n_exposure0_outcome1)/rowsum_2 * 100,digits = 1),"\\%$"))
+# cat("<br>", fill=TRUE)
+# cat(paste0("$P(\\text{",name_exposure,"} \\ | \\ \\text{ ",name_nonoutcome,"} ) = ",round((n_exposure1_outcome1)/rowsum_2 * 100,digits = 1),"\\%$"))
 
-# print table
-options(knitr.kable.NA = '')
-x1 <- knitr::kable(freq_perc_table, digits=2, escape = T, linesep = '', caption=cat(" ", fill=TRUE), longtable = T, align = "rrr")
-kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"),
-              bootstrap_options = c("condensed"))%>%
-  row_spec(4, hline_after = T)%>% 
-  row_spec(8,hline_after = T)%>% 
-  add_header_above(header = exp_header, escape = F)%>% 
-  pack_rows(index = out_header)
+# df_table_row <- as.data.frame.matrix(matrix(c(
+#   (n_exposure0 - n_exposure0_outcome1)/rowsum_1, 
+#   (n_exposure1 - n_exposure1_outcome1)/rowsum_1, 
+#   (n_exposure0_outcome1)/rowsum_2,               
+#   (n_exposure1_outcome1)/rowsum_2,                
+# ), nrow = 2, byrow = TRUE))
+# colnames(df_table) <- c("Placebo", "Vaccine")
+# rownames(df_table) <- c("Non-Outcome", "Outcome")
+# 
+# 
+# df_table_row %>%
+#   kbl(caption = "Contingency Table: Absolute numbers") %>%
+#   kable_styling(full_width = FALSE, position = "center") %>%
+#   row_spec(0, extra_css = "font-weight: normal; border-bottom: 2px solid;") %>%
+#   row_spec(nrow(df_table) - 1, extra_css = "border-bottom: 2px solid;") %>%   
+#   column_spec(1, extra_css = "border-right: 2px solid black;") %>%         
+#   column_spec(2, extra_css = "border-right: 1px solid lightgray;") %>%        
+#   column_spec(3, extra_css = "border-right: 2px solid black;") %>%               row_spec(1, extra_css = "border-top: 1px solid lightgray;")
+
+# 
+# freq <- as.vector(t(df_table))
+# perc_total <- paste( round(freq/totalsum,4)*100,"%")
+# perc_row <- paste(round(freq/rep(rowsum,each=2),4)*100,"%")
+# perc_col <-paste(round(freq/rep(colsum,2),4)*100,"%")
+# 
+# # put together frequencies and percentages in right order
+# freq_perc_table <- as.data.frame(matrix(c(freq[1:2], perc_total[1:2], perc_row[1:2], perc_col[1:2], freq[3:4], perc_total[3:4], perc_row[3:4], perc_col[3:4]), ncol=2, byrow=T))
+# 
+# colnames(freq_perc_table) <-  colnames(df_table)
+# 
+# # add Total counts and perentages
+# freq_perc_table["Total"]<- c(rowsum[1], paste(round(rowsum[1]/totalsum,4)*100,"%"), NA , NA , rowsum[2], paste(round(rowsum[2]/totalsum,4)*100,"%"), NA, NA)
+# freq_perc_table <- rbind(freq_perc_table,c(colsum,totalsum))
+# freq_perc_table <- rbind(freq_perc_table,c(paste(round(colsum/totalsum,4)*100,"%"),"100 %"))
+# 
+# # names for automated header and index names
+# exp <- params$exposure
+# exp_header <- c(exp = 2, " "= 1)
+# names(exp_header) <- c(exp, " ")
+# 
+# #not_present_outcome <- unique(df[,colnames(df)==params$outcome])[unique(df[,colnames(df)==params$outcome])!=params$presence_outcome]
+# 
+# out_present <- paste(params$outcome,"=",rownames(df_table)[1])
+# out_not_present <- paste(params$outcome,"=",rownames(df_table)[2])
+# out_header <- c(out_present=4, out_not_present=4, "Total"=2)
+# names(out_header) <- c(out_present, out_not_present, "Total")
+# 
+# # print table
+# options(knitr.kable.NA = '')
+# x1 <- knitr::kable(freq_perc_table, digits=2, escape = T, linesep = '', caption=cat(" ", fill=TRUE), longtable = T, align = "rrr")
+# kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"),
+#               bootstrap_options = c("condensed"))%>%
+#   row_spec(4, hline_after = T)%>% 
+#   row_spec(8,hline_after = T)%>% 
+#   add_header_above(header = exp_header, escape = F)%>% 
+#   pack_rows(index = out_header)
 
 ```
 
@@ -284,10 +385,10 @@ kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HO
 cat("## Barplots", fill=TRUE)
 
 # Outcome
-barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
+barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table_plot), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
 
 # Exposure
-barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table), xlab = "Exposure", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
+barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table_plot), xlab = "Exposure", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
 
 #  Outcome with present Exposure
 barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population"), cex.main = 1.5)

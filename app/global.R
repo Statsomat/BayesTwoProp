@@ -1,8 +1,8 @@
 MAX_FILE_SIZE_MB <- 15
 options(shiny.maxRequestSize = MAX_FILE_SIZE_MB*1024^2)
-#options(shiny.sanitize.errors = TRUE)
-options(shiny.reactlog = TRUE) # enables reactive log
-shiny::reactiveConsole(TRUE)
+options(shiny.sanitize.errors = TRUE)
+# options(shiny.reactlog = TRUE) # enables reactive log
+# shiny::reactiveConsole(TRUE)
 
 
 library(shiny)
@@ -14,5 +14,3 @@ library(shinyMatrix)
 
 source("helpers/chooser.R")
 source("helpers/Functions.R")
-source("helpers/server_file.R")
-source("helpers/server_table.R")

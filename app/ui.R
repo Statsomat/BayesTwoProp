@@ -59,7 +59,14 @@ shinyUI(fluidPage(
   
   br(),
   
-  tags$div(a(img(src='Logo.jpg', width=200), href="https://www.statsomat.com", target="_blank")),
+  tags$div(
+    style = "display: flex; justify-content: space-between; align-items: center; padding: 10px;",
+    # Left logo
+    a(img(src='Logo.jpg', width=200), href="https://www.statsomat.com", target="_blank"),
+    # Right logo
+    a(img(src='HSKoblenz.png', width=200), href="https://www.hs-koblenz.de/home", target="_blank")
+  ),
+  
   
   h1("Two Proportions by Bayes", 
      style = "font-family: 'Helvetica';
@@ -80,15 +87,47 @@ shinyUI(fluidPage(
     
     column(8, offset=2,
            
-           wellPanel(style = "background: #fff;", includeHTML("www/Description.html")),
+           
+           wellPanel(
+             style = "background: #c5fbc4", 
+             tags$div(
+               id = "description-short",
+               includeHTML("www/Description_Short.html")
+             ),
+             tags$div(
+               id = "description-full",
+               includeHTML("www/Description_Full.html"),
+               style = "display: none;"  # Initially hide the full description
+             ),
+             tags$div(
+               actionLink("toggle_description", "Read More", style = "cursor: pointer; font-weight: bold; color: #2a7bcf;")
+             ),
+             tags$script(HTML(
+               "
+    $(document).on('click', '#toggle_description', function() {
+      var shortDesc = $('#description-short');
+      var fullDesc = $('#description-full');
+      if (fullDesc.is(':visible')) {
+        fullDesc.hide();
+        shortDesc.show();
+        $('#toggle_description').text('Read More');
+      } else {
+        fullDesc.show();
+        shortDesc.hide();
+        $('#toggle_description').text('Read Less');
+      }
+    });
+    "
+             ))
+           ),
            
            wellPanel(style = "background: #adc7de;", 
                      h3("Choose an Option to Upload the Data"),
                      radioButtons("input_type", "Input type",
                                   choices = list("Upload a CSV File"=1,
                                                  "Insert Frequencies of Occurence"=2)
-                                  )
-                     ),
+                     )
+           ),
            
            conditionalPanel("input.input_type == 1",
                             wellPanel(style = "background: #adc7de;", 
@@ -182,9 +221,7 @@ shinyUI(fluidPage(
            
            wellPanel(style = "background: #ff9900", align="center", 
                      
-                     h3("Click to Generate Results"),
-                     
-                     radioButtons('rcode', '', c('Data Analysis Report (HTML)', 'R Code'), inline = TRUE),
+                     h3("Click to Generate Data Analysis Report (HTML)"),
                      actionButton("generate", "", style="
                                     height:145px;
                                     width:84px;

@@ -224,8 +224,8 @@ cat("## Frequency Table", fill=TRUE)
 #cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
 name_exposure = params$presence_exposure
 name_nonexposure <- paste0("Non-", params$presence_exposure)
-name_outcome = "Outcome"
-name_nonoutcome = "Non-Outcome"
+name_outcome = params$outcome
+name_nonoutcome = paste0("Non-", params$outcome)
 rowsum_1 = n_exposure0 - n_exposure0_outcome1+n_exposure1 - n_exposure1_outcome1
 rowsum_2 = n_exposure0_outcome1+n_exposure1_outcome1
 freq_colnames = c(name_nonexposure, name_exposure,"Sum")
@@ -385,10 +385,10 @@ cat(paste0("\\begin{align} P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_
 cat("## Barplots", fill=TRUE)
 
 # Outcome
-barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table_plot), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
+barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table_plot), xlab =params$outcome, ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the",params$outcome," Population"), cex.main = 1.5)
 
 # Exposure
-barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table_plot), xlab = "Exposure", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
+barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table_plot), xlab = params$exposure, ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the",params$exposure," Population"), cex.main = 1.5)
 
 #  Outcome with present Exposure
 barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the", name_exposure, "Population"), cex.main = 1.5)

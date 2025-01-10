@@ -1,4 +1,5 @@
 ---
+## initialization of the report
 title: "Two Proportions by Bayes"
 author: 
   - Denise Welsch
@@ -40,7 +41,7 @@ header-includes:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, comment='', message = FALSE, error = TRUE, warning=FALSE, fig.width=8)
 
-# Import libraries used further below
+## Import libraries used further below
 library(knitr) # for tables
 library(kableExtra) # for tables 
 library(plotly) # for 3d plots
@@ -51,12 +52,12 @@ library(LearnBayes)
 
 
 ```{r chunksinit}
-# Initialize evaluation resp. execution of subsequent chunks
-## Evaluation only for file upload
+## Initialize evaluation resp. execution of subsequent chunks
+# Evaluation only for file upload
 evalfile <- is.data.frame(params$data)
-## Evaluation for cell frequency upload 
+# Evaluation for cell frequency upload 
 evalcellfreq  <- !is.na(params$n_exposure1_outcome1)
-## Other initializations
+# Other initializations
 evalfile2 <- FALSE
 eval_rows <- FALSE
 eval_final <- FALSE
@@ -65,7 +66,7 @@ rope_user <- NULL
 
 
 ```{r getdatafile, eval = evalfile}
-# Get data as a file 
+## Get data as a file 
 tryCatch({
   
   # Get data
@@ -112,6 +113,7 @@ tryCatch({
 ```
 
 ```{r getcellfreq, eval=evalcellfreq}
+## get parameters from entry and name them in a 
 n_exposure1_outcome1 = params$n_exposure1_outcome1
 n_exposure1 = params$n_exposure1
 n_exposure0_outcome1 = params$n_exposure0_outcome1
@@ -139,7 +141,7 @@ cat("# Basic Information", fill=TRUE)
 
 
 ```{r guifile, results="asis", eval=evalfile}
-# Basic information for the case file upload
+## Basic information for the case file upload
 cat("Automatic statistics for the file:", as.character(params$filename[1]), fill=TRUE)
 cat("<br>",fill=TRUE) 
   
@@ -165,7 +167,7 @@ if (exists("vars")){
 
 
 ```{r cellupload, eval=evalcellfreq , results='asis'}
-# Upload as cell frequencies, display them nicely
+## Upload as cell frequencies, display them nicely
 cat(paste0("Number of Observations with both a present Outcome and a present Exposure: $y_1=", params$n_exposure1_outcome1,"$"), fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat(paste0("Number of Observations with present Exposure: $n_1=",params$n_exposure1,"$"), fill=TRUE)
@@ -180,13 +182,10 @@ cat("Name of the Exposure Variable: ", params$exposure, fill=TRUE)
 ```
 
 
-# ```{r guirest, eval=eval_final, results='asis'}
-# # display in the Basic Information the rest of the information arising from the GUI (e.g. priors, function of parameters etc.)
-# ```
-
 \pagebreak
 
 ```{r preamble, eval=eval_final, results='asis'}
+## general description what is the goal of the analysis and why we use Bayes Analysis
 cat("# Goals of the Analysis", fill=TRUE)
 cat("The data is analyzed in this app by means of Baysian data analysis. Baysian data analysis is a branch of statistical data analysis based on two fundamental ideas: The first idea is that Baysian inference is a reallocation of credibility across possibilities, by means of the well known Bayes' theorem. The second idea is that the possibilities, over which we allocate credibility are parameter values in a meaningful mathematical model.", fill=TRUE)
 cat("<br>",fill=TRUE) 

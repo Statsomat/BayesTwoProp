@@ -10,3 +10,8 @@ Report1_Pfizer.html: Cells, function 3, default prior. To be analysed by Jomana.
 
 Report1_AstraZeneca_LSDS.html: Cells, function 3, prior 2,2,2,2. To be analysed by Jule.
 
+Report2_Moderna-1.html: File, function 1, prior 2,2,2,2. To be analysed by Felix.
+
+Report2_Moderna-2.html: File, function 3, prior 2,2,2,2. To be analysed by Johannes.
+
+Report2_Pfizer.html: File, function 1, prior 2,2,2,2. To be analysed by Luise.

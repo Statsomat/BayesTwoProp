@@ -391,11 +391,11 @@ barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table_plot), 
 barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table_plot), xlab = params$exposure, ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the",params$exposure," Population"), cex.main = 1.5)
 
 #  Outcome with present Exposure
-barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the", name_exposure, "Population"), cex.main = 1.5)
+barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab =params$outcome, ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the", name_exposure, "Population"), cex.main = 1.5)
 
 
 #  Outcome without present Exposure
-barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure0, ylim = c(0, 1), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the", name_nonexposure, "Population"), cex.main = 1.5)
+barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure0, ylim = c(0, 1), xlab =params$outcome, ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the", name_nonexposure, "Population"), cex.main = 1.5)
 
 ```
 

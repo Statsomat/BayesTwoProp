@@ -180,9 +180,9 @@ cat("Name of the Exposure Variable: ", params$exposure, fill=TRUE)
 ```
 
 
-```{r guirest, eval=eval_final, results='asis'}
-# display in the Basic Information the rest of the information arising from the GUI (e.g. priors, function of parameters etc.)
-```
+# ```{r guirest, eval=eval_final, results='asis'}
+# # display in the Basic Information the rest of the information arising from the GUI (e.g. priors, function of parameters etc.)
+# ```
 
 \pagebreak
 

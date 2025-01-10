@@ -760,7 +760,7 @@ xlabel <- if (params$user_selection_function_param == 1){
   expression(1 - frac(theta[1],theta[2]))
 
 }
-hdi_result <- hdi(estimate, ci = c(.89, .95, .99))
+hdi_result <- hdi(estimate, ci = c(.89, .95))
 
 hdi_plot_temp = plot(hdi_result)
 

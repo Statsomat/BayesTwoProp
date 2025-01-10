@@ -853,11 +853,8 @@ if (params$user_selection_function_param == 1) {
   cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
 }
 cat(" chosen within this run of the application. The x-axis represents the parameter’s potential values, and the y-axis indicates their relative probability as derived from the posterior density. The density is computed using underlying R functions (e.g., bayestestR::eti() and associated Bayesian sampling methods) that summarize the results of the posterior simulations or analytical calculations. The highlighted Credible Interval (CI), shown here as an Expected Tail Interval (ETI), differs from other intervals, such as the Highest Density Interval (HDI), by including values from the tails of the distribution rather than strictly focusing on the region of highest probability density. Examination of the distribution’s shape, the ETI’s position, and its width provides insight into the plausibility of certain parameter values and the level of uncertainty associated with them.\n")
-```
-
-```{r plotpost, eval=rope_user, results="asis"}
-cat("## More Plots", fill=TRUE)
-# Use the plotPost function (page 205 Kruschke)
+cat("\n\nThe curve represents the probability density of the parameter values, with the shaded regions highlighting different HDI levels. The red area corresponds to the 89% HDI, which captures the majority of the distribution’s density and represents the most credible range. The pink region extends this to 95%, including slightly more of the distribution, while the green and blue regions narrow further, covering 99% and 100% of the density, respectively.")
+cat("(Kruschke, John K., Doing Bayesian Data Analysis, Academic Press, 2015)")
 ```
 
 ```{r runtests, eval=FALSE}

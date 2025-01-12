@@ -34,3 +34,46 @@ s <- c(rep("infected",n1), rep("non-infected",n2))
 dataset <- data.frame(y,s)
 write.csv(dataset,"G:/REYAR/Statsomat/Development/Bayes/datasets/myocarditis_infected.csv")
 
+
+# Generate dataset and file AstraZeneca_SDSD.csv
+s1 <- 27 # Covid for vaccinated 
+n1 <- 4440 # vaccinated 
+s2 <- 71 # Covid for non-vaccinated 
+n2 <- 4455 # Non vaccinated 
+y <- c(rep(1,s1), rep(0,n1-s1), rep(1,s2), rep(0,n2-s2))
+s <- c(rep("Vaccine",n1), rep("Placebo",n2))
+dataset <- data.frame(y,s)
+write.csv(dataset,"G:/REYAR/Statsomat/Development/Bayes/datasets/AstraZeneca_SDSD.csv")
+
+
+# Generate dataset and file AstraZeneca_LDSD.csv
+s1 <- 3 # Covid for vaccinated 
+n1 <- 1367 # vaccinated 
+s2 <- 30 # Covid for non-vaccinated 
+n2 <- 1374 # Non vaccinated 
+y <- c(rep(1,s1), rep(0,n1-s1), rep(1,s2), rep(0,n2-s2))
+s <- c(rep("Vaccine",n1), rep("Placebo",n2))
+dataset <- data.frame(y,s)
+write.csv(dataset,"G:/REYAR/Statsomat/Development/Bayes/datasets/AstraZeneca_LDSD.csv")
+
+
+# Generate dataset and file Moderna-1.csv
+s1 <- 5 # Covid for vaccinated 
+n1 <- 14134 # vaccinated 
+s2 <- 90 # Covid for non-vaccinated 
+n2 <- 14073 # Non vaccinated 
+y <- c(rep(1,s1), rep(0,n1-s1), rep(1,s2), rep(0,n2-s2))
+s <- c(rep("Vaccine",n1), rep("Placebo",n2))
+dataset <- data.frame(y,s)
+write.csv(dataset,"G:/REYAR/Statsomat/Development/Bayes/datasets/Moderna-1.csv")
+
+
+# Generate dataset and file Moderna-2.csv
+s1 <- 11 # Covid for vaccinated 
+n1 <- 14134 # vaccinated 
+s2 <- 185 # Covid for non-vaccinated 
+n2 <- 14073 # Non vaccinated 
+y <- c(rep(1,s1), rep(0,n1-s1), rep(1,s2), rep(0,n2-s2))
+s <- c(rep("Vaccine",n1), rep("Placebo",n2))
+dataset <- data.frame(y,s)
+write.csv(dataset,"G:/REYAR/Statsomat/Development/Bayes/datasets/Moderna-2.csv")

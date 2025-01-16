@@ -1,4 +1,5 @@
 ---
+## initialization of the report
 title: "Two Proportions by Bayes"
 author: 
   - Denise Welsch
@@ -40,7 +41,7 @@ header-includes:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, comment='', message = FALSE, error = TRUE, warning=FALSE, fig.width=8)
 
-# Import libraries used further below
+## Import libraries used further below
 library(knitr) # for tables
 library(kableExtra) # for tables 
 library(plotly) # for 3d plots
@@ -51,12 +52,12 @@ library(LearnBayes)
 
 
 ```{r chunksinit}
-# Initialize evaluation resp. execution of subsequent chunks
-## Evaluation only for file upload
+## Initialize evaluation resp. execution of subsequent chunks
+# Evaluation only for file upload
 evalfile <- is.data.frame(params$data)
-## Evaluation for cell frequency upload 
+# Evaluation for cell frequency upload 
 evalcellfreq  <- !is.na(params$n_exposure1_outcome1)
-## Other initializations
+# Other initializations
 evalfile2 <- FALSE
 eval_rows <- FALSE
 eval_final <- FALSE
@@ -65,7 +66,7 @@ rope_user <- NULL
 
 
 ```{r getdatafile, eval = evalfile}
-# Get data as a file 
+## Get data as a file 
 tryCatch({
   
   # Get data
@@ -112,6 +113,7 @@ tryCatch({
 ```
 
 ```{r getcellfreq, eval=evalcellfreq}
+## get parameters from entry and name them in a logical way
 n_exposure1_outcome1 = params$n_exposure1_outcome1
 n_exposure1 = params$n_exposure1
 n_exposure0_outcome1 = params$n_exposure0_outcome1
@@ -121,7 +123,7 @@ eval_final = TRUE
 ```
 
 ```{r getprior, eval=eval_final}
-# all these variables are in params for the two different data inputs
+## all these variables are in params for the two different data inputs
 user_selection_function_param = params$user_selection_function_param
 a1 = params$a1
 a2 = params$a2
@@ -139,7 +141,7 @@ cat("# Basic Information", fill=TRUE)
 
 
 ```{r guifile, results="asis", eval=evalfile}
-# Basic information for the case file upload
+## Basic information for the case file upload
 cat("Automatic statistics for the file:", as.character(params$filename[1]), fill=TRUE)
 cat("<br>",fill=TRUE) 
   
@@ -165,7 +167,7 @@ if (exists("vars")){
 
 
 ```{r cellupload, eval=evalcellfreq , results='asis'}
-# Upload as cell frequencies, display them nicely
+## Upload as cell frequencies, display them nicely
 cat(paste0("Number of Observations with both a present Outcome and a present Exposure: $y_1=", params$n_exposure1_outcome1,"$"), fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat(paste0("Number of Observations with present Exposure: $n_1=",params$n_exposure1,"$"), fill=TRUE)
@@ -180,13 +182,10 @@ cat("Name of the Exposure Variable: ", params$exposure, fill=TRUE)
 ```
 
 
-# ```{r guirest, eval=eval_final, results='asis'}
-# # display in the Basic Information the rest of the information arising from the GUI (e.g. priors, function of parameters etc.)
-# ```
-
 \pagebreak
 
 ```{r preamble, eval=eval_final, results='asis'}
+## general description what is the goal of the analysis and why we use Bayes Analysis
 cat("# Goals of the Analysis", fill=TRUE)
 cat("The data is analyzed in this app by means of Baysian data analysis. Baysian data analysis is a branch of statistical data analysis based on two fundamental ideas: The first idea is that Baysian inference is a reallocation of credibility across possibilities, by means of the well known Bayes' theorem. The second idea is that the possibilities, over which we allocate credibility are parameter values in a meaningful mathematical model.", fill=TRUE)
 cat("<br>",fill=TRUE) 
@@ -198,6 +197,7 @@ cat("An important benefit of Bayesian analysis is the ability to generate estima
 cat("<br>",fill=TRUE) 
 cat("<br>",fill=TRUE) 
 cat("The goal of this app is to generate Bayes estimates and credible intervals for the user selected function of parameters: ", fill=TRUE)
+# Choice of the relationship betweenn the thetas (3 Options)
 if (params$user_selection_function_param==1) {
   cat("$\\theta_1 - \\theta_2$", fill=TRUE)
 } else if (params$user_selection_function_param==2) {
@@ -212,6 +212,7 @@ cat("# The Data", fill=TRUE)
 ```
 
 ```{r datahead, eval=evalfile2, results='asis'}
+## If a datafile is uploaded, it will display the first 5 values of the data
 cat("## Data Head (first five observations)", fill=TRUE)
 knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longtable=T) %>%
   kable_styling(font_size = 8, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))
@@ -220,8 +221,8 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 \pagebreak
 
 ```{r desctable, eval=eval_final, results='asis'}
+## Different tables to get an overview about the relations of the two variables Exposure and Outcome
 cat("## Frequency Table", fill=TRUE)
-#cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
 name_exposure = "Exposure"
 name_nonexposure = "Non-Exposure"
 name_outcome = "Outcome"
@@ -230,7 +231,7 @@ rowsum_1 = n_exposure0 - n_exposure0_outcome1+n_exposure1 - n_exposure1_outcome1
 rowsum_2 = n_exposure0_outcome1+n_exposure1_outcome1
 freq_colnames = c(name_nonexposure, name_exposure,"Sum")
 freq_rownames = c(name_nonoutcome, name_outcome,"Sum")
-# compute frequencies and percentages
+# compute frequency table with absolute values
 df_table <- as.data.frame.matrix(matrix(c(
   n_exposure0 - n_exposure0_outcome1, # Not exposed without outcome
   n_exposure1 - n_exposure1_outcome1, # Exposed without outcome
@@ -256,6 +257,7 @@ df_table %>%
   column_spec(2, extra_css = "border-right: 1px solid lightgray;") %>%        
   column_spec(3, extra_css = "border-right: 2px solid black;") %>%               row_spec(1, extra_css = "border-top: 1px solid lightgray;")
 
+# Compute frequency table with percentages of the absolute values
 df_table_percent<- as.data.frame.matrix(matrix(c(
   paste0(round((n_exposure0 -n_exposure0_outcome1)/totalsum*100,
                digits=2),"%"), 
@@ -285,6 +287,7 @@ df_table_percent %>%
   column_spec(2, extra_css = "border-right: 1px solid lightgray;") %>%        
   column_spec(3, extra_css = "border-right: 2px solid black;") %>%               row_spec(1, extra_css = "border-top: 1px solid lightgray;")
 
+# Compute table that is used in the barplots
 df_table_plot <- as.data.frame.matrix(matrix(c(
   n_exposure0 - n_exposure0_outcome1, # Not exposed without outcome
   n_exposure1 - n_exposure1_outcome1, # Exposed without outcome
@@ -301,95 +304,27 @@ colsum <- apply(df_table_plot, MARGIN  = 2, FUN = sum)
 cat("These two tables depict the frequencies and percentages of the total data. One can also calculate the column percentages per table:")
 cat("<br>", fill=TRUE)
 
-# cat("These two tables depict the frequencies and percentages of the total data. One can also calculate the row percentages and column percentages per table.")
-# cat("<br>", fill=TRUE)
-# ##row percent
-# cat(paste0("Estimator for row percentages: \\begin{align} P(\\text{",name_nonexposure,"} \\ | \\ \\text{",name_nonoutcome,"} ) &= ",round((n_exposure0 - n_exposure0_outcome1)/rowsum_1 * 100,digits = 1),"\\% \\\\ P(\\text{",name_exposure,"} \\ | \\ \\text{",name_nonoutcome,"} ) &= ",round((n_exposure1 - n_exposure1_outcome1)/rowsum_1 * 100,digits = 1),"\\% \\\\ P(\\text{",name_nonexposure,"} \\ | \\ \\text{",name_outcome,"} ) &= ",round((n_exposure0_outcome1)/rowsum_2 * 100,digits = 1),"\\% \\\\ P(\\text{",name_exposure,"} \\ | \\ \\text{",name_outcome,"} ) &= ",round((n_exposure1_outcome1)/rowsum_2 * 100,digits = 1),"\\% \\end{align}"))
 
-
-##column percent
+#column percent per table
 cat(paste0("\\begin{align} P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_nonexposure,"} ) &= ",round((n_exposure0 - n_exposure0_outcome1)/n_exposure0 * 100,digits = 2),"\\% \\\\ P(\\text{",name_outcome,"} \\ | \\ \\text{ ",name_nonexposure,"} ) &= ",round( n_exposure0_outcome1/n_exposure0 * 100,digits = 2),"\\% \\\\ P(\\text{",name_nonoutcome,"} \\ | \\ \\text{ ",name_exposure,"} ) &= ",round((n_exposure1-n_exposure1_outcome1)/n_exposure1 * 100,digits = 2),"\\% \\\\ P(\\text{",name_outcome,"} \\ | \\ \\text{ ",name_exposure,"} ) &= ",round((n_exposure1_outcome1)/n_exposure1 * 100,digits = 2),"\\% \\end{align}"))
-
-
-
-# cat("<br>", fill=TRUE)
-# cat(paste0("$P(\\text{",name_exposure,"} \\ | \\ \\text{ ",name_nonoutcome,"} ) = ",round((n_exposure1 - n_exposure1_outcome1)/rowsum_1 * 100,digits = 1),"\\%$"))
-# cat("<br>", fill=TRUE)
-# cat(paste0("$P(\\text{",name_nonexposure,"} \\ | \\ \\text{ ",name_outcome,"} ) = ",round((n_exposure0_outcome1)/rowsum_2 * 100,digits = 1),"\\%$"))
-# cat("<br>", fill=TRUE)
-# cat(paste0("$P(\\text{",name_exposure,"} \\ | \\ \\text{ ",name_nonoutcome,"} ) = ",round((n_exposure1_outcome1)/rowsum_2 * 100,digits = 1),"\\%$"))
-
-# df_table_row <- as.data.frame.matrix(matrix(c(
-#   (n_exposure0 - n_exposure0_outcome1)/rowsum_1, 
-#   (n_exposure1 - n_exposure1_outcome1)/rowsum_1, 
-#   (n_exposure0_outcome1)/rowsum_2,               
-#   (n_exposure1_outcome1)/rowsum_2,                
-# ), nrow = 2, byrow = TRUE))
-# colnames(df_table) <- c("Placebo", "Vaccine")
-# rownames(df_table) <- c("Non-Outcome", "Outcome")
-# 
-# 
-# df_table_row %>%
-#   kbl(caption = "Contingency Table: Absolute numbers") %>%
-#   kable_styling(full_width = FALSE, position = "center") %>%
-#   row_spec(0, extra_css = "font-weight: normal; border-bottom: 2px solid;") %>%
-#   row_spec(nrow(df_table) - 1, extra_css = "border-bottom: 2px solid;") %>%   
-#   column_spec(1, extra_css = "border-right: 2px solid black;") %>%         
-#   column_spec(2, extra_css = "border-right: 1px solid lightgray;") %>%        
-#   column_spec(3, extra_css = "border-right: 2px solid black;") %>%               row_spec(1, extra_css = "border-top: 1px solid lightgray;")
-
-# 
-# freq <- as.vector(t(df_table))
-# perc_total <- paste( round(freq/totalsum,4)*100,"%")
-# perc_row <- paste(round(freq/rep(rowsum,each=2),4)*100,"%")
-# perc_col <-paste(round(freq/rep(colsum,2),4)*100,"%")
-# 
-# # put together frequencies and percentages in right order
-# freq_perc_table <- as.data.frame(matrix(c(freq[1:2], perc_total[1:2], perc_row[1:2], perc_col[1:2], freq[3:4], perc_total[3:4], perc_row[3:4], perc_col[3:4]), ncol=2, byrow=T))
-# 
-# colnames(freq_perc_table) <-  colnames(df_table)
-# 
-# # add Total counts and perentages
-# freq_perc_table["Total"]<- c(rowsum[1], paste(round(rowsum[1]/totalsum,4)*100,"%"), NA , NA , rowsum[2], paste(round(rowsum[2]/totalsum,4)*100,"%"), NA, NA)
-# freq_perc_table <- rbind(freq_perc_table,c(colsum,totalsum))
-# freq_perc_table <- rbind(freq_perc_table,c(paste(round(colsum/totalsum,4)*100,"%"),"100 %"))
-# 
-# # names for automated header and index names
-# exp <- params$exposure
-# exp_header <- c(exp = 2, " "= 1)
-# names(exp_header) <- c(exp, " ")
-# 
-# #not_present_outcome <- unique(df[,colnames(df)==params$outcome])[unique(df[,colnames(df)==params$outcome])!=params$presence_outcome]
-# 
-# out_present <- paste(params$outcome,"=",rownames(df_table)[1])
-# out_not_present <- paste(params$outcome,"=",rownames(df_table)[2])
-# out_header <- c(out_present=4, out_not_present=4, "Total"=2)
-# names(out_header) <- c(out_present, out_not_present, "Total")
-# 
-# # print table
-# options(knitr.kable.NA = '')
-# x1 <- knitr::kable(freq_perc_table, digits=2, escape = T, linesep = '', caption=cat(" ", fill=TRUE), longtable = T, align = "rrr")
-# kable_styling(x1, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"),
-#               bootstrap_options = c("condensed"))%>%
-#   row_spec(4, hline_after = T)%>% 
-#   row_spec(8,hline_after = T)%>% 
-#   add_header_above(header = exp_header, escape = F)%>% 
-#   pack_rows(index = out_header)
-
 ```
 
 
 \pagebreak
 
 ```{r descplots, eval=eval_final, results='asis', fig.cap=' ', fig.subcap=c("Barplot of Outcome", "Barplot of Exposure", "Barplot of Outcome with present Exposure", "Barplot of Outcome without present Exposure" ), fig.ncol=2, out.width="50%", fig.align='left', out.height="30%"}
+
+##different barplots
 cat("## Barplots", fill=TRUE)
 
+#overall percentages from the contingency table
 # Outcome
 barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table_plot), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
 
 # Exposure
 barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table_plot), xlab = "Exposure", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
 
+# row percentages of the contingency table
 #  Outcome with present Exposure
 barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population"), cex.main = 1.5)
 
@@ -401,6 +336,7 @@ barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure
 \pagebreak
 
 ```{r the_model, eval=eval, results='asis'}
+## Description of the assumed model
 cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)
 cat("The statistical model of this analysis derives from the data ", fill=TRUE)
@@ -430,10 +366,11 @@ cat("## The Likelihood", fill=TRUE)
 
 cat("The likelihood function is a function of $(\\theta_1, \\theta_2 )$ that describes the plausibility of $(Y_1,Y_2)=(y_1,y_2)$ with different $(\\theta_1, \\theta_2 )$. The likelihood function should not be confused with a probability function.", fill = TRUE)
 cat("<br>", fill=TRUE)
-cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2)\\, ,$$ where $f$ is a probability mass function with")
+cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2)\\$$", fill = TRUE)
+cat(", where $f$ is a probability mass function with")
 cat("<br>", fill=TRUE)
 #Likelihood formula of D given theta_1 and theta_2
-cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= \\underbrace{P(Y_1=y_1 \\ | \\ \\theta_1)}_{\\sim Bi(n_1,\\theta_1)} \\cdot \\underbrace{P(Y_2=y_2 \\ | \\ \\theta_2)}_{\\sim Bi(n_2,\\theta_2)} \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}")
+cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= \\underbrace{P(Y_1=y_1 \\ | \\ \\theta_1)}_{\\sim Bi(n_1,\\theta_1)} \\cdot \\underbrace{P(Y_2=y_2 \\ | \\ \\theta_2)}_{\\sim Bi(n_2,\\theta_2)} \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}", fill = TRUE)
 cat("<br>", fill=TRUE)
 cat("The likelihood function is defined as follows $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
 cat("<br>", fill=TRUE)

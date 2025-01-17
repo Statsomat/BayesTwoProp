@@ -693,58 +693,58 @@ cat("\n## Summary", fill=TRUE)
 ```{r function_posterior2, eval=eval_final}
 # Summarize posterior in a table. For continuous parameters, derived functions of parameters and predicted values, report the central tendency and limits of the credible interval. Explicitly state whether you are using density-based values (mode and HDI) or quantile-based values (median and ETI), and state the mass of the credible interval (for example, 95%)
 if (is.null(rope_user)){
-  a <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL, ci_method = "ETI") 
-  b <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL, ci_method = "HDI")
+  results_ETI <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL, ci_method = "ETI") 
+  results_HDI <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL, ci_method = "HDI")
 
 } else {
-  a <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range=rope_user, ci_method = "ETI") 
-  b <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range=rope_user, ci_method = "HDI")
+  results_ETI <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range=rope_user, ci_method = "ETI") 
+  results_HDI <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range=rope_user, ci_method = "HDI")
 
   # ROPE limits and decisions. 
 }
 
 # Umbennennung der Spaltennamen
-colnames(a)[colnames(a) == "CI"] <- "CI_ETI"
-colnames(a)[colnames(a) == "CI_low"] <- "CI_ETI_low"
-colnames(a)[colnames(a) == "CI_high"] <- "CI_ETI_high"
+colnames(results_ETI)[colnames(results_ETI) == "CI"] <- "CI_ETI"
+colnames(results_ETI)[colnames(results_ETI) == "CI_low"] <- "CI_ETI_low"
+colnames(results_ETI)[colnames(results_ETI) == "CI_high"] <- "CI_ETI_high"
 
 # Kombinieren der Dataframes
-combined_results <- cbind(a, CI_HDI = b$CI, CI_HDI_low = b$CI_low, CI_HDI_high = b$CI_high)
+combined_results <- cbind(results_ETI, CI_HDI = results_HDI$CI, CI_HDI_low = results_HDI$CI_low, CI_HDI_high = results_HDI$CI_high)
 
 # Bearbeiten des Dataframes 
-a2 <- data.frame(t(combined_results), interpretation = rep(1,12))
-a2 <- data.frame(parameter =  rownames(a2)[-1], posterior = round(as.numeric(t(combined_results)[-1]),3))
+results <- data.frame(t(combined_results), interpretation = rep(1,12))
+results <- data.frame(parameter =  rownames(results)[-1], posterior = round(as.numeric(t(combined_results)[-1]),3))
 
 # Function für die Interpretation
 interpretation_func <- function(dataset) {
   interpretation <- c()  
   for (i in 1:nrow(dataset)) {
     if (dataset$parameter[i] == "Median") {
-      interpretation[i] <- paste("The median is the middle value of the distribution. It divides the data into two                                   equal halves, where 50% of the values lie below and 50% lie above this point. In                                    this case, the median is", dataset$posterior[i], ", meaning that the central value                                  of the distribution is", dataset$posterior[i], ".")
+      interpretation[i] <- paste0("The median is the middle value of the distribution. It divides the data into two                                   equal halves, where 50% of the values lie below and 50% lie above this point. In                                    this case, the median is ", dataset$posterior[i], ", meaning that the central value                                  of the distribution is", dataset$posterior[i], ".")
     } else if (dataset$parameter[i] == "MAD") {
-      interpretation[i] <- paste("The MAD (Median Absolute Deviation) is a measure of variability, based on the                                      median. It represents the median of the absolute deviations from the                                               median. Here, the MAD is", 
+      interpretation[i] <- paste0("The MAD (Median Absolute Deviation) is a measure of variability, based on the                                      median. It represents the median of the absolute deviations from the                                               median. Here, the MAD is ", 
                                  dataset$posterior[i], ", indicating that the typical deviation of data points from                                  the median is", dataset$posterior[i], ".")
     } else if (dataset$parameter[i] == "Mean") {
-      interpretation[i] <- paste("The mean is the arithmetic average of the distribution, calculated by summing all                                  values and dividing by their count. In this case, the mean is", 
+      interpretation[i] <- paste0("The mean is the arithmetic average of the distribution, calculated by summing all                                  values and dividing by their count. In this case, the mean is ", 
                                  dataset$posterior[i], ", representing the average value of the distribution.")
     } else if (dataset$parameter[i] == "SD") {
-      interpretation[i] <- paste("The SD (Standard Deviation) is a measure of the spread of the data around the                                      mean. It shows the average deviation of values from the mean. Here, the SD is", 
-                                 dataset$posterior[i], ", meaning that on average, data points deviate by",                                          dataset$posterior[i], "from the mean.")
+      interpretation[i] <- paste0("The SD (Standard Deviation) is a measure of the spread of the data around the                                      mean. It shows the average deviation of values from the mean. Here, the SD is ", 
+                                 dataset$posterior[i], ", meaning that on average, data points deviate by ",                                          dataset$posterior[i], "from the mean.")
     } else if (dataset$parameter[i] == "MAP") {
-      interpretation[i] <- paste("MAP (Maximum A Posteriori) is the value with the highest density in the posterior                                  distribution. It represents the mode (peak) of the estimated probability density                                    function. MAP of", dataset$posterior[i], "indicates that this is the most                                           likely value in the distribution.")
-    } else if (dataset$parameter[i] == "CI_ETI") {
-      interpretation[i] <- paste("The CI (Credible Interval) represents the range where the true parameter value is                                  likely to lie. This CI_ETI is based on quantiles (Equal-Tail Interval, ETI), which                                      covers the central 95% of the posterior distribution, with equal probability in the                                  tails.")
-    } else if (dataset$parameter[i] == "CI_ETI_low") {
-      interpretation[i] <- paste("The lower bound of the 95% ETI indicates that the true value is not likely to be                                   smaller than", dataset$posterior[i], "with 95% credibility.")
-    } else if (dataset$parameter[i] == "CI_ETI_high") {
-      interpretation[i] <- paste("The upper bound of the 95% ETI indicates that the true value is not likely to                                      exceed", dataset$posterior[i], "with 95% credibility.")
-    } else if (dataset$parameter[i] == "CI_HDI") {
-      interpretation[i] <- paste("The CI (Credible Interval) represents the range where the true parameter value is                                  most likely to lie. This CI_HDI is based on density (Highest Density Interval, HDI),                                     which covers the 95% of the posterior distribution with the highest density.")
-    } else if (dataset$parameter[i] == "CI_HDI_low") {
-      interpretation[i] <- paste("The lower bound of the 95% HDI indicates that the true value is unlikely to be                                     smaller than", dataset$posterior[i], "with 95% credibility, based on the highest                                    density.")
-    } else if (dataset$parameter[i] == "CI_HDI_high") {
-      interpretation[i] <- paste("The upper bound of the 95% HDI indicates that the true value is unlikely to                                        exceed", dataset$posterior[i], "with 95% credibility, based on the highest                                          density.")
+      interpretation[i] <- paste0("MAP (Maximum A Posteriori) is the value with the highest density in the posterior                                  distribution. It represents the mode (peak) of the estimated probability density                                    function. MAP of ", dataset$posterior[i], "indicates that this is the most                                           likely value in the distribution.") 
     }
+    #   interpretation[i] <- paste("The CI (Credible Interval) represents the range where the true parameter value is                                  likely to lie. This CI_ETI is based on quantiles (Equal-Tail Interval, ETI), which                                      covers the central 95% of the posterior distribution, with equal probability in the                                  tails.")
+    # } else if (dataset$parameter[i] == "CI_ETI_low") {
+    #   interpretation[i] <- paste("The lower bound of the 95% ETI indicates that the true value is not likely to be                                   smaller than", dataset$posterior[i], "with 95% credibility.")
+    # } else if (dataset$parameter[i] == "CI_ETI_high") {
+    #   interpretation[i] <- paste("The upper bound of the 95% ETI indicates that the true value is not likely to                                      exceed", dataset$posterior[i], "with 95% credibility.")
+    # } else if (dataset$parameter[i] == "CI_HDI") {
+    #   interpretation[i] <- paste("The CI (Credible Interval) represents the range where the true parameter value is                                  most likely to lie. This CI_HDI is based on density (Highest Density Interval, HDI),                                     which covers the 95% of the posterior distribution with the highest density.")
+    # } else if (dataset$parameter[i] == "CI_HDI_low") {
+    #   interpretation[i] <- paste("The lower bound of the 95% HDI indicates that the true value is unlikely to be                                     smaller than", dataset$posterior[i], "with 95% credibility, based on the highest                                    density.")
+    # } else if (dataset$parameter[i] == "CI_HDI_high") {
+    #   interpretation[i] <- paste("The upper bound of the 95% HDI indicates that the true value is unlikely to                                        exceed", dataset$posterior[i], "with 95% credibility, based on the highest                                          density.")
+    # }
     
   }
   return(interpretation)
@@ -754,12 +754,13 @@ interpretation_func <- function(dataset) {
 
 ```{r}
 # Summary Tabelle
-a3 <-  data.frame(a2, interpretation = interpretation_func(a2))
+final_results <- results[1:5,]
+final_results <-  data.frame(final_results, interpretation = interpretation_func(final_results))
 ```
 
 ```{r}
 # Zeige die Tabelle mit knitr::kable()
-kable(a3, align = "l",caption = "Summary of Posterior Distribution") %>%
+kable(final_results, align = "l",caption = "Summary of Posterior Distribution") %>%
   kable_styling(full_width = TRUE)
 ```
 

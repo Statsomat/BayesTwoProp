@@ -21,3 +21,5 @@ Report2_AstraZeneca_LSDS.html: File, function 1, default prior. To be analysed b
 Report3_AstraZeneca_SDSD.html: File, function 1, prior 1,2,3,4. To be analyzed by ?. 
 
 Report2_Moderna-1.html: File, function 3, default prior. To be analysed by Jule.
+
+Report3_Pfizer.html: File, function 3, prior 2,2,2,2. To be analysed by Jomana.

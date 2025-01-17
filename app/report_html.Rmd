@@ -816,7 +816,7 @@ cat("(Kruschke, John K., Doing Bayesian Data Analysis, Academic Press, 2015)")
 cat("## ETI Plot", fill=TRUE)
 
 # Display the ETI plot
-eti_result = eti(estimate, ci = c(.89, .95, .99))
+eti_result = eti(estimate, ci = c(.89, .95))
 
 eti_plot_temp = plot(eti_result)
 

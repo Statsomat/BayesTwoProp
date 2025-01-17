@@ -518,6 +518,7 @@ pTheta1 = dbeta(Theta1,params$a1,params$b1)
 pTheta2 = dbeta(Theta2,params$a2,params$b2)
 pTheta1Theta2 <- pTheta1 %*% t(pTheta2)
 
+# Generate plot
 scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
              xaxis = list(title = "\u03b8\u2081"),
              yaxis = list(title = "\u03b8\u2082"),
@@ -587,6 +588,7 @@ cat(paste0("\\begin{align}
 ```{r posterior2, eval=TRUE, results='asis'}
 ## Plot the posterior (following last row of page 167 DDBA)
 
+# Generate z-values 
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
 for (i in 1:length(Theta1)){
   for (j in 1:length(Theta2)){

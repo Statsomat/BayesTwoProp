@@ -829,11 +829,11 @@ if (params$user_selection_function_param == 1) {
 }
 cat("=-0.1 suggests that, on average, the probability of infection in the exposed group (theta1) is slightly lower than in the non-exposed group (theta2). However, this value alone is not sufficient to draw conclusions because it does not account for the uncertainty in the estimate. The HDI of", round(b$CI_low,3), "to ",round(b$CI_high,3) ,"indicates that there is a 95% probability that the true difference between infection probabilities (theta1-theta2) lies within this interval.")
 if (b$CI_high>0 && b$CI_low<0){
-  cat("Since this interval includes 0, it means that the evidence is inconclusive about whether exposure (theta1) increases or decreases the probability of infection compared to non-exposure (theta2).")
+  cat(" Since this interval includes 0, it means that the evidence is inconclusive about whether exposure (theta1) increases or decreases the probability of infection compared to non-exposure (theta2).")
 }else if (b$CI_high<0){
-  cat(cat("Since this interval lies entirely below 0, it suggests that exposure (theta1) significantly decreases the probability of infection compared to non-exposure (theta2)."))
+  cat(cat(" Since this interval lies entirely below 0, it suggests that exposure (theta1) significantly decreases the probability of infection compared to non-exposure (theta2)."))
 }else{
-  cat("Since this interval lies entirely above 0, it suggests that exposure (theta1) significantly increases the probability of infection compared to non-exposure (theta2).")
+  cat(" Since this interval lies entirely above 0, it suggests that exposure (theta1) significantly increases the probability of infection compared to non-exposure (theta2).")
 }
 
 ```

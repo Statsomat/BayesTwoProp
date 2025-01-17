@@ -842,7 +842,7 @@ cat("=-0.1 suggests that, on average, the probability of infection in the expose
 cat("## ETI Plot", fill=TRUE)
 
 # Display the ETI plot
-eti_result = eti(estimate, ci = c(.89, .95, .99))
+eti_result = eti(estimate, ci = c(.89, .95))
 
 eti_plot_temp = plot(eti_result)
 
@@ -870,7 +870,8 @@ print(eti_plot)
 
 # Add text interpretation
 cat("\n\n**Interpretation:**\n\n")
-cat("This plot displays the posterior distribution of a specified parameter ")
+cat("This plot shows the Equal Tailed Intervals (ETI) for a posterior distribution, highlighting an alternative way to visualize the most credible values for the parameter ")
+# Direkte LaTeX-Notation für xlabel
 if (params$user_selection_function_param == 1) {
   cat("\\(\\theta_1 - \\theta_2\\)")
 } else if (params$user_selection_function_param == 2) {
@@ -878,12 +879,15 @@ if (params$user_selection_function_param == 1) {
 } else if (params$user_selection_function_param == 3) {
   cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
 }
-cat(" chosen within this run of the application. The x-axis represents the parameter’s potential values, and the y-axis indicates their relative probability as derived from the posterior density. The density is computed using underlying R functions (e.g., bayestestR::eti() and associated Bayesian sampling methods) that summarize the results of the posterior simulations or analytical calculations. The highlighted Credible Interval (CI), shown here as an Expected Tail Interval (ETI), differs from other intervals, such as the Highest Density Interval (HDI), by including values from the tails of the distribution rather than strictly focusing on the region of highest probability density. Examination of the distribution’s shape, the ETI’s position, and its width provides insight into the plausibility of certain parameter values and the level of uncertainty associated with them.\n")
-```
 
-```{r plotpost, eval=rope_user, results="asis"}
-cat("## More Plots", fill=TRUE)
-# Use the plotPost function (page 205 Kruschke)
+cat(". Following the approach of Kruschke (Doing Bayesian Data Analysis, Chapter 12.1.2.2), the ETI is defined by trimming equal probability mass \\(\\left(\\frac{\\alpha}{2}\\right)\\) from both tails of the posterior distribution. As a result, the interval is always symmetric in terms of probability mass around the median, which ensures that the median of the distribution is included in the interval.\n\n")
+
+cat("The curve itself represents the posterior probability density for the parameter, with shaded regions indicating different ETI levels. For instance, the red band may represent an 89\\% ETI, the orange band extends the interval to 95\\%, and the blue region covers 100\\% of the distribution's density. These intervals offer a straightforward interpretation of how the posterior probability is allocated across the parameter space: each tail beyond the interval contains exactly \\(\\left(\\frac{\\alpha}{2}\\right)\\) of the total probability.\n\n")
+
+cat("Unlike the Highest Density Interval (HDI), the ETI does not necessarily capture the region of highest posterior density and may therefore exclude the mode (or modes) in skewed or multimodal distributions. However, in symmetric distributions, the ETI and HDI coincide. A key property of ETIs is that their boundaries remain unchanged under monotonic (nonlinear) transformations of parameters, making them attractive for comparing parameter estimates on different scales.\n\n")
+
+cat("In summary, the ETI provides a complementary perspective to the HDI by emphasizing an equal-probability-tail view of uncertainty: it always includes the median, guarantees equal tail areas, and has transformation-invariant limits. Nevertheless, be mindful that in highly skewed or irregular posterior distributions, the ETI may not represent the most densely populated region of the parameter space.")
+
 ```
 
 ```{r runtests, eval=FALSE}

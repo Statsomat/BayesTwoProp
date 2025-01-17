@@ -869,6 +869,22 @@ if (params$user_selection_function_param == 1) {
 cat(" chosen within this run of the application. The x-axis represents the parameter’s potential values, and the y-axis indicates their relative probability as derived from the posterior density. The density is computed using underlying R functions (e.g., bayestestR::eti() and associated Bayesian sampling methods) that summarize the results of the posterior simulations or analytical calculations. The highlighted Credible Interval (CI), shown here as an Expected Tail Interval (ETI), differs from other intervals, such as the Highest Density Interval (HDI), by including values from the tails of the distribution rather than strictly focusing on the region of highest probability density. Examination of the distribution’s shape, the ETI’s position, and its width provides insight into the plausibility of certain parameter values and the level of uncertainty associated with them.\n")
 ```
 
+```{r}
+# Summary Tabelle ETI
+final_results <- results[6:8,]
+final_results <- data.frame(final_results)
+
+# Zeige Tabelle an
+kable(final_results,
+      align = "l",
+      caption = "ETI table") %>%
+  kable_styling(full_width = TRUE,
+                position = "center",
+                latex_options = "hold_position"
+                )
+```
+
+
 ```{r plotpost, eval=rope_user, results="asis"}
 cat("## More Plots", fill=TRUE)
 # Use the plotPost function (page 205 Kruschke)

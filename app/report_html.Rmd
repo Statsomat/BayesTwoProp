@@ -736,12 +736,12 @@ kable(final_results, align = "l") %>%
 
 
 ```{r plot_hdi, eval=eval_final, results="asis"}
-cat("## HDI Plot", fill=TRUE)
+cat("## HDI", fill=TRUE)
 final_results <- results[9:11,]
 final_results <-  data.frame(final_results)
+cat("\n\n**HDI Table:**\n\n")
 kable(final_results,
-      align = "l",
-      caption = "HDI table") %>%
+      align = "l") %>%
   kable_styling(full_width = TRUE,
                 position = "center",
                 latex_options = "hold_position"
@@ -760,7 +760,7 @@ xlabel <- if (params$user_selection_function_param == 1){
 hdi_result <- hdi(estimate, ci = c(.89, .95))
 
 hdi_plot_temp = plot(hdi_result)
-
+cat("\n\n**HDI Plot:**\n\n")
 # Display the HDI plot
 hdi_plot <- plot(x=hdi_result, y=hdi_plot_temp[["data"]][["height"]]) +
   labs(

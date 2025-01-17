@@ -213,8 +213,15 @@ cat("# The Data", fill=TRUE)
 
 ```{r datahead, eval=evalfile2, results='asis'}
 cat("## Data Head (first five observations)", fill=TRUE)
-knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longtable=T) %>%
-  kable_styling(font_size = 8, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))
+df_data_head <- as.data.frame(head(df))
+colnames(df_data_head) <- c(params$outcome, params$presence_exposure)
+
+df_data_head %>%
+  knitr::kable(format = "html") %>%
+  kable_styling(full_width = FALSE, position = "center") %>%
+  row_spec(0, extra_css = "font-weight: normal; border-bottom: 2px solid;") %>%
+  column_spec(1, extra_css = "border-right: 2px solid black;") 
+
 ```
 
 \pagebreak

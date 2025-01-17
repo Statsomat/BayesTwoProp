@@ -336,7 +336,11 @@ barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure
 \pagebreak
 
 ```{r the_model, eval=eval, results='asis'}
+<<<<<<< Updated upstream
 ## Description of the assumed model
+=======
+## description of the model
+>>>>>>> Stashed changes
 cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)
 cat("The statistical model of this analysis derives from the data ", fill=TRUE)
@@ -349,6 +353,8 @@ cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} i.i.d.  \\sim Bi(n_1,\\theta_
 cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} i.i.d. \\sim Bi(n_2,\\theta_2) \\, .$$", fill=TRUE)
 cat("These random variables are binomially distributed with the distribution parameters $n_i$ and $\\theta_i \\, , i\\in\\{1,2\\}$. \\", fill=TRUE)
 cat("The selected function ", fill=TRUE)
+
+#seperated for the different relationships between the thetas
 if (params$user_selection_function_param==1) {
   cat("$\\theta_1 - \\theta_2$, describes the difference between two success probabilities.", fill=TRUE)
 } else {
@@ -362,12 +368,18 @@ if (params$user_selection_function_param==1) {
 ```
 
 ```{r likelihood, eval=eval_final, results='asis'}
+## Initializing and description of the Likelihood-function
 cat("## The Likelihood", fill=TRUE)
 
 cat("The likelihood function is a function of $(\\theta_1, \\theta_2 )$ that describes the plausibility of $(Y_1,Y_2)=(y_1,y_2)$ with different $(\\theta_1, \\theta_2 )$. The likelihood function should not be confused with a probability function.", fill = TRUE)
 cat("<br>", fill=TRUE)
+<<<<<<< Updated upstream
 cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2)\\$$", fill = TRUE)
 cat(", where $f$ is a probability mass function with")
+=======
+cat("Let $$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2)\\, ,$$",fill = TRUE)
+cat("where $f$ is a probability mass function with")
+>>>>>>> Stashed changes
 cat("<br>", fill=TRUE)
 #Likelihood formula of D given theta_1 and theta_2
 cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= \\underbrace{P(Y_1=y_1 \\ | \\ \\theta_1)}_{\\sim Bi(n_1,\\theta_1)} \\cdot \\underbrace{P(Y_2=y_2 \\ | \\ \\theta_2)}_{\\sim Bi(n_2,\\theta_2)} \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}", fill = TRUE)
@@ -376,12 +388,14 @@ cat("The likelihood function is defined as follows $L: [0,1] \\times [0,1] \\to 
 cat("<br>", fill=TRUE)
 cat("$$L(\\theta_1, \\theta_2 \\ | \\ y_1,y_2) = \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot  \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2} \\, .$$", fill=TRUE)
 cat("<br>", fill=TRUE)
-#Likelihood formular of D given theta_1 and theta_2 with user entered data
+# Likelihood formular of D given theta_1 and theta_2 with user entered data
+# Insert the values of the data
 cat(paste0("Consider our data $n_1=", n_exposure1, ", n_2=", n_exposure0, ", y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1,"$:"),fill=TRUE)
 cat("<br>", fill=TRUE)
 cat(paste0("$$P(Y_1=", n_exposure1_outcome1, ",Y_2=", n_exposure0_outcome1, " \\ | \\ \\theta_1, \\theta_2) = \\begin{pmatrix} ", n_exposure1, " \\\\ ", n_exposure1_outcome1," \\end{pmatrix} \\theta_1^{", n_exposure1_outcome1, "}(1-\\theta_1)^{", n_exposure1, " - ", n_exposure1_outcome1, "} \\cdot  \\begin{pmatrix} ", n_exposure0, " \\\\ ", n_exposure0_outcome1," \\end{pmatrix} \\theta_2^{", n_exposure0_outcome1, "}(1-\\theta_2)^{", n_exposure0, " - ", n_exposure0_outcome1, "} \\, .$$"), fill=TRUE)
 cat("<br>", fill=TRUE)
-cat(paste0("Then $$L(\\theta_1, \\theta_2 \\ | \\ y_1=", n_exposure1_outcome1, ",y_2=", n_exposure0_outcome1, ")=\\begin{pmatrix} ", n_exposure1, " \\\\ ", n_exposure1_outcome1," \\end{pmatrix} \\theta_1^{", n_exposure1_outcome1, "}(1-\\theta_1)^{", n_exposure1, " - ", n_exposure1_outcome1, "} \\cdot  \\begin{pmatrix} ", n_exposure0, " \\\\ ", n_exposure0_outcome1," \\end{pmatrix} \\theta_2^{", n_exposure0_outcome1, "}(1-\\theta_2)^{", n_exposure0, " - ", n_exposure0_outcome1, "} \\, .$$"),fill=TRUE)
+cat(paste0("Then",fill = TRUE))
+cat(paste0("$$L(\\theta_1, \\theta_2 \\ | \\ y_1=", n_exposure1_outcome1, ",y_2=", n_exposure0_outcome1, ")=\\begin{pmatrix} ", n_exposure1, " \\\\ ", n_exposure1_outcome1," \\end{pmatrix} \\theta_1^{", n_exposure1_outcome1, "}(1-\\theta_1)^{", n_exposure1, " - ", n_exposure1_outcome1, "} \\cdot  \\begin{pmatrix} ", n_exposure0, " \\\\ ", n_exposure0_outcome1," \\end{pmatrix} \\theta_2^{", n_exposure0_outcome1, "}(1-\\theta_2)^{", n_exposure0, " - ", n_exposure0_outcome1, "} \\, .$$"),fill=TRUE)
 cat("<br>", fill=TRUE)
 cat("Examples for selected $(\\theta_1, \\theta_2)$, given our data:", fill=TRUE)
 
@@ -400,6 +414,7 @@ cat("<br>", fill=TRUE)
 cat(paste0("\\begin{align} L \\biggl( \\theta_1= \\frac{", n_exposure1_outcome1, "}{", n_exposure1, "}, \\theta_2= \\frac{", n_exposure0_outcome1, "}{", n_exposure0, "} \\ \\biggl | \\ y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, " \\biggl) &=", round(L1,4),"\\, , \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, ") &=", round(L2,4),"\\, .\\end{align}"), fill=TRUE)
 cat("<br>", fill=TRUE)
 cat("Remark: Because of the independence of $Y_1$ and $Y_2$ you can get the following marginal distributions: ",fill=TRUE) 
+
 #Marginal distribution of D_1 given theta_1 and of D_2 given theta_2
 cat("\\begin{align} P(Y_1=y_1 \\ | \\ \\theta_1 ) &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1}(1-\\theta_1)^{n_1 - y_1} \\, , \\\\[1em] P(Y_2=y_2 \\ | \\ \\theta_2) &= \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2} \\, . \\end{align}", fill = TRUE)
 

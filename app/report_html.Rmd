@@ -737,6 +737,16 @@ kable(final_results, align = "l") %>%
 
 ```{r plot_hdi, eval=eval_final, results="asis"}
 cat("## HDI Plot", fill=TRUE)
+final_results <- results[9:11,]
+final_results <-  data.frame(final_results)
+kable(final_results,
+      align = "l",
+      caption = "HDI table") %>%
+  kable_styling(full_width = TRUE,
+                position = "center",
+                latex_options = "hold_position"
+                )
+
 # Display graphical posterior information using bayestestR package
 
 xlabel <- if (params$user_selection_function_param == 1){
@@ -902,7 +912,13 @@ if (params$user_selection_function_param == 1) {
 ```
 
 
-```{r}
+
+
+
+
+```{r plot_eti, eval=eval_final, results="asis"}
+cat("## ETI Plot", fill=TRUE)
+
 # Summary Tabelle ETI
 final_results <- results[6:8,]
 final_results <- data.frame(final_results)
@@ -915,12 +931,6 @@ kable(final_results,
                 position = "center",
                 latex_options = "hold_position"
                 )
-```
-
-
-
-```{r plot_eti, eval=eval_final, results="asis"}
-cat("## ETI Plot", fill=TRUE)
 
 # Display the ETI plot
 eti_result = eti(estimate, ci = c(.89, .95))

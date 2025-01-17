@@ -818,12 +818,15 @@ cat("\\begin{align*}\n",
     "    \\text{HDI}_{95\\%} &= \\left\\{ x \\mid p(x) > W \\right\\} ",
     "    \\text{with} \\quad \\int_{x : p(x) > W} p(x) \\, dx &= 0.95\n",
     "\\end{align*}")
+
 cat("If the effective sample size is greater than 10.000 Kruschke recommends using the 95% interval for an estimation with high precision. For smaller effective sample sizes the 89% intervals are deemed to be more stable.")
 cat("The mean posterior value of ")
+
 cat("If the effective sample size is greater than 10.000 Kruschke recommends using the 95% interval for an estimation with high precision. For smaller effective sample sizes the 89% intervals are deemed to be more stable.\n")
 
 cat("\n\n**Interpretation in Relation to the Data:**\n\n")
 cat("The mean posterior value of")
+
 if (params$user_selection_function_param == 1) {
   cat("\\(\\theta_1 - \\theta_2\\)")
 } else if (params$user_selection_function_param == 2) {

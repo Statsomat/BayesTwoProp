@@ -448,13 +448,18 @@ fig
 ```
 
 ```{r priortext, eval=eval_final, results='asis'}
+## Despriction of the prior distribution
+
 cat("## The Prior Distribution", fill=TRUE)
 cat("Preliminary information is included in the analysis with the help of the prior distribution.
 For binomially distributed measurement data, a beta distribution is suitable as a priori distribution: \n",fill=TRUE)
-
-cat("\\begin{align}(\\theta_1, \\theta_2) \\sim p(\\theta_1,\\theta_2) = p(\\theta_1) \\cdot p(\\theta_2) &= beta(a_1,b_1) \\cdot beta(a_2,b_2) \\\\[1em] &= \\frac{1}{B(a_1,b_1)} \\theta_1^{a_1-1} \\left(1-\\theta_1\\right)^{b_1-1} \\cdot \\frac{1}{B(a_2,b_2)} \\theta_2^{a_2-1} \\left(1-\\theta_2\\right)^{b_2-1}\\end{align}",fill=TRUE)
+cat("\\begin{align}
+    (\\theta_1, \\theta_2) \\sim p(\\theta_1,\\theta_2) = p(\\theta_1) \\cdot p(\\theta_2) &= beta(a_1,b_1) \\cdot beta(a_2,b_2) \\\\[1em] 
+        &= \\frac{1}{B(a_1,b_1)} \\theta_1^{a_1-1} \\left(1-\\theta_1\\right)^{b_1-1} \\cdot \\frac{1}{B(a_2,b_2)} \\theta_2^{a_2-1} \\left(1-\\theta_2\\right)^{b_2-1}
+    \\end{align}",fill=TRUE)
 cat("with $B$ as the beta function (also called \'Euler integral of the first kind\').",fill=TRUE)
 cat("<br>", fill=TRUE)
+
 cat("We assume that the beliefs about the two parameters are independent, i.e. $\\theta_1$ and $\\theta_2$ are independent, with marginal belief distributions $p(\\theta_1)$, $p(\\theta_2)$.",fill = TRUE) 
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
@@ -462,20 +467,19 @@ cat("<br>", fill=TRUE)
 # no default parameters
 if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
   cat("Your choice of the parameters for the prior distributions is:\n ")
-  cat(paste("$$(\\theta_1, \\theta_2) \\sim beta(",a1,",",b1,") \\cdot
-            beta(",a2,",",b2,").$$"),fill=TRUE)
+  cat(paste("$$(\\theta_1, \\theta_2) \\sim beta(",a1,",",b1,") \\cdot beta(",a2,",",b2,").$$"),fill=TRUE)
   
   # mode exists
   if(a1 > 1 & b1 > 1 & a2 > 1 & b2 > 1){
     
     # same values
     if(a1 == a2 & a1 == b1 & a1 == b2){
-    cat("In this case, all parameters were chosen to be the same. This means that it was assumed that little or no information about the parameters to be estimated was known in advance. The maximum of the prior distribution is therefore at $(0.5, 0.5)$.",fill=TRUE)
+      cat("In this case, all parameters were chosen to be the same. This means that it was assumed that little or no information about the parameters to be estimated was known in advance. The maximum of the prior distribution is therefore at $(0.5, 0.5)$.",fill=TRUE)
     # different values
     } else{
-    t1_m = round((a1-1)/(a1+b1-2), digits=3)
-    t2_m = round((a2-1)/(a2+b2-2), digits=3)
-    cat(paste0("In this case, not all parameters were chosen to be the same. This means that it was assumed that there was information about the parameters in advance. The prior is peaked in $(",t1_m,", ",t2_m,")$."),fill=TRUE)
+      t1_m = round((a1-1)/(a1+b1-2), digits=3)
+      t2_m = round((a2-1)/(a2+b2-2), digits=3)
+      cat(paste0("In this case, not all parameters were chosen to be the same. This means that it was assumed that there was information about the parameters in advance. The prior is peaked in $(",t1_m,", ",t2_m,")$."),fill=TRUE)
     }
   
   # mode does not exist  
@@ -483,10 +487,10 @@ if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
     
     # same values
     if(a1 == a2 & a1 == b1 & a1 == b2){
-    cat("In this case, all parameters were chosen to be the same. This means that it was assumed that little or no information about the parameters to be estimated was known in advance.",fill=TRUE)
+      cat("In this case, all parameters were chosen to be the same. This means that it was assumed that little or no information about the parameters to be estimated was known in advance.",fill=TRUE)
     # different values
     } else{
-    cat("In this case, not all parameters were chosen to be the same. This means that it was assumed that there was information about the parameters in advance.",fill=TRUE)
+      cat("In this case, not all parameters were chosen to be the same. This means that it was assumed that there was information about the parameters in advance.",fill=TRUE)
     }
     
   }
@@ -495,28 +499,34 @@ if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
 } else{
   cat("The default parameters are chosen: \n",fill=TRUE)
   cat("$$(\\theta_1, \\theta_2) \\sim  beta(0.5,0.5) \\cdot beta(0.5,0.5) \\, .$$",fill=TRUE)
-  cat("These default parameters have their origin in the so called Jeffrey's prior which is a non-informative prior distribution. Non-informative prior distributions are used when little or no information is available about the parameters to be determined and therefore no statement can be made about the distribution of the parameters. In our assumed situation we have two parameters $\\theta_1$ and $\\theta_2$. In the following, Jeffrey's prior is described for one general $\\theta$, but we can use these results from Jeffrey's prior and insert them in both of the beta distributions multiplied in our prior. The priors $p(\\theta)=beta(0.5,0.5)$ result from Jeffrey's rule $$p(\\theta) \\propto \\sqrt{I(\\theta)}$$ where $I(\\theta)$ is the Fisher information function $$I(\\theta)=-E\\left[ \\frac{\\partial^2}{\\partial \\theta^2} L(\\theta \\ | \\ \\bullet) \\right]$$ and where $L(\\theta \\ | \\ \\bullet)$ is the likelihood function of the data $\\bullet$.",fill=TRUE)
+  cat("These default parameters have their origin in the so called Jeffrey's prior which is a non-informative prior distribution. Non-informative prior distributions are used when little or no information is available about the parameters to be determined and therefore no statement can be made about the distribution of the parameters. In our assumed situation we have two parameters $\\theta_1$ and $\\theta_2$. In the following, Jeffrey's prior is described for one general $\\theta$, but we can use these results from Jeffrey's prior and insert them in both of the beta distributions multiplied in our prior. The priors $p(\\theta)=beta(0.5,0.5)$ result from Jeffrey's rule", fill=TRUE) 
+  cat("$$p(\\theta) \\propto \\sqrt{I(\\theta)}$$", fill=TRUE)
+  cat("where $I(\\theta)$ is the Fisher information function", fill=TRUE)
+  cat("$$I(\\theta)=-E\\left[ \\frac{\\partial^2}{\\partial \\theta^2} L(\\theta \\ | \\ \\bullet) \\right]$$", fill=TRUE) 
+  cat("and where $L(\\theta \\ | \\ \\bullet)$ is the likelihood function of the data $\\bullet$.",fill=TRUE)
   cat("<br>", fill=TRUE)
-  cat("In our case, the likelihood is a binomial distribution. Hence, the Fisher information function is $$I(\\theta)=\\frac{1}{\\theta (1-\\theta)} \\, .$$ This results in $$p(\\theta) \\propto \\theta^{-0.5}(1-\\theta)^{-0.5}$$ because of Jeffrey's rule. The resulting prior distribution is now $beta(0.5,0.5)$.",fill=TRUE)
-cat("The default shape parameters of the beta distributions indicate that the prior distribution is peaked at $(0.5,0.5)$ which represents a mild prior belief.")
+  
+  cat("In our case, the likelihood is a binomial distribution. Hence, the Fisher information function is", fill=TRUE)
+  cat("$$I(\\theta)=\\frac{1}{\\theta (1-\\theta)} \\, .$$", fill=TRUE)
+  cat("This results in", fill=TRUE)
+  cat("$$p(\\theta) \\propto \\theta^{-0.5}(1-\\theta)^{-0.5}$$", fill=TRUE) 
+  cat("because of Jeffrey's rule. The resulting prior distribution is now $beta(0.5,0.5)$.",fill=TRUE)
+  cat("The default shape parameters of the beta distributions indicate that the prior distribution is peaked at $(0.5,0.5)$ which represents a mild prior belief.")
 }
+
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
-cat("Note that when choosing the prior distribution, the amount of information already known about the probabilities $\\theta_1$ and $\\theta_2$ should be taken into account. If not so much or nothing at all is known, $a_i = b_i$ should be selected for the distribution of $\\theta_i$, $i=1,2$, so that the  mean and the mode are equal to $0.5$. In general, the mean $\\mu_i$ and the mode $\\omega_i$ can be calculated as follows: $$ \\mu_i = \\frac{a_i}{a_i+b_i} \\text{ and } \\omega_i = \\frac{a_i -1}{a_i+b_i-2} \\, , \\  a_i,b_i > 1 \\, . $$",fill=TRUE)
+cat("Note that when choosing the prior distribution, the amount of information already known about the probabilities $\\theta_1$ and $\\theta_2$ should be taken into account. If not so much or nothing at all is known, $a_i = b_i$ should be selected for the distribution of $\\theta_i$, $i=1,2$, so that the  mean and the mode are equal to $0.5$. In general, the mean $\\mu_i$ and the mode $\\omega_i$ can be calculated as follows:", fill=TRUE) 
+cat("$$ \\mu_i = \\frac{a_i}{a_i+b_i} \\text{ and } \\omega_i = \\frac{a_i -1}{a_i+b_i-2} \\, , \\  a_i,b_i > 1 \\, . $$",fill=TRUE)
 cat("So if $a_i>b_i$, $\\mu_i$ and $\\omega_i$ are greater than $0.5$ and if $a_i<b_i$, $\\mu_i$ and $\\omega_i$ are less than $0.5$. So the prior distribution as a product of two $beta(a_i,b_i)$ distributions is peaked in $(\\omega_1,\\omega_2)$ when $a_i,b_i > 1$ for all $i=1,2$ because all values of the beta density are greater than or equal to $0$. The greater the sum $a_i+b_i$, the more confident one is in the assumption of the tendencies for $\\theta_i$.")
-
-
-
-
-
 
 ```
 
 
 ```{r priorplot, eval=eval_final, results='asis'}
-# Plot the prior (follow first row from page 167 DDBA)
-cat("The next plot shows the probability density function (pdf) of the prior distribution.",fill=TRUE)
+## Plot the prior (following first row of page 167 DDBA)
 
+cat("The next plot shows the probability density function (pdf) of the prior distribution.",fill=TRUE)
 
 # Bounding for density values -> better colourscaling
 pTheta1 = dbeta(Theta1,params$a1,params$b1)
@@ -530,32 +540,39 @@ scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
 plt3d <- plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2, type = "surface",
                  contours = list(
                    x = list(show = TRUE, start= 0, end= 1, size = 0.05 ,color = 'white'),
-                   y = list(show = TRUE, start= 0, end= 1, size = 0.05 ,color = 'white')))%>%
-          layout(scene=scene)
+                   y = list(show = TRUE, start= 0, end= 1, size = 0.05 ,color = 'white'))) %>%
+  layout(scene=scene)
+
 plt3d
+
 ```
 
 
 ```{r posterior1, eval=TRUE, results='asis'}
+## Despriction of the posterior distribution
+
 cat("## The Posterior Distribution", fill=TRUE)
-# Insert latex or code equation for the posterior distribution 
 cat("The posterior distribution is an update of the prior distribution using the likelihood. \\cite{kruschke} This probability distribution shows how strongly we should believe in the various parameter values after we have seen the data $(y_1,y_2)$ out of $(n_1,n_2)$. It is calculated with the help of Bayes theorem. In what follows we derive the posterior in general terms for arbitrary sample sizes and outcome summaries")  
 cat("\\begin{align}
     p(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)&=\\frac{p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2)p(\\theta_1,\\theta_2)}{p(y_1,y_2)} \\, ,
     \\end{align}")
-cat("where \\begin{align} 
-        p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2) &= L(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)
-        \\end{align}
-        is the likelihood function and
-        \\begin{align}
-        p(y_1,y_2) &= \\int \\int
-        p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2)p(\\theta_1,\\theta_2) \\ d \\theta_1 d
-        \\theta_2 
-    \\end{align} is a normalizing constant.")
+cat("where", fill=TRUE)
+cat("\\begin{align} 
+    p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2) &= L(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)
+    \\end{align}", fill=TRUE)
+cat("is the likelihood function and", fill=TRUE)
+cat("\\begin{align}
+    p(y_1,y_2) &= \\int \\int
+    p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2)p(\\theta_1,\\theta_2) \\ d \\theta_1 d
+    \\theta_2 
+    \\end{align}", fill=TRUE)
+cat("is a normalizing constant.", fill=TRUE)
 cat("<br>",fill=TRUE) 
-cat("Including the likelihood and the assumed prior distributions of the $\\theta_i$,  $i=1,2$, we get the numerator of the Bayes theorem:")
+
+cat("Including the likelihood and the assumed prior distributions of the $\\theta_i$, $i=1,2$, we get the numerator of the Bayes theorem:")
 cat("\\begin{align}
     z = \\underbrace{\\binom{n_1}{y_1}\\theta_1 ^{y_1}(1-\\theta_1)^{n_1-y_1} \\cdot \\binom{n_2}{y_2}\\theta_2 ^{y_2}(1-\\theta_2)^{n_2-y_2}}_{\\text{likelihood function}} \\cdot \\underbrace{\\frac{\\theta_1^{a_1-1}(1-\\theta_1)^{b_1-1}}{B(a_1,b_1)}}_{\\text{prior } \\theta_1} \\cdot \\underbrace{\\frac{\\theta_2^{a_2-1}(1-\\theta_2)^{b_2-1}}{B(a_2,b_2)}}_{\\text{prior } \\theta_2} \\, . \\end{align}")
+
 cat("Now we can insert this in the actual Bayes theorem. With some power calculations we get:")
 cat("\\begin{align}
      p(\\theta_1,\\theta_2 \\ | \\ y_1,y_2) &= 
@@ -567,39 +584,45 @@ cat("\\begin{align}
      B(a_2+y_2,n_2-y_2+b_2) } \\, .
      \\end{align}")
 
-cat("The last step in this computation follows from the normalizing constant and the condition that a density has to integrate to one. $B(\\cdot,\\cdot)$ are the normalizing constants of the Beta-distribution. ")
+cat("The last step in this computation follows from the normalizing constant and the condition that a density has to integrate to one. $B(\\cdot,\\cdot)$ are the normalizing constants of the beta distribution. ")
 cat("Hence, our posterior function is distributed as follows:
     \\begin{align}
-    \\left( \\theta_1,\\theta_2 \\ | \\ y_1,y_2 \\right) \\sim beta(a_1+y_1,b_1+n_1-y_1) \\cdot 
-    beta(a_2+y_2, n_2+b_2-y_2) \\, . 
+    \\left( \\theta_1,\\theta_2 \\ | \\ y_1,y_2 \\right) \\sim beta(a_1+y_1,b_1+n_1-y_1) \\cdot beta(a_2+y_2, n_2+b_2-y_2) \\, . 
     \\end{align}")
 cat("As can be seen here, the $\\theta_i$, $i=1,2$, are independent under the posterior. For our model assumptions, the posterior distribution has the following form:", fill=TRUE)
-cat(paste0("\\begin{align} p(\\theta_1,\\theta_2 \\ | \\ ", n_exposure1_outcome1,",",n_exposure0_outcome1,")
-&= beta(",a1,"+",n_exposure1_outcome1,",",b1,"+",n_exposure1,"-",n_exposure1_outcome1,") \\cdot beta(",a2,"+",n_exposure0_outcome1,",",b2,"+",n_exposure0,"-",n_exposure0_outcome1,") \\\\
-&= beta(",a1+n_exposure1_outcome1,",",b1+n_exposure1-n_exposure1_outcome1,") \\cdot beta(",a2+n_exposure0_outcome1,",",b2+n_exposure0-n_exposure0_outcome1,") \\, .  \\end{align}"))
+cat(paste0("\\begin{align} 
+    p(\\theta_1,\\theta_2 \\ | \\ ", n_exposure1_outcome1,",",n_exposure0_outcome1,")
+    &= beta(",a1,"+",n_exposure1_outcome1,",",b1,"+",n_exposure1,"-",n_exposure1_outcome1,") \\cdot beta(",a2,"+",n_exposure0_outcome1,",",b2,"+",n_exposure0,"-",n_exposure0_outcome1,") \\\\
+    &= beta(",a1+n_exposure1_outcome1,",",b1+n_exposure1-n_exposure1_outcome1,") \\cdot beta(",a2+n_exposure0_outcome1,",",b2+n_exposure0-n_exposure0_outcome1,") \\, .  
+    \\end{align}"))
+
 ```
 
 
 ```{r posterior2, eval=TRUE, results='asis'}
-# Posterior for plotting (follow last row from page 167 DDBA)
+## Plot the posterior (following last row of page 167 DDBA)
+
 pTheta1Theta2GivenData <- matrix(data=NA, nrow=length(Theta1), ncol=length(Theta2))
 for (i in 1:length(Theta1)){
   for (j in 1:length(Theta2)){
-    pTheta1Theta2GivenData[i,j]<- dbeta(Theta1[i], a1+n_exposure1_outcome1, b1+n_exposure1-n_exposure1_outcome1)*dbeta(Theta2[j], a2+n_exposure0_outcome1, b2+n_exposure0-n_exposure0_outcome1)   
+    pTheta1Theta2GivenData[i,j]<- dbeta(Theta1[i], a1+n_exposure1_outcome1,b1+n_exposure1-n_exposure1_outcome1)*
+      dbeta(Theta2[j], a2+n_exposure0_outcome1,b2+n_exposure0-n_exposure0_outcome1)   
   }
-} 
-cat("The following figure shows the probability density function (pdf):  ", fill=TRUE)
-## Generate plot, export as a png and include or find another solution 
- plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData, type = "surface",
-         contours = list(
+}
+
+cat("The following figure shows the probability density function (pdf):", fill=TRUE)
+
+# Generate plot
+plot_ly(x = Theta1, y = Theta2, z = pTheta1Theta2GivenData, type = "surface",
+        contours = list(
           x = list(show = TRUE, start= 0, end= 1, size = 0.05 ,color = 'white'),
-          y = list(show = TRUE, start= 0, end= 1, size = 0.05 ,color = 'white')))%>%
-         layout(scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
-             xaxis = list(title = "\u03b8\u2081"),
-             yaxis = list(title = "\u03b8\u2082"),
-             zaxis = list(title = "p(\u03b8\u2081, \u03b8\u2082 \u2223 y\u2081, y\u2082)" )))
+          y = list(show = TRUE, start= 0, end= 1, size = 0.05 ,color = 'white'))) %>%
+  layout(scene = list(camera = list(eye = list(x = -1.5, y = -1.5, z = 1.5)),
+                      xaxis = list(title = "\u03b8\u2081"),
+                      yaxis = list(title = "\u03b8\u2082"),
+                      zaxis = list(title = "p(\u03b8\u2081, \u03b8\u2082 \u2223 y\u2081, y\u2082)" )))
  
-cat("In the figure, at each point in the parameter space ($\\theta_1$,$\\theta_2$), the posterior is the product of the prior and likelihood values at that point divided by the normalizer $p(y_1,y_2)$. Thus, it is proportional to the prior and the likelihood (posterior $\\propto$ prior x likelihood).") 
+cat("In the figure, at each point in the parameter space ($\\theta_1$,$\\theta_2$), the posterior is the product of the prior and likelihood values at that point divided by the normalizer $p(y_1,y_2)$. Thus, it is proportional to the prior and the likelihood ($\\text{posterior} \\propto \\text{prior} \\times \\text{likelihood}$).") 
 
 ```
 

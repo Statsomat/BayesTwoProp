@@ -218,8 +218,15 @@ cat("# The Data", fill=TRUE)
 ```{r datahead, eval=evalfile2, results='asis'}
 ## If a datafile is uploaded, it will display the first 5 values of the data
 cat("## Data Head (first five observations)", fill=TRUE)
-knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longtable=T) %>%
-  kable_styling(font_size = 8, position = "center", full_width = FALSE, latex_options = c("HOLD_position","repeat_header"))
+df_data_head <- as.data.frame(head(df))
+colnames(df_data_head) <- c(params$outcome, params$presence_exposure)
+
+df_data_head %>%
+  knitr::kable(format = "html") %>%
+  kable_styling(full_width = FALSE, position = "center") %>%
+  row_spec(0, extra_css = "font-weight: normal; border-bottom: 2px solid;") %>%
+  column_spec(1, extra_css = "border-right: 2px solid black;") 
+
 ```
 
 \pagebreak
@@ -227,10 +234,19 @@ knitr::kable(head(df), col.names = c("Outcome", "Exposure"), linesep = '', longt
 ```{r desctable, eval=eval_final, results='asis'}
 ## Different tables to get an overview about the relations of the two variables Exposure and Outcome
 cat("## Frequency Table", fill=TRUE)
-name_exposure = "Exposure"
-name_nonexposure = "Non-Exposure"
-name_outcome = "Outcome"
-name_nonoutcome = "Non-Outcome"
+#cat("1st cell row is frequency, 2nd cell row is percent, 3rd cell row is row percent, 4th cell row is column percent.")
+if (evalfile) {
+  name_exposure <- params$presence_exposure
+  name_nonexposure <- paste0("Non-", params$presence_exposure)
+} else if (evalcellfreq) {
+  name_exposure <- params$exposure
+  name_nonexposure <- paste0("Non-", params$exposure)
+} else {
+  stop("Neither file input nor cell frequency input provided.")
+}
+
+name_outcome = params$outcome
+name_nonoutcome = paste0("Non-", params$outcome)
 rowsum_1 = n_exposure0 - n_exposure0_outcome1+n_exposure1 - n_exposure1_outcome1
 rowsum_2 = n_exposure0_outcome1+n_exposure1_outcome1
 freq_colnames = c(name_nonexposure, name_exposure,"Sum")
@@ -322,17 +338,18 @@ cat("## Barplots", fill=TRUE)
 
 #overall percentages from the contingency table
 # Outcome
-barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table_plot), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
+barplot(rowsum / totalsum, ylim = c(0, 1), names.arg = rownames(df_table_plot), xlab =params$outcome, ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the",params$outcome,"Population"), cex.main = 1.5)
 
 # Exposure
-barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table_plot), xlab = "Exposure", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the Population"), cex.main = 1.5)
+barplot(colsum / totalsum, ylim = c(0, 1), names.arg = colnames(df_table_plot), xlab = params$exposure, ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the",params$exposure,"Population"), cex.main = 1.5)
 
 # row percentages of the contingency table
 #  Outcome with present Exposure
-barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab="Outcome", ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the Exposed Population"), cex.main = 1.5)
+barplot(c(n_exposure1-n_exposure1_outcome1,n_exposure1_outcome1)/n_exposure1,ylim=c(0,1), xlab =params$outcome, ylab ="Proportion", col=c("#2fa42d","#396e9f"), main=paste("Distribution in the", name_exposure, "Population"), cex.main = 1.5)
+
 
 #  Outcome without present Exposure
-barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure0, ylim = c(0, 1), xlab = "Outcome", ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the NOT Exposed Population"), cex.main = 1.5)
+barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure0, ylim = c(0, 1), xlab =params$outcome, ylab = "Proportion", col = c("#2fa42d", "#396e9f"), main=paste("Distribution in the", name_nonexposure, "Population"), cex.main = 1.5)
 
 ```
 
@@ -658,58 +675,58 @@ cat("\n## Summary", fill=TRUE)
 ```{r function_posterior2, eval=eval_final}
 # Summarize posterior in a table. For continuous parameters, derived functions of parameters and predicted values, report the central tendency and limits of the credible interval. Explicitly state whether you are using density-based values (mode and HDI) or quantile-based values (median and ETI), and state the mass of the credible interval (for example, 95%)
 if (is.null(rope_user)){
-  a <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL, ci_method = "ETI") 
-  b <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL, ci_method = "HDI")
+  results_ETI <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL, ci_method = "ETI") 
+  results_HDI <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test=NULL, ci_method = "HDI")
 
 } else {
-  a <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range=rope_user, ci_method = "ETI") 
-  b <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range=rope_user, ci_method = "HDI")
+  results_ETI <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range=rope_user, ci_method = "ETI") 
+  results_HDI <- describe_posterior(estimate, ci = 0.95, centrality="all", dispersion=TRUE, test="rope", rope_range=rope_user, ci_method = "HDI")
 
   # ROPE limits and decisions. 
 }
 
 # Umbennennung der Spaltennamen
-colnames(a)[colnames(a) == "CI"] <- "CI_ETI"
-colnames(a)[colnames(a) == "CI_low"] <- "CI_ETI_low"
-colnames(a)[colnames(a) == "CI_high"] <- "CI_ETI_high"
+colnames(results_ETI)[colnames(results_ETI) == "CI"] <- "CI_ETI"
+colnames(results_ETI)[colnames(results_ETI) == "CI_low"] <- "CI_ETI_low"
+colnames(results_ETI)[colnames(results_ETI) == "CI_high"] <- "CI_ETI_high"
 
 # Kombinieren der Dataframes
-combined_results <- cbind(a, CI_HDI = b$CI, CI_HDI_low = b$CI_low, CI_HDI_high = b$CI_high)
+combined_results <- cbind(results_ETI, CI_HDI = results_HDI$CI, CI_HDI_low = results_HDI$CI_low, CI_HDI_high = results_HDI$CI_high)
 
 # Bearbeiten des Dataframes 
-a2 <- data.frame(t(combined_results), interpretation = rep(1,12))
-a2 <- data.frame(parameter =  rownames(a2)[-1], posterior = round(as.numeric(t(combined_results)[-1]),3))
+results <- data.frame(t(combined_results), interpretation = rep(1,12))
+results <- data.frame(parameter =  rownames(results)[-1], posterior = round(as.numeric(t(combined_results)[-1]),3))
 
 # Function für die Interpretation
 interpretation_func <- function(dataset) {
   interpretation <- c()  
   for (i in 1:nrow(dataset)) {
     if (dataset$parameter[i] == "Median") {
-      interpretation[i] <- paste("The median is the middle value of the distribution. It divides the data into two                                   equal halves, where 50% of the values lie below and 50% lie above this point. In                                    this case, the median is", dataset$posterior[i], ", meaning that the central value                                  of the distribution is", dataset$posterior[i], ".")
+      interpretation[i] <- paste0("The median is the middle value of the distribution. It divides the data into two                                   equal halves, where 50% of the values lie below and 50% lie above this point. In                                    this case, the median is ", dataset$posterior[i], ", meaning that the central value                                  of the distribution is", dataset$posterior[i], ".")
     } else if (dataset$parameter[i] == "MAD") {
-      interpretation[i] <- paste("The MAD (Median Absolute Deviation) is a measure of variability, based on the                                      median. It represents the median of the absolute deviations from the                                               median. Here, the MAD is", 
+      interpretation[i] <- paste0("The MAD (Median Absolute Deviation) is a measure of variability, based on the                                      median. It represents the median of the absolute deviations from the                                               median. Here, the MAD is ", 
                                  dataset$posterior[i], ", indicating that the typical deviation of data points from                                  the median is", dataset$posterior[i], ".")
     } else if (dataset$parameter[i] == "Mean") {
-      interpretation[i] <- paste("The mean is the arithmetic average of the distribution, calculated by summing all                                  values and dividing by their count. In this case, the mean is", 
+      interpretation[i] <- paste0("The mean is the arithmetic average of the distribution, calculated by summing all                                  values and dividing by their count. In this case, the mean is ", 
                                  dataset$posterior[i], ", representing the average value of the distribution.")
     } else if (dataset$parameter[i] == "SD") {
-      interpretation[i] <- paste("The SD (Standard Deviation) is a measure of the spread of the data around the                                      mean. It shows the average deviation of values from the mean. Here, the SD is", 
-                                 dataset$posterior[i], ", meaning that on average, data points deviate by",                                          dataset$posterior[i], "from the mean.")
+      interpretation[i] <- paste0("The SD (Standard Deviation) is a measure of the spread of the data around the                                      mean. It shows the average deviation of values from the mean. Here, the SD is ", 
+                                 dataset$posterior[i], ", meaning that on average, data points deviate by ",                                          dataset$posterior[i], "from the mean.")
     } else if (dataset$parameter[i] == "MAP") {
-      interpretation[i] <- paste("MAP (Maximum A Posteriori) is the value with the highest density in the posterior                                  distribution. It represents the mode (peak) of the estimated probability density                                    function. MAP of", dataset$posterior[i], "indicates that this is the most                                           likely value in the distribution.")
-    } else if (dataset$parameter[i] == "CI_ETI") {
-      interpretation[i] <- paste("The CI (Credible Interval) represents the range where the true parameter value is                                  likely to lie. This CI_ETI is based on quantiles (Equal-Tail Interval, ETI), which                                      covers the central 95% of the posterior distribution, with equal probability in the                                  tails.")
-    } else if (dataset$parameter[i] == "CI_ETI_low") {
-      interpretation[i] <- paste("The lower bound of the 95% ETI indicates that the true value is not likely to be                                   smaller than", dataset$posterior[i], "with 95% credibility.")
-    } else if (dataset$parameter[i] == "CI_ETI_high") {
-      interpretation[i] <- paste("The upper bound of the 95% ETI indicates that the true value is not likely to                                      exceed", dataset$posterior[i], "with 95% credibility.")
-    } else if (dataset$parameter[i] == "CI_HDI") {
-      interpretation[i] <- paste("The CI (Credible Interval) represents the range where the true parameter value is                                  most likely to lie. This CI_HDI is based on density (Highest Density Interval, HDI),                                     which covers the 95% of the posterior distribution with the highest density.")
-    } else if (dataset$parameter[i] == "CI_HDI_low") {
-      interpretation[i] <- paste("The lower bound of the 95% HDI indicates that the true value is unlikely to be                                     smaller than", dataset$posterior[i], "with 95% credibility, based on the highest                                    density.")
-    } else if (dataset$parameter[i] == "CI_HDI_high") {
-      interpretation[i] <- paste("The upper bound of the 95% HDI indicates that the true value is unlikely to                                        exceed", dataset$posterior[i], "with 95% credibility, based on the highest                                          density.")
+      interpretation[i] <- paste0("MAP (Maximum A Posteriori) is the value with the highest density in the posterior                                  distribution. It represents the mode (peak) of the estimated probability density                                    function. MAP of ", dataset$posterior[i], "indicates that this is the most                                           likely value in the distribution.") 
     }
+    #   interpretation[i] <- paste("The CI (Credible Interval) represents the range where the true parameter value is                                  likely to lie. This CI_ETI is based on quantiles (Equal-Tail Interval, ETI), which                                      covers the central 95% of the posterior distribution, with equal probability in the                                  tails.")
+    # } else if (dataset$parameter[i] == "CI_ETI_low") {
+    #   interpretation[i] <- paste("The lower bound of the 95% ETI indicates that the true value is not likely to be                                   smaller than", dataset$posterior[i], "with 95% credibility.")
+    # } else if (dataset$parameter[i] == "CI_ETI_high") {
+    #   interpretation[i] <- paste("The upper bound of the 95% ETI indicates that the true value is not likely to                                      exceed", dataset$posterior[i], "with 95% credibility.")
+    # } else if (dataset$parameter[i] == "CI_HDI") {
+    #   interpretation[i] <- paste("The CI (Credible Interval) represents the range where the true parameter value is                                  most likely to lie. This CI_HDI is based on density (Highest Density Interval, HDI),                                     which covers the 95% of the posterior distribution with the highest density.")
+    # } else if (dataset$parameter[i] == "CI_HDI_low") {
+    #   interpretation[i] <- paste("The lower bound of the 95% HDI indicates that the true value is unlikely to be                                     smaller than", dataset$posterior[i], "with 95% credibility, based on the highest                                    density.")
+    # } else if (dataset$parameter[i] == "CI_HDI_high") {
+    #   interpretation[i] <- paste("The upper bound of the 95% HDI indicates that the true value is unlikely to                                        exceed", dataset$posterior[i], "with 95% credibility, based on the highest                                          density.")
+    # }
     
   }
   return(interpretation)
@@ -719,12 +736,13 @@ interpretation_func <- function(dataset) {
 
 ```{r}
 # Summary Tabelle
-a3 <-  data.frame(a2, interpretation = interpretation_func(a2))
+final_results <- results[1:5,]
+final_results <-  data.frame(final_results, interpretation = interpretation_func(final_results))
 ```
 
 ```{r}
 # Zeige die Tabelle mit knitr::kable()
-kable(a3, align = "l",caption = "Summary of Posterior Distribution") %>%
+kable(final_results, align = "l",caption = "Summary of Posterior Distribution") %>%
   kable_styling(full_width = TRUE)
 ```
 
@@ -741,7 +759,7 @@ xlabel <- if (params$user_selection_function_param == 1){
   expression(1 - frac(theta[1],theta[2]))
 
 }
-hdi_result <- hdi(estimate, ci = c(.89, .95, .99))
+hdi_result <- hdi(estimate, ci = c(.89, .95))
 
 hdi_plot_temp = plot(hdi_result)
 
@@ -782,22 +800,31 @@ if (params$user_selection_function_param == 1) {
 
 cat("\n\nThe curve represents the probability density of the parameter values, with the shaded regions highlighting different HDI levels. ",
     "The red area corresponds to the 89% HDI, which captures the majority of the distribution’s density and represents the most credible range. ",
-    "The pink region extends this to 95%, including slightly more of the distribution, while the green and blue regions narrow further, covering 99% and 100% of the density, respectively. ",
-    "Overall, the HDIs provide a visual summary of where the most credible parameter estimates lie, while reflecting the uncertainty inherent in the data. ",
-    "The 95% HDI includes all those values of x for which the density is at least as big as some value W, such that the integral over all those x values is 95%. Formally, the values of x in the 95% HDI are those such that\n")
+    "The orange region extends this to 95%, including slightly more of the distribution, while the blue region covers 100% of the density, respectively. ",
+    "Overall, the HDIs provide a visual summary of where the most credible parameter estimates lie, while reflecting the uncertainty inherent in the data. \n\n")
+cat("The information in the following section is based on Kruschke, John K., Doing Bayesian Data Analysis, Academic Press, 2015. The 95% HDI includes all those values of x for which the density is at least as big as some value W, such that the integral over all those x values is 95%. Formally, the values of x in the 95% HDI are those such that\n")
 
 cat("\\begin{align*}\n",
     "    \\text{HDI}_{95\\%} &= \\left\\{ x \\mid p(x) > W \\right\\} ",
     "    \\text{with} \\quad \\int_{x : p(x) > W} p(x) \\, dx &= 0.95\n",
     "\\end{align*}")
-cat("(Kruschke, John K., Doing Bayesian Data Analysis, Academic Press, 2015)")
+cat("If the effective sample size is greater than 10.000 Kruschke recommends using the 95% interval for an estimation with high precision. For smaller effective sample sizes the 89% intervals are deemed to be more stable.")
+cat("The mean posterior value of")
+if (params$user_selection_function_param == 1) {
+  cat("\\(\\theta_1 - \\theta_2\\)")
+} else if (params$user_selection_function_param == 2) {
+  cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
+} else if (params$user_selection_function_param == 3) {
+  cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
+}
+cat("=-0.1 suggests that, on average, the probability of infection in the exposed group (theta1) is slightly lower than in the non-exposed group (theta2). However, this value alone is not sufficient to draw conclusions because it does not account for the uncertainty in the estimate. The HDI of -0.4 to 0.3 indicates that there is a 95% probability that the true difference between infection probabilities (theta1-theta2) lies within this interval. Since thus interval includes 0, it means that the evidence is inconclusive about whether exposure (theta1) increases or decreases the probability of infection compared to non-exposure (theta2).")
 ```
 
 ```{r plot_eti, eval=eval_final, results="asis"}
 cat("## ETI Plot", fill=TRUE)
 
 # Display the ETI plot
-eti_result = eti(estimate, ci = c(.89, .95, .99))
+eti_result = eti(estimate, ci = c(.89, .95))
 
 eti_plot_temp = plot(eti_result)
 
@@ -825,7 +852,8 @@ print(eti_plot)
 
 # Add text interpretation
 cat("\n\n**Interpretation:**\n\n")
-cat("This plot displays the posterior distribution of a specified parameter ")
+cat("This plot shows the Equal Tailed Intervals (ETI) for a posterior distribution, highlighting an alternative way to visualize the most credible values for the parameter ")
+# Direkte LaTeX-Notation für xlabel
 if (params$user_selection_function_param == 1) {
   cat("\\(\\theta_1 - \\theta_2\\)")
 } else if (params$user_selection_function_param == 2) {
@@ -833,12 +861,15 @@ if (params$user_selection_function_param == 1) {
 } else if (params$user_selection_function_param == 3) {
   cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
 }
-cat(" chosen within this run of the application. The x-axis represents the parameter’s potential values, and the y-axis indicates their relative probability as derived from the posterior density. The density is computed using underlying R functions (e.g., bayestestR::eti() and associated Bayesian sampling methods) that summarize the results of the posterior simulations or analytical calculations. The highlighted Credible Interval (CI), shown here as an Expected Tail Interval (ETI), differs from other intervals, such as the Highest Density Interval (HDI), by including values from the tails of the distribution rather than strictly focusing on the region of highest probability density. Examination of the distribution’s shape, the ETI’s position, and its width provides insight into the plausibility of certain parameter values and the level of uncertainty associated with them.\n")
-```
 
-```{r plotpost, eval=rope_user, results="asis"}
-cat("## More Plots", fill=TRUE)
-# Use the plotPost function (page 205 Kruschke)
+cat(". Following the approach of Kruschke (Doing Bayesian Data Analysis, Chapter 12.1.2.2), the ETI is defined by trimming equal probability mass \\(\\left(\\frac{\\alpha}{2}\\right)\\) from both tails of the posterior distribution. As a result, the interval is always symmetric in terms of probability mass around the median, which ensures that the median of the distribution is included in the interval.\n\n")
+
+cat("The curve itself represents the posterior probability density for the parameter, with shaded regions indicating different ETI levels. For instance, the red band may represent an 89\\% ETI, the orange band extends the interval to 95\\%, and the blue region covers 100\\% of the distribution's density. These intervals offer a straightforward interpretation of how the posterior probability is allocated across the parameter space: each tail beyond the interval contains exactly \\(\\left(\\frac{\\alpha}{2}\\right)\\) of the total probability.\n\n")
+
+cat("Unlike the Highest Density Interval (HDI), the ETI does not necessarily capture the region of highest posterior density and may therefore exclude the mode (or modes) in skewed or multimodal distributions. However, in symmetric distributions, the ETI and HDI coincide. A key property of ETIs is that their boundaries remain unchanged under monotonic (nonlinear) transformations of parameters, making them attractive for comparing parameter estimates on different scales.\n\n")
+
+cat("In summary, the ETI provides a complementary perspective to the HDI by emphasizing an equal-probability-tail view of uncertainty: it always includes the median, guarantees equal tail areas, and has transformation-invariant limits. Nevertheless, be mindful that in highly skewed or irregular posterior distributions, the ETI may not represent the most densely populated region of the parameter space.")
+
 ```
 
 ```{r runtests, eval=FALSE}

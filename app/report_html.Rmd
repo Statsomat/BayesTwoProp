@@ -541,15 +541,17 @@ cat("The posterior distribution is an update of the prior distribution using the
 cat("\\begin{align}
     p(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)&=\\frac{p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2)p(\\theta_1,\\theta_2)}{p(y_1,y_2)} \\, ,
     \\end{align}")
-cat("where \\begin{align} 
+cat("where", fill=TRUE)
+cat("\\begin{align} 
     p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2) &= L(\\theta_1,\\theta_2 \\ | \\ y_1,y_2)
-    \\end{align}
-    is the likelihood function and
-    \\begin{align}
+    \\end{align}", fill=TRUE)
+cat("is the likelihood function and", fill=TRUE)
+cat("\\begin{align}
     p(y_1,y_2) &= \\int \\int
     p(y_1,y_2 \\ | \\ \\theta_1,\\theta_2)p(\\theta_1,\\theta_2) \\ d \\theta_1 d
     \\theta_2 
-    \\end{align} is a normalizing constant.")
+    \\end{align}", fill=TRUE)
+cat("is a normalizing constant.", fill=TRUE)
 cat("<br>",fill=TRUE) 
 
 cat("Including the likelihood and the assumed prior distributions of the $\\theta_i$, $i=1,2$, we get the numerator of the Bayes theorem:")

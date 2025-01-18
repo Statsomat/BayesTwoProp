@@ -773,6 +773,30 @@ hdi_plot <- plot(x=hdi_result, y=hdi_plot_temp[["data"]][["height"]]) +
 
 print(hdi_plot)
 
+```
+
+```{r}
+# Summary Tabelle
+final_results <- results[9:11,]
+final_results <-  data.frame(final_results)
+```
+
+```{r}
+# Zeige die Tabelle mit knitr::kable()
+kable(final_results,
+      align = "l",
+      caption = "HDI table",
+      row.names = FALSE) %>%
+  kable_styling(full_width = TRUE,
+                position = "center",
+                latex_options = "hold_position"
+  )
+
+```
+
+
+
+```{r interpretation_hdi, eval=eval_final, results="asis"}
 # Textuelle Interpretation - Dynamic Expression
 cat("\n\n**Theoretical Explanation:**\n\n")
 cat("This plot shows the Highest Density Intervals (HDI) for a posterior distribution, illustrating the most credible values for the parameter ")
@@ -801,6 +825,9 @@ cat("If the effective sample size is greater than 10.000 Kruschke recommends usi
 cat("The mean posterior value of ")
 
 cat("If the effective sample size is greater than 10.000 Kruschke recommends using the 95% interval for an estimation with high precision. For smaller effective sample sizes the 89% intervals are deemed to be more stable.\n")
+
+
+
 
 cat("\n\n**Interpretation in Relation to the Data:**\n\n")
 cat("The mean posterior value of ")
@@ -902,21 +929,6 @@ if (params$user_selection_function_param == 1) {
 ```
 
 
-```{r}
-# Summary Tabelle ETI
-final_results <- results[6:8,]
-final_results <- data.frame(final_results)
-
-# Zeige Tabelle an
-kable(final_results,
-      align = "l",
-      caption = "ETI table") %>%
-  kable_styling(full_width = TRUE,
-                position = "center",
-                latex_options = "hold_position"
-                )
-```
-
 
 
 ```{r plot_eti, eval=eval_final, results="asis"}
@@ -947,8 +959,30 @@ eti_plot <- plot(x=eti_result, y=eti_plot_temp[["data"]][["height"]]) +
   scale_y_continuous(breaks = seq(0, max(eti_plot_temp[["data"]][["height"]]), length.out = 5))  # 5 values for the y-axis
 
 print(eti_plot)
+```
 
 
+```{r}
+# Summary Tabelle
+final_results <- results[6:8,]
+final_results <-  data.frame(final_results)
+```
+
+```{r}
+# Zeige die Tabelle mit knitr::kable()
+kable(final_results,
+      align = "l",
+      caption = "ETI table",
+      row.names = FALSE) %>%
+  kable_styling(full_width = TRUE,
+                position = "center",
+                latex_options = "hold_position"
+  )
+
+```
+
+
+```{r interpretation_eti, eval=eval_final, results="asis"}
 # Add text interpretation
 cat("\n\n**Interpretation:**\n\n")
 cat("This plot shows the Equal Tailed Intervals (ETI) for a posterior distribution, highlighting an alternative way to visualize the most credible values for the parameter ")

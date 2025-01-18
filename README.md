@@ -4,7 +4,7 @@
 
 <p>
 This application is designed to help you analyze the relationship between an exposure and an outcome using Bayesian statistical methods.  
-By uploading a dataset and defining key parameters, you can calculate and interpret measures of association between the exposure of interest and the outcome.
+By uploading a dataset and defining key parameters, you can calculate and interpret measures of association between the exposure of interest and the outcome. This app was developed by students of the University of Applied Sciences in Koblenz, Germany. 
 </p>
 
 <p>

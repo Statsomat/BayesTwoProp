@@ -726,6 +726,7 @@ interpretation_func <- function(dataset) {
 # Summary Tabelle
 final_results <- results[1:5,]
 final_results <-  data.frame(Parameter = final_results[,1], Posterior=final_results[,2], Interpretation = interpretation_func(final_results))
+mean_value <- final_results$Posterior[3]
 ```
 
 ```{r}
@@ -834,13 +835,13 @@ cat("The mean posterior value of ")
 
 
 if (params$user_selection_function_param == 1) {
-  if (final_results$Posterior[3] < 0) {
+  if (mean_value < 0) {
     comparison = "lower"
   } else {
     comparison = "higher"
   }
   cat("\\(\\theta_1 - \\theta_2\\)")
-  cat("=", final_results$Posterior[3], " suggests that, on average, the probability of ", 
+  cat("=", mean_value, " suggests that, on average, the probability of ", 
       name_outcome, " in the group of ", name_exposure, "(\\(\\theta_1\\)) is ", 
       comparison, " than in the group of ", name_nonexposure, 
       " (\\(\\theta_2\\)). However, this value alone is not sufficient to draw 
@@ -864,13 +865,13 @@ if (params$user_selection_function_param == 1) {
   }
 
 } else if (params$user_selection_function_param == 2) {
-  if (final_results$Posterior[3] < 1) {
+  if (mean_value < 1) {
     comparison = "lower"
   } else {
     comparison = "higher"
   }
   cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
-  cat("=", final_results$Posterior[3], " suggests that the relative probability of ",
+  cat("=", mean_value, " suggests that the relative probability of ",
       name_outcome, " in the group of ", name_exposure, 
       "(\\(\\theta_1\\)) is ", comparison, " compared to the group of ",
       name_nonexposure, " (\\(\\theta_2\\)). However, this value alone is not
@@ -895,13 +896,13 @@ if (params$user_selection_function_param == 1) {
   }
 
 } else if (params$user_selection_function_param == 3) {
-  if (final_results$Posterior[3] < 0) {
+  if (mean_value < 0) {
     comparison = "lower"
   } else {
     comparison = "higher"
   }
   cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
-  cat("=", final_results$Posterior[3], " suggests the proportionate reduction in the probability of ",
+  cat("=", mean_value, " suggests the proportionate reduction in the probability of ",
       name_outcome, " in the group of ", name_exposure,
       "(\\(\\theta_1\\)) compared to the group of ", name_nonexposure, "
       (\\(\\theta_2\\)). However, this value alone is not sufficient to draw 

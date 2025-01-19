@@ -856,12 +856,12 @@ if (params$user_selection_function_param == 1) {
         probability of ", name_outcome, " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
   } else if (results_HDI$CI_high < 0) {
     cat(" Since this interval lies entirely below 0, it suggests that being in the group of ", name_exposure, "
-        (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, " 
-        compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+        (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
+        " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
   } else {
     cat(" Since this interval lies entirely above 0, it suggests that being in the group of ", name_exposure, "
-        (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, " 
-        compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+        (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, " compared to the group of "
+        ,name_nonexposure," (\\(\\theta_2\\)).")
   }
 
 } else if (params$user_selection_function_param == 2) {
@@ -877,8 +877,8 @@ if (params$user_selection_function_param == 1) {
       name_nonexposure, " (\\(\\theta_2\\)). However, this value alone is not
       sufficient to draw conclusions because it does not account for the uncertainty
       in the estimate. The HDI of ", round(results_HDI$CI_low, 3), " to ", round(results_HDI$CI_high, 3),
-      " indicates that there is a 95% probability that the true ratio between ", name_outcome, "
-      probabilities ")
+      " indicates that there is a 95% probability that the true ratio between ", name_outcome, 
+      " probabilities ")
   cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
   cat(" lies within this interval.")
   if (results_HDI$CI_high > 1 && results_HDI$CI_low < 1) {
@@ -886,13 +886,13 @@ if (params$user_selection_function_param == 1) {
         about whether being in the group of ",name_exposure," (\\(\\theta_1\\)) increases or decreases the
         probability of ", name_outcome, " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
   } else if (results_HDI$CI_high < 1) {
-    cat(" Since this interval lies entirely below 1, it suggests that being in the group of ",name_exposure," 
-        (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, " 
-        compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+    cat(" Since this interval lies entirely below 1, it suggests that being in the group of ",name_exposure,
+    " (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
+    " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
   } else {
-    cat(" Since this interval lies entirely above 1, it suggests that being in the group of ",name_exposure,"
-        (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, " 
-        compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+    cat(" Since this interval lies entirely above 1, it suggests that being in the group of ",name_exposure,
+    " (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, 
+    " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
   }
 
 } else if (params$user_selection_function_param == 3) {
@@ -904,12 +904,12 @@ if (params$user_selection_function_param == 1) {
   cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
   cat("=", mean_value, " suggests the proportionate reduction in the probability of ",
       name_outcome, " in the group of ", name_exposure,
-      "(\\(\\theta_1\\)) compared to the group of ", name_nonexposure, "
-      (\\(\\theta_2\\)). However, this value alone is not sufficient to draw 
+      "(\\(\\theta_1\\)) compared to the group of ", name_nonexposure, 
+      " (\\(\\theta_2\\)). However, this value alone is not sufficient to draw 
       conclusions because it does not account for the uncertainty in the estimate. 
       The HDI of ", round(results_HDI$CI_low, 3), " to ", round(results_HDI$CI_high, 3), 
       " indicates that there is a 95% probability that the true difference between 1 
-      and the ratio of infection probabilities ")
+      and the ratio of ", name_outcome," probabilities ")
   cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
   cat(" lies within this interval.")
   if (results_HDI$CI_high > 0 && results_HDI$CI_low < 0) {
@@ -917,13 +917,13 @@ if (params$user_selection_function_param == 1) {
         about whether being in the group of ",name_exposure," (\\(\\theta_1\\)) increases or decreases the
         probability of ", name_outcome, " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
   } else if (results_HDI$CI_high < 0) {
-    cat(" Since this interval lies entirely below 0, it suggests that being in the group of ",name_exposure," 
-        (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, " 
-        compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+    cat(" Since this interval lies entirely below 0, it suggests that being in the group of ",name_exposure,
+    " (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
+    " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
   } else {
-    cat(" Since this interval lies entirely above 0, it suggests that being in the group of ",name_exposure," 
-        (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, " 
-        compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+    cat(" Since this interval lies entirely above 0, it suggests that being in the group of ",name_exposure,
+    " (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, " compared to the group of " 
+    ,name_nonexposure," (\\(\\theta_2\\)).")
   }
 }
 

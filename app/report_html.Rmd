@@ -187,19 +187,19 @@ cat("Name of the Exposure Variable: ", params$exposure, fill=TRUE)
 ```{r preamble, eval=eval_final, results='asis'}
 ## general description what is the goal of the analysis and why we use Bayes Analysis
 cat("# Goals of the Analysis", fill=TRUE)
-cat("The data is analyzed in this app by means of Baysian data analysis. Baysian data analysis is a branch of statistical data analysis based on two fundamental ideas: The first idea is that Baysian inference is a reallocation of credibility across possibilities, by means of the well known Bayes' theorem. The second idea is that the possibilities, over which we allocate credibility are parameter values in a meaningful mathematical model.", fill=TRUE)
+cat("The data is analyzed in this app by means of Bayesian data analysis. Bayesian data analysis is a branch of statistical data analysis based on two fundamental ideas. The first idea is that Bayesian inference is a reallocation of credibility across possibilities by means of the well-known Bayes' theorem. The second idea is that the possibilities over which we allocate credibility are parameter values in a meaningful mathematical model.", fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("<br>",fill=TRUE) 
 
-cat("In Bayes' theorem, an existing knowledge about the parameter(s) under investigation (the a priori distribution, or prior for short) is combined with the new knowledge from the data ('likelihood'), resulting in a new, improved knowledge (a posteriori probability distribution).", fill=TRUE)
+cat("In Bayes' theorem, existing knowledge about the parameter(s) under investigation (the a priori distribution, or prior for short) is combined with new knowledge from the data ('likelihood'), resulting in new, improved knowledge (a posteriori probability distribution).", fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("<br>",fill=TRUE) 
 
-cat("An important benefit of Bayesian analysis is the ability to generate estimates and credible intervals for any derived parameter. Differences, ratios, effect sizes and novel parameter combinations are directly computed from the posterior distribution. Another benefit of Bayesian analysis are computationally robust estimates of parameter values and their credible intervals. The credible intervals do not depend on large-N approximations (as confidence intervals often do in frequentist approaches), nor do credible intervals depend on which tests are intended (as confidence intervals do in frequentist approaches).' (Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021)", fill=TRUE)
+cat("An important benefit of Bayesian analysis is the ability to generate estimates and credible intervals for any derived parameter. Differences, ratios, effect sizes, and novel parameter combinations are directly computed from the posterior distribution. Another benefit of Bayesian analysis is its computationally robust estimates of parameter values and their credible intervals. The credible intervals do not depend on large-N approximations (as confidence intervals often do in frequentist approaches), nor do they depend on which tests are intended (as confidence intervals do in frequentist approaches). (Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021)", fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("<br>",fill=TRUE)
 
-cat("The goal of this app is to generate Bayes estimates and credible intervals for the user selected function of parameters: ", fill=TRUE)
+cat("The goal of this app is to generate Bayes estimates and credible intervals for the user-selected function of parameters: ", fill=TRUE)
 
 # Choice of the relationship betweenn the thetas (3 Options)
 if (params$user_selection_function_param==1) {
@@ -321,7 +321,7 @@ rownames(df_table_plot) <- c(name_nonoutcome, name_outcome)
 rowsum <- apply(df_table_plot, MARGIN  = 1, FUN = sum)
 colsum <- apply(df_table_plot, MARGIN  = 2, FUN = sum)
 
-cat("These two tables depict the frequencies and percentages of the total data. One can also calculate the column percentages per table:")
+cat("These two tables depict the frequencies and percentages of the total data. Additionally, one can calculate the column percentages for each table:")
 cat("<br>", fill=TRUE)
 
 #column percent per table

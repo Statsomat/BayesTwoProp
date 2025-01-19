@@ -847,7 +847,7 @@ if (params$user_selection_function_param == 1) {
       " (\\(\\theta_2\\)). However, this value alone is not sufficient to draw 
       conclusions because it does not account for the uncertainty in the estimate. The
       HDI of", round(results_HDI$CI_low, 3), "to ", round(results_HDI$CI_high, 3), "indicates that there is
-      a 95% probability that the true difference between infection probabilities ")
+      a 95% probability that the true difference between ", name_outcome, " probabilities ")
   cat("\\(\\theta_1 - \\theta_2\\)")
   cat(" lies within this interval.")
   if (results_HDI$CI_high > 0 && results_HDI$CI_low < 0) {
@@ -910,7 +910,7 @@ if (params$user_selection_function_param == 1) {
       The HDI of ", round(results_HDI$CI_low, 3), " to ", round(results_HDI$CI_high, 3), 
       " indicates that there is a 95% probability that the true difference between 1 
       and the ratio of infection probabilities ")
-  cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
+  cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
   cat(" lies within this interval.")
   if (results_HDI$CI_high > 0 && results_HDI$CI_low < 0) {
     cat(" Since this interval includes 0, it means that the evidence is inconclusive

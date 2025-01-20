@@ -667,7 +667,7 @@ if (params$user_selection_function_param == 3) {
 ```
 
 ```{r function_posterior, eval=eval_final, results="asis"}
-cat("# Inference with respect to Posterior", fill=TRUE)
+cat("# Inference with Respect to Posterior", fill=TRUE)
 cat("\n## Summary of Posterior Distribution", fill=TRUE)
 ```
 

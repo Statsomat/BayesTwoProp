@@ -391,12 +391,12 @@ cat("## The Likelihood", fill=TRUE)
 cat("The likelihood function is a function of $(\\theta_1, \\theta_2 )$ that describes the plausibility of $(Y_1,Y_2)=(y_1,y_2)$ with different $(\\theta_1, \\theta_2 )$. The likelihood function should not be confused with a probability function.", fill = TRUE)
 cat("<br>", fill=TRUE)
 cat("Let", fill = TRUE)
-cat("$$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2)\\, ,$$",fill = TRUE)
-cat("where $f$ is a probability mass function with")
+cat("$$(Y_1,Y_2) \\sim p(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2)\\, ,$$",fill = TRUE)
+cat("where $p$ is a probability mass function with")
 cat("<br>", fill=TRUE)
 
 #Likelihood formula of D given theta_1 and theta_2
-cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= \\underbrace{P(Y_1=y_1 \\ | \\ \\theta_1)}_{\\sim Bi(n_1,\\theta_1)} \\cdot \\underbrace{P(Y_2=y_2 \\ | \\ \\theta_2)}_{\\sim Bi(n_2,\\theta_2)} \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}", fill = TRUE)
+cat("\\begin{align} p(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= \\underbrace{P(Y_1=y_1 \\ | \\ \\theta_1)}_{\\sim Bi(n_1,\\theta_1)} \\cdot \\underbrace{P(Y_2=y_2 \\ | \\ \\theta_2)}_{\\sim Bi(n_2,\\theta_2)} \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}", fill = TRUE)
 cat("<br>", fill=TRUE)
 
 cat("The likelihood function is defined as follows $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)

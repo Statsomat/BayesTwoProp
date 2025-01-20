@@ -400,9 +400,10 @@ cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2)
 cat("<br>", fill=TRUE)
 
 cat("The likelihood function is defined as follows $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
-cat("<br>", fill=TRUE)
-
 cat("$$L(\\theta_1, \\theta_2 \\ | \\ y_1,y_2) = \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot  \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2} \\, .$$", fill=TRUE)
+
+cat("As can be seen, the formulas for the probability mass function $p$ and the likelihood function $L$ are similar. However, it is important to know that the likelihood function $L$ is defined on the parameter space $(\\theta_1,\\theta_2)$ and not on the data space $(y_1,y_2)$ like the probability mass function $p$.", fill=TRUE)
+cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
 
 # Likelihood formular of D given theta_1 and theta_2 with user entered data

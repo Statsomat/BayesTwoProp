@@ -391,12 +391,12 @@ cat("## The Likelihood", fill=TRUE)
 cat("The likelihood function is a function of $(\\theta_1, \\theta_2 )$ that describes the plausibility of $(Y_1,Y_2)=(y_1,y_2)$ with different $(\\theta_1, \\theta_2 )$. The likelihood function should not be confused with a probability function.", fill = TRUE)
 cat("<br>", fill=TRUE)
 cat("Let", fill = TRUE)
-cat("$$(Y_1,Y_2) \\sim f(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2)\\, ,$$",fill = TRUE)
-cat("where $f$ is a probability mass function with")
+cat("$$(Y_1,Y_2) \\sim p(Y_1,Y_2 \\ | \\ \\theta_1, \\theta_2)\\, ,$$",fill = TRUE)
+cat("where $p$ is a probability mass function with")
 cat("<br>", fill=TRUE)
 
 #Likelihood formula of D given theta_1 and theta_2
-cat("\\begin{align} f(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= \\underbrace{P(Y_1=y_1 \\ | \\ \\theta_1)}_{\\sim Bi(n_1,\\theta_1)} \\cdot \\underbrace{P(Y_2=y_2 \\ | \\ \\theta_2)}_{\\sim Bi(n_2,\\theta_2)} \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}", fill = TRUE)
+cat("\\begin{align} p(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) &= P(Y_1=y_1 \\ | \\ \\theta_1, \\theta_2) \\cdot P(Y_2=y_2 \\ | \\ \\theta_1, \\theta_2) \\\\[1em] &= \\underbrace{P(Y_1=y_1 \\ | \\ \\theta_1)}_{\\sim Bi(n_1,\\theta_1)} \\cdot \\underbrace{P(Y_2=y_2 \\ | \\ \\theta_2)}_{\\sim Bi(n_2,\\theta_2)} \\\\[1em] &= \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2}\\, . \\end{align}", fill = TRUE)
 cat("<br>", fill=TRUE)
 
 cat("The likelihood function is defined as follows $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
@@ -727,6 +727,7 @@ interpretation_func <- function(dataset) {
 # Summary Tabelle
 final_results <- results[1:5,]
 final_results <-  data.frame(Parameter = final_results[,1], Posterior=final_results[,2], Interpretation = interpretation_func(final_results))
+mean_value <- final_results$Posterior[3]
 ```
 
 ```{r}
@@ -774,8 +775,32 @@ hdi_plot <- plot(x=hdi_result, y=hdi_plot_temp[["data"]][["height"]]) +
 
 print(hdi_plot)
 
+```
+
+```{r}
+# Summary Tabelle
+final_results <- results[9:11,]
+final_results <-  data.frame(final_results)
+```
+
+```{r}
+# Zeige die Tabelle mit knitr::kable()
+kable(final_results,
+      align = "l",
+      caption = "HDI table",
+      row.names = FALSE) %>%
+  kable_styling(full_width = TRUE,
+                position = "center",
+                latex_options = "hold_position"
+  )
+
+```
+
+
+
+```{r interpretation_hdi, eval=eval_final, results="asis"}
 # Textuelle Interpretation - Dynamic Expression
-cat("\n\n**Interpretation:**\n\n")
+cat("\n\n**Theoretical Explanation:**\n\n")
 cat("This plot shows the Highest Density Intervals (HDI) for a posterior distribution, illustrating the most credible values for the parameter ")
 
 # Direkte LaTeX-Notation für xlabel
@@ -797,33 +822,114 @@ cat("\\begin{align*}\n",
     "    \\text{HDI}_{95\\%} &= \\left\\{ x \\mid p(x) > W \\right\\} ",
     "    \\text{with} \\quad \\int_{x : p(x) > W} p(x) \\, dx &= 0.95\n",
     "\\end{align*}")
+
 cat("If the effective sample size is greater than 10.000 Kruschke recommends using the 95% interval for an estimation with high precision. For smaller effective sample sizes the 89% intervals are deemed to be more stable.")
-cat("The mean posterior value of")
+cat("The mean posterior value of ")
+
+cat("If the effective sample size is greater than 10.000 Kruschke recommends using the 95% interval for an estimation with high precision. For smaller effective sample sizes the 89% intervals are deemed to be more stable.\n")
+
+
+
+
+cat("\n\n**Interpretation in Relation to the Data:**\n\n")
+cat("The mean posterior value of ")
+
+
 if (params$user_selection_function_param == 1) {
+  if (mean_value < 0) {
+    comparison = "lower"
+  } else {
+    comparison = "higher"
+  }
   cat("\\(\\theta_1 - \\theta_2\\)")
+  cat("=", mean_value, " suggests that, on average, the probability of ", 
+      name_outcome, " in the group of ", name_exposure, "(\\(\\theta_1\\)) is ", 
+      comparison, " than in the group of ", name_nonexposure, 
+      " (\\(\\theta_2\\)). However, this value alone is not sufficient to draw 
+      conclusions because it does not account for the uncertainty in the estimate. The
+      HDI of", round(results_HDI$CI_low, 3), "to ", round(results_HDI$CI_high, 3), "indicates that there is
+      a 95% probability that the true difference between ", name_outcome, " probabilities ")
+  cat("\\(\\theta_1 - \\theta_2\\)")
+  cat(" lies within this interval.")
+  if (results_HDI$CI_high > 0 && results_HDI$CI_low < 0) {
+    cat(" Since this interval includes 0, it means that the evidence is inconclusive
+        about whether being in the group of ", name_exposure, " (\\(\\theta_1\\)) increases or decreases the 
+        probability of ", name_outcome, " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+  } else if (results_HDI$CI_high < 0) {
+    cat(" Since this interval lies entirely below 0, it suggests that being in the group of ", name_exposure, "
+        (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
+        " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+  } else {
+    cat(" Since this interval lies entirely above 0, it suggests that being in the group of ", name_exposure, "
+        (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, " compared to the group of "
+        ,name_nonexposure," (\\(\\theta_2\\)).")
+  }
+
 } else if (params$user_selection_function_param == 2) {
+  if (mean_value < 1) {
+    comparison = "lower"
+  } else {
+    comparison = "higher"
+  }
   cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
+  cat("=", mean_value, " suggests that the relative probability of ",
+      name_outcome, " in the group of ", name_exposure, 
+      "(\\(\\theta_1\\)) is ", comparison, " compared to the group of ",
+      name_nonexposure, " (\\(\\theta_2\\)). However, this value alone is not
+      sufficient to draw conclusions because it does not account for the uncertainty
+      in the estimate. The HDI of ", round(results_HDI$CI_low, 3), " to ", round(results_HDI$CI_high, 3),
+      " indicates that there is a 95% probability that the true ratio between ", name_outcome, 
+      " probabilities ")
+  cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
+  cat(" lies within this interval.")
+  if (results_HDI$CI_high > 1 && results_HDI$CI_low < 1) {
+    cat(" Since this interval includes 1, it means that the evidence is inconclusive
+        about whether being in the group of ",name_exposure," (\\(\\theta_1\\)) increases or decreases the
+        probability of ", name_outcome, " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+  } else if (results_HDI$CI_high < 1) {
+    cat(" Since this interval lies entirely below 1, it suggests that being in the group of ",name_exposure,
+    " (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
+    " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+  } else {
+    cat(" Since this interval lies entirely above 1, it suggests that being in the group of ",name_exposure,
+    " (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, 
+    " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+  }
+
 } else if (params$user_selection_function_param == 3) {
+  if (mean_value < 0) {
+    comparison = "lower"
+  } else {
+    comparison = "higher"
+  }
   cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
+  cat("=", mean_value, " suggests the proportionate reduction in the probability of ",
+      name_outcome, " in the group of ", name_exposure,
+      "(\\(\\theta_1\\)) compared to the group of ", name_nonexposure, 
+      " (\\(\\theta_2\\)). However, this value alone is not sufficient to draw 
+      conclusions because it does not account for the uncertainty in the estimate. 
+      The HDI of ", round(results_HDI$CI_low, 3), " to ", round(results_HDI$CI_high, 3), 
+      " indicates that there is a 95% probability that the true difference between 1 
+      and the ratio of ", name_outcome," probabilities ")
+  cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
+  cat(" lies within this interval.")
+  if (results_HDI$CI_high > 0 && results_HDI$CI_low < 0) {
+    cat(" Since this interval includes 0, it means that the evidence is inconclusive
+        about whether being in the group of ",name_exposure," (\\(\\theta_1\\)) increases or decreases the
+        probability of ", name_outcome, " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+  } else if (results_HDI$CI_high < 0) {
+    cat(" Since this interval lies entirely below 0, it suggests that being in the group of ",name_exposure,
+    " (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
+    " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+  } else {
+    cat(" Since this interval lies entirely above 0, it suggests that being in the group of ",name_exposure,
+    " (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, " compared to the group of " 
+    ,name_nonexposure," (\\(\\theta_2\\)).")
+  }
 }
-cat("=-0.1 suggests that, on average, the probability of infection in the exposed group (theta1) is slightly lower than in the non-exposed group (theta2). However, this value alone is not sufficient to draw conclusions because it does not account for the uncertainty in the estimate. The HDI of -0.4 to 0.3 indicates that there is a 95% probability that the true difference between infection probabilities (theta1-theta2) lies within this interval. Since thus interval includes 0, it means that the evidence is inconclusive about whether exposure (theta1) increases or decreases the probability of infection compared to non-exposure (theta2).")
+
 ```
 
-
-```{r}
-# Summary Tabelle ETI
-final_results <- results[6:8,]
-final_results <- data.frame(final_results)
-
-# Zeige Tabelle an
-kable(final_results,
-      align = "l",
-      caption = "ETI table") %>%
-  kable_styling(full_width = TRUE,
-                position = "center",
-                latex_options = "hold_position"
-                )
-```
 
 
 
@@ -855,8 +961,30 @@ eti_plot <- plot(x=eti_result, y=eti_plot_temp[["data"]][["height"]]) +
   scale_y_continuous(breaks = seq(0, max(eti_plot_temp[["data"]][["height"]]), length.out = 5))  # 5 values for the y-axis
 
 print(eti_plot)
+```
 
 
+```{r}
+# Summary Tabelle
+final_results <- results[6:8,]
+final_results <-  data.frame(final_results)
+```
+
+```{r}
+# Zeige die Tabelle mit knitr::kable()
+kable(final_results,
+      align = "l",
+      caption = "ETI table",
+      row.names = FALSE) %>%
+  kable_styling(full_width = TRUE,
+                position = "center",
+                latex_options = "hold_position"
+  )
+
+```
+
+
+```{r interpretation_eti, eval=eval_final, results="asis"}
 # Add text interpretation
 cat("\n\n**Interpretation:**\n\n")
 cat("This plot shows the Equal Tailed Intervals (ETI) for a posterior distribution, highlighting an alternative way to visualize the most credible values for the parameter ")

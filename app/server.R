@@ -194,27 +194,76 @@ function(input, output, session) {
             session$close()
           }
         })
+        
         # check if a1,a2,b1,b2 is a numeric and suitable value
         observe({
+          #debounced reactive inputs for the prior input fields
+          debounce_a1 <- debounce(reactive(input$a1), 3000)
+          debounce_a2 <- debounce(reactive(input$a2), 3000)
+          debounce_b1 <- debounce(reactive(input$b1), 3000)
+          debounce_b2 <- debounce(reactive(input$b2), 3000)
           
-          if (is.na(input$a1) || !is.numeric(input$a1)){
-            updateNumericInput(session, "a1", value = 0.5)
-            showNotification("Please select a numeric value for a1.", type = "error", duration = 5)
-          }
-          if (is.na(input$a2) || !is.numeric(input$a2)){
-            updateNumericInput(session, "a2", value = 0.5)
-            showNotification("Please select a numeric value for a2.", type = "error", duration = 5)
-          }
-          if (is.na(input$b1) || !is.numeric(input$b1)){
-            updateNumericInput(session, "b1", value = 0.5)
-            showNotification("Please select a numeric value for b1.", type = "error", duration = 5)
-          }
-          if (is.na(input$b2) || !is.numeric(input$b2)){
-            updateNumericInput(session, "b2", value = 0.5)
-            showNotification("Please select a numeric value for b2.", type = "error", duration = 5)
-          }
-
+          #immediate validation for invalid values (non-numeric or ≤ 0, if the field is not empty)
+          
+          observeEvent(input$a1, {
+            if ((!is.numeric(input$a1) && !is.na(input$a1)) || (input$a1 <= 0) && !is.na(input$a1)) {
+              updateNumericInput(session, "a1", value = 0.5)
+              showNotification("Please select a positive numeric value for a1.", type = "error", duration = 5)
+            }
+          })
+          
+          observeEvent(input$a2, {
+            if ((!is.numeric(input$a2) && !is.na(input$a2)) || (input$a2 <= 0) && !is.na(input$a2)) {
+              updateNumericInput(session, "a2", value = 0.5)
+              showNotification("Please select a positive numeric value for a2.", type = "error", duration = 5)
+            }
+          })
+          
+          observeEvent(input$b1, {
+            if ((!is.numeric(input$b1) && !is.na(input$b1)) || (input$b1 <= 0) && !is.na(input$b1)){
+              updateNumericInput(session, "b1", value = 0.5)
+              showNotification("Please select a positive numeric value for b1.", type = "error", duration = 5)
+            }
+          })
+          
+          observeEvent(input$b2, {
+            if ((!is.numeric(input$b2) && !is.na(input$b2)) || (input$b2 <= 0) && !is.na(input$b2)) {
+              updateNumericInput(session, "b2", value = 0.5)
+              showNotification("Please select a positive numeric value for b2.", type = "error", duration = 5)
+            }
+          })
+          
+          #delayed validation for empty fields
+          observeEvent(debounce_a1(), {
+            if (is.na(debounce_a1()) || debounce_a1() == "") {
+              updateNumericInput(session, "a1", value = 0.5)
+              showNotification("Please enter a value for a1.", type = "error", duration = 5)
+            }
+          })
+          
+          observeEvent(debounce_a2(), {
+            if (is.na(debounce_a2()) || debounce_a2() == "") {
+              updateNumericInput(session, "a2", value = 0.5)
+              showNotification("Please enter a value for a2.", type = "error", duration = 5)
+            }
+          })
+          
+          observeEvent(debounce_b1(), {
+            if (is.na(debounce_b1()) || debounce_b1() == "") {
+              updateNumericInput(session, "b1", value = 0.5)
+              showNotification("Please enter a value for b1.", type = "error", duration = 5)
+            }
+          })
+          
+          observeEvent(debounce_b2(), {
+            if (is.na(debounce_b2()) || debounce_b2() == "") {
+              updateNumericInput(session, "b2", value = 0.5)
+              showNotification("Please enter a value for b2.", type = "error", duration = 5)
+            }
+          })
         })
+        
+        
         # This creates a short-term storage location for a filepath 
         report <- reactiveValues(filepath = NULL) 
         

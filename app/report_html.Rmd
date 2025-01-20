@@ -1004,6 +1004,8 @@ cat("Unlike the Highest Density Interval (HDI), the ETI does not necessarily cap
 
 cat("In summary, the ETI provides a complementary perspective to the HDI by emphasizing an equal-probability-tail view of uncertainty: it always includes the median, guarantees equal tail areas, and has transformation-invariant limits. Nevertheless, be mindful that in highly skewed or irregular posterior distributions, the ETI may not represent the most densely populated region of the parameter space.\n")
 
+#print(results_ETI)
+
 
 cat("\n\n**Interpretation in Relation to the Data:**\n\n")
 cat("The mean posterior value of ")
@@ -1016,25 +1018,25 @@ if (params$user_selection_function_param == 1) {
   }
   cat("\\(\\theta_1 - \\theta_2\\)")
   cat("=", mean_value, " suggests that, on average, the probability of ", 
-      name_outcome, " in the group of ", name_exposure, "(\\(\\theta_1\\)) is ", 
+      name_outcome, " in the group of ", name_exposure, "\\(\\left(\\theta_1\\right)\\) is ", 
       comparison, " than in the group of ", name_nonexposure, 
-      " (\\(\\theta_2\\)). However, this value alone is not sufficient to draw conclusions because it does not account for the uncertainty in the estimate. The
-      ETI of", round(results_ETI$CI_low, 3), "to ", round(results_ETI$CI_high, 3), "indicates that there is
+      " \\(\\left(\\theta_2\\right)\\). However, this value alone is not sufficient to draw conclusions because it does not account for the uncertainty in the estimate. The
+      ETI of", round(results_ETI$CI_ETI_low, 3), "to ", round(results_ETI$CI_ETI_high, 3), "indicates that there is
       a 95% probability that the true difference between ", name_outcome, " probabilities ")
   cat("\\(\\theta_1 - \\theta_2\\)")
   cat(" lies within this interval.")
-  if (results_ETI$CI_high > 0 && results_ETI$CI_low < 0) {
+  if (results_ETI$CI_ETI_high > 0 && results_ETI$CI_ETI_low < 0) {
     cat(" Since this interval includes 0, it means that the evidence is inconclusive
-        about whether being in the group of ", name_exposure, " (\\(\\theta_1\\)) increases or decreases the 
-        probability of ", name_outcome, " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
-  } else if (results_ETI$CI_high < 0) {
+        about whether being in the group of ", name_exposure, " \\(\\left(\\theta_1\\right)\\) increases or decreases the 
+        probability of ", name_outcome, " compared to the group of ",name_nonexposure," \\(\\left(\\theta_2\\right)\\).")
+  } else if (results_ETI$CI_ETI_high < 0) {
     cat(" Since this interval lies entirely below 0, it suggests that being in the group of ", name_exposure, "
-        (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
-        " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+        \\(\\left(\\theta_1\\right)\\) significantly decreases the probability of ", name_outcome, 
+        " compared to the group of ",name_nonexposure," \\(\\left(\\theta_2\\right)\\).")
   } else {
     cat(" Since this interval lies entirely above 0, it suggests that being in the group of ", name_exposure, "
-        (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, " compared to the group of "
-        ,name_nonexposure," (\\(\\theta_2\\)).")
+        \\(\\left(\\theta_1\\right)\\) significantly increases the probability of ", name_outcome, " compared to the group of "
+        ,name_nonexposure," \\(\\left(\\theta_1\\right)\\).")
   }
 
 } else if (params$user_selection_function_param == 2) {
@@ -1046,26 +1048,26 @@ if (params$user_selection_function_param == 1) {
   cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
   cat("=", mean_value, " suggests that the relative probability of ",
       name_outcome, " in the group of ", name_exposure, 
-      "(\\(\\theta_1\\)) is ", comparison, " compared to the group of ",
-      name_nonexposure, " (\\(\\theta_2\\)). However, this value alone is not
+      "\\(\\left(\\theta_1\\right)\\) is ", comparison, " compared to the group of ",
+      name_nonexposure, " \\(\\left(\\theta_1\\right)\\). However, this value alone is not
       sufficient to draw conclusions because it does not account for the uncertainty
-      in the estimate. The ETI of ", round(results_ETI$CI_low, 3), " to ", round(results_ETI$CI_high, 3),
+      in the estimate. The ETI of ", round(results_ETI$CI_ETI_low, 3), " to ", round(results_ETI$CI_ETI_high, 3),
       " indicates that there is a 95% probability that the true ratio between ", name_outcome, 
       " probabilities ")
   cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
   cat(" lies within this interval.")
-  if (results_ETI$CI_high > 1 && results_ETI$CI_low < 1) {
+  if (results_ETI$CI_ETI_high > 1 && results_ETI$CI_ETI_low < 1) {
     cat(" Since this interval includes 1, it means that the evidence is inconclusive
-        about whether being in the group of ",name_exposure," (\\(\\theta_1\\)) increases or decreases the
-        probability of ", name_outcome, " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
-  } else if (results_ETI$CI_high < 1) {
+        about whether being in the group of ",name_exposure," \\(\\left(\\theta_1\\right)\\) increases or decreases the
+        probability of ", name_outcome, " compared to the group of ",name_nonexposure," \\(\\left(\\theta_1\\right)\\).")
+  } else if (results_ETI$CI_ETI_high < 1) {
     cat(" Since this interval lies entirely below 1, it suggests that being in the group of ",name_exposure,
-    " (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
-    " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+    " \\(\\left(\\theta_1\\right)\\) significantly decreases the probability of ", name_outcome, 
+    " compared to the group of ",name_nonexposure," \\(\\left(\\theta_1\\right)\\).")
   } else {
     cat(" Since this interval lies entirely above 1, it suggests that being in the group of ",name_exposure,
-    " (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, 
-    " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+    " \\(\\left(\\theta_1\\right)\\) significantly increases the probability of ", name_outcome, 
+    " compared to the group of ",name_nonexposure," \\(\\left(\\theta_1\\right)\\).")
   }
 
 } else if (params$user_selection_function_param == 3) {
@@ -1077,26 +1079,26 @@ if (params$user_selection_function_param == 1) {
   cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
   cat("=", mean_value, " suggests the proportionate reduction in the probability of ",
       name_outcome, " in the group of ", name_exposure,
-      "(\\(\\theta_1\\)) compared to the group of ", name_nonexposure, 
-      " (\\(\\theta_2\\)). However, this value alone is not sufficient to draw 
+      "\\(\\left(\\theta_1\\right)\\) compared to the group of ", name_nonexposure, 
+      " \\(\\left(\\theta_1\\right)\\). However, this value alone is not sufficient to draw 
       conclusions because it does not account for the uncertainty in the estimate. 
-      The ETI of ", round(results_ETI$CI_low, 3), " to ", round(results_ETI$CI_high, 3), 
+      The ETI of ", round(results_ETI$CI_ETI_low, 3), " to ", round(results_ETI$CI_ETI_high, 3), 
       " indicates that there is a 95% probability that the true difference between 1 
       and the ratio of ", name_outcome," probabilities ")
-  cat("\\(\\left(\\frac{\\theta_1}{\\theta_2}\\right)\\)")
+  cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
   cat(" lies within this interval.")
-  if (results_ETI$CI_high > 0 && results_ETI$CI_low < 0) {
+  if (results_ETI$CI_ETI_high > 0 && results_ETI$CI_ETI_low < 0) {
     cat(" Since this interval includes 0, it means that the evidence is inconclusive
-        about whether being in the group of ",name_exposure," (\\(\\theta_1\\)) increases or decreases the
-        probability of ", name_outcome, " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
-  } else if (results_ETI$CI_high < 0) {
+        about whether being in the group of ",name_exposure," \\(\\left(\\theta_1\\right)\\) increases or decreases the
+        probability of ", name_outcome, " compared to the group of ",name_nonexposure," \\(\\left(\\theta_1\\right)\\).")
+  } else if (results_ETI$CI_ETI_high < 0) {
     cat(" Since this interval lies entirely below 0, it suggests that being in the group of ",name_exposure,
-    " (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
-    " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+    " \\(\\left(\\theta_1\\right)\\) significantly decreases the probability of ", name_outcome, 
+    " compared to the group of ",name_nonexposure," \\(\\left(\\theta_1\\right)\\).")
   } else {
     cat(" Since this interval lies entirely above 0, it suggests that being in the group of ",name_exposure,
-    " (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, " compared to the group of " 
-    ,name_nonexposure," (\\(\\theta_2\\)).")
+    " \\(\\left(\\theta_1\\right)\\) significantly increases the probability of ", name_outcome, " compared to the group of " 
+    ,name_nonexposure," \\(\\left(\\theta_1\\right)\\).")
   }
 }
 ```

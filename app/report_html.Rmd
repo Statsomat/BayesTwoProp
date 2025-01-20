@@ -711,18 +711,35 @@ interpretation_func <- function(dataset, parameter_description) {
   interpretation <- c()  
   for (i in 1:nrow(dataset)) {
     if (dataset$parameter[i] == "Median") {
-      interpretation[i] <- paste0("The median is the middle value of the posterior distribution for the function                                    of interest ", parameter_description, ". It divides the values of the posterior                                   distribution into two equal halves, where 50% of the values lie below and 50%                                     lie above this point. In this case, the median is ", dataset$posterior[i], ",                                     meaning that 50% of the posterior distribution lie above and 50% below ",                                         dataset$posterior[i], ".")
-    } else if (dataset$parameter[i] == "MAD") {
-      interpretation[i] <- paste0("The MAD (Median Absolute Deviation) is a measure of variability for the                                          function of interest ", parameter_description, ", based on the median. It                                         represents the median of the absolute deviations from the median. Here, the MAD                                   is ", dataset$posterior[i], ", indicating that the typical deviation of data                                      points from the median is ", dataset$posterior[i], ".")
-    } else if (dataset$parameter[i] == "Mean") {
-      interpretation[i] <- paste0("The mean is the arithmetic average of the posterior distribution for the                                         function of interest ", parameter_description, ", calculated by summing all                                       values and dividing by their count. In this case, the mean is ", 
-                                  dataset$posterior[i], ", representing the average value of the posterior                                          distribution.")
-    } else if (dataset$parameter[i] == "SD") {
-      interpretation[i] <- paste0("The SD (Standard Deviation) is a measure of the spread of the posterior                                          distribution for the function of interest ", parameter_description, " around the                                   mean. It shows the average deviation of values from the mean. Here, the SD is ",                                   dataset$posterior[i], ", meaning that on average, data points deviate by ",                                       dataset$posterior[i], " from the mean.")
-    } else if (dataset$parameter[i] == "MAP") {
-      interpretation[i] <- paste0("MAP (Maximum A Posteriori) is the value with the highest density in the                                          posterior distribution for the function of interest ", 
-                                  parameter_description, ". It represents the mode (peak) of the estimated                                          probability density function. MAP of ", dataset$posterior[i], " indicates that                                    this is the most likely value in the posterior distribution for the function of                                   interest ", parameter_description, ".")
-    }
+    interpretation[i] <- paste0("The median is the middle value of the posterior distribution for the function                                    of interest ", parameter_description, ". It divides the values of the posterior                                   distribution into two equal halves, where 50% of the values lie below and 50%                                     lie above this point. In this case, the median is \\(", dataset$posterior[i],                                     "\\), meaning that 50% of the posterior distribution lie above and 50% below \\(",                                 dataset$posterior[i], "\\).")
+  
+} else if (dataset$parameter[i] == "MAD") {
+  interpretation[i] <- paste0("The MAD (Median Absolute Deviation) is a measure of variability for the                                          function of interest ", 
+                              parameter_description, 
+                              ", based on the median. It represents the median of the absolute deviations from                                  the median. Here, the MAD is \\(", 
+                              dataset$posterior[i], 
+                              "\\), indicating that the approximate deviation of data points from the median is                                 \\(", dataset$posterior[i], 
+                              "\\). The MAD is less sensitive to outliers than the Standard Deviation, making it                                a robust measure of variability.")
+  
+} else if (dataset$parameter[i] == "Mean") {
+  interpretation[i] <- paste0("The mean is the arithmetic average of the posterior distribution for the                                         function of interest ", parameter_description, ", calculated by summing all                                       values and dividing by their count. In this case, the mean is \\(", 
+                              dataset$posterior[i], "\\), representing the average value of the posterior                                       distribution.")
+  
+} else if (dataset$parameter[i] == "SD") {
+  interpretation[i] <- paste0("The SD (Standard Deviation) is a measure of the spread of the posterior                                          distribution for the function of interest ", 
+                              parameter_description, 
+                              " around the mean. It shows the average deviation of values from the mean. Here,                                   the SD is \\(", 
+                              dataset$posterior[i], 
+                              "\\), and the mean is \\(", dataset$posterior[i-1], 
+                              "\\). This means ~90% of the data points lie within the range of \\(\\pm 3 \\cdot                                 \\text{SD}\\) around the mean. Specifically, this corresponds to a range of \\(", 
+                              dataset$posterior[i-1], " - 3 \\cdot ", dataset$posterior[i], "\\) to \\(", 
+                              dataset$posterior[i-1], " + 3 \\cdot ", dataset$posterior[i], "\\).")
+  
+} else if (dataset$parameter[i] == "MAP") {
+  interpretation[i] <- paste0("MAP (Maximum A Posteriori) is the value with the highest density in the                                          posterior distribution for the function of interest ", 
+                              parameter_description, ". It represents the mode (peak) of the estimated                                          probability density function. MAP of \\(", dataset$posterior[i], "\\) indicates that                               this is the most likely value in the posterior distribution for the function of                                   interest ", parameter_description, ".")
+}
+
   }
   return(interpretation)
 }

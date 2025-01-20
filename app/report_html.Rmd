@@ -209,6 +209,8 @@ if (params$user_selection_function_param==1) {
 } else {
   cat("$1-\\frac{\\theta_1}{\\theta_2}$", fill=TRUE)  
 }
+cat("based on the entered data and the chosen prior distribution of ")
+cat("$(\\theta_1, \\theta_2 ) \\sim beta(",a1,",",b1,") \\cdot beta(",a2,",",b2,")$.")
 ```
 
 ```{r title_descstats, eval=eval_final, results='asis'}

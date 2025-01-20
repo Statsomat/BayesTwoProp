@@ -400,9 +400,10 @@ cat("\\begin{align} p(y_1,y_2) = P(Y_1=y_1,Y_2=y_2 \\ | \\ \\theta_1, \\theta_2)
 cat("<br>", fill=TRUE)
 
 cat("The likelihood function is defined as follows $L: [0,1] \\times [0,1] \\to [0, \\infty)$ with", fill = TRUE)
-cat("<br>", fill=TRUE)
-
 cat("$$L(\\theta_1, \\theta_2 \\ | \\ y_1,y_2) = \\begin{pmatrix} n_1 \\\\ y_1 \\end{pmatrix} \\theta_1^{y_1} (1-\\theta_1)^{n_1 - y_1} \\cdot  \\begin{pmatrix} n_2 \\\\ y_2 \\end{pmatrix} \\theta_2^{y_2}(1-\\theta_2)^{n_2 - y_2} \\, .$$", fill=TRUE)
+
+cat("As can be seen, the formulas for the probability mass function $p$ and the likelihood function $L$ are similar. However, it is important to know that the likelihood function $L$ is defined on the parameter space $(\\theta_1,\\theta_2)$ and not on the data space $(y_1,y_2)$ like the probability mass function $p$.", fill=TRUE)
+cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
 
 # Likelihood formular of D given theta_1 and theta_2 with user entered data
@@ -435,7 +436,9 @@ r_L2 = round(L2,4)
 p_L2 = sprintf("%.4f", r_L2)
 cat("<br>", fill=TRUE)
 
-cat(paste0("\\begin{align} L \\biggl( \\theta_1= \\frac{", n_exposure1_outcome1, "}{", n_exposure1, "}, \\theta_2= \\frac{", n_exposure0_outcome1, "}{", n_exposure0, "} \\ \\biggl | \\ y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, " \\biggl) &=", p_L1,"\\, , \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, ") &=", p_L2,"\\, .\\end{align}"), fill=TRUE)
+cat(paste0("\\begin{align} L \\left( \\theta_1= \\frac{", n_exposure1_outcome1, "}{", n_exposure1, "}, \\theta_2= \\frac{", n_exposure0_outcome1, "}{", n_exposure0, "} \\ \\biggl | \\ y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, " \\right) &=", 
+p_L1,"\\, , \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, ") &=", p_L2,"\\, .\\end{align}"), fill=TRUE)
+
 cat("<br>", fill=TRUE)
 
 cat("Remark: Because of the independence of $Y_1$ and $Y_2$ you can get the following marginal distributions: ",fill=TRUE) 

@@ -194,7 +194,27 @@ function(input, output, session) {
             session$close()
           }
         })
-        
+        # check if a1,a2,b1,b2 is a numeric and suitable value
+        observe({
+          
+          if (is.na(input$a1) || !is.numeric(input$a1)){
+            updateNumericInput(session, "a1", value = 0.5)
+            showNotification("Please select a numeric value for a1.", type = "error", duration = 5)
+          }
+          if (is.na(input$a2) || !is.numeric(input$a2)){
+            updateNumericInput(session, "a2", value = 0.5)
+            showNotification("Please select a numeric value for a2.", type = "error", duration = 5)
+          }
+          if (is.na(input$b1) || !is.numeric(input$b1)){
+            updateNumericInput(session, "b1", value = 0.5)
+            showNotification("Please select a numeric value for b1.", type = "error", duration = 5)
+          }
+          if (is.na(input$b2) || !is.numeric(input$b2)){
+            updateNumericInput(session, "b2", value = 0.5)
+            showNotification("Please select a numeric value for b2.", type = "error", duration = 5)
+          }
+
+        })
         # This creates a short-term storage location for a filepath 
         report <- reactiveValues(filepath = NULL) 
         

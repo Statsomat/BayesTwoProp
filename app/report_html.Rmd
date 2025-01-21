@@ -162,7 +162,11 @@ if (exists("vars")){
 
 if (exists("vars")){
   cat("Name of the Exposure Variable: ", params$exposure, fill=TRUE)
+  cat("<br>",fill=TRUE)
 }
+
+cat("Selected parameters of prior distributions for $(\\theta_1, \\theta_2 ) \\sim beta(a1,b1) \\cdot beta(a2,b2)$: a1=",a1,", b1=",b2,", a2=",a2,", b2=",b2 )
+
 ```
 
 
@@ -209,6 +213,8 @@ if (params$user_selection_function_param==1) {
 } else {
   cat("$1-\\frac{\\theta_1}{\\theta_2}$", fill=TRUE)  
 }
+cat("based on the entered data and the chosen prior distribution of ")
+cat("$(\\theta_1, \\theta_2 ) \\sim beta(",a1,",",b1,") \\cdot beta(",a2,",",b2,")$.")
 ```
 
 ```{r title_descstats, eval=eval_final, results='asis'}

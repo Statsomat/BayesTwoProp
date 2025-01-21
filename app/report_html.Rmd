@@ -187,19 +187,19 @@ cat("Name of the Exposure Variable: ", params$exposure, fill=TRUE)
 ```{r preamble, eval=eval_final, results='asis'}
 ## general description what is the goal of the analysis and why we use Bayes Analysis
 cat("# Goals of the Analysis", fill=TRUE)
-cat("The data is analyzed in this app by means of Baysian data analysis. Baysian data analysis is a branch of statistical data analysis based on two fundamental ideas: The first idea is that Baysian inference is a reallocation of credibility across possibilities, by means of the well known Bayes' theorem. The second idea is that the possibilities, over which we allocate credibility are parameter values in a meaningful mathematical model.", fill=TRUE)
+cat("The data is analyzed in this app by means of Bayesian data analysis. Bayesian data analysis is a branch of statistical data analysis based on two fundamental ideas. The first idea is that Bayesian inference is a reallocation of credibility across possibilities by means of the well-known Bayes' theorem. The second idea is that the possibilities over which we allocate credibility are parameter values in a meaningful mathematical model.", fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("<br>",fill=TRUE) 
 
-cat("In Bayes' theorem, an existing knowledge about the parameter(s) under investigation (the a priori distribution, or prior for short) is combined with the new knowledge from the data ('likelihood'), resulting in a new, improved knowledge (a posteriori probability distribution).", fill=TRUE)
+cat("In Bayes' theorem, existing knowledge about the parameter(s) under investigation (the a priori distribution, or prior for short) is combined with new knowledge from the data ('likelihood'), resulting in new, improved knowledge (a posteriori probability distribution).", fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("<br>",fill=TRUE) 
 
-cat("An important benefit of Bayesian analysis is the ability to generate estimates and credible intervals for any derived parameter. Differences, ratios, effect sizes and novel parameter combinations are directly computed from the posterior distribution. Another benefit of Bayesian analysis are computationally robust estimates of parameter values and their credible intervals. The credible intervals do not depend on large-N approximations (as confidence intervals often do in frequentist approaches), nor do credible intervals depend on which tests are intended (as confidence intervals do in frequentist approaches).' (Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021)", fill=TRUE)
+cat("An important benefit of Bayesian analysis is the ability to generate estimates and credible intervals for any derived parameter. Differences, ratios, effect sizes, and novel parameter combinations are directly computed from the posterior distribution. Another benefit of Bayesian analysis is its computationally robust estimates of parameter values and their credible intervals. The credible intervals do not depend on large-N approximations (as confidence intervals often do in frequentist approaches), nor do they depend on which tests are intended (as confidence intervals do in frequentist approaches). (Kruschke, John K., Bayesian Analysis Reporting Guidelines, Nature Human Behaviour, 2021)", fill=TRUE)
 cat("<br>",fill=TRUE) 
 cat("<br>",fill=TRUE)
 
-cat("The goal of this app is to generate Bayes estimates and credible intervals for the user selected function of parameters: ", fill=TRUE)
+cat("The goal of this app is to generate Bayes estimates and credible intervals for the user-selected function of parameters: ", fill=TRUE)
 
 # Choice of the relationship betweenn the thetas (3 Options)
 if (params$user_selection_function_param==1) {
@@ -321,7 +321,7 @@ rownames(df_table_plot) <- c(name_nonoutcome, name_outcome)
 rowsum <- apply(df_table_plot, MARGIN  = 1, FUN = sum)
 colsum <- apply(df_table_plot, MARGIN  = 2, FUN = sum)
 
-cat("These two tables depict the frequencies and percentages of the total data. One can also calculate the column percentages per table:")
+cat("These two tables depict the frequencies and percentages of the total data. Additionally, one can calculate the column percentages for each table:")
 cat("<br>", fill=TRUE)
 
 #column percent per table
@@ -500,7 +500,7 @@ cat("\\begin{align}
 cat("with $B$ as the beta function (also called \'Euler integral of the first kind\').",fill=TRUE)
 cat("<br>", fill=TRUE)
 
-cat("We assume that the beliefs about the two parameters are independent, i.e. $\\theta_1$ and $\\theta_2$ are independent, with marginal belief distributions $p(\\theta_1)$, $p(\\theta_2)$.",fill = TRUE) 
+cat("We assume that the beliefs about the two parameters are independent, i.e., $\\theta_1$ and $\\theta_2$ are independent, with marginal belief distributions $p(\\theta_1)$, $p(\\theta_2)$.",fill = TRUE) 
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
 
@@ -857,7 +857,7 @@ if (params$user_selection_function_param == 1) {
 cat("\n\nThe curve represents the probability density of the parameter values, with the shaded regions highlighting different HDI levels. ",
     "The red area corresponds to the 89% HDI, which captures the majority of the distribution’s density and represents the most credible range. ",
     "The orange region extends this to 95%, including slightly more of the distribution, while the blue region covers 100% of the density, respectively. ",
-    "Overall, the HDIs provide a visual summary of where the most credible parameter estimates lie, while reflecting the uncertainty inherent in the data. \n\n")
+    "Overall, the HDIs provide a visual summary of where the most credible parameter estimates lie while reflecting the uncertainty inherent in the data. \n\n")
 cat("The information in the following section is based on Kruschke, John K., Doing Bayesian Data Analysis, Academic Press, 2015. The 95% HDI includes all those values of x for which the density is at least as big as some value W, such that the integral over all those x values is 95%. Formally, the values of x in the 95% HDI are those such that\n")
 
 cat("\\begin{align*}\n",

@@ -826,16 +826,27 @@ final_results <-  data.frame(final_results)
 ```
 
 ```{r}
-# Zeige die Tabelle mit knitr::kable()
-kable(final_results,
+# erstelle temporären Dataframe, um Probleme zu vermeiden, falls im weiteren Verlauf final_results referenziert wird
+final_results_temp <- final_results
+
+final_results_temp[,1] <- c(
+  "Credibility Interval (HDI)",
+  "Lower Bound of HDI",        
+  "Upper Bound of HDI"         
+)
+
+colnames(final_results_temp) <- c("Parameter", "Posterior")
+
+kable(final_results_temp,
       align = "l",
-      caption = "HDI table",
+      caption = "HDI Table",
       row.names = FALSE) %>%
   kable_styling(full_width = TRUE,
                 position = "center",
-                latex_options = "hold_position"
-  )
+                latex_options = "hold_position")
 
+# entfernnen des temporären Dataframes
+rm(final_results_temp)
 ```
 
 
@@ -1013,16 +1024,27 @@ final_results <-  data.frame(final_results)
 ```
 
 ```{r}
-# Zeige die Tabelle mit knitr::kable()
-kable(final_results,
+# erstelle temporären Dataframe
+final_results_temp <- final_results
+
+final_results_temp[,1] <- c(
+  "Credibility Interval (ETI)",
+  "Lower Bound of ETI",        
+  "Upper Bound of ETI"         
+)
+
+colnames(final_results_temp) <- c("Parameter", "Posterior")
+
+kable(final_results_temp,
       align = "l",
-      caption = "ETI table",
+      caption = "ETI Table",
       row.names = FALSE) %>%
   kable_styling(full_width = TRUE,
                 position = "center",
-                latex_options = "hold_position"
-  )
+                latex_options = "hold_position")
 
+# entfernnen des temporären Dataframes
+rm(final_results_temp)
 ```
 
 

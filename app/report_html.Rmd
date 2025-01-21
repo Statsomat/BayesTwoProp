@@ -500,7 +500,7 @@ cat("\\begin{align}
 cat("with $B$ as the beta function (also called \'Euler integral of the first kind\').",fill=TRUE)
 cat("<br>", fill=TRUE)
 
-cat("We assume that the beliefs about the two parameters are independent, i.e. $\\theta_1$ and $\\theta_2$ are independent, with marginal belief distributions $p(\\theta_1)$, $p(\\theta_2)$.",fill = TRUE) 
+cat("We assume that the beliefs about the two parameters are independent, i.e., $\\theta_1$ and $\\theta_2$ are independent, with marginal belief distributions $p(\\theta_1)$, $p(\\theta_2)$.",fill = TRUE) 
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)
 
@@ -857,7 +857,7 @@ if (params$user_selection_function_param == 1) {
 cat("\n\nThe curve represents the probability density of the parameter values, with the shaded regions highlighting different HDI levels. ",
     "The red area corresponds to the 89% HDI, which captures the majority of the distribution’s density and represents the most credible range. ",
     "The orange region extends this to 95%, including slightly more of the distribution, while the blue region covers 100% of the density, respectively. ",
-    "Overall, the HDIs provide a visual summary of where the most credible parameter estimates lie, while reflecting the uncertainty inherent in the data. \n\n")
+    "Overall, the HDIs provide a visual summary of where the most credible parameter estimates lie while reflecting the uncertainty inherent in the data. \n\n")
 cat("The information in the following section is based on Kruschke, John K., Doing Bayesian Data Analysis, Academic Press, 2015. The 95% HDI includes all those values of x for which the density is at least as big as some value W, such that the integral over all those x values is 95%. Formally, the values of x in the 95% HDI are those such that\n")
 
 cat("\\begin{align*}\n",

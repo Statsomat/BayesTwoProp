@@ -195,6 +195,120 @@ function(input, output, session) {
           }
         })
         
+        # check if a1,a2,b1,b2 is a numeric and suitable value
+        observe({
+          #debounced reactive inputs for the prior input fields
+          debounce_a1 <- debounce(reactive(input$a1), 3000)
+          debounce_a2 <- debounce(reactive(input$a2), 3000)
+          debounce_b1 <- debounce(reactive(input$b1), 3000)
+          debounce_b2 <- debounce(reactive(input$b2), 3000)
+          
+          #immediate validation for invalid values (non-numeric or ≤ 0, if the field is not empty)
+          
+          observeEvent(input$a1, {
+            if ((!is.numeric(input$a1) && !is.na(input$a1)) || (input$a1 <= 0) && !is.na(input$a1)) {
+              updateNumericInput(session, "a1", value = 0.5)
+              showNotification("Please select a positive numeric value for a1.", type = "error", duration = 5)
+            }
+          })
+          
+          observeEvent(input$a2, {
+            if ((!is.numeric(input$a2) && !is.na(input$a2)) || (input$a2 <= 0) && !is.na(input$a2)) {
+              updateNumericInput(session, "a2", value = 0.5)
+              showNotification("Please select a positive numeric value for a2.", type = "error", duration = 5)
+            }
+          })
+          
+          observeEvent(input$b1, {
+            if ((!is.numeric(input$b1) && !is.na(input$b1)) || (input$b1 <= 0) && !is.na(input$b1)){
+              updateNumericInput(session, "b1", value = 0.5)
+              showNotification("Please select a positive numeric value for b1.", type = "error", duration = 5)
+            }
+          })
+          
+          observeEvent(input$b2, {
+            if ((!is.numeric(input$b2) && !is.na(input$b2)) || (input$b2 <= 0) && !is.na(input$b2)) {
+              updateNumericInput(session, "b2", value = 0.5)
+              showNotification("Please select a positive numeric value for b2.", type = "error", duration = 5)
+            }
+          })
+          
+          #delayed validation for empty fields
+          observeEvent(debounce_a1(), {
+            if (is.na(debounce_a1()) || debounce_a1() == "") {
+              updateNumericInput(session, "a1", value = 0.5)
+              showNotification("Please enter a value for a1.", type = "error", duration = 5)
+            }
+          })
+          
+          observeEvent(debounce_a2(), {
+            if (is.na(debounce_a2()) || debounce_a2() == "") {
+              updateNumericInput(session, "a2", value = 0.5)
+              showNotification("Please enter a value for a2.", type = "error", duration = 5)
+            }
+          })
+          
+          observeEvent(debounce_b1(), {
+            if (is.na(debounce_b1()) || debounce_b1() == "") {
+              updateNumericInput(session, "b1", value = 0.5)
+              showNotification("Please enter a value for b1.", type = "error", duration = 5)
+            }
+          })
+          
+          observeEvent(debounce_b2(), {
+            if (is.na(debounce_b2()) || debounce_b2() == "") {
+              updateNumericInput(session, "b2", value = 0.5)
+              showNotification("Please enter a value for b2.", type = "error", duration = 5)
+            }
+          })
+        })
+        # check if there are negative values or decimal values in the matrix and change them
+        observe({
+          matrix_values <- input$sample
+          if (all(!is.na(matrix_values) & matrix_values != "")) {
+            
+            #extract and rename matrix values
+            value_11 <- matrix_values[1, 1]
+            value_12 <- matrix_values[1, 2]
+            value_21 <- matrix_values[2, 1]
+            value_22 <- matrix_values[2, 2]
+            
+            #define a function to correct invalid (negative or decimal) values
+            validate_positive_integer <- function(value, row, col) {
+              if (!is.numeric(value) || value < 0 || value != round(value)) {
+                #correct the value if invalid (negative number or not an int)
+                return(0)  
+              }
+              return(value)
+            }
+            
+            #check and correct values for each matrix element
+            corrected_value_11 <- validate_positive_integer(value_11, 1, 1)
+            corrected_value_12 <- validate_positive_integer(value_12, 1, 2)
+            corrected_value_21 <- validate_positive_integer(value_21, 2, 1)
+            corrected_value_22 <- validate_positive_integer(value_22, 2, 2)
+            
+            #check if any changes were made
+            if (value_11 != corrected_value_11 || value_12 != corrected_value_12 || 
+                value_21 != corrected_value_21 || value_22 != corrected_value_22) {
+              
+              #create the corrected matrix
+              corrected_matrix <- matrix(c(corrected_value_11, corrected_value_12, corrected_value_21, corrected_value_22), 
+                                         nrow = 2, 
+                                         ncol = 2, 
+                                         byrow = TRUE,
+                                         dimnames = list(c("Non-Outcome", "Outcome"), c("Non-Exposure", "Exposure")))
+              
+              #update the matrix in the UI
+              updateMatrixInput(session, "sample", value = corrected_matrix)
+              
+              #show notification that invalid values were corrected
+              showNotification("Invalid values (negative numbers or decimal values) have been set to 0.", 
+                               type = "error", duration = 5)
+            }
+          }
+        })
+        
         # This creates a short-term storage location for a filepath 
         report <- reactiveValues(filepath = NULL) 
         

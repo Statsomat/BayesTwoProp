@@ -778,7 +778,6 @@ kable(final_results, align = "l") %>%
   kable_styling(full_width = TRUE)
 ```
 
-
 ```{r plot_hdi, eval=eval_final, results="asis"}
 cat("## HDI Plot", fill=TRUE)
 # Display graphical posterior information using bayestestR package
@@ -819,28 +818,7 @@ print(hdi_plot)
 
 ```
 
-```{r}
-# Summary Tabelle
-final_results <- results[9:11,]
-final_results <-  data.frame(final_results)
-```
-
-```{r}
-# Zeige die Tabelle mit knitr::kable()
-kable(final_results,
-      align = "l",
-      caption = "HDI table",
-      row.names = FALSE) %>%
-  kable_styling(full_width = TRUE,
-                position = "center",
-                latex_options = "hold_position"
-  )
-
-```
-
-
-
-```{r interpretation_hdi, eval=eval_final, results="asis"}
+```{r theoretical_explanation_hdi, eval=eval_final, results="asis"}
 # Textuelle Interpretation - Dynamic Expression
 cat("\n\n**Theoretical Explanation:**\n\n")
 cat("This plot shows the Highest Density Intervals (HDI) for a posterior distribution, illustrating the most credible values for the parameter ")
@@ -869,10 +847,28 @@ cat("If the effective sample size is greater than 10.000 Kruschke recommends usi
 cat("The mean posterior value of ")
 
 cat("If the effective sample size is greater than 10.000 Kruschke recommends using the 95% interval for an estimation with high precision. For smaller effective sample sizes the 89% intervals are deemed to be more stable.\n")
+```
 
+```{r}
+# Summary Tabelle
+final_results <- results[9:11,]
+final_results <-  data.frame(final_results)
+```
 
+```{r}
+# Zeige die Tabelle mit knitr::kable()
+kable(final_results,
+      align = "l",
+      caption = "HDI table",
+      row.names = FALSE) %>%
+  kable_styling(full_width = TRUE,
+                position = "center",
+                latex_options = "hold_position"
+  )
 
+```
 
+```{r interpretation_hdi, eval=eval_final, results="asis"}
 cat("\n\n**Interpretation in Relation to the Data:**\n\n")
 cat("The mean posterior value of ")
 
@@ -906,7 +902,7 @@ if (params$user_selection_function_param == 1) {
         (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, " compared to the group of "
         ,name_nonexposure," (\\(\\theta_2\\)).")
   }
-
+  
 } else if (params$user_selection_function_param == 2) {
   if (mean_value < 1) {
     comparison = "lower"
@@ -930,14 +926,14 @@ if (params$user_selection_function_param == 1) {
         probability of ", name_outcome, " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
   } else if (results_HDI$CI_high < 1) {
     cat(" Since this interval lies entirely below 1, it suggests that being in the group of ",name_exposure,
-    " (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
-    " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+        " (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
+        " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
   } else {
     cat(" Since this interval lies entirely above 1, it suggests that being in the group of ",name_exposure,
-    " (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, 
-    " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+        " (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, 
+        " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
   }
-
+  
 } else if (params$user_selection_function_param == 3) {
   if (mean_value < 0) {
     comparison = "lower"
@@ -961,19 +957,16 @@ if (params$user_selection_function_param == 1) {
         probability of ", name_outcome, " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
   } else if (results_HDI$CI_high < 0) {
     cat(" Since this interval lies entirely below 0, it suggests that being in the group of ",name_exposure,
-    " (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
-    " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
+        " (\\(\\theta_1\\)) significantly decreases the probability of ", name_outcome, 
+        " compared to the group of ",name_nonexposure," (\\(\\theta_2\\)).")
   } else {
     cat(" Since this interval lies entirely above 0, it suggests that being in the group of ",name_exposure,
-    " (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, " compared to the group of " 
-    ,name_nonexposure," (\\(\\theta_2\\)).")
+        " (\\(\\theta_1\\)) significantly increases the probability of ", name_outcome, " compared to the group of " 
+        ,name_nonexposure," (\\(\\theta_2\\)).")
   }
 }
 
 ```
-
-
-
 
 ```{r plot_eti, eval=eval_final, results="asis"}
 cat("## ETI Plot", fill=TRUE)
@@ -1005,6 +998,29 @@ eti_plot <- plot(x=eti_result, y=eti_plot_temp[["data"]][["height"]]) +
 print(eti_plot)
 ```
 
+```{r theoretical_explanation_eti, eval=eval_final, results="asis"}
+# Add text interpretation
+cat("\n\n**Theoretical Explanation:**\n\n")
+cat("This plot shows the Equal Tailed Intervals (ETI) for a posterior distribution, highlighting an alternative way to visualize the most credible values for the parameter ")
+# Direkte LaTeX-Notation für xlabel
+if (params$user_selection_function_param == 1) {
+  cat("\\(\\theta_1 - \\theta_2\\)")
+} else if (params$user_selection_function_param == 2) {
+  cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
+} else if (params$user_selection_function_param == 3) {
+  cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
+}
+
+cat(". Following the approach of Kruschke (Doing Bayesian Data Analysis, Chapter 12.1.2.2), the ETI is defined by trimming equal probability mass \\(\\left(\\frac{\\alpha}{2}\\right)\\) from both tails of the posterior distribution. As a result, the interval is always symmetric in terms of probability mass around the median, which ensures that the median of the distribution is included in the interval.\n\n")
+
+cat("The curve itself represents the posterior probability density for the parameter, with shaded regions indicating different ETI levels. For instance, the red band may represent an 89\\% ETI, the orange band extends the interval to 95\\%, and the blue region covers 100\\% of the distribution's density. These intervals offer a straightforward interpretation of how the posterior probability is allocated across the parameter space: each tail beyond the interval contains exactly \\(\\left(\\frac{\\alpha}{2}\\right)\\) of the total probability.\n\n")
+
+cat("Unlike the Highest Density Interval (HDI), the ETI does not necessarily capture the region of highest posterior density and may therefore exclude the mode (or modes) in skewed or multimodal distributions. However, in symmetric distributions, the ETI and HDI coincide. A key property of ETIs is that their boundaries remain unchanged under monotonic (nonlinear) transformations of parameters, making them attractive for comparing parameter estimates on different scales.\n\n")
+
+cat("In summary, the ETI provides a complementary perspective to the HDI by emphasizing an equal-probability-tail view of uncertainty: it always includes the median, guarantees equal tail areas, and has transformation-invariant limits. Nevertheless, be mindful that in highly skewed or irregular posterior distributions, the ETI may not represent the most densely populated region of the parameter space.\n")
+
+#print(results_ETI)
+```
 
 ```{r}
 # Summary Tabelle
@@ -1025,31 +1041,7 @@ kable(final_results,
 
 ```
 
-
 ```{r interpretation_eti, eval=eval_final, results="asis"}
-# Add text interpretation
-cat("\n\n**Interpretation:**\n\n")
-cat("This plot shows the Equal Tailed Intervals (ETI) for a posterior distribution, highlighting an alternative way to visualize the most credible values for the parameter ")
-# Direkte LaTeX-Notation für xlabel
-if (params$user_selection_function_param == 1) {
-  cat("\\(\\theta_1 - \\theta_2\\)")
-} else if (params$user_selection_function_param == 2) {
-  cat("\\(\\frac{\\theta_1}{\\theta_2}\\)")
-} else if (params$user_selection_function_param == 3) {
-  cat("\\(1 - \\frac{\\theta_1}{\\theta_2}\\)")
-}
-
-cat(". Following the approach of Kruschke (Doing Bayesian Data Analysis, Chapter 12.1.2.2), the ETI is defined by trimming equal probability mass \\(\\left(\\frac{\\alpha}{2}\\right)\\) from both tails of the posterior distribution. As a result, the interval is always symmetric in terms of probability mass around the median, which ensures that the median of the distribution is included in the interval.\n\n")
-
-cat("The curve itself represents the posterior probability density for the parameter, with shaded regions indicating different ETI levels. For instance, the red band may represent an 89\\% ETI, the orange band extends the interval to 95\\%, and the blue region covers 100\\% of the distribution's density. These intervals offer a straightforward interpretation of how the posterior probability is allocated across the parameter space: each tail beyond the interval contains exactly \\(\\left(\\frac{\\alpha}{2}\\right)\\) of the total probability.\n\n")
-
-cat("Unlike the Highest Density Interval (HDI), the ETI does not necessarily capture the region of highest posterior density and may therefore exclude the mode (or modes) in skewed or multimodal distributions. However, in symmetric distributions, the ETI and HDI coincide. A key property of ETIs is that their boundaries remain unchanged under monotonic (nonlinear) transformations of parameters, making them attractive for comparing parameter estimates on different scales.\n\n")
-
-cat("In summary, the ETI provides a complementary perspective to the HDI by emphasizing an equal-probability-tail view of uncertainty: it always includes the median, guarantees equal tail areas, and has transformation-invariant limits. Nevertheless, be mindful that in highly skewed or irregular posterior distributions, the ETI may not represent the most densely populated region of the parameter space.\n")
-
-#print(results_ETI)
-
-
 cat("\n\n**Interpretation in Relation to the Data:**\n\n")
 cat("The mean posterior value of ")
 

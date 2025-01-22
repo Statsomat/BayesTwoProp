@@ -826,18 +826,16 @@ final_results <-  data.frame(final_results)
 ```
 
 ```{r}
-# erstelle temporären Dataframe, um Probleme zu vermeiden, falls im weiteren Verlauf final_results referenziert wird
-final_results_temp <- final_results
 
-final_results_temp[,1] <- c(
+final_results[,1] <- c(
   "Credibility Interval (HDI)",
   "Lower Bound of HDI",        
   "Upper Bound of HDI"         
 )
 
-colnames(final_results_temp) <- c("Parameter", "Posterior")
+colnames(final_results) <- c("95% HDI Credibility Interval", "Value")
 
-kable(final_results_temp,
+kable(final_results,
       align = "l",
       caption = "HDI Table",
       row.names = FALSE) %>%
@@ -845,8 +843,6 @@ kable(final_results_temp,
                 position = "center",
                 latex_options = "hold_position")
 
-# entfernnen des temporären Dataframes
-rm(final_results_temp)
 ```
 
 
@@ -1018,24 +1014,16 @@ print(eti_plot)
 
 
 ```{r}
-# Summary Tabelle
-final_results <- results[6:8,]
-final_results <-  data.frame(final_results)
-```
 
-```{r}
-# erstelle temporären Dataframe
-final_results_temp <- final_results
-
-final_results_temp[,1] <- c(
+final_results[,1] <- c(
   "Credibility Interval (ETI)",
   "Lower Bound of ETI",        
   "Upper Bound of ETI"         
 )
 
-colnames(final_results_temp) <- c("Parameter", "Posterior")
+colnames(final_results) <- c("95% ETI Credibility Interval", "Value")
 
-kable(final_results_temp,
+kable(final_results,
       align = "l",
       caption = "ETI Table",
       row.names = FALSE) %>%
@@ -1043,8 +1031,6 @@ kable(final_results_temp,
                 position = "center",
                 latex_options = "hold_position")
 
-# entfernnen des temporären Dataframes
-rm(final_results_temp)
 ```
 
 

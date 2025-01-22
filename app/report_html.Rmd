@@ -774,8 +774,8 @@ interpretation_func <- function(dataset, parameter_description) {
 ```{r}
 # Summary Tabelle
 final_results <- results[1:5,]
-final_results <-  data.frame(Parameter = final_results[,1], Posterior=final_results[,2], Interpretation = interpretation_func(final_results, parameter_description))
-mean_value <- final_results$Posterior[3]
+final_results <-  data.frame(Parameter = final_results[,1], Value=final_results[,2], Interpretation = interpretation_func(final_results, parameter_description))
+mean_value <- final_results$Value[3]
 ```
 
 ```{r}
@@ -827,20 +827,26 @@ print(hdi_plot)
 
 ```{r}
 # Summary Tabelle
-final_results <- results[9:11,]
+final_results <- results[10:11,]
 final_results <-  data.frame(final_results)
 ```
 
 ```{r}
-# Zeige die Tabelle mit knitr::kable()
+
+final_results[,1] <- c(
+  "Lower Bound of HDI",        
+  "Upper Bound of HDI"         
+)
+
+colnames(final_results) <- c("95% HDI Credibility Interval", "Value")
+
 kable(final_results,
       align = "l",
-      caption = "HDI table",
+      caption = "HDI Table",
       row.names = FALSE) %>%
   kable_styling(full_width = TRUE,
                 position = "center",
-                latex_options = "hold_position"
-  )
+                latex_options = "hold_position")
 
 ```
 
@@ -1014,20 +1020,26 @@ print(eti_plot)
 
 ```{r}
 # Summary Tabelle
-final_results <- results[6:8,]
+final_results <- results[7:8,]
 final_results <-  data.frame(final_results)
 ```
 
 ```{r}
-# Zeige die Tabelle mit knitr::kable()
+
+final_results[,1] <- c(
+  "Lower Bound of ETI",        
+  "Upper Bound of ETI"         
+)
+
+colnames(final_results) <- c("95% ETI Credibility Interval", "Value")
+
 kable(final_results,
       align = "l",
-      caption = "ETI table",
+      caption = "ETI Table",
       row.names = FALSE) %>%
   kable_styling(full_width = TRUE,
                 position = "center",
-                latex_options = "hold_position"
-  )
+                latex_options = "hold_position")
 
 ```
 

@@ -768,8 +768,8 @@ interpretation_func <- function(dataset, parameter_description) {
 ```{r}
 # Summary Tabelle
 final_results <- results[1:5,]
-final_results <-  data.frame(Parameter = final_results[,1], Posterior=final_results[,2], Interpretation = interpretation_func(final_results, parameter_description))
-mean_value <- final_results$Posterior[3]
+final_results <-  data.frame(Parameter = final_results[,1], Value=final_results[,2], Interpretation = interpretation_func(final_results, parameter_description))
+mean_value <- final_results$Value[3]
 ```
 
 ```{r}
@@ -821,14 +821,13 @@ print(hdi_plot)
 
 ```{r}
 # Summary Tabelle
-final_results <- results[9:11,]
+final_results <- results[10:11,]
 final_results <-  data.frame(final_results)
 ```
 
 ```{r}
 
 final_results[,1] <- c(
-  "Credibility Interval (HDI)",
   "Lower Bound of HDI",        
   "Upper Bound of HDI"         
 )
@@ -1014,9 +1013,14 @@ print(eti_plot)
 
 
 ```{r}
+# Summary Tabelle
+final_results <- results[7:8,]
+final_results <-  data.frame(final_results)
+```
+
+```{r}
 
 final_results[,1] <- c(
-  "Credibility Interval (ETI)",
   "Lower Bound of ETI",        
   "Upper Bound of ETI"         
 )

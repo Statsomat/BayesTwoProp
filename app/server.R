@@ -319,17 +319,11 @@ function(input, output, session) {
                        req(input$file, datainput(), input$selection_outcome$right)
                        
                        src1 <- normalizePath('report_html.Rmd')
-                       src2 <- normalizePath('references.bib')
-                       src5 <- normalizePath('FiraSans-Bold.otf')
-                       src6 <- normalizePath('FiraSans-Regular.otf')
                        
                        # Temporarily switch to the temp dir
                        owd <- setwd(tempdir())
                        on.exit(setwd(owd))
                        file.copy(src1, 'report_html.Rmd', overwrite = TRUE)
-                       file.copy(src2, 'references.bib', overwrite = TRUE)
-                       file.copy(src5, 'FiraSans-Bold.otf', overwrite = TRUE)
-                       file.copy(src6, 'FiraSans-Regular.otf', overwrite = TRUE)
                        
                        # Set up parameters to pass to Rmd document
                        enc_guessed <- guess_encoding(input$file$datapath)

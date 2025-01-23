@@ -9,7 +9,6 @@ output:
   html_document:
     toc: true
     toc_depth: 2
-#bibliography: ["references.bib"]
 classoption: landscape
 params:
   data: NA
@@ -142,10 +141,10 @@ cat("# Basic Information", fill=TRUE)
 
 ```{r guifile, results="asis", eval=evalfile}
 ## Basic information for the case file upload
-cat("Automatic statistics for the file:", as.character(params$filename[1]), fill=TRUE)
+cat("Uploaded file name:", as.character(params$filename[1]), fill=TRUE)
 cat("<br>",fill=TRUE) 
   
-cat("Observations (rows with at least one non-missing value): ", fill=TRUE)
+cat("Observations read (rows with at least one non-missing value): ", fill=TRUE)
 cat(dim(df)[1])
 cat("<br>",fill=TRUE) 
 
@@ -156,16 +155,16 @@ if (exists("length_non_complete")){
 }
 
 if (exists("vars")){
-  cat("Name of the Outcome Variable: ", params$outcome, fill=TRUE)
+  cat("Name of the outcome variable: ", params$outcome, fill=TRUE)
   cat("<br>",fill=TRUE) 
 }
 
 if (exists("vars")){
-  cat("Name of the Exposure Variable: ", params$exposure, fill=TRUE)
+  cat("Name of the exposure variable: ", params$exposure, fill=TRUE)
   cat("<br>",fill=TRUE)
 }
 
-cat("Selected parameters of prior distributions for $(\\theta_1, \\theta_2 ) \\sim beta(a1,b1) \\cdot beta(a2,b2)$: a1=",a1,", b1=",b2,", a2=",a2,", b2=",b2 )
+cat("Selected parameters for the prior distribution: $(\\theta_1, \\theta_2 ) \\sim beta(a1,b1) \\cdot beta(a2,b2)$: a1=",a1,", b1=",b1,", a2=",a2,", b2=",b2 )
 
 ```
 
@@ -205,7 +204,7 @@ cat("<br>",fill=TRUE)
 
 cat("The goal of this app is to generate Bayes estimates and credible intervals for the user-selected function of parameters: ", fill=TRUE)
 
-# Choice of the relationship betweenn the thetas (3 Options)
+# Choice of the relationship between the thetas (3 Options)
 if (params$user_selection_function_param==1) {
   cat("$\\theta_1 - \\theta_2$", fill=TRUE)
 } else if (params$user_selection_function_param==2) {
@@ -225,7 +224,7 @@ cat("# The Data", fill=TRUE)
 ## If a datafile is uploaded, it will display the first 5 values of the data
 cat("## Data Head (first five observations)", fill=TRUE)
 df_data_head <- as.data.frame(head(df))
-colnames(df_data_head) <- c(params$outcome, params$presence_exposure)
+# colnames(df_data_head) <- c(params$outcome, params$presence_exposure)
 
 df_data_head %>%
   knitr::kable(format = "html") %>%
@@ -365,11 +364,11 @@ barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure
 ## Description of the assumed model
 cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)
-cat("The statistical model of this analysis derives from the data ", fill=TRUE)
+cat("We assume following statistical model for the data: ", fill=TRUE)
 cat("$$X_{11},...,X_{1n_1} \\hspace{1cm} i.i.d. \\sim Be(\\theta_1) \\, ,$$", fill=TRUE)
 cat("$$X_{21},...,X_{2n_2} \\hspace{1cm} i.i.d.  \\sim Be(\\theta_2)$$", fill=TRUE)
-cat(paste0("with sample sizes $n_1=$ ",n_exposure1," and $n_2=$ ",n_exposure0," and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_i \\, , i\\in\\{1,2\\}$.\\
-The Exposure variable indicates in which of the two groups (",colnames(df_table)[1]," and ",colnames(df_table)[2], ") an individual is. The Outcome variable indicates whether the event occurred for an individual or not and corresponds to either a value of 1 or 0. \\"), fill=TRUE)
+cat(paste0("with sample sizes $n_1=$ ",n_exposure1," and $n_2=$ ",n_exposure0," and Bernoulli distributed random variables in the two groups with distribution parameter $\\theta_1$ and $\\theta_2$ corresponding to exposure levels ",colnames(df_table)[2]," and ",colnames(df_table)[1], ".\\
+The Exposure column indicates in which of the two groups an individual is. The Outcome column indicates whether the event occurred for an individual or not. \\"), fill=TRUE)
 
 cat("Summing up the values of 0 and 1 in the respective groups results in the following random variables:", fill=TRUE)
 cat("$$Y_1= \\sum_{i=1}^{n_1} X_{1i} \\hspace{1cm} i.i.d.  \\sim Bi(n_1,\\theta_1) \\, ,$$", fill=TRUE)
@@ -377,14 +376,14 @@ cat("$$Y_2= \\sum_{i=1}^{n_2} X_{2i} \\hspace{1cm} i.i.d. \\sim Bi(n_2,\\theta_2
 cat("These random variables are binomially distributed with the distribution parameters $n_i$ and $\\theta_i \\, , i\\in\\{1,2\\}$. \\", fill=TRUE)
 cat("The selected function ", fill=TRUE)
 
-#seperated for the different relationships between the thetas
+# separated for the different relationships between the thetas
 if (params$user_selection_function_param==1) {
   cat("$\\theta_1 - \\theta_2$, describes the difference between two success probabilities.", fill=TRUE)
 } else {
   if (params$user_selection_function_param==2) {
   cat("$\\theta_1 / \\theta_2$, describes the Relative Risk, e.g. ratio of two success probabilities.", fill=TRUE)
 } else {
-  cat("$1-\\theta_1 / \\theta_2$, describes 1-Relative Risk, where Relative Risk is e.g. the ratio of two probabilities of success.", fill=TRUE)  
+  cat("$1-\\theta_1 / \\theta_2$, describes 1-Relative Risk, where Relative Risk is the ratio of two probabilities of success.", fill=TRUE)  
 }
 }
 
@@ -710,15 +709,15 @@ if (is.null(rope_user)){
   # ROPE limits and decisions. 
 }
 
-# Umbennennung der Spaltennamen
+# Renaming column names
 colnames(results_ETI)[colnames(results_ETI) == "CI"] <- "CI_ETI"
 colnames(results_ETI)[colnames(results_ETI) == "CI_low"] <- "CI_ETI_low"
 colnames(results_ETI)[colnames(results_ETI) == "CI_high"] <- "CI_ETI_high"
 
-# Kombinieren der Dataframes
+# Combining dataframes
 combined_results <- cbind(results_ETI, CI_HDI = results_HDI$CI, CI_HDI_low = results_HDI$CI_low, CI_HDI_high = results_HDI$CI_high)
 
-# Bearbeiten des Dataframes 
+# Editing dataframe 
 results <- data.frame(t(combined_results), interpretation = rep(1,12))
 results <- data.frame(parameter =  rownames(results)[-1], posterior = round(as.numeric(t(combined_results)[-1]),3))
 
@@ -731,7 +730,7 @@ if (params$user_selection_function_param == 3) {
   parameter_description <- "\\(\\theta_1 - \\theta_2\\)"
 }
 
-# Function für die Interpretation
+# Function for interpretation
 interpretation_func <- function(dataset, parameter_description) {
   interpretation <- c()  
   for (i in 1:nrow(dataset)) {

@@ -106,10 +106,26 @@ tryCatch({
 
 }, error=function(e) {
   
-  stop(safeError("Could not get the file data. "))
+  stop(safeError("This file does not fulfill the assumptions of this app. "))
 })
 
 ```
+
+
+```{r checker, eval = evalfile}
+# Check if columns have more than 2 levels
+has_too_many_levels <- any(sapply(df, function(x) length(unique(x)) > 2))
+
+if (has_too_many_levels) {
+  eval_final <- FALSE
+  evalfile <- FALSE
+  evalfile2 <- FALSE
+  showNotification("Error: Variables must be binary (2 levels only).", duration=30)
+  cat("Error: Variables must be binary (2 levels only).")
+  Sys.sleep(5)
+}
+```
+
 
 ```{r getcellfreq, eval=evalcellfreq}
 ## get parameters from entry and name them in a logical way
@@ -360,7 +376,7 @@ barplot(c(n_exposure0 - n_exposure0_outcome1, n_exposure0_outcome1) / n_exposure
 
 \pagebreak
 
-```{r the_model, eval=eval, results='asis'}
+```{r the_model, eval=eval_final, results='asis'}
 ## Description of the assumed model
 cat("# The Model", fill=TRUE)
 cat("\n## Notation", fill=TRUE)
@@ -594,7 +610,7 @@ plt3d
 ```
 
 
-```{r posterior1, eval=TRUE, results='asis'}
+```{r posterior1, eval=eval_final, results='asis'}
 ## Description of the posterior distribution
 
 cat("## The Posterior Distribution", fill=TRUE)
@@ -645,7 +661,7 @@ cat(paste0("\\begin{align}
 ```
 
 
-```{r posterior2, eval=TRUE, results='asis'}
+```{r posterior2, eval=eval_final, results='asis'}
 ## Plot the posterior (following last row of page 167 DDBA)
 
 # Generate z-values 
@@ -673,7 +689,7 @@ cat("In the figure, at each point in the parameter space ($\\theta_1$,$\\theta_2
 
 ```
 
-```{r simulate, eval=eval}
+```{r simulate, eval=eval_final}
 ## Simulate from posterior
 posterior_Theta1 <- rbeta(10000,n_exposure1_outcome1+a1,(n_exposure1-n_exposure1_outcome1)+b1)
 posterior_Theta2 <- rbeta(10000,n_exposure0_outcome1+a2,(n_exposure0-n_exposure0_outcome1)+b2)
@@ -770,14 +786,14 @@ interpretation_func <- function(dataset, parameter_description) {
 
 ```
 
-```{r}
+```{r, eval=eval_final}
 # Summary Tabelle
 final_results <- results[1:5,]
 final_results <-  data.frame(Parameter = final_results[,1], Value=final_results[,2], Interpretation = interpretation_func(final_results, parameter_description))
 mean_value <- final_results$Value[3]
 ```
 
-```{r}
+```{r, eval=eval_final}
 # Zeige die Tabelle mit knitr::kable()
 kable(final_results, align = "l") %>%
   kable_styling(full_width = TRUE)
@@ -824,13 +840,13 @@ print(hdi_plot)
 
 ```
 
-```{r}
+```{r, eval=eval_final}
 # Summary Tabelle
 final_results <- results[10:11,]
 final_results <-  data.frame(final_results)
 ```
 
-```{r}
+```{r, eval=eval_final}
 
 final_results[,1] <- c(
   "Lower Bound of HDI",        
@@ -1017,13 +1033,13 @@ print(eti_plot)
 ```
 
 
-```{r}
+```{r, eval=eval_final}
 # Summary Tabelle
 final_results <- results[7:8,]
 final_results <-  data.frame(final_results)
 ```
 
-```{r}
+```{r, eval=eval_final}
 
 final_results[,1] <- c(
   "Lower Bound of ETI",        

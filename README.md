@@ -35,3 +35,4 @@ The app offers three functions for comparing the probability of an outcome (e.g.
 - <strong>1 - θ₁ / θ₂</strong>: The relative decrease in the probability of an outcome in the exposed group compared to the unexposed group, e.g., the relative risk reduction.
 </p>
 
+The contributors are students of the University of Applied Sciences Koblenz, Germany. 

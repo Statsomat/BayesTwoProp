@@ -11,6 +11,7 @@ library(data.table)
 library(readr)
 library(shinydisconnect)
 library(shinyMatrix)
+library(LearnBayes)
 
 source("helpers/chooser.R")
 source("helpers/Functions.R")

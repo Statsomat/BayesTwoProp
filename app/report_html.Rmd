@@ -46,7 +46,8 @@ library(kableExtra) # for tables
 library(plotly) # for 3d plots
 library(bayestestR)
 library(LearnBayes)
-
+library(see)
+library(ggridges)
 ```
 
 

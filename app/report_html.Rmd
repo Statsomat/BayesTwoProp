@@ -535,12 +535,12 @@ if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
     
     # same values
     if(a1 == a2 & a1 == b1 & a1 == b2){
-      cat("In this case, all parameters were chosen to be the same. This means that it was assumed that little or no information about the parameters to be estimated was known in advance. The maximum of the prior distribution is therefore at $(0.5, 0.5)$.",fill=TRUE)
+      cat("In this case, all parameters of the prior were chosen to be the same greater than one. Therefore, the maximum of the prior distribution is at $(0.5, 0.5)$.",fill=TRUE)
     # different values
     } else{
       t1_m = round((a1-1)/(a1+b1-2), digits=3)
       t2_m = round((a2-1)/(a2+b2-2), digits=3)
-      cat(paste0("In this case, not all parameters were chosen to be the same. This means that it was assumed that there was information about the parameters in advance. The prior is peaked in $(",t1_m,", ",t2_m,")$."),fill=TRUE)
+      cat(paste0("In this case, not all parameters were chosen to be the same. The prior is peaked in $(",t1_m,", ",t2_m,")$."),fill=TRUE)
     }
   
   # mode does not exist  
@@ -548,10 +548,10 @@ if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
     
     # same values
     if(a1 == a2 & a1 == b1 & a1 == b2){
-      cat("In this case, all parameters were chosen to be the same. This means that it was assumed that little or no information about the parameters to be estimated was known in advance.",fill=TRUE)
+      cat("In this case, all parameters were chosen to be the same. ",fill=TRUE)
     # different values
     } else{
-      cat("In this case, not all parameters were chosen to be the same. This means that it was assumed that there was information about the parameters in advance.",fill=TRUE)
+      cat("In this case, not all parameters were chosen to be the same. ",fill=TRUE)
     }
     
   }
@@ -571,8 +571,7 @@ if(a1!=0.5 | b1!=0.5 | a2!=0.5 | b2!=0.5){
   cat("$$I(\\theta)=\\frac{1}{\\theta (1-\\theta)} \\, .$$", fill=TRUE)
   cat("This results in", fill=TRUE)
   cat("$$p(\\theta) \\propto \\theta^{-0.5}(1-\\theta)^{-0.5}$$", fill=TRUE) 
-  cat("because of Jeffrey's rule. The resulting prior distribution is now $beta(0.5,0.5)$.",fill=TRUE)
-  cat("The default shape parameters of the beta distributions indicate that the prior distribution is peaked at $(0.5,0.5)$ which represents a mild prior belief.")
+  cat("because of Jeffrey's rule. The resulting prior distribution is now $beta(0.5,0.5)$ which represents a mild prior belief..",fill=TRUE)
 }
 cat("<br>", fill=TRUE)
 cat("<br>", fill=TRUE)

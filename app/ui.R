@@ -63,12 +63,10 @@ shinyUI(fluidPage(
     style = "display: flex; justify-content: space-between; align-items: center; padding: 10px;",
     # Left logo
     a(img(src='Logo.jpg', width=200), href="https://www.statsomat.com", target="_blank"),
-    # Right logo
-    a(img(src='HSKoblenz.png', width=200), href="https://www.hs-koblenz.de/home", target="_blank")
   ),
   
   
-  h1("Two Proportions by Bayes", 
+  h1("Bayesian Comparison of Two Proportions (Experimental)", 
      style = "font-family: 'Helvetica';
      color: #fff; text-align: center;
      background-color: #396e9f;

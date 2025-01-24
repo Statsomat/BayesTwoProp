@@ -465,13 +465,13 @@ if(n_exposure1_outcome1 %in% c(0,1,2,3) || n_exposure0_outcome1 %in% c(0,1,2,3))
 } else{
   samp = sample(c(-3,-2,-1,1,2,3),1)
 }
-L3 = likelihood((n_exposure1_outcome1+samp)/n_exposure1,n_exposure1_outcome1+samp,n_exposure1)*likelihood((n_exposure0_outcome1+samp)/n_exposure0,n_exposure0_outcome1+samp,n_exposure0)
+L3 = likelihood((n_exposure1_outcome1+samp)/n_exposure1,n_exposure1_outcome1,n_exposure1)*likelihood((n_exposure0_outcome1+samp)/n_exposure0,n_exposure0_outcome1,n_exposure0)
 r_L3 = round(L3,4)
 p_L3 = sprintf("%.4f", r_L3)
 
 cat("<br>", fill=TRUE)
 cat(paste0("\\begin{align} L \\left( \\theta_1= \\frac{", n_exposure1_outcome1, "}{", n_exposure1, "}, \\theta_2= \\frac{", n_exposure0_outcome1, "}{", n_exposure0, "} \\ \\biggl | \\ y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, " \\right) &=", 
-p_L1,"\\, , \\\\[1em] L\\left( \\theta_1 = \\frac{", n_exposure1_outcome1+samp, "}{", n_exposure1, "}, \\theta_2= \\frac{", n_exposure0_outcome1+samp, "}{", n_exposure0, "} \\ \\biggl | \\ y_1=", n_exposure1_outcome1+samp, ", y_2=", n_exposure0_outcome1+samp, " \\right) &=", p_L3, "\\, , \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, ") &=", p_L2,"\\, . \\end{align}"), fill=TRUE)
+p_L1,"\\, , \\\\[1em] L\\left( \\theta_1 = \\frac{", n_exposure1_outcome1+samp, "}{", n_exposure1, "}, \\theta_2= \\frac{", n_exposure0_outcome1+samp, "}{", n_exposure0, "} \\ \\biggl | \\ y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, " \\right) &=", p_L3, "\\, , \\\\[1em] L(\\theta_1= 0.5, \\theta_2= 0.5 \\ | \\  y_1=", n_exposure1_outcome1, ", y_2=", n_exposure0_outcome1, ") &=", p_L2,"\\, . \\end{align}"), fill=TRUE)
 cat("<br>", fill=TRUE)
 
 cat("Remark: Because of the independence of $Y_1$ and $Y_2$ you can get the following marginal distributions: ",fill=TRUE) 
